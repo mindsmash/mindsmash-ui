@@ -1,0 +1,28 @@
+{
+  "name": "mindsmash-ui",
+  "description": "A ui kid by mindsmash",
+  "main": "index.js",
+  "authors": [
+    "Jeremias Erbs <jerry.erbs@mindsmash.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "theme",
+    "mindsmash",
+    "coyo",
+    "akee",
+    "ui",
+    "scss",
+    "sass",
+    "css"
+  ],
+  "homepage": "https://github.com/mindsmash/mindsmash-ui",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
