@@ -1,0 +1,6 @@
+@import "variables";
+//-bootstrap-autoimport
+
+.testclass {
+  width: #{$testvar}rem;
+}

@@ -2,7 +2,7 @@
   "name": "mindsmash-ui",
   "version": "0.0.1",
   "description": "A ui kid by mindsmash",
-  "main": "index.js",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,5 +25,13 @@
   "bugs": {
     "url": "https://github.com/mindsmash/mindsmash-ui/issues"
   },
-  "homepage": "https://github.com/mindsmash/mindsmash-ui#readme"
+  "homepage": "https://github.com/mindsmash/mindsmash-ui#readme",
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.5",
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.1.0"
+  }
 }

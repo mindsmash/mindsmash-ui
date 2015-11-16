@@ -1,7 +1,7 @@
 {
   "name": "mindsmash-ui",
   "description": "A ui kid by mindsmash",
-  "main": "index.js",
+  "main": "dist/mindsmash-ui.css",
   "authors": [
     "Jeremias Erbs <jerry.erbs@mindsmash.com>"
   ],

@@ -1,7 +1,10 @@
-node_modules
-bower_components
 .idea
 .tmp
 .sass-cache
 .DS_Store
 
+bower_components
+node_modules
+
+source/stylesheets/**/*.css
+*.css.map
