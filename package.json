@@ -20,7 +20,18 @@
     "sass",
     "css"
   ],
-  "author": "Jeremias Erbs, mindsmash GmbH, <jerry.erbs@mindsmash.com>",
+  "contributors": [
+    {
+      "name": "mindsmash GmbH",
+      "email": "mail@mindsmash.com",
+      "url": "http://mindsmash.com"
+    },
+    {
+      "name": "Jeremias Erbs",
+      "email": "jerry.erbs@mindsmash.com",
+      "url": "http://mindsmash.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mindsmash/mindsmash-ui/issues"
