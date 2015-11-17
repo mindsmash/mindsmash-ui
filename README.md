@@ -21,7 +21,7 @@ Clone the project, then run the following inside the main directory
 
 ```shell
 $ npm install # to load all dependencies
-$ gulp dev # to start a watch task that compiles SCSS to CSS on the fly
+$ gulp dev # to start a watch task and a server to show a demo file
 $ gulp build # to create a release version
 $ npm login # login as mindsmash
 $ npm version <patch|minor|major> # to create a new version
