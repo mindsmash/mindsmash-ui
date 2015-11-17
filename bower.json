@@ -3,7 +3,7 @@
   "description": "A ui kid by mindsmash",
   "main": "dist/mindsmash-ui.css",
   "authors": [
-    "Jeremias Erbs <jerry.erbs@mindsmash.com>"
+    "Jeremias Erbs, mindsmash GmbH, <jerry.erbs@mindsmash.com>"
   ],
   "license": "MIT",
   "keywords": [

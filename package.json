@@ -20,7 +20,7 @@
     "sass",
     "css"
   ],
-  "author": "Jeremias Erbs <jerry.erbs@mindsmash.com>",
+  "author": "Jeremias Erbs, mindsmash GmbH, <jerry.erbs@mindsmash.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mindsmash/mindsmash-ui/issues"
