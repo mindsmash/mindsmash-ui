@@ -4,6 +4,12 @@
   "description": "A ui kid by mindsmash",
   "main": "gulpfile.js",
   "scripts": {
+    "gulp": "gulp",
+    "bower": "bower",
+    "prestart": "npm install",
+    "build": "npm install && gulp",
+    "start": "gulp dev",
+    "postinstall": "bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,6 +18,8 @@
   },
   "keywords": [
     "theme",
+    "pattern",
+    "library",
     "mindsmash",
     "coyo",
     "akee",
@@ -29,7 +37,7 @@
     {
       "name": "Jeremias Erbs",
       "email": "jerry.erbs@mindsmash.com",
-      "url": "http://mindsmash.com"
+      "url": "http://www.badabam.de"
     }
   ],
   "license": "MIT",
@@ -39,6 +47,7 @@
   "homepage": "https://github.com/mindsmash/mindsmash-ui#readme",
   "devDependencies": {
     "bootstrap-sass": "^3.3.5",
+    "bower": "^1.6.5",
     "browser-sync": "^2.10.0",
     "css-spaces": "^0.3.4",
     "del": "^2.0.2",

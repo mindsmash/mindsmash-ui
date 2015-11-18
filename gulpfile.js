@@ -8,14 +8,14 @@ var sass = require('gulp-sass');
 var BOOTSTRAP_PLACEHOLDER = '//-bootstrap-autoimport',
     BOOTSTRAP_SCSS_PATH = '"../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap"';
 
-// start development
-gulp.task('default', ['dev']);
+// build task
+gulp.task('default', ['build']);
 
 // start scss watch mode
 gulp.task('dev', ['sass:dev', 'serve']);
 
 // create normal and minified versions
-gulp.task('build', ['clean', 'sass:build', 'copy-sass']);
+gulp.task('build', ['clean', 'sass:build', 'copy:sass']);
 
 // create readable css from scss files
 gulp.task('sass:dev', function () {
@@ -39,10 +39,15 @@ gulp.task('sass:build', function () {
 });
 
 //copy scss files
-gulp.task('copy-sass', function () {
+gulp.task('copy:sass', function () {
   return gulp.src('source/stylesheets/*')
     .pipe(replace(BOOTSTRAP_PLACEHOLDER, ''))
     .pipe(gulp.dest('dist/stylesheets/scss/'));
+});
+
+gulp.task('copy:build', function () {
+  return gulp.src('source/docs/*')
+    .pipe(gulp.dest('dist/docs/'));
 });
 
 gulp.task('serve', function () {
@@ -53,7 +58,7 @@ gulp.task('serve', function () {
         port: 8080
       },
       server: {
-        baseDir: 'source',
+        baseDir: 'source/docs',
         routes: {
           '/css': '.tmp/css/',
           '/css-spaces': 'node_modules/css-spaces/dist'
