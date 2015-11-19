@@ -6,49 +6,174 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet">
   <link rel="stylesheet" href="css/mindsmash-ui.css">
   <link rel="stylesheet" href="css-spaces/spaces.css">
-  <style>
-    body {
-      max-width: 1170px;
-    }
-  </style>
+  <link rel="stylesheet" href="doc.styles.css">
+  <link rel="stylesheet" href="bower_components/highlightjs/styles/color-brewer.css">
 </head>
+
 <body class="container-fluid">
-  <h1>mindsmash-UI</h1>
-  <hr>
-  <section>
-    <h1>Buttons</h1>
-    <h2>Options</h2>
+<h1>mindsmash-UI</h1>
 
-    <div class="mb-l">
-      <button class="btn btn-default mr-s">Default</button>
-      <button class="btn btn-primary mr-s">Primary</button>
-      <button class="btn btn-success mr-s">Success</button>
-      <button class="btn btn-info mr-s">Info</button>
-      <button class="btn btn-warning mr-s">Warning</button>
-      <button class="btn btn-danger mr-s">Danger</button>
-      <button class="btn btn-link mr-s">Link</button>
+<hr>
+
+<section class="mb-xl p-s">
+  <h1>Headings</h1>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <h1>h1 heading <code>h1, .h1</code></h1>
+      <h2>h2 heading <code>h2, .h2</code></h2>
+      <h3>h3 heading <code>h3, .h3</code></h3>
+    </div>
+    <div class="col-xs-6">
+      <h1 class="normal text-uppercase gray">Example</h1>
+      <h1>This is a normal h1 heading <br>that spans over two lines</h1>
+      <h2>This is a normal h2 heading <br>that spans over two lines</h2>
+    </div>
+  </div>
+</section>
+
+<section class="mb-xl">
+  <h1>Colors</h1>
+
+  <div class="row">
+    <div class="col-xs-2 bg-white pv-xs">.bg-white</div>
+    <div class="col-xs-2 bg-blue pv-xs white">.bg-blue</div>
+    <div class="col-xs-2 bg-green pv-xs white">.bg-green</div>
+    <div class="col-xs-2 bg-blue-light pv-xs white">.bg-blue-light</div>
+    <div class="col-xs-2 bg-yellow pv-xs white">.bg-yellow</div>
+    <div class="col-xs-2 bg-red pv-xs white">.bg-red</div>
+  </div>
+  <div class="row mt-s">
+    <div class="col-xs-2 bg-black white pv-xs">.white</div>
+    <div class="col-xs-2 bg-white blue pv-xs">.blue</div>
+    <div class="col-xs-2 bg-white green pv-xs">.green</div>
+    <div class="col-xs-2 bg-white yellow pv-xs">.yellow</div>
+    <div class="col-xs-2 bg-white red pv-xs">.red</div>
+    <div class="col-xs-2 bg-white black pv-xs">.black</div>
+  </div>
+  <div class="row mt-s">
+    <div class="col-xs-2 bg-gray-lighter pv-xs">.bg-gray-lighter</div>
+    <div class="col-xs-2 bg-gray-light pv-xs">.bg-gray-light</div>
+    <div class="col-xs-2 bg-gray pv-xs">.bg-gray</div>
+    <div class="col-xs-2 bg-gray-dark pv-xs">.bg-gray-dark</div>
+    <div class="col-xs-2 bg-gray-darker white pv-xs">.bg-gray-darker</div>
+    <div class="col-xs-2 bg-black white pv-xs">.bg-black</div>
+  </div>
+</section>
+
+<section>
+  <h1>Buttons</h1>
+
+  <h2>Options</h2>
+
+  <div class="mb-l">
+    <button class="btn btn-default mr-s">Default</button>
+    <button class="btn btn-primary mr-s">Primary</button>
+    <button class="btn btn-success mr-s">Success</button>
+    <button class="btn btn-info mr-s">Info</button>
+    <button class="btn btn-warning mr-s">Warning</button>
+    <button class="btn btn-danger mr-s">Danger</button>
+    <button class="btn btn-link mr-s">Link</button>
+  </div>
+
+  <h2>Sizes</h2>
+
+  <div class="mb-l">
+    <div class="mb-s">
+      <button class="btn btn-primary btn-lg mr-s">Large button</button>
+      <button class="btn btn-default btn-lg">Large button</button>
+    </div>
+    <div class="mb-s">
+      <button class="btn btn-primary mr-s">Default button</button>
+      <button class="btn btn-default">Default button</button>
+    </div>
+    <div class="mb-s">
+      <button class="btn btn-primary btn-sm mr-s">Small button</button>
+      <button class="btn btn-default btn-sm">Small button</button>
+    </div>
+    <div class="mb-s">
+      <button class="btn btn-primary btn-xs mr-s">Extra small button</button>
+      <button class="btn btn-default btn-xs">Extra small button</button>
+    </div>
+    <br>
+  </div>
+</section>
+
+<section>
+  <h1>Panels</h1>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="example panel panel-default">
+        <div class="panel-body bg-gray-lighter">
+          <p class="text-uppercase gray">Example</p>
+
+          <div data-create-code=".js-insert-code">
+            <!-- Example 1 -->
+            <section class="panel panel-default">
+              <img class="panel-heading" data-src="holder.js/100px200/?text=Image&theme=sky" alt="">
+
+              <div class="panel-body">
+                Panel content
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="panel-footer js-insert-code"></div>
+      </div>
     </div>
 
-    <h2>Sizes</h2>
-    <div class="mb-l">
-      <div class="mb-s">
-        <button class="btn btn-primary btn-lg mr-s">Large button</button>
-        <button class="btn btn-default btn-lg">Large button</button>
+    <div class="col-xs-6">
+
+      <div class="example panel panel-default">
+        <div class="panel-body bg-gray-lighter">
+          <p class="text-uppercase gray">Example</p>
+
+          <div data-create-code=".js-insert-code">
+            <section class="panel panel-default">
+              <img class="panel-heading" data-src="holder.js/100px200/?text=Image&theme=sky" alt="">
+              <div class="panel-body">
+                <span class="panel-title blue-light">Company News</span>
+                <h1 class="panel-title">Welcome to our new office</h1>
+                <span class="text-muted">Blog article &bull; 3 hours ago by Jan Marquardt</span>
+              </div>
+              <div class="panel-footer">Panel footer</div>
+            </section>
+          </div>
+        </div>
+        <div class="panel-footer js-insert-code">
+        </div>
       </div>
-      <div class="mb-s">
-        <button class="btn btn-primary mr-s">Default button</button>
-        <button class="btn btn-default">Default button</button>
-      </div>
-      <div class="mb-s">
-        <button class="btn btn-primary btn-sm mr-s">Small button</button>
-        <button class="btn btn-default btn-sm">Small button</button>
-      </div>
-      <div class="mb-s">
-        <button class="btn btn-primary btn-xs mr-s">Extra small button</button>
-        <button class="btn btn-default btn-xs">Extra small button</button>
-      </div>
-      <br>
     </div>
-  </section>
+
+  </div>
+</section>
+
+<script src="bower_components/anchor-js/anchor.js"></script>
+<script src="bower_components/holderjs/holder.js"></script>
+<script src="bower_components/highlightjs/highlight.pack.js"></script>
+
+<script>
+  anchors.options.placement = 'left';
+  anchors.add('h1, h2');
+
+  var codeBlocks     = document.querySelectorAll('[data-create-code]');
+
+  for (var i = 0; i < codeBlocks.length; i++) {
+    var code = codeBlocks[i],
+        targetSelector = code.dataset.createCode,
+        target = document.querySelectorAll(targetSelector)[i],
+        example = document.createElement('code'),
+        codeText = code.innerHTML,
+        leadingWhitespace = codeText.match(/^\s{3,}/)[0];
+
+    codeText = codeText.replace(RegExp(leadingWhitespace, 'g'), '\n');
+    example.textContent = codeText;
+    example.classList.add('html', 'code');
+    target.appendChild(example);
+    hljs.highlightBlock(example);
+  }
+</script>
 </body>
 </html>

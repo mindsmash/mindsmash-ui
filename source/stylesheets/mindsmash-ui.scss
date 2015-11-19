@@ -1,2 +1,5 @@
 @import "variables";
-//-bootstrap-autoimport
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap"; // @@gulp-remove-line
+@import "common/colors";
+@import "bootstrap/panel";
+@import "bootstrap/typography";

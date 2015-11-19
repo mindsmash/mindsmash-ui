@@ -1,0 +1,29 @@
+$ms-colors: (
+  white: $ms-white,
+  black: $ms-black,
+
+  blue-light: $ms-blue-light,
+  blue: $ms-blue,
+  blue-dark: $ms-blue-dark,
+
+  green: $ms-green,
+  yellow: $ms-yellow,
+  red: $ms-red,
+
+  gray-lighter: $ms-gray-lighter,
+  gray-light: $ms-gray-light,
+  gray: $ms-gray,
+  gray-dark: $ms-gray-dark,
+  gray-darker: $ms-gray-darker
+);
+
+@each $name, $value in $ms-colors {
+  .bg-#{$name} {
+    background-color: $value !important;
+  }
+
+  .#{$name} {
+    color: $value !important;
+  }
+
+}
