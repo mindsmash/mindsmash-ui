@@ -29,6 +29,7 @@
     "anchor-js": "~2.0.0",
     "holderjs": "~2.9.0",
     "highlightjs": "~8.9.1",
-    "css-spaces": "~0.3.5"
+    "css-spaces": "~0.3.5",
+    "material-design-iconic-font": "~2.2.0"
   }
 }
