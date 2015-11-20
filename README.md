@@ -12,6 +12,7 @@ A Bootstrap 3 UI Kit by mindsmash.
 
 Release  | What's new
 --------:|:-----------------------------------------------------------
+0.2.4    | Fix rounded corners on panel header image
 0.2.3    | Small fixes, improved README
 0.2.0    | Load other fonts. Please update the google font `<link>`
          | Add color classes, button sizes and first panels
