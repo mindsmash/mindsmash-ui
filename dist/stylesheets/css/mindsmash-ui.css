@@ -2720,7 +2720,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .panel-heading-image { padding: 0; }
 
-.panel-default { border-color: transparent; }
+.panel-default { border-color: transparent; overflow: hidden; }
 
 .panel-heading-main { padding-left: 0; padding-right: 0; margin-left: 36px; margin-right: 36px; }
 

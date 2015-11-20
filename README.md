@@ -1,5 +1,5 @@
 # mindsmash-ui
-A Bootstrap 3 Theme by mindsmash.
+A Bootstrap 3 UI Kit by mindsmash.
 
 ## Contents
 * [Change log](#change-log)
