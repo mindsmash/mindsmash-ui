@@ -2722,11 +2722,11 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .panel-default { border-color: transparent; }
 
+.panel-heading-main { padding-left: 0; padding-right: 0; margin-left: 36px; margin-right: 36px; }
+
 .panel-title { font-size: 32px; }
 
 .panel-title-small { font-size: 18px; margin: 0; }
-
-.panel-heading-main { padding-left: 0; padding-right: 0; margin-left: 36px; margin-right: 36px; }
 
 .normal { font-weight: normal !important; font-size: 16px; }
 
