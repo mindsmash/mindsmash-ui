@@ -8,6 +8,7 @@ A Bootstrap 3 Theme by mindsmash.
 Release | Main changes
 0.2.0   | Load other fonts. Please update the google font `<link>`
         | Add color classes, button sizes and first panels
+        | Add documentation (see dist/docs/)
 
 
  > **Heads up!** This theme uses a non-default font called "Source Sans Pro".<br>
