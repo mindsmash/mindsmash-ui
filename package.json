@@ -54,7 +54,9 @@
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^2.1.0",
+    "gulp-scss-lint": "^0.3.8",
     "gulp-sequence": "^0.4.1",
+    "gulp-util": "^3.0.7",
     "merge-stream": "^1.0.0"
   }
 }

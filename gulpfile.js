@@ -1,11 +1,13 @@
 var browserSync = require('browser-sync');
 var del = require('del');
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 var gulpSequence = require('gulp-sequence');
 var merge = require('merge-stream');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var sass = require('gulp-sass');
+var scsslint = require('gulp-scss-lint');
 
 var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 
@@ -21,7 +23,8 @@ gulp.task('build', gulpSequence(['clean', 'sass:build'], ['copy:sass', 'copy:doc
 // create readable css from scss files
 gulp.task('sass:dev', function () {
   return gulp.src('source/stylesheets/*.scss')
-    .pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
+    //.pipe(scsslint())
+    .pipe(sass({outputStyle: 'compact'}).on('warning', gutil.log))
     .pipe(gulp.dest('.tmp/css'))
     .pipe(browserSync.stream());
 });
@@ -29,9 +32,10 @@ gulp.task('sass:dev', function () {
 // create minified css files
 gulp.task('sass:build', function () {
   return gulp.src('source/stylesheets/*.scss')
-    .pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
+    //.pipe(scsslint())
+    .pipe(sass({outputStyle: 'compact'}).on('error', gutil.log))
     .pipe(gulp.dest('dist/stylesheets/css'))
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', gutil.log))
     .pipe(rename(function (path) {
       path.basename += ".min";
       return path;
