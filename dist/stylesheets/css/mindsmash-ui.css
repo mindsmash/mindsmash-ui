@@ -676,13 +676,13 @@ h4, .h4, h5, .h5, h6, .h6 { margin-top: 12px; margin-bottom: 12px; }
 
 h4 small, h4 .small, .h4 small, .h4 .small, h5 small, h5 .small, .h5 small, .h5 .small, h6 small, h6 .small, .h6 small, .h6 .small { font-size: 75%; }
 
-h1, .h1 { font-size: 36px; }
+h1, .h1 { font-size: 38px; }
 
-h2, .h2 { font-size: 24px; }
+h2, .h2 { font-size: 32px; }
 
-h3, .h3 { font-size: 18px; }
+h3, .h3 { font-size: 24px; }
 
-h4, .h4 { font-size: 20px; }
+h4, .h4 { font-size: 18px; }
 
 h5, .h5 { font-size: 16px; }
 
@@ -1238,33 +1238,33 @@ input[type="radio"][disabled], input[type="radio"].disabled, fieldset[disabled] 
 
 .form-control-static.input-lg, .input-group-lg > .form-control-static.form-control, .input-group-lg > .form-control-static.input-group-addon, .input-group-lg > .input-group-btn > .form-control-static.btn, .form-control-static.input-sm, .input-group-sm > .form-control-static.form-control, .input-group-sm > .form-control-static.input-group-addon, .input-group-sm > .input-group-btn > .form-control-static.btn { padding-left: 0; padding-right: 0; }
 
-.input-sm, .input-group-sm > .form-control, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .btn { height: 26px; padding: 3px 16px; font-size: 12px; line-height: 1.5; border-radius: 3px; }
+.input-sm, .input-group-sm > .form-control, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .btn { height: 26px; padding: 3px 12px; font-size: 12px; line-height: 1.5; border-radius: 3px; }
 
 select.input-sm, .input-group-sm > select.form-control, .input-group-sm > select.input-group-addon, .input-group-sm > .input-group-btn > select.btn { height: 26px; line-height: 26px; }
 
 textarea.input-sm, .input-group-sm > textarea.form-control, .input-group-sm > textarea.input-group-addon, .input-group-sm > .input-group-btn > textarea.btn, select[multiple].input-sm, .input-group-sm > select[multiple].form-control, .input-group-sm > select[multiple].input-group-addon, .input-group-sm > .input-group-btn > select[multiple].btn { height: auto; }
 
-.form-group-sm .form-control { height: 26px; padding: 3px 16px; font-size: 12px; line-height: 1.5; border-radius: 3px; }
+.form-group-sm .form-control { height: 26px; padding: 3px 12px; font-size: 12px; line-height: 1.5; border-radius: 3px; }
 
 .form-group-sm select.form-control { height: 26px; line-height: 26px; }
 
 .form-group-sm textarea.form-control, .form-group-sm select[multiple].form-control { height: auto; }
 
-.form-group-sm .form-control-static { height: 26px; min-height: 36px; padding: 4px 16px; font-size: 12px; line-height: 1.5; }
+.form-group-sm .form-control-static { height: 26px; min-height: 36px; padding: 4px 12px; font-size: 12px; line-height: 1.5; }
 
-.input-lg, .input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn { height: 49px; padding: 10px 32px; font-size: 18px; line-height: 1.5; border-radius: 6px; }
+.input-lg, .input-group-lg > .form-control, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .btn { height: 49px; padding: 10px 36px; font-size: 18px; line-height: 1.5; border-radius: 6px; }
 
 select.input-lg, .input-group-lg > select.form-control, .input-group-lg > select.input-group-addon, .input-group-lg > .input-group-btn > select.btn { height: 49px; line-height: 49px; }
 
 textarea.input-lg, .input-group-lg > textarea.form-control, .input-group-lg > textarea.input-group-addon, .input-group-lg > .input-group-btn > textarea.btn, select[multiple].input-lg, .input-group-lg > select[multiple].form-control, .input-group-lg > select[multiple].input-group-addon, .input-group-lg > .input-group-btn > select[multiple].btn { height: auto; }
 
-.form-group-lg .form-control { height: 49px; padding: 10px 32px; font-size: 18px; line-height: 1.5; border-radius: 6px; }
+.form-group-lg .form-control { height: 49px; padding: 10px 36px; font-size: 18px; line-height: 1.5; border-radius: 6px; }
 
 .form-group-lg select.form-control { height: 49px; line-height: 49px; }
 
 .form-group-lg textarea.form-control, .form-group-lg select[multiple].form-control { height: auto; }
 
-.form-group-lg .form-control-static { height: 49px; min-height: 42px; padding: 11px 32px; font-size: 18px; line-height: 1.5; }
+.form-group-lg .form-control-static { height: 49px; min-height: 42px; padding: 11px 36px; font-size: 18px; line-height: 1.5; }
 
 .has-feedback { position: relative; }
 
@@ -1460,11 +1460,11 @@ a.btn.disabled, fieldset[disabled] a.btn { pointer-events: none; }
 
 .btn-link[disabled]:hover, .btn-link[disabled]:focus, fieldset[disabled] .btn-link:hover, fieldset[disabled] .btn-link:focus { color: #EAEAEA; text-decoration: none; }
 
-.btn-lg, .btn-group-lg > .btn { padding: 10px 32px; font-size: 18px; line-height: 1.5; border-radius: 6px; }
+.btn-lg, .btn-group-lg > .btn { padding: 10px 36px; font-size: 18px; line-height: 1.5; border-radius: 6px; }
 
-.btn-sm, .btn-group-sm > .btn { padding: 3px 16px; font-size: 12px; line-height: 1.5; border-radius: 3px; }
+.btn-sm, .btn-group-sm > .btn { padding: 3px 12px; font-size: 12px; line-height: 1.5; border-radius: 3px; }
 
-.btn-xs, .btn-group-xs > .btn { padding: 3px 8px; font-size: 12px; line-height: 1.5; border-radius: 3px; }
+.btn-xs, .btn-group-xs > .btn { padding: 3px 6px; font-size: 12px; line-height: 1.5; border-radius: 3px; }
 
 .btn-block { display: block; width: 100%; }
 
@@ -1625,9 +1625,9 @@ tbody.collapse.in { display: table-row-group; }
 
 .input-group-addon { padding: 8px 24px; font-size: 16px; font-weight: normal; line-height: 1; color: #AAA; text-align: center; background-color: #F3F3F3; border: 1px solid #ccc; border-radius: 5px; }
 
-.input-group-addon.input-sm, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .input-group-addon.btn { padding: 3px 16px; font-size: 12px; border-radius: 3px; }
+.input-group-addon.input-sm, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .input-group-addon.btn { padding: 3px 12px; font-size: 12px; border-radius: 3px; }
 
-.input-group-addon.input-lg, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .input-group-addon.btn { padding: 10px 32px; font-size: 18px; border-radius: 6px; }
+.input-group-addon.input-lg, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .input-group-addon.btn { padding: 10px 36px; font-size: 18px; border-radius: 6px; }
 
 .input-group-addon input[type="radio"], .input-group-addon input[type="checkbox"] { margin-top: 0; }
 
@@ -1944,13 +1944,13 @@ tbody.collapse.in { display: table-row-group; }
 
 .pagination > .disabled > span, .pagination > .disabled > span:hover, .pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover, .pagination > .disabled > a:focus { color: #EAEAEA; background-color: #fff; border-color: #ddd; cursor: not-allowed; }
 
-.pagination-lg > li > a, .pagination-lg > li > span { padding: 10px 32px; font-size: 18px; line-height: 1.5; }
+.pagination-lg > li > a, .pagination-lg > li > span { padding: 10px 36px; font-size: 18px; line-height: 1.5; }
 
 .pagination-lg > li:first-child > a, .pagination-lg > li:first-child > span { border-bottom-left-radius: 6px; border-top-left-radius: 6px; }
 
 .pagination-lg > li:last-child > a, .pagination-lg > li:last-child > span { border-bottom-right-radius: 6px; border-top-right-radius: 6px; }
 
-.pagination-sm > li > a, .pagination-sm > li > span { padding: 3px 16px; font-size: 12px; line-height: 1.5; }
+.pagination-sm > li > a, .pagination-sm > li > span { padding: 3px 12px; font-size: 12px; line-height: 1.5; }
 
 .pagination-sm > li:first-child > a, .pagination-sm > li:first-child > span { border-bottom-left-radius: 3px; border-top-left-radius: 3px; }
 
@@ -2216,13 +2216,13 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 .panel { margin-bottom: 24px; background-color: #FDFDFD; border: 1px solid transparent; border-radius: 5px; -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
 
-.panel-body { padding: 24px; }
+.panel-body { padding: 24px 36px; }
 
 .panel-body:before, .panel-body:after { content: " "; display: table; }
 
 .panel-body:after { clear: both; }
 
-.panel-heading { padding: 36px 24px 24px; border-bottom: 1px solid transparent; border-top-right-radius: 4px; border-top-left-radius: 4px; }
+.panel-heading { padding: 36px 36px 24px; border-bottom: 1px solid transparent; border-top-right-radius: 4px; border-top-left-radius: 4px; }
 
 .panel-heading > .dropdown .dropdown-toggle { color: inherit; }
 
@@ -2230,7 +2230,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 .panel-title > a, .panel-title > small, .panel-title > .small, .panel-title > small > a, .panel-title > .small > a { color: inherit; }
 
-.panel-footer { padding: 12px 24px; background-color: transparent; border-top: 1px solid #EAEAEA; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; }
+.panel-footer { padding: 12px 36px; background-color: transparent; border-top: 1px solid #EAEAEA; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; }
 
 .panel > .list-group, .panel > .panel-collapse > .list-group { margin-bottom: 0; }
 
@@ -2248,7 +2248,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 .panel > .table, .panel > .table-responsive > .table, .panel > .panel-collapse > .table { margin-bottom: 0; }
 
-.panel > .table caption, .panel > .table-responsive > .table caption, .panel > .panel-collapse > .table caption { padding-left: 24px; padding-right: 24px; }
+.panel > .table caption, .panel > .table-responsive > .table caption, .panel > .panel-collapse > .table caption { padding-left: 24px 36px; padding-right: 24px 36px; }
 
 .panel > .table:first-child, .panel > .table-responsive:first-child > .table:first-child { border-top-right-radius: 4px; border-top-left-radius: 4px; }
 
@@ -2718,11 +2718,15 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .gray-darker { color: #404040 !important; }
 
-img.panel-heading { padding: 0; }
+.panel-heading-image { padding: 0; }
 
 .panel-default { border-color: transparent; }
 
-.panel-title { font-size: 24px; }
+.panel-title { font-size: 32px; }
+
+.panel-title-small { font-size: 18px; margin: 0; }
+
+.panel-heading-main { padding-left: 0; padding-right: 0; margin-left: 36px; margin-right: 36px; }
 
 .normal { font-weight: normal !important; font-size: 16px; }
 
