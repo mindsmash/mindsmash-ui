@@ -4,7 +4,7 @@ A Bootstrap 3 Theme by mindsmash.
  > **Heads up!** This theme uses a non-default font called "Source Sans Pro".<br>
  > Please add the following line of code to your `<head>`:
  ```html
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic" rel="stylesheet">
  ```
 
 ### Contents

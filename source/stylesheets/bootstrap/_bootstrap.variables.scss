@@ -67,7 +67,7 @@ $line-height-base:        1.5 !default;
 
 //** By default, this inherits from the `<body>`.
 //$headings-font-family:    inherit !default;
-$headings-font-weight:    normal !default;
+$headings-font-weight:    300 !default;
 $headings-line-height:    1.25 !default;
 //$headings-color:          inherit !default;
 
@@ -627,7 +627,7 @@ $btn-danger-border:              transparent !default;
 
 //$alert-padding:               15px !default;
 //$alert-border-radius:         $border-radius-base !default;
-//$alert-link-font-weight:      bold !default;
+$alert-link-font-weight:      600 !default;
 
 //$alert-success-bg:            $state-success-bg !default;
 //$alert-success-text:          $state-success-text !default;
@@ -783,7 +783,7 @@ $panel-primary-text:          $ms-white !default;
 //** Badge background color in active nav link
 //$badge-active-bg:             #fff !default;
 
-//$badge-font-weight:           bold !default;
+$badge-font-weight:           600 !default;
 //$badge-line-height:           1 !default;
 //$badge-border-radius:         10px !default;
 
@@ -825,7 +825,7 @@ $panel-primary-text:          $ms-white !default;
 //
 //##
 
-//$close-font-weight:           bold !default;
+$close-font-weight:           600 !default;
 //$close-color:                 #000 !default;
 //$close-text-shadow:           0 1px 0 #fff !default;
 
