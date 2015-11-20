@@ -1,28 +1,27 @@
 # mindsmash-ui
 A Bootstrap 3 Theme by mindsmash.
 
+## Contents
+[Change log](#change-log)
+[Install with bower](#install-with-bower-to-use-the-theme-css-or-scss-version)  
+[Use in an SCSS project](#use-in-a-sass-scss-project)
+[Use in a CSS project](#use-with-pure-css)
+[Change and publish mindsmash-ui itself](#install-with-npm-to-change-and-deploy-the-theme)
+
 ## Change log
 
-
 --------|-----------------------------------------------------------
-Release | Main changes
+Release | What's new
 0.2.0   | Load other fonts. Please update the google font `<link>`
         | Add color classes, button sizes and first panels
         | Add documentation (see dist/docs/)
 
 
- > **Heads up!** This theme uses a non-default font called "Source Sans Pro".<br>
- > Please add the following line of code to your `<head>`:
- 
- ```
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic" rel="stylesheet">
- ```
-
-### Contents
-[Install with bower](#install-with-bower-to-use-the-theme-css-or-scss-version)  
-[Use in an SCSS project](#use-in-a-sass-scss-project)
-[Use in a CSS project](#use-with-pure-css)
-[Change and publish mindsmash-ui itself](#install-with-npm-to-change-and-deploy-the-theme)
+> **Heads up!** This theme uses a non-default font called "Source Sans Pro".<br>
+> Please add the following line of code to your `<head>`:
+```html
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic" rel="stylesheet">
+```
 
 ## Install with bower to use the theme (CSS or SCSS version)
 ```shell

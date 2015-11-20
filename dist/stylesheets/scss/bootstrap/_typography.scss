@@ -1,8 +1,17 @@
 .normal {
   font-weight: normal !important;
-  font-size: $font-size-base !important;
+  font-size: $font-size-base;
 }
 
+.light {
+  font-weight: 300 !important;
+}
+
+.size-normal {
+  font-size: $font-size-base;
+}
+
+// TODO: do we need something like this?
 .m-h1 {
   margin: 24px 0 12px !important;
 }

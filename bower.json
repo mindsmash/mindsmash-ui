@@ -28,6 +28,7 @@
   "devDependencies": {
     "anchor-js": "~2.0.0",
     "holderjs": "~2.9.0",
-    "highlightjs": "~8.9.1"
+    "highlightjs": "~8.9.1",
+    "css-spaces": "~0.3.5"
   }
 }

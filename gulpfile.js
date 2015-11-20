@@ -1,6 +1,7 @@
 var browserSync = require('browser-sync');
-var del  = require('del');
+var del = require('del');
 var gulp = require('gulp');
+var merge = require('merge-stream');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var sass = require('gulp-sass');
@@ -26,6 +27,8 @@ gulp.task('sass:dev', function () {
 // create minified css files
 gulp.task('sass:build', function () {
   return gulp.src('source/stylesheets/*.scss')
+    .pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
+    .pipe(gulp.dest('dist/stylesheets/css'))
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
     .pipe(rename(function (path) {
       path.basename += ".min";
@@ -42,24 +45,27 @@ gulp.task('copy:sass', function () {
 });
 
 gulp.task('copy:build', function () {
-  return gulp.src('source/docs/*')
+  var docs = gulp.src('source/docs/**')
     .pipe(gulp.dest('dist/docs/'));
+  var css = gulp.src('dist/stylesheets/css/**')
+    .pipe(gulp.dest('dist/docs/css'));
+
+  return merge(docs, css);
 });
 
 gulp.task('serve', function () {
   browserSync({
-      notify: false,
-      port: 8000,
-      ui: {
-        port: 8080
-      },
-      server: {
-        baseDir: 'source/docs',
-        routes: {
-          '/css': '.tmp/css/',
-          '/css-spaces': 'node_modules/css-spaces/dist'
-        }
+    notify: false,
+    port: 8000,
+    ui: {
+      port: 8080
+    },
+    server: {
+      baseDir: 'source/docs',
+      routes: {
+        '/css': '.tmp/css/'
       }
+    }
   });
 
   gulp.watch([
