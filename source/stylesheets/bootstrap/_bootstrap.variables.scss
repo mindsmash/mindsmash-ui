@@ -9,17 +9,17 @@
 //## Gray and brand colors for use across Bootstrap.
 
 //$gray-base:              #111 !default;
-$gray-darker:            $ms-gray-darker !default;
-$gray-dark:              $ms-gray-dark !default;
-$gray:                   $ms-gray !default;
-$gray-light:             $ms-gray-light !default;
-$gray-lighter:           $ms-gray-lighter !default;
+$gray-darker:            $msm-gray-darker !default;
+$gray-dark:              $msm-gray-dark !default;
+$gray:                   $msm-gray !default;
+$gray-light:             $msm-gray-light !default;
+$gray-lighter:           $msm-gray-lighter !default;
 
-$brand-primary:         $ms-blue !default;
-$brand-success:         $ms-green !default;
-$brand-info:            $ms-blue-light !default;
-$brand-warning:         $ms-yellow !default;
-$brand-danger:          $ms-red !default;
+$brand-primary:         $msm-blue !default;
+$brand-success:         $msm-green !default;
+$brand-info:            $msm-blue-light !default;
+$brand-warning:         $msm-yellow !default;
+$brand-danger:          $msm-red !default;
 
 
 //== Scaffolding
@@ -27,9 +27,9 @@ $brand-danger:          $ms-red !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               $ms-white !default;
+$body-bg:               $msm-white !default;
 //** Global text color on `<body>`.
-$text-color:            $ms-black !default;
+$text-color:            $msm-black !default;
 
 //** Global textual link color.
 //$link-color:            $brand-primary !default;
@@ -707,21 +707,21 @@ $alert-link-font-weight:      600 !default;
 //
 //##
 
-$panel-bg:                    $ms-white !default;
+$panel-bg:                    $msm-white !default;
 $panel-body-padding:          24px !default;
 $panel-heading-padding:       36px 24px  24px !default;
 $panel-footer-padding:        12px 24px !default;
 //$panel-border-radius:         $border-radius-base !default;
 
 //** Border color for elements within panels
-$panel-inner-border:          $ms-gray-light !default;
+$panel-inner-border:          $msm-gray-light !default;
 $panel-footer-bg:             transparent!default;
 
-$panel-default-text:          $ms-black !default;
-$panel-default-border:        $ms-gray-light !default;
+$panel-default-text:          $msm-black !default;
+$panel-default-border:        $msm-gray-light !default;
 $panel-default-heading-bg:    transparent !default;
 
-$panel-primary-text:          $ms-white !default;
+$panel-primary-text:          $msm-white !default;
 //$panel-primary-border:        $brand-primary !default;
 //$panel-primary-heading-bg:    $brand-primary !default;
 

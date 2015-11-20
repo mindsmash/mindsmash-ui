@@ -1,23 +1,23 @@
-$ms-colors: (
-  white: $ms-white,
-  black: $ms-black,
+$msm-colors: (
+  white: $msm-white,
+  black: $msm-black,
 
-  blue-light: $ms-blue-light,
-  blue: $ms-blue,
-  blue-dark: $ms-blue-dark,
+  blue-light: $msm-blue-light,
+  blue: $msm-blue,
+  blue-dark: $msm-blue-dark,
 
-  green: $ms-green,
-  yellow: $ms-yellow,
-  red: $ms-red,
+  green: $msm-green,
+  yellow: $msm-yellow,
+  red: $msm-red,
 
-  gray-lighter: $ms-gray-lighter,
-  gray-light: $ms-gray-light,
-  gray: $ms-gray,
-  gray-dark: $ms-gray-dark,
-  gray-darker: $ms-gray-darker
+  gray-lighter: $msm-gray-lighter,
+  gray-light: $msm-gray-light,
+  gray: $msm-gray,
+  gray-dark: $msm-gray-dark,
+  gray-darker: $msm-gray-darker
 );
 
-@each $name, $value in $ms-colors {
+@each $name, $value in $msm-colors {
   .bg-#{$name} {
     background-color: $value !important;
   }
