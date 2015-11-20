@@ -30,6 +30,8 @@ $ bower install mindsmash-ui
 
 ## Use in a Sass (SCSS) project
 Include the theme variables before adding any bootstrap files
+> You need to install boostrap yourself (`$ bower install bootstrap-sass`), as it is no
+> dependency of this project (the css version already includes bootstrap).
 
 ```SCSS
 @import "path/to/mindsmash-ui/dist/scss/variables"; // to override bootstrap's variables

@@ -6,8 +6,9 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic" rel="stylesheet">
   <link rel="stylesheet" href="css/mindsmash-ui.css">
   <link rel="stylesheet" href="bower_components/css-spaces/dist/spaces.css">
-  <link rel="stylesheet" href="doc.styles.css">
   <link rel="stylesheet" href="bower_components/highlightjs/styles/color-brewer.css">
+  <link rel="stylesheet" href="bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.css">
+  <link rel="stylesheet" href="doc.styles.css">
 </head>
 
 <body class="container-fluid">
@@ -23,6 +24,7 @@
       <h1>h1 heading <code>h1, .h1</code></h1>
       <h2>h2 heading <code>h2, .h2</code></h2>
       <h3>h3 heading <code>h3, .h3</code></h3>
+      <h4>h4 heading <code>h4, .h4</code></h4>
     </div>
     <div class="col-xs-6">
       <h1 class="normal text-uppercase gray">Example</h1>
@@ -102,55 +104,58 @@
 <section>
   <h1>Panels</h1>
 
-  <div class="row bg-gray-light mb-l">
-    <div class="col-xs-12 p-s">
+  <p>For panels use the default panel classes from Bootstrap. These are additional classes for mindsmash-ui:</p>
+
+  <pre><code class="css">
+    .panel-heading-image {} /* Make header image full-screen eg. `img.panel-header-image` */
+    .panel-heading-main {} /* Use for main headings the border-bottom has horizontal spaces */
+  </code></pre>
+
+  <div class="example panel panel-default">
+
+    <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
       <section class="panel panel-default">
-        <div class="panel-heading">
-          <h1 class="panel-title">Account Settings</h1>
+        <div class="panel-heading panel-heading-main clearfix">
+          <h1 class="panel-title pull-left">Account Settings</h1>
+          <button class="btn btn-danger pull-right"><i class="zmdi zmdi-delete mr-xxs"></i> Delete account</button>
+        </div>
+        <div class="panel-body row">
+          <div class="col-xs-6">Some content on the left</div>
+          <div class="col-xs-6">Some content on the right</div>
         </div>
       </section>
     </div>
+    <div class="panel-footer js-insert-code"></div>
   </div>
 
   <div class="row">
     <div class="col-xs-6">
       <div class="example panel panel-default">
-        <div class="panel-body bg-gray-lighter">
-          <p class="text-uppercase gray">Example</p>
-
-          <div data-create-code=".js-insert-code">
-            <!-- Example 1 -->
+        <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
             <section class="panel panel-default">
-              <img class="panel-heading" data-src="holder.js/100px200/?text=Image&theme=sky" alt="">
-
+              <img class="panel-heading-image" data-src="holder.js/100px200/?text=Image&theme=sky" alt="">
               <div class="panel-body">
                 Panel content
               </div>
             </section>
-          </div>
         </div>
-
         <div class="panel-footer js-insert-code"></div>
       </div>
     </div>
 
     <div class="col-xs-6">
-
       <div class="example panel panel-default">
-        <div class="panel-body bg-gray-lighter">
-          <p class="text-uppercase gray">Example</p>
-
-          <div data-create-code=".js-insert-code">
+        <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
             <section class="panel panel-default">
-              <img class="panel-heading" data-src="holder.js/100px200/?text=Image&theme=sky" alt="">
+              <img class="panel-heading-image" data-src="holder.js/100px200/?text=Image&theme=sky" alt="">
               <div class="panel-body">
-                <span class="panel-title blue-light">Company News</span>
-                <h1 class="panel-title">Welcome to our new office</h1>
+                <span class="panel-title-small blue-light">Company News</span>
+                <h3 class="panel-title-small">Welcome to our new office</h3>
                 <span class="text-muted">Blog article &bull; 3 hours ago by Jan Marquardt</span>
               </div>
               <div class="panel-footer">Panel footer</div>
             </section>
-          </div>
+
         </div>
         <div class="panel-footer js-insert-code">
         </div>
@@ -165,25 +170,39 @@
 <script src="bower_components/highlightjs/highlight.pack.js"></script>
 
 <script>
+
+  createCodeExamples();
+  initHighlighting();
+  addAnchors();
+
+ function createCodeExamples () {
+   var codeBlocks     = document.querySelectorAll('[data-create-code]');
+
+   for (var i = 0; i < codeBlocks.length; i++) {
+     var code = codeBlocks[i],
+         targetSelector = code.dataset.createCode,
+         target = document.querySelectorAll(targetSelector)[i],
+         example = document.createElement('code'),
+         codeText = code.innerHTML,
+         leadingWhitespace = codeText.match(/^\s{3,}/)[0];
+
+     codeText = codeText.replace(RegExp(leadingWhitespace, 'g'), '\n');
+     example.textContent = codeText;
+     example.classList.add('html', 'code');
+     target.appendChild(example);
+     hljs.highlightBlock(example);
+   }
+ }
+
+ function initHighlighting () {
+  hljs.initHighlightingOnLoad();
+ }
+
+ function addAnchors () {
   anchors.options.placement = 'left';
   anchors.add('h1, h2');
+ }
 
-  var codeBlocks     = document.querySelectorAll('[data-create-code]');
-
-  for (var i = 0; i < codeBlocks.length; i++) {
-    var code = codeBlocks[i],
-        targetSelector = code.dataset.createCode,
-        target = document.querySelectorAll(targetSelector)[i],
-        example = document.createElement('code'),
-        codeText = code.innerHTML,
-        leadingWhitespace = codeText.match(/^\s{3,}/)[0];
-
-    codeText = codeText.replace(RegExp(leadingWhitespace, 'g'), '\n');
-    example.textContent = codeText;
-    example.classList.add('html', 'code');
-    target.appendChild(example);
-    hljs.highlightBlock(example);
-  }
 </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-img.panel-heading {
+.panel-heading-image {
   padding: 0;
 }
 
@@ -8,4 +8,16 @@ img.panel-heading {
 
 .panel-title {
   font-size: $font-size-h2;
+}
+
+.panel-title-small {
+  font-size: $font-size-h4;
+  margin: 0;
+}
+
+.panel-heading-main {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 36px;
+  margin-right: 36px;
 }
