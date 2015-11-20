@@ -1,6 +1,7 @@
 var browserSync = require('browser-sync');
 var del = require('del');
 var gulp = require('gulp');
+var gulpSequence = require('gulp-sequence');
 var merge = require('merge-stream');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
@@ -12,16 +13,17 @@ var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 gulp.task('default', ['build']);
 
 // start scss watch mode
-gulp.task('dev', ['sass:dev', 'serve']);
+gulp.task('dev', gulpSequence('sass:dev', 'serve'));
 
 // create normal and minified versions
-gulp.task('build', ['clean', 'sass:build', 'copy:sass']);
+gulp.task('build', gulpSequence(['clean', 'sass:build'], ['copy:sass', 'copy:docs']));
 
 // create readable css from scss files
 gulp.task('sass:dev', function () {
   return gulp.src('source/stylesheets/*.scss')
     .pipe(sass({outputStyle: 'compact'}).on('error', sass.logError))
     .pipe(gulp.dest('.tmp/css'))
+    .pipe(browserSync.stream());
 });
 
 // create minified css files
@@ -44,7 +46,7 @@ gulp.task('copy:sass', function () {
     .pipe(gulp.dest('dist/stylesheets/scss/'));
 });
 
-gulp.task('copy:build', function () {
+gulp.task('copy:docs', function () {
   var docs = gulp.src('source/docs/**')
     .pipe(gulp.dest('dist/docs/'));
   var css = gulp.src('dist/stylesheets/css/**')
@@ -69,8 +71,8 @@ gulp.task('serve', function () {
   });
 
   gulp.watch([
-    'source/**/*.html',
-    '.tmp/css/*.css'
+    '!source/docs/bower_components/',
+    'source/docs/*'
   ]).on('change', browserSync.reload);
 
   gulp.watch('source/stylesheets/**/*.scss', ['sass:dev']);
