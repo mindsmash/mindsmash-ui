@@ -1,0 +1,36 @@
+.mobile-menu-point {
+  align-items: center;
+  background-color: $color-panel-bg;
+  display: flex;
+  height: 50px;
+  justify-content: space-around;
+  margin: 10px 0;
+  position: relative;
+
+  .dynamic-icon {
+    font-size: 22px;
+    font-weight: bolder;
+    padding-left: 25px;
+    padding-right: 20px;
+  }
+
+  .menu-name {
+    text-align: left;
+    width: 35%;
+  }
+
+  .preview-value {
+    color: $color-text-grey;
+    font-size: 12px;
+    overflow: hidden;
+    text-align: right;
+    text-overflow: ellipsis;
+    width: 30%;
+  }
+
+  .icon-arrow-right {
+    font-size: 12px;
+    font-weight: bolder;
+    padding: 0 15px;
+  }
+}

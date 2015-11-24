@@ -18,7 +18,7 @@ gulp.task('default', ['build']);
 gulp.task('dev', gulpSequence('sass:dev', 'serve'));
 
 // create normal and minified versions
-gulp.task('build', gulpSequence(['clean', 'sass:build'], ['copy:sass', 'copy:docs']));
+gulp.task('build', gulpSequence(['clean', 'sass:build'], ['copy:module', 'copy:sass', 'copy:docs']));
 
 // create readable css from scss files
 gulp.task('sass:dev', function () {
@@ -59,6 +59,15 @@ gulp.task('copy:docs', function () {
   return merge(docs, css);
 });
 
+gulp.task('copy:module', function () {
+    var comps = gulp.src('source/components/**/*.js')
+      .pipe(gulp.dest('dist/components/'));
+    var module = gulp.src('source/*.js')
+      .pipe(gulp.dest('dist/'));
+
+  return merge(comps, module);
+});
+
 gulp.task('serve', function () {
   browserSync({
     notify: false,
@@ -66,10 +75,14 @@ gulp.task('serve', function () {
     ui: {
       port: 8080
     },
+    file: true,
     server: {
       baseDir: 'source/docs',
       routes: {
-        '/css': '.tmp/css/'
+        '/css': '.tmp/css/',
+        '/bower_components': 'bower_components',
+        '/components': 'source/components',
+        '/*.js': 'source/'
       }
     }
   });

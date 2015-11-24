@@ -1,0 +1,30 @@
+msm-button {
+  &.mobile-menu-point {
+    border-radius: 0;
+    box-shadow: none;
+    width: 100%;
+
+    .icon-arrow-right {
+      visibility: hidden;
+    }
+  }
+  .delete-text {
+    width: 81%;
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+
+  msm-button {
+    border-radius: 4px;
+    display: inline-block;
+    float: right;
+    font-size: 12px;
+    padding: 10px 15px;
+
+    .icon-close {
+      padding-right: 10px;
+      vertical-align: middle;
+    }
+  }
+}

@@ -57,6 +57,7 @@
     "gulp-scss-lint": "^0.3.8",
     "gulp-sequence": "^0.4.1",
     "gulp-util": "^3.0.7",
-    "merge-stream": "^1.0.0"
+    "merge-stream": "^1.0.0",
+    "sc5-styleguide": "^0.3.39"
   }
 }
