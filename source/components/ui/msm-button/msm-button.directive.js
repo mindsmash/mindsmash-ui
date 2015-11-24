@@ -18,15 +18,26 @@
     return {
       restrict: 'E',
       scope: {
-        clickCb: '=',
         labelText: '@',
-        btnClass: '@'
+        buttonType: '@'
       },
-      templateUrl: 'msm-button.html',
+      templateUrl: 'components/ui/msm-button/msm-button.html',
       controller: function($scope) {
         $translate($scope.labelText).then(function(translatedValue) {
           $scope.text = translatedValue;
         });
+
+        switch ($scope.buttonType) {
+          case 'delete':
+              $scope.iconClass = 'zmdi zmdi-delete';
+              $scope.buttonClass = 'btn-danger';
+            break;
+
+          default:
+              $scope.iconClass = '';
+              $scope.buttonClass = 'btn-default';
+
+        }
       }
     };
   }

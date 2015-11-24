@@ -2,15 +2,14 @@
 <html lang="en" ng-app="app">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <title>mindsmash-UI | Pattern Library</title>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic" rel="stylesheet">
-  <link rel="stylesheet" href="css/mindsmash-ui.css">
   <link rel="stylesheet" href="../../bower_components/css-spaces/dist/spaces.css">
   <link rel="stylesheet" href="../../bower_components/highlightjs/styles/color-brewer.css">
   <link rel="stylesheet" href="../../bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.css">
-
-  <link rel="stylesheet" href="">
-
+  <link rel="stylesheet" href="../../bower_components/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="css/mindsmash-ui.css">
   <link rel="stylesheet" href="doc.styles.css">
 </head>
 
@@ -18,6 +17,13 @@
 <h1>mindsmash-UI</h1>
 
 <hr>
+
+<section class="mb-xl p-s bg-gray-light" data-ng-init="exampleValue='look at this'">
+  <h1>Button directive</h1>
+  <msm-button label-text="BUTTON_DELETE" button-type="delete"></msm-button>
+  <msm-mobile-menu-item targetState="test" label-text="'Foo'" preview-value="exampleValue" icon="'icon-close'"></msm-mobile-menu-item>
+  <msm-mobile-menu-item targetState="test" label-text="'Hallo Welt'" preview-value="exampleValue" icon="'zmdi zmdi-globe'"></msm-mobile-menu-item>
+</section>
 
 <section class="mb-xl p-s">
   <h1>Headings</h1>

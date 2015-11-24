@@ -92,7 +92,8 @@ gulp.task('serve', function () {
     'source/docs/*'
   ]).on('change', browserSync.reload);
 
-  gulp.watch('source/stylesheets/**/*.scss', ['sass:dev']);
+  gulp.watch(['source/stylesheets/**/*.scss', 'source/components/**/*.scss'],
+    ['sass:dev']);
 });
 
 // delete dist folder

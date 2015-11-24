@@ -1,36 +1,37 @@
-.mobile-menu-point {
+.msm-mobile-menu-item {
   align-items: center;
-  background-color: $color-panel-bg;
+  background-color: $msm-white;
+  color: $msm-black;
   display: flex;
   height: 50px;
-  justify-content: space-around;
   margin: 10px 0;
-  position: relative;
 
-  .dynamic-icon {
+  .left-icon {
     font-size: 22px;
     font-weight: bolder;
-    padding-left: 25px;
-    padding-right: 20px;
-  }
-
-  .menu-name {
-    text-align: left;
-    width: 35%;
-  }
-
-  .preview-value {
-    color: $color-text-grey;
-    font-size: 12px;
-    overflow: hidden;
-    text-align: right;
-    text-overflow: ellipsis;
-    width: 30%;
+    text-align: center;
+    width: 64px;
   }
 
   .icon-arrow-right {
     font-size: 12px;
     font-weight: bolder;
-    padding: 0 15px;
+    text-align: center;
+    width: 40px;
+  }
+
+  .preview-value {
+    color: $msm-gray-dark;
+    overflow: hidden;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc((100% - 40px - 64px) * .6);
+  }
+
+  .menu-label {
+    text-align: left;
+    white-space: nowrap;
+    width: calc((100% - 40px - 64px) * .4);
   }
 }

@@ -19,20 +19,24 @@
 		.module('msm.components.ui')
 		.directive('msmMobileMenuItem', MobileMenuItem);
 
-	function MobileMenuItem($state) {
+	function MobileMenuItem($state, $translate) {
 		return {
-			templateUrl: 'msm-mobile-menu-item.html',
+			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
 			scope: {
 				previewValue: '=',
 				targetState: '=',
-				name: '=',
+				labelText: '=',
 				icon: '='
 			},
-			link: function(scope) {
+			controller: function($scope) {
 
-				scope.goToState = function() {
-					$state.go(scope.targetState);
+				$scope.goToState = function() {
+					$state.go($scope.targetState);
 				};
+
+        $translate($scope.labelText).then(function(translatedValue) {
+          $scope.labelText = translatedValue;
+        });
 			}
 		};
 	}
