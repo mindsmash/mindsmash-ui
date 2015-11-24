@@ -1,0 +1,39 @@
+.btn {
+  border: none;
+  border-radius: 0;
+  display: block;
+  height: $mobile-menu-item-height;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+  width: 100%;
+
+
+  i {
+    font-size: 22px;
+    font-weight: bolder;
+    text-align: center;
+    width: 64px;
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+
+  .btn {
+    border-radius: $border-radius-base;
+    display: inline-block;
+    height: auto;
+    padding-left: $padding-base-horizontal;
+    padding-right: $padding-base-horizontal;
+    width: auto;
+
+    i {
+      font-size: 14px;
+      font-weight: 300;
+      padding-right: 10px;
+      text-align: center;
+      width: auto;
+    }
+
+  }
+}

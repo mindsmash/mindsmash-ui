@@ -3,7 +3,7 @@
   background-color: $msm-white;
   color: $msm-black;
   display: flex;
-  height: 50px;
+  height: $mobile-menu-item-height;
   margin: 10px 0;
 
   .left-icon {
@@ -34,4 +34,9 @@
     white-space: nowrap;
     width: calc((100% - 40px - 64px) * .4);
   }
+}
+
+
+@media screen and (min-width: $screen-sm-min) {
+
 }
