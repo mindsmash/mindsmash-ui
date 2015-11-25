@@ -47,7 +47,7 @@ gulp.task('sass:build', function () {
 gulp.task('copy:sass', function () {
   return gulp.src('source/stylesheets/**/*')
     .pipe(replace(REMOVE_LINE_TOKEN, ''))
-    .pipe(gulp.dest('dist/stylesheets/scss/'));
+    .pipe(gulp.dest('dist/stylesheets/'));
 });
 
 gulp.task('copy:docs', function () {
@@ -60,9 +60,9 @@ gulp.task('copy:docs', function () {
 });
 
 gulp.task('copy:module', function () {
-    var comps = gulp.src('source/components/**/*.js')
+    var comps = gulp.src('source/components/**/*.*')
       .pipe(gulp.dest('dist/components/'));
-    var module = gulp.src('source/*.js')
+    var module = gulp.src('source/*.*')
       .pipe(gulp.dest('dist/'));
 
   return merge(comps, module);
