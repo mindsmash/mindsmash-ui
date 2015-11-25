@@ -70,11 +70,7 @@ Clone the project, then follow the instructions below.
 ### Publish a new version
 `$ gulp build` Create new release files in `dist/`.
 
-`$ npm login` Login as npm project owner (if you work for mindsmash, look in the project wiki for credentials).
-
 `$ npm version <patch|minor|major>` Automatically update package.json and create a git tag.
-
-`$ npm publish` Publish the new version on npm
 
 `$ git push --follow-tags` Push the tagged version, this creates a new **bower** version.
 
