@@ -1,0 +1,25 @@
+.panel-heading-image {
+  padding: 0;
+}
+
+.panel-default {
+  border-color: transparent;
+  overflow: hidden;
+}
+
+.panel-heading-main {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 36px;
+  margin-right: 36px;
+}
+
+.panel-title {
+  font-size: $font-size-h2;
+}
+
+.panel-title-small {
+  font-size: $font-size-h4;
+  font-weight: 400;
+  margin: 0;
+}

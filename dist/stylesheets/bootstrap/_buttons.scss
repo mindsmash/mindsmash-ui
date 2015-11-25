@@ -1,0 +1,46 @@
+@mixin regular-btn() {
+
+  border-radius: $border-radius-base;
+  display: inline-block;
+  height: auto;
+  padding-left: $padding-base-horizontal;
+  padding-right: $padding-base-horizontal;
+  width: auto;
+
+  i {
+    font-size: 16px;
+    padding-right: 10px;
+    text-align: center;
+    width: auto;
+  }
+}
+
+
+.btn.is-msm-mobile-menu-item {
+  border: 0;
+  border-radius: 0;
+  display: flex;
+  height: $mobile-menu-item-height;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+  width: 100%;
+
+
+  i {
+    font-size: 22px;
+    text-align: center;
+    width: 64px;
+  }
+}
+
+.btn {
+  @include regular-btn();
+}
+
+
+@media screen and (min-width: $screen-sm-min) {
+  .btn.is-msm-mobile-menu-item {
+    @include regular-btn();
+  }
+}
