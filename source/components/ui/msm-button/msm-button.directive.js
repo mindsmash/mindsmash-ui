@@ -12,34 +12,29 @@
    */
   angular
     .module('msm.components.ui')
-    .directive('msmButton', MsmButton);
+    .directive('msmButton', MsmButtonFactory('', 'btn-default'))
+    .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-delete', 'btn-danger'));
 
-  function MsmButton($translate) {
-    return {
-      restrict: 'E',
-      scope: {
-        labelText: '@',
-        buttonType: '@'
-      },
-      templateUrl: 'components/ui/msm-button/msm-button.html',
-      controller: function($scope) {
-        $translate($scope.labelText).then(function(translatedValue) {
-          $scope.text = translatedValue;
-        });
 
-        switch ($scope.buttonType) {
-          case 'delete':
-              $scope.iconClass = 'zmdi zmdi-delete';
-              $scope.buttonClass = 'btn-danger';
-            break;
+  function MsmButtonFactory (iconClass, btnClass) {
+    return function MsmButton($translate) {
+      return {
+        restrict: 'E',
+        scope: {
+          labelText: '@',
+          isMobileMenuItem: '='
+        },
+        templateUrl: 'components/ui/msm-button/msm-button.html',
+        controller: function ($scope) {
+          $translate($scope.labelText).then(function (translatedValue) {
+            $scope.text = translatedValue;
+          });
 
-          default:
-              $scope.iconClass = '';
-              $scope.buttonClass = 'btn-default';
-
+          $scope.iconClass = iconClass || '';
+          $scope.btnClass = btnClass || '';
         }
-      }
-    };
+      };
+    }
   }
 
 })();
