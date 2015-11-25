@@ -16,29 +16,39 @@
   margin: 24px 0 12px !important;
 }
 
-.dl-horizontal {
-  dt, 
+dl {
+  dt,
   dd {
-    display: inline-block;
-    line-height: 32px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   dt {
-    float: left;
-    clear: left;
     color: $msm-gray;
-    font-weight: 300; 
-    margin-right: 24px;
-    text-align: right;
+    font-weight: 300;
     text-transform: uppercase;
-    width: calc(35% - 12px);
   }
+  dd {
+    margin-bottom: 12px;
+  }
+}
+
+.dl-horizontal {
+    dt,
+    dd {
+      line-height: 32px;
+      display: inline-block;
+    }
+    dt {
+      clear: left;
+      float: left;
+      margin-right: 24px;
+      text-align: right;
+      width: calc(35% - 12px);
+    }
   dd {
     margin-left: 0;
     width: calc(65% - 12px);
   }
 }
-
