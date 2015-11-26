@@ -8,6 +8,7 @@ var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var sass = require('gulp-sass');
 var scsslint = require('gulp-scss-lint');
+var concat = require('gulp-concat');
 
 var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 
@@ -18,7 +19,7 @@ gulp.task('default', ['build']);
 gulp.task('dev', gulpSequence('sass:dev', 'serve'));
 
 // create normal and minified versions
-gulp.task('build', gulpSequence(['clean', 'sass:build'], ['copy:module', 'copy:sass', 'copy:docs']));
+gulp.task('build', gulpSequence(['clean', 'sass:build'], ['copy:module', 'copy:sass', 'copy:docs', 'concat:scripts']));
 
 // create readable css from scss files
 gulp.task('sass:dev', function () {
@@ -26,7 +27,8 @@ gulp.task('sass:dev', function () {
     //.pipe(scsslint())
     .pipe(sass({outputStyle: 'compact'}).on('warning', gutil.log))
     .pipe(gulp.dest('.tmp/css'))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream())
+    ;
 });
 
 // create minified css files
@@ -66,6 +68,12 @@ gulp.task('copy:module', function () {
       .pipe(gulp.dest('dist/'));
 
   return merge(comps, module);
+});
+
+gulp.task('concat:scripts', function() {
+  return gulp.src('source/components/**/*.js')
+    .pipe(concat('mindsmash-ui-kit.js'))
+    .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('serve', function () {
