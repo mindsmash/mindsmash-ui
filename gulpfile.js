@@ -49,6 +49,7 @@ gulp.task('sass:build', function () {
 gulp.task('copy:sass', function () {
   return gulp.src('source/stylesheets/**/*')
     .pipe(replace(REMOVE_LINE_TOKEN, ''))
+    .pipe(replace('../../bower_components', '../../..'))
     .pipe(gulp.dest('dist/stylesheets/'));
 });
 
