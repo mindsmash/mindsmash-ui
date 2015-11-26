@@ -64,7 +64,6 @@ gulp.task('copy:docs', function () {
   return merge(docs, css);
 });
 
-
 gulp.task('copy:module', function () {
     var comps = gulp.src('source/components/**/*.scss')
       .pipe(gulp.dest('dist/components/'));
