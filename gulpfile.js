@@ -9,6 +9,7 @@ var replace = require('gulp-replace');
 var sass = require('gulp-sass');
 var scsslint = require('gulp-scss-lint');
 var concat = require('gulp-concat');
+var templateCache = require('gulp-angular-templatecache');
 
 var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 
@@ -19,7 +20,8 @@ gulp.task('default', ['build']);
 gulp.task('dev', gulpSequence('sass:dev', 'serve'));
 
 // create normal and minified versions
-gulp.task('build', gulpSequence(['clean', 'sass:build'], ['copy:module', 'copy:sass', 'copy:docs', 'concat:scripts']));
+gulp.task('build', gulpSequence(['clean', 'sass:build'], ['copy:module', 'copy:sass', 'copy:docs', 
+  'create:template-cache', 'copy-tmp:js', 'concat:js'], ['clean-tmp:js']));
 
 // create readable css from scss files
 gulp.task('sass:dev', function () {
@@ -62,8 +64,9 @@ gulp.task('copy:docs', function () {
   return merge(docs, css);
 });
 
+
 gulp.task('copy:module', function () {
-    var comps = gulp.src('source/components/**/*.*')
+    var comps = gulp.src('source/components/**/*.scss')
       .pipe(gulp.dest('dist/components/'));
     var module = gulp.src('source/*.*')
       .pipe(gulp.dest('dist/'));
@@ -71,10 +74,25 @@ gulp.task('copy:module', function () {
   return merge(comps, module);
 });
 
-gulp.task('concat:scripts', function() {
+gulp.task('create:template-cache', function () {
+  return gulp.src('source/components/**/*.html')
+    .pipe(templateCache())
+    .pipe(gulp.dest('tmp'));
+});
+
+gulp.task('copy-tmp:js', function () {
   return gulp.src('source/components/**/*.js')
+    .pipe(gulp.dest('tmp'));
+});
+
+gulp.task('concat:js', function() {
+  return gulp.src(['tmp/**/*.js', 'tmp/ui/msm-button/msm-button.directive.js'])
     .pipe(concat('mindsmash-ui-kit.js'))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('clean-tmp:js', function() {
+  return del.sync(['tmp/**']);
 });
 
 gulp.task('serve', function () {
