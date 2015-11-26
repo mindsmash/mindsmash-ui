@@ -21,7 +21,7 @@ gulp.task('dev', gulpSequence('sass:dev', 'serve'));
 
 // create normal and minified versions
 gulp.task('build', gulpSequence(['clean', 'sass:build'], ['copy:module', 'copy:sass', 'copy:docs', 
-  'create:template-cache', 'copy-tmp:js', 'concat:js'], ['clean-tmp:js']));
+  'prepare:js'], ['copy:js'], ['clean-tmp:js']));
 
 // create readable css from scss files
 gulp.task('sass:dev', function () {
@@ -74,19 +74,19 @@ gulp.task('copy:module', function () {
   return merge(comps, module);
 });
 
-gulp.task('create:template-cache', function () {
-  return gulp.src('source/components/**/*.html')
+gulp.task('prepare:js', function () {
+  var tmpCache = gulp.src('source/components/**/*.html')
     .pipe(templateCache())
     .pipe(gulp.dest('tmp'));
-});
 
-gulp.task('copy-tmp:js', function () {
-  return gulp.src('source/components/**/*.js')
+  var copyTmp = gulp.src('source/components/**/*.js')
     .pipe(gulp.dest('tmp'));
+
+  return merge(tmpCache, copyTmp);
 });
 
-gulp.task('concat:js', function() {
-  return gulp.src(['tmp/**/*.js', 'tmp/ui/msm-button/msm-button.directive.js'])
+gulp.task('copy:js', function () {
+  return concatJs = gulp.src('tmp/**/*.js')
     .pipe(concat('mindsmash-ui-kit.js'))
     .pipe(gulp.dest('dist/'));
 });
