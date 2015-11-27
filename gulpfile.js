@@ -75,23 +75,23 @@ gulp.task('copy:module', function () {
 
 gulp.task('prepare:js', function () {
   var tmpCache = gulp.src('source/components/**/*.html')
-    .pipe(templateCache())
-    .pipe(gulp.dest('tmp'));
+    .pipe(templateCache('templateCache.js', {module : 'msm.components.ui'}))
+    .pipe(gulp.dest('templateCache'));
 
   var copyTmp = gulp.src('source/components/**/*.js')
-    .pipe(gulp.dest('tmp'));
+    .pipe(gulp.dest('tmpJS'));
 
-  return merge(tmpCache, copyTmp);
+  return merge(copyTmp, tmpCache);
 });
 
 gulp.task('copy:js', function () {
-  return concatJs = gulp.src('tmp/**/*.js')
+  return prepareJs = gulp.src(['tmpJS/**/*.js', 'templateCache/templateCache.js'])
     .pipe(concat('mindsmash-ui-kit.js'))
-    .pipe(gulp.dest('dist/'));
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('clean-tmp:js', function() {
-  return del.sync(['tmp/**']);
+  return del.sync('tmpJS/**');
 });
 
 gulp.task('serve', function () {
