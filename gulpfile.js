@@ -79,7 +79,7 @@ gulp.task('build:js', function () {
   var componentScripts = gulp.src('source/components/**/*.js');
 
   return merge(precompiledTemplates, componentScripts)
-    .pipe(concat('mindsmash-ui-kit.js'))
+    .pipe(concat('mindsmash-ui.js'))
     .pipe(gulp.dest('dist'));
 });
 
