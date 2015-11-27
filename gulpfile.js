@@ -17,26 +17,25 @@ var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 gulp.task('default', ['build']);
 
 // start scss watch mode
-gulp.task('dev', gulpSequence('sass:dev', 'serve'));
+gulp.task('dev', gulpSequence('dev:sass', 'serve'));
+gulp.task('serve', ['dev']); //alias
 
 // create normal and minified versions
-gulp.task('build', gulpSequence(['clean', 'sass:build'], ['copy:module', 'copy:sass', 'copy:docs', 
-  'prepare:js'], ['copy:js'], ['clean-tmp:js']));
+gulp.task('build', gulpSequence('clean', ['build:sass', 'build:js'], ['copy:module', 'copy:sass', 'copy:docs']));
 
 // create readable css from scss files
-gulp.task('sass:dev', function () {
+gulp.task('dev:sass', function () {
   return gulp.src('source/stylesheets/*.scss')
-    //.pipe(scsslint())
+    .pipe(scsslint())
     .pipe(sass({outputStyle: 'compact'}).on('warning', gutil.log))
     .pipe(gulp.dest('.tmp/css'))
-    .pipe(browserSync.stream())
-    ;
+    .pipe(browserSync.stream());
 });
 
 // create minified css files
-gulp.task('sass:build', function () {
+gulp.task('build:sass', function () {
   return gulp.src('source/stylesheets/*.scss')
-    //.pipe(scsslint())
+    .pipe(scsslint())
     .pipe(sass({outputStyle: 'compact'}).on('error', gutil.log))
     .pipe(gulp.dest('dist/stylesheets/css'))
     .pipe(sass({outputStyle: 'compressed'}).on('error', gutil.log))
@@ -65,33 +64,23 @@ gulp.task('copy:docs', function () {
 });
 
 gulp.task('copy:module', function () {
-    var comps = gulp.src('source/components/**/*.scss')
-      .pipe(gulp.dest('dist/components/'));
-    var module = gulp.src('source/*.*')
-      .pipe(gulp.dest('dist/'));
+  var comps = gulp.src('source/components/**/*.scss')
+    .pipe(gulp.dest('dist/components/'));
+  var module = gulp.src('source/*.*')
+    .pipe(gulp.dest('dist/'));
 
   return merge(comps, module);
 });
 
-gulp.task('prepare:js', function () {
-  var tmpCache = gulp.src('source/components/**/*.html')
-    .pipe(templateCache('templateCache.js', {module : 'msm.components.ui'}))
-    .pipe(gulp.dest('templateCache'));
+gulp.task('build:js', function () {
+  var precompiledTemplates = gulp.src('source/components/**/*.html')
+    .pipe(templateCache('templateCache.js', {module: 'msm.components.ui'}));
 
-  var copyTmp = gulp.src('source/components/**/*.js')
-    .pipe(gulp.dest('tmpJS'));
+  var componentScripts = gulp.src('source/components/**/*.js');
 
-  return merge(copyTmp, tmpCache);
-});
-
-gulp.task('copy:js', function () {
-  return prepareJs = gulp.src(['tmpJS/**/*.js', 'templateCache/templateCache.js'])
+  return merge(precompiledTemplates, componentScripts)
     .pipe(concat('mindsmash-ui-kit.js'))
     .pipe(gulp.dest('dist'));
-});
-
-gulp.task('clean-tmp:js', function() {
-  return del.sync('tmpJS/**');
 });
 
 gulp.task('serve', function () {
@@ -119,10 +108,10 @@ gulp.task('serve', function () {
   ]).on('change', browserSync.reload);
 
   gulp.watch(['source/stylesheets/**/*.scss', 'source/components/**/*.scss'],
-    ['sass:dev']);
+    ['dev:sass']);
 });
 
-// delete dist folder
+// delete dist and .tmp folder
 gulp.task('clean', function () {
   return del.sync(['dist/**', '.tmp/**']);
 });
