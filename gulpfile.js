@@ -72,10 +72,10 @@ gulp.task('copy:module', function () {
   return merge(comps, module);
 });
 
-gulp.task('prepare:js', function () {
+gulp.task('build:js', function () {
   var precompiledTemplates = gulp.src(['source/**/*.html', '!source/docs/**/*.html'])
-    .pipe(templateCache('templateCache.js', {module : 'msm.components.ui'}))
-    .pipe(gulp.dest('templateCache'));
+    .pipe(templateCache('templateCache.js', {module : 'msm.components.ui'}));
+
   var componentScripts = gulp.src('source/components/**/*.js');
 
   return merge(precompiledTemplates, componentScripts)
