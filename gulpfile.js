@@ -74,7 +74,7 @@ gulp.task('copy:module', function () {
 });
 
 gulp.task('prepare:js', function () {
-  var tmpCache = gulp.src('source/components/**/*.html')
+  var tmpCache = gulp.src(['source/**/*.html', '!source/docs/**/*.html'])
     .pipe(templateCache('templateCache.js', {module : 'msm.components.ui'}))
     .pipe(gulp.dest('templateCache'));
 
