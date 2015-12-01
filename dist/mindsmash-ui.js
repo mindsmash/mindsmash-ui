@@ -13,12 +13,14 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate']);
    * @param {function} cb the function that should be executed on click
    */
   angular
-    .module('msm.components.ui')
-    .directive('msmButton', MsmButtonFactory('', 'btn-default'))
-    .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-delete', 'btn-danger'));
+      .module('msm.components.ui')
+      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
+      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-delete', 'btn-danger'))
+      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-plus-circle', 'btn-primary'))
+  ;
 
 
-  function MsmButtonFactory (iconClass, btnClass) {
+  function MsmButtonFactory(iconClass, btnClass) {
     return function MsmButton($translate) {
       return {
         restrict: 'E',
@@ -28,9 +30,12 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate']);
         },
         templateUrl: 'components/ui/msm-button/msm-button.html',
         controller: function ($scope) {
-          $translate($scope.labelText).then(function (translatedValue) {
-            $scope.text = translatedValue;
-          });
+          $translate($scope.labelText)
+              .then(function (translatedValue) {
+                $scope.text = translatedValue;
+              }, function () {
+                $scope.text = $scope.labelText;
+              });
 
           $scope.iconClass = iconClass || '';
           $scope.btnClass = btnClass || '';
@@ -38,11 +43,8 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate']);
       };
     }
   }
-
 })();
 
-angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
-$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");}]);
 (function() {
 	'use strict';
 
@@ -86,3 +88,6 @@ $templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html
 		};
 	}
 })();
+
+angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
+$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");}]);
