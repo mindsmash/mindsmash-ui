@@ -1,6 +1,6 @@
 {
   "name": "mindsmash-ui",
-  "description": "A ui kid by mindsmash",
+  "description": "A ui kit by mindsmash",
   "main": [
     "dist/mindsmash-ui.js",
     "dist/stylesheets/mindsmash-ui.scss",

@@ -12,11 +12,11 @@
     .config(function ($translateProvider) {
       $translateProvider.translations('en', {
         BUTTON_DELETE: 'Delete',
-        WELCOME: 'Welcome!'
+        WELCOME: 'Welcome to the Mindsmash UI kit!'
       });
       $translateProvider.translations('de', {
         BUTTON_DELETE: 'Löschen',
-        WELCOME: 'Willkommen!'
+        WELCOME: 'Willkommen zum Mindsmash UI-Kit!'
       });
 
       $translateProvider.preferredLanguage('en');
@@ -36,13 +36,13 @@
 
     .config(function(NotificationProvider) {
       NotificationProvider.setOptions({
-        delay: 113500,
+        delay: 3500,
         startTop: 20,
         startRight: 10,
         verticalSpacing: 20,
         horizontalSpacing: 20,
-        positionX: 'left',
-        positionY: 'bottom'
+        positionX: 'right',
+        positionY: 'top'
       });
     })
 
@@ -51,6 +51,7 @@
     .controller('NotificationController', NotificationController);
 
     function Main(msmNotification) {
+      // use an i18n key here
       msmNotification.primary('WELCOME');
     }
 
