@@ -2,17 +2,26 @@
     'use strict';
 
     /**
-     * A service for showing i18n flash notifications. The service wraps all methods provided
-     * by the angular-ui-notification service and interprets the flash message as an i18n
-     * key if necessary.
+     * A service for raising notifications.
+     *
+     * This service wraps all methods provided by the angular-ui-notification service and translates the
+     * message key if needed.
+     *
+     * Provided message functions:
+     *   * primary  - displays a primary notification
+     *   * error    - displays an error notification
+     *   * success  - displays a success notification
+     *   * info     - displays an info notification
+     *   * warning  - displays a warning notification
+     *   * clearAll - clears all notifications that are currently displayed
      *
      * Usage:
-     * msmNotification.success('i18nKey'); // use i18n
-     * msmNotification.success('i18nKey', true); // use i18n
-     * msmNotification.success('i18nKey', false); // don't use i18n
-     * msmNotification.success('i18nKey', { i18nArg: 'someArg' }); // use i18n with i18n options
-     * msmNotification.success({ message: 'i18nKey', delay: 1000 }); // use 18n with notify options
-     * msmNotification.success({ message: 'i18nKey', delay: 1000 }, { i18nArg: 'someArg' }); // use 18n with i18n & notify options
+     * msmNotification.<function>('i18nKey'); // use i18n
+     * msmNotification.<function>('i18nKey', true); // use i18n
+     * msmNotification.<function>('i18nKey', false); // don't use i18n
+     * msmNotification.<function>('i18nKey', { i18nArg: 'someArg' }); // use i18n with i18n options
+     * msmNotification.<function>({ message: 'i18nKey', delay: 1000 }); // use 18n with notify options
+     * msmNotification.<function>({ message: 'i18nKey', delay: 1000 }, { i18nArg: 'someArg' }); // use 18n with i18n & notify options
      */
     angular
         .module('msm.components.ui')
