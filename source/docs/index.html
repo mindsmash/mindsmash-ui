@@ -18,12 +18,13 @@
 
 <hr>
 
-<section class="mb-xl p-s bg-gray-light" data-ng-init="exampleValue='look at this'">
+<section  class="mb-xl p-s bg-gray-light" data-ng-init="exampleValue='look at this'">
   <h1>Button directive</h1>
   <msm-delete-button label-text="BUTTON_DELETE" is-mobile-menu-item="true" button-type="delete"></msm-delete-button>
   <msm-create-button label-text="Create" is-mobile-menu-item="true" button-type="delete"></msm-create-button>
-  <msm-mobile-menu-item targetState="test" label-text="'Foo'" preview-value="exampleValue" icon="'icon-close'"></msm-mobile-menu-item>
-  <msm-mobile-menu-item targetState="test" label-text="'Hallo Welt'" preview-value="exampleValue" icon="'zmdi zmdi-globe'"></msm-mobile-menu-item>
+  <msm-mobile-menu-item target-state="'test'" label-text="'Foo'" preview-value="exampleValue" icon="'icon-close'"></msm-mobile-menu-item>
+  <span ui-view="mobile-menu-test"></span>
+  <msm-mobile-menu-item target-state="'test'" label-text="'Hallo Welt'" preview-value="exampleValue" icon="'zmdi zmdi-globe'"></msm-mobile-menu-item>
 </section>
 
 <section class="mb-xl p-s bg-gray-light">

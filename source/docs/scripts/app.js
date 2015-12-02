@@ -25,12 +25,18 @@
 
       $urlRouterProvider.otherwise('/');
 
-      $stateProvider.state('test', {
-        url: '',
-        template: '<h1>it works</h1>'
-      })
-
+      $stateProvider
+        .state('test', {
+          url: '/mobile-menu-test',
+          views: {
+            'mobile-menu-test': {template: '<span>it works! <a ui-sref="index">close</a></span>'}
+          }
+        })
+        .state('index', {
+          url: '',
+          views: {
+            'mobile-menu-test': {template: ''}
+          }
+        })
     });
-
-
 })(angular);
