@@ -1,7 +1,11 @@
 {
   "name": "mindsmash-ui",
   "description": "A ui kid by mindsmash",
-  "main": ["dist/mindsmash-ui.js", "dist/stylesheets/mindsmash-ui.scss", "dist/stylesheets/_variables.scss"],
+  "main": [
+    "dist/mindsmash-ui.js",
+    "dist/stylesheets/mindsmash-ui.scss",
+    "dist/stylesheets/_variables.scss"
+  ],
   "authors": [
     "Jeremias Erbs, mindsmash GmbH, <jerry.erbs@mindsmash.com>"
   ],
@@ -32,7 +36,8 @@
     "angular-bootstrap": "~0.13.4",
     "simple-line-icons": "~2.2.3",
     "angular-translate": "~2.8.1",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "angular-ui-notification": "~0.1.0"
   },
   "devDependencies": {
     "anchor-js": "~2.0.0",
