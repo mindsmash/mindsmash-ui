@@ -1,0 +1,19 @@
+.ui-notification {
+  background-color: $msm-blue;
+}
+
+.ui-notification.error {
+  background-color: $msm-red;
+}
+
+.ui-notification.success {
+  background-color: $msm-green;
+}
+
+.ui-notification.info {
+  background-color: $msm-blue-light;
+}
+
+.ui-notification.warning {
+  background-color: $msm-yellow;
+}

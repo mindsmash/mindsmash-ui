@@ -2,6 +2,7 @@
   background-color: $msm-blue;
   color: #FFF;
   height: 60px;
+  border: 0;
 
   a {
     color: $msm-white;
@@ -48,7 +49,7 @@
 
   .navbar-form {
     margin: 0;
-    padding: 12px 20px;
+    padding: 13px 20px;
 
     .form-control {
       border: 0;
