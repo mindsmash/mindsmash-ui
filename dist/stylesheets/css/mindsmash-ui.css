@@ -3447,3 +3447,35 @@ dl dd { margin-bottom: 12px; }
 .dl-horizontal dt { clear: left; float: left; margin-right: 24px; text-align: right; width: calc(35% - 12px); }
 
 .dl-horizontal dd { margin-left: 0; width: calc(65% - 12px); }
+
+.navbar.navbar-msm { background-color: #317DC1; color: #FFF; height: 60px; }
+
+.navbar.navbar-msm a { color: #FDFDFD; }
+
+.navbar.navbar-msm .navbar-brand { height: 60px; font-size: 24px; padding: 18px 20px; }
+
+.navbar.navbar-msm .navbar-toggle { border: 1px solid rgba(255, 255, 255, 0.5); margin: 13px 20px; }
+
+.navbar.navbar-msm .navbar-toggle .icon-bar { background-color: rgba(255, 255, 255, 0.5); }
+
+.navbar.navbar-msm .navbar-toggle:hover, .navbar.navbar-msm .navbar-toggle:focus { border-color: #FFF; }
+
+.navbar.navbar-msm .navbar-toggle:hover .icon-bar, .navbar.navbar-msm .navbar-toggle:focus .icon-bar { background-color: white; }
+
+.navbar.navbar-msm ul.nav li > a { padding: 18px 20px; color: rgba(255, 255, 255, 0.75); }
+
+.navbar.navbar-msm ul.nav li > a:hover, .navbar.navbar-msm ul.nav li > a:focus { background-color: rgba(0, 0, 0, 0.1); color: #FFF; }
+
+.navbar.navbar-msm ul.nav li.active > a { background-color: rgba(0, 0, 0, 0.25); color: #FFF; }
+
+.navbar.navbar-msm .navbar-form { margin: 0; padding: 12px 20px; }
+
+.navbar.navbar-msm .navbar-form .form-control { border: 0; box-shadow: none; background-color: rgba(0, 0, 0, 0.25); padding: 0 20px; line-height: 18px; height: 36px; border-radius: 36px; color: #FFF; }
+
+.navbar.navbar-msm .navbar-form .form-control::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.5); }
+
+.navbar.navbar-msm .navbar-form .form-control:-moz-placeholder { color: rgba(255, 255, 255, 0.5); }
+
+.navbar.navbar-msm .navbar-form .form-control::-moz-placeholder { color: rgba(255, 255, 255, 0.5); }
+
+.navbar.navbar-msm .navbar-form .form-control:-ms-input-placeholder { color: rgba(255, 255, 255, 0.5); }

@@ -1,0 +1,87 @@
+.navbar.navbar-msm {
+  background-color: $msm-blue;
+  color: #FFF;
+  height: 60px;
+  border: 0;
+
+  a {
+    color: $msm-white;
+  }
+
+  .navbar-brand {
+    height: 60px;
+    font-size: 24px;
+    padding: 18px 20px;
+  }
+
+  .navbar-toggle {
+    border: 1px solid rgba(255,255,255,0.5);
+    margin: 13px 20px;
+
+    .icon-bar {
+      background-color: rgba(255,255,255,0.5);
+    }
+
+    &:hover, &:focus {
+      border-color: #FFF;
+      .icon-bar {
+        background-color: white;
+      }
+    }
+  }
+
+  ul.nav {
+    li > a {
+      padding: 18px 20px;
+      color: rgba(255,255,255,0.75);
+
+      &:hover, &:focus {
+        background-color: rgba(0,0,0,0.1);
+        color: #FFF;
+      }
+    }
+
+    li.active > a {
+      background-color: rgba(0,0,0,0.25);
+      color: #FFF;
+    }
+  }
+
+  .navbar-form {
+    margin: 0;
+    padding: 13px 20px;
+
+    .form-control {
+      border: 0;
+      box-shadow: none;
+      background-color: rgba(0,0,0,0.25);
+      padding: 0 20px;
+      line-height: 18px;
+      height: 36px;
+      border-radius: 36px;
+      color: #FFF;
+
+      // scss-lint:disable VendorPrefix
+      // WebKit, Blink, Edge
+      &::-webkit-input-placeholder {
+        color: rgba(255,255,255,0.5);
+      }
+
+      // Mozilla Firefox 4-18
+      &:-moz-placeholder {
+        color: rgba(255,255,255,0.5);
+      }
+
+      // Mozilla Firefox 19+
+      &::-moz-placeholder {
+        color: rgba(255,255,255,0.5);
+      }
+
+      // Internet Explorer 10+
+      &:-ms-input-placeholder {
+        color: rgba(255,255,255,0.5);
+      }
+      // scss-lint:enable VendorPrefix
+    }
+  }
+}
