@@ -60,6 +60,23 @@
   </div>
 </section>
 
+<section class="mb-xl p-s bg-gray-light">
+  <h1>In-place editing</h1>
+  <div ng-controller="ClickToEditController">
+
+    <div msm-editable-text="model.text1" on-change="changed(value)" placeholder="Text 1 placeholder"></div>
+
+    <div msm-editable-text="model.text2" style="text-decoration: underline" edit-mode="model.isEditing"></div>
+
+    <div>
+      <input ng-model="model.isEditing" type="checkbox">
+      <span ng-show="model.isEditing">Editing the second text</span>
+      <span ng-show="!model.isEditing">Not editing the second text</span>
+    </div>
+
+  </div>
+</section>
+
 <section class="mb-xl p-s">
   <h1>Headings</h1>
 
@@ -242,6 +259,7 @@
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
 
 <script src="../components/ui/components.ui.module.js"></script>
+<script src="../components/ui/msm-click-to-edit/msm-click-to-edit.directive.js"></script>
 <script src="../components/ui/msm-button/msm-button.directive.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>

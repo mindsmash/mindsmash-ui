@@ -1,0 +1,18 @@
+<span ng-class="{'is-placeholder': placeholder && !editingValue}">
+  <input ng-show="isEditing"
+         ng-blur="onBlur()"
+         ng-keyup="onKeyPress($event)"
+         ng-model="editingValue"
+         placeholder="{{placeholder}}"/>
+  <span ng-hide="isEditing || isWorking"
+        class="original-text"
+        tabindex="0"
+        ng-click="onClick()"
+        ng-focus="onFocus()">
+    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}
+  </span>
+  <span ng-hide="isEditing"
+        ng-transclude>
+  </span>
+  <i ng-hide="isEditing" class="zmdi zmdi-edit"></i>
+</span>

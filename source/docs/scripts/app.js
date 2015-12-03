@@ -56,7 +56,9 @@
 
     .run(Main)
 
-    .controller('NotificationController', NotificationController);
+    .controller('NotificationController', NotificationController)
+
+    .controller('ClickToEditController', ClickToEditController);
 
     function Main(msmNotification) {
       // use an i18n key here
@@ -88,11 +90,24 @@
         msmNotification.clearAll();
       };
 
-      /**
-       * Main method
-       */
       (function initController() {
         $log.debug('[NotificationController] Initializing...');
+      })();
+    }
+
+    function ClickToEditController($scope, $log, msmNotification) {
+      $scope.model = {
+        text1: 'First text',
+        text2: 'Second text',
+        isEditing: false
+      };
+
+      $scope.changed = function(value) {
+        msmNotification.success('Successfully changed the value to \'' + value + '\'', false);
+      };
+
+      (function initController() {
+        $log.debug('[ClickToEditController] Initializing...');
       })();
     }
 })(angular);

@@ -1,0 +1,41 @@
+.editable-text {
+
+    .original-text {
+        transition: border-color 0.3s;
+        border-style: dashed;
+        border-color: rgba(255, 255, 255, 0);
+        border-width: 1px;
+        padding: 1px;
+
+        &:hover {
+            transition: border-color 0.3s;
+            border-style: dashed;
+            border-color: $msm-black;
+            border-width: 1px;
+        }
+    }
+
+    textarea, input {
+        background: inherit;
+        color: inherit;
+        font: inherit;
+        border: inherit;
+        width: 100%;
+        padding: inherit;
+        margin: 0;
+        height:inherit;
+        line-height:inherit;
+        display:inline-block;
+        text-decoration: none;
+        border: dashed $msm-black 1px;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    span {
+        text-decoration: inherit;
+    }
+
+}
