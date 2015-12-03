@@ -3355,6 +3355,16 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-mobile-menu-item .menu-label { text-align: left; white-space: nowrap; width: calc((100% - 40px - 64px) * .4); }
 
+.ui-notification { background-color: #317DC1; }
+
+.ui-notification.error { background-color: #D0021B; }
+
+.ui-notification.success { background-color: #9BBF29; }
+
+.ui-notification.info { background-color: #0491C9; }
+
+.ui-notification.warning { background-color: #f0ad4e; }
+
 .bg-white { background-color: #FDFDFD !important; }
 
 .white { color: #FDFDFD !important; }
