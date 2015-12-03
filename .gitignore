@@ -1,7 +1,7 @@
-.idea
-.tmp
-.sass-cache
-.DS_Store
+.*
+!*.gitkeep
+!/.gitignore
+!.bowerrc
 
 bower_components
 node_modules

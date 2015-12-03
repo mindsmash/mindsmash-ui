@@ -18,10 +18,12 @@ $msm-colors: (
 );
 
 @each $name, $value in $msm-colors {
+  %bg-#{$name},
   .bg-#{$name} {
     background-color: $value !important;
   }
 
+  %#{$name},
   .#{$name} {
     color: $value !important;
   }
