@@ -24,7 +24,6 @@
     })
 
     .config(function ($urlRouterProvider, $stateProvider) {
-
       $urlRouterProvider.otherwise('/');
 
       $stateProvider.state('test', {
@@ -55,37 +54,50 @@
       msmNotification.primary('WELCOME');
     }
 
-  function NotificationController($scope, $log, msmNotification) {
-    $scope.primary = function() {
-      msmNotification.primary('Primary', false);
-    };
+    function NotificationController($scope, $log, msmNotification) {
+      $scope.primary = function() {
+        msmNotification.primary('Primary', false);
+      };
 
-    $scope.error = function() {
-      msmNotification.error('Error', false);
-    };
+      $scope.error = function() {
+        msmNotification.error('Error', false);
+      };
 
-    $scope.success = function() {
-      msmNotification.success('Success', false);
-    };
+      $scope.success = function() {
+        msmNotification.success('Success', false);
+      };
 
-    $scope.info = function() {
-      msmNotification.info('Info', false);
-    };
+      $scope.info = function() {
+        msmNotification.info('Info', false);
+      };
 
-    $scope.warning = function() {
-      msmNotification.warning('Warning', false);
-    };
+      $scope.warning = function() {
+        msmNotification.warning('Warning', false);
+      };
 
-    $scope.clearAll = function() {
-      msmNotification.clearAll();
-    };
+      $scope.clearAll = function() {
+        msmNotification.clearAll();
+      };
 
-    /**
-     * Main method
-     */
-    (function initController() {
-      $log.debug('[NotificationController] Initializing...');
-    })();
-  }
+      /**
+       * Main method
+       */
+      (function initController() {
+        $log.debug('[NotificationController] Initializing...');
+      })();
+    }
 
+    $stateProvider
+        .state('test', {
+          url: '/mobile-menu-test',
+          views: {
+            'mobile-menu-test': {template: '<span>it works! <a ui-sref="index">close</a></span>'}
+          }
+        })
+        .state('index', {
+          url: '',
+          views: {
+            'mobile-menu-test': {template: ''}
+          }
+        });
 })(angular);
