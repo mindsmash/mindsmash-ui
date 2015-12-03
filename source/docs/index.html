@@ -234,6 +234,68 @@
 <section>
   <h1>Navbar</h1>
 
+  <h2>Mindsmash navbar</h2>
+
+  <p>There is a special version of Bootstrap's navbar for mindsmash applications. It is based on flex-box and can be activated with the following classes and sub-elements:</p>
+
+  <pre><code class="css">
+    .msm-navbar {} /* Apply mindsmash style and colors to classic boostrap navbar */
+    .msm-navbar-flex {} /* Applied to the direct sub-element of .navbar for flex-box element organization */
+  </code></pre>
+
+  <div class="example panel panel-default">
+    <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
+      <nav class="navbar msm-navbar">
+        <div class="msm-navbar-flex" ng-class="{'nav-search-open' : searchVisible}">
+          <h1 class="nav-brand">Title</h1>
+          <ul class="nav nav-left">
+            <li class="nav-item visible-xs">
+              <a class="nav-item-icon icon-list"></a>
+            </li>
+            <li class="nav-item hidden-xs">
+              <a class="nav-item-icon icon-globe"></a>
+            </li>
+            <li class="nav-item active hidden-xs">
+              <a class="nav-item-icon icon-book-open"></a>
+            </li>
+            <li class="nav-item hidden-xs">
+              <a class="nav-item-icon icon-grid"></a>
+            </li>
+            <li class="nav-item hidden-xs">
+              <a class="nav-item-icon icon-calendar"></a>
+            </li>
+          </ul>
+          <div class="nav-search">
+            <a ng-hide="searchVisible" class="search-icon search-icon-open" ng-click="searchVisible = !searchVisible"><i class="icon-magnifier"></i></a>
+            <a ng-show="searchVisible" class="search-icon search-icon-close" ng-click="searchVisible = false"><i class="icon-close"></i></a>
+            <input type="text" class="form-control" ng-class="{'open' : searchVisible}">
+          </div>
+          <ul class="nav nav-right">
+            <li class="nav-item hidden-xs">
+              <a class="nav-item-icon icon-bell"></a>
+            </li>
+            <li class="nav-item hidden-xs">
+              <a class="nav-item-icon icon-people"></a>
+            </li>
+            <li class="nav-item hidden-xs">
+              <a class="nav-item-icon icon-bubbles"></a>
+            </li>
+            <li class="nav-item hidden-xs">
+              <a class="nav-item-profile">
+                <div class="profile-thumb"></div>
+                <i class="zmdi zmdi-caret-down"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="panel-footer js-insert-code">
+    </div>
+  </div>
+
+  <h2>Default Boostrap navbar</h2>
+
   <p>For navbar use the default navbar classes from Bootstrap. These are additional classes for mindsmash-ui:</p>
 
   <pre><code class="css">
@@ -242,7 +304,7 @@
 
   <div class="example panel panel-default">
     <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
-      <div class="navbar msm-navbar">
+      <nav class="navbar msm-navbar">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -291,7 +353,7 @@
             </ul>
           </div>
         </div>
-      </div>
+      </nav>
     </div>
     <div class="panel-footer js-insert-code">
   </div>
