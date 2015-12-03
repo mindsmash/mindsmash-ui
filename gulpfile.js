@@ -17,7 +17,7 @@ var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 gulp.task('default', ['build']);
 
 // start scss watch mode
-gulp.task('dev', gulpSequence('dev:sass', 'serve'));
+gulp.task('dev', gulpSequence('dev:sass', 'server'));
 gulp.task('serve', ['dev']); //alias
 
 // create normal and minified versions
@@ -83,7 +83,7 @@ gulp.task('build:js', function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('serve', function () {
+gulp.task('server', function () {
   browserSync({
     notify: false,
     port: 8000,
