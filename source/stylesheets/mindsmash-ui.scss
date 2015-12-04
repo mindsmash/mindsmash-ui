@@ -1,5 +1,6 @@
 @import 'variables'; // @@gulp-remove-line
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap'; // @@gulp-remove-line
+@import 'mixins/placeholder-color.mixin';
 @import '../../bower_components/css-spaces/source/spaces';
 @import '../components/ui/msm-mobile-menu-item/msm-mobile-menu-item';
 @import '../components/ui/msm-notification/msm-notification';
