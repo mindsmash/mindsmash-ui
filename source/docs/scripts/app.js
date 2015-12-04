@@ -56,7 +56,11 @@
 
     .run(Main)
 
-    .controller('NotificationController', NotificationController);
+    .controller('NotificationController', NotificationController)
+
+    .controller('ModalController', ModalController)
+
+    .controller('ModalInstanceController', ModalInstanceController);
 
     function Main(msmNotification) {
       // use an i18n key here
@@ -88,11 +92,58 @@
         msmNotification.clearAll();
       };
 
-      /**
-       * Main method
-       */
       (function initController() {
         $log.debug('[NotificationController] Initializing...');
+      })();
+    }
+
+    function ModalController($scope, $log, $modal) {
+      $scope.items = ['Example item 1', 'Example item 2', 'Example item 3'];
+
+      $scope.open = function (size) {
+        var modalInstance = $modal.open({
+          animation: true,
+          templateUrl: 'components/ui/msm-modal/modal.tpl.html',
+          controller: 'ModalInstanceController',
+          size: size,
+          resolve: {
+            items: function () {
+              return $scope.items;
+            }
+          }
+        });
+
+        modalInstance.result.then(
+            function (selectedItem) {
+              $log.info('Selected item: ' + selectedItem);
+            },
+            function () {
+              $log.info('Modal dismissed.');
+            }
+        );
+      };
+
+      (function initController() {
+        $log.debug('[ModalController] Initializing...');
+      })();
+    }
+
+    function ModalInstanceController($scope, $log, $modalInstance, items) {
+      $scope.items = items;
+      $scope.selected = {
+        item: $scope.items[0]
+      };
+
+      $scope.ok = function () {
+        $modalInstance.close($scope.selected.item);
+      };
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+
+      (function initController() {
+        $log.debug('[ModalInstanceController] Initializing...');
       })();
     }
 })(angular);

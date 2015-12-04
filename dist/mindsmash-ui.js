@@ -45,8 +45,6 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
   }
 })();
 
-angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
-$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");}]);
 (function() {
 	'use strict';
 
@@ -91,6 +89,9 @@ $templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html
 	}
 })();
 
+angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
+$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/modal.tpl.html","<div class=\"modal-header\">\n    <h2>Modal title</h2>\n</div>\n<div class=\"modal-body\">\n    <ul>\n        <li ng-repeat=\"item in items\">\n            <a ng-click=\"selected.item = item\">{{ item }}</a>\n        </li>\n    </ul>\n    Selected: <b>{{ selected.item }}</b>\n</div>\n<div class=\"modal-footer\">\n    <button class=\"btn btn-primary mr-s\" ng-click=\"ok()\">OK</button>\n    <button class=\"btn btn-danger mr-s\" ng-click=\"cancel()\">Cancel</button>\n</div>\n");}]);
 (function() {
     'use strict';
 

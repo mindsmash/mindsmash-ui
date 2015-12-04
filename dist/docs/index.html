@@ -60,6 +60,15 @@
   </div>
 </section>
 
+<section class="mb-xl p-s bg-gray-light">
+  <h1>Modals</h1>
+  <div ng-controller="ModalController">
+    <button class="btn btn-primary mr-s" ng-click="open()">Modal</button>
+    <button class="btn btn-primary mr-s" ng-click="open('sm')">Modal (small)</button>
+    <button class="btn btn-primary mr-s" ng-click="open('lg')">Modal (large)</button>
+  </div>
+</section>
+
 <section class="mb-xl p-s">
   <h1>Headings</h1>
 
@@ -233,6 +242,7 @@
 
 <script src="../../bower_components/angular/angular.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="../../bower_components/anchor-js/anchor.js"></script>
 <script src="../../bower_components/holderjs/holder.js"></script>
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
