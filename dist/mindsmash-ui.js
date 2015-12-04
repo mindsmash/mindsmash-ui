@@ -85,6 +85,12 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
         scope.isEditing = !!scope.editMode;
         scope.editingValue = scope.msmClickToEdit;
 
+        elem.addClass('msm-click-to-edit');
+
+        /**
+         *  Event handlers
+         */
+
         scope.onBlur = function() {
           scope.isEditing = false;
         };
@@ -104,7 +110,9 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
           scope.isEditing = true;
         };
 
-        elem.addClass('msm-click-to-edit');
+        /**
+         *  Helper functions
+         */
 
         function handleEditingPromise(promise) {
           scope.isBusy = true;
@@ -168,6 +176,10 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
             scope.msmClickToEdit = scope.editingValue;
           }
         }
+
+        /**
+         *  Watch tasks
+         */
 
         scope.$watch('isEditing',
             function (value, oldValue) {

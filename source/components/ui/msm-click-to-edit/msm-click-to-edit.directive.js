@@ -38,6 +38,12 @@
         scope.isEditing = !!scope.editMode;
         scope.editingValue = scope.msmClickToEdit;
 
+        elem.addClass('msm-click-to-edit');
+
+        /**
+         *  Event handlers
+         */
+
         scope.onBlur = function() {
           scope.isEditing = false;
         };
@@ -57,7 +63,9 @@
           scope.isEditing = true;
         };
 
-        elem.addClass('msm-click-to-edit');
+        /**
+         *  Helper functions
+         */
 
         function handleEditingPromise(promise) {
           scope.isBusy = true;
@@ -121,6 +129,10 @@
             scope.msmClickToEdit = scope.editingValue;
           }
         }
+
+        /**
+         *  Watch tasks
+         */
 
         scope.$watch('isEditing',
             function (value, oldValue) {
