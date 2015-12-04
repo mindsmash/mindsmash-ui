@@ -63,15 +63,13 @@
 <section class="mb-xl p-s bg-gray-light">
   <h1>In-place editing</h1>
   <div ng-controller="ClickToEditController">
-
-    <div msm-editable-text="model.text1" on-change="changed(value)" placeholder="Text 1 placeholder"></div>
-
-    <div msm-editable-text="model.text2" style="text-decoration: underline" edit-mode="model.isEditing"></div>
-
+    <div msm-editable-text="model.text1" on-change="changed(value)"
+         placeholder="Text 1 placeholder"></div>
+    <div msm-editable-text="model.text2" on-change="changed(value)"
+         style="text-decoration: underline" edit-mode="model.isEditing"></div>
     <div>
-      <input ng-model="model.isEditing" type="checkbox">
-      <span ng-show="model.isEditing">Editing the second text</span>
-      <span ng-show="!model.isEditing">Not editing the second text</span>
+      <span ng-show="model.isEditing">You are editing the second text.</span>
+      <span ng-show="!model.isEditing">You are not editing the second text.</span>
     </div>
 
   </div>

@@ -1,17 +1,17 @@
+.editable-text-container {
+    cursor: pointer;
+}
+
 .editable-text {
 
     .original-text {
         transition: border-color 0.3s;
-        border-style: dashed;
-        border-color: rgba(255, 255, 255, 0);
-        border-width: 1px;
-        padding: 1px;
+        border: dashed rgba(255, 255, 255, 0) 1px;
+        padding: 2px;
 
         &:hover {
             transition: border-color 0.3s;
-            border-style: dashed;
-            border-color: $msm-black;
-            border-width: 1px;
+            border: dashed $msm-black 1px;
         }
     }
 
@@ -32,10 +32,6 @@
         &:focus {
             outline: 0;
         }
-    }
-
-    span {
-        text-decoration: inherit;
     }
 
 }

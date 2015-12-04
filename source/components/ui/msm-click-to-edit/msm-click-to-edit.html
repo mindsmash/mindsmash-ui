@@ -1,4 +1,6 @@
-<span ng-class="{'is-placeholder': placeholder && !editingValue}">
+<span class="editable-text-container"
+      ng-class="{'is-placeholder': placeholder && !editingValue}"
+      ng-click="onClick()">
   <input ng-show="isEditing"
          ng-blur="onBlur()"
          ng-keyup="onKeyPress($event)"
@@ -7,7 +9,6 @@
   <span ng-hide="isEditing || isWorking"
         class="original-text"
         tabindex="0"
-        ng-click="onClick()"
         ng-focus="onFocus()">
     {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}
   </span>

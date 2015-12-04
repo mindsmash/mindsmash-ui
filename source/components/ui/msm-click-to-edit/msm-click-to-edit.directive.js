@@ -64,11 +64,6 @@
 
         scope.$watch('isEditing',
             function (val, oldVal) {
-              if(!val && !scope.saveValue) {
-                scope.saveValue = true;
-                scope.editingValue = scope.msmEditableText;
-                return;
-              }
               if (attrs.editMode !== undefined) {
                 scope.editMode = val;
               }
@@ -83,6 +78,11 @@
               } else {
                 elem['removeClass']('editing');
                 var editPromise;
+                if(!scope.saveValue) {
+                  scope.saveValue = true;
+                  scope.editingValue = scope.msmEditableText;
+                  return;
+                }
                 if (attrs.onChange && val !== oldVal && scope.editingValue !== lastValue) {
                   // accept promise, or a normal function
                   editPromise = scope.onChange({value: scope.editingValue});
