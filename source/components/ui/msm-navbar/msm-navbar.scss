@@ -1,0 +1,133 @@
+.navbar.msm-navbar .msm-navbar-flex {
+  display: flex;
+  max-width: $msm-layout-max-width;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+
+  &.nav-search-open {
+    .nav-brand {
+      top: -60px;
+    }
+  }
+
+  .nav {
+    .nav-item {
+      cursor: pointer;
+      float: left;
+
+      .nav-item-icon {
+        font-size: 20px;
+        font-weight: 600;
+        padding: 20px 25px;
+      }
+
+      .nav-item-profile {
+        padding-top: 18px;
+        padding-bottom: 18px;
+
+        .profile-thumb {
+          background: #FFF;
+          border-radius: 26px;
+          height: 26px;
+          width: 26px;
+          float: left;
+        }
+
+        > i {
+          display: inline-block;
+          margin-left: 10px;
+          margin-top: 3px;
+          float: left;
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  .nav-brand {
+    transition: all ease-in-out .15s;
+    display: none;
+    height: 60px;
+    left: calc(50% - 120px);
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 240px;
+    z-index: 2;
+
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
+    }
+  }
+
+  .nav-search {
+    flex: auto;
+    position: relative;
+    height: 60px;
+
+    .search-icon {
+      cursor: pointer;
+      display: inline-block;
+      position: absolute;
+      text-decoration: none;
+      z-index: 3;
+
+      &.search-icon-close {
+        top: 12px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+      }
+
+      &.search-icon-open {
+        height: 60px;
+        padding: 20px 25px;
+        right: 0;
+        top: 0;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+        }
+      }
+
+      > i {
+        font-size: 20px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.75);
+
+        &:hover {
+          color: #FFF;
+        }
+      }
+    }
+
+    .form-control {
+      border: 0;
+      box-shadow: none;
+      background-color: rgba(0, 0, 0, 0.25);
+      border-radius: 36px;
+      color: #FFF;
+      height: 36px;
+      line-height: 18px;
+      opacity: 0;
+      outline: none;
+      padding: 0 20px;
+      transition: all ease-in-out .3s;
+      width: 0;
+
+      position: absolute;
+      top: 12px;
+      right: 12px;
+
+      &.open {
+        opacity: 1;
+        width: calc(100% - 25px);
+      }
+    }
+  }
+}
