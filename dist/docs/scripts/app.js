@@ -24,6 +24,7 @@
     })
 
     .config(function ($urlRouterProvider, $stateProvider) {
+
       $urlRouterProvider.otherwise('/');
 
       $stateProvider

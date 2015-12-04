@@ -1,16 +1,16 @@
 .navbar.msm-navbar {
   background-color: $msm-blue;
+  border: 0;
   color: $msm-white;
   height: 60px;
-  border: 0;
 
   a {
     color: $msm-white;
   }
 
   .navbar-brand {
-    height: 60px;
     font-size: 24px;
+    height: 60px;
     padding: 18px 20px;
   }
 
@@ -53,14 +53,14 @@
     padding: 13px 20px;
 
     .form-control {
-      border: 0;
-      box-shadow: none;
       background-color: rgba(0, 0, 0, 0.25);
-      padding: 0 20px;
-      line-height: 18px;
-      height: 36px;
+      border: 0;
       border-radius: 36px;
+      box-shadow: none;
       color: $msm-white;
+      height: 36px;
+      line-height: 18px;
+      padding: 0 20px;
 
       // scss-lint:disable VendorPrefix
       // WebKit, Blink, Edge
