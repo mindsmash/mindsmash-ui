@@ -1,33 +1,32 @@
-.editable-text-container {
+.msm-click-to-edit-container {
     cursor: pointer;
 }
 
-.editable-text {
+.msm-click-to-edit {
 
     .original-text {
-        transition: border-color 0.3s;
         border: dashed rgba($msm-black, 0) 1px;
         padding: 2px;
+        transition: border-color 0.3s;
 
         &:hover {
-            transition: border-color 0.3s;
             border: dashed $msm-black 1px;
+            transition: border-color 0.3s;
         }
     }
 
-    textarea, input {
+    textarea,
+    input {
         background: inherit;
+        border: dashed $msm-black 1px;
         color: inherit;
+        display:inline-block;
         font: inherit;
-        border: inherit;
-        width: 100%;
-        padding: inherit;
-        margin: 0;
         height:inherit;
         line-height:inherit;
-        display:inline-block;
+        padding: inherit;
         text-decoration: none;
-        border: dashed $msm-black 1px;
+        width: 100%;
 
         &:focus {
             outline: 0;

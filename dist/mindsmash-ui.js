@@ -51,23 +51,23 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
 
   /**
    * @ngdoc directive
-   * @name components.ui.msmEditableText
+   * @name components.ui.msmClickToEdit
    * @restrict 'E'
    *
    * @description Renders an editable text input
    *
-   * @param {string} msmEditableText The model to be edited
+   * @param {string} msmClickToEdit The model to be edited
    * @param {string} editMode The edit mode
    * @param {string} placeholder The placeholder for the model if empty
    * @param {function} onChange A callback function on model change
    */
   angular.module('msm.components.ui')
-      .directive('msmEditableText', EditableText);
+      .directive('msmClickToEdit', ClickToEdit);
 
-  function EditableText() {
+  function ClickToEdit() {
     return {
       scope: {
-        msmEditableText: '=',
+        msmClickToEdit: '=',
         editMode: '=',
         placeholder: '@',
         onChange: '&'
@@ -77,9 +77,13 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
       link: function (scope, elem, attrs) {
         var input = elem.find('input');
         var lastValue;
+        var KEYCODES = {
+          ENTER: 13,
+          ESCAPE: 27
+        };
         scope.saveValue = true;
         scope.isEditing = !!scope.editMode;
-        scope.editingValue = scope.msmEditableText;
+        scope.editingValue = scope.msmClickToEdit;
 
         scope.onBlur = function() {
           scope.isEditing = false;
@@ -87,73 +91,93 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
 
         scope.onKeyPress = function(event) {
           if (event) {
-            // enter
-            if (event.which === 13) {
+            if (event.which === KEYCODES.ENTER) {
               scope.isEditing = false;
-            }
-            // escape
-            if (event.which === 27) {
+            } else if (event.which === KEYCODES.ESCAPE) {
               scope.saveValue = false;
               scope.isEditing = false;
             }
           }
         };
 
-        scope.onClick = function() {
+        scope.enableEditingMode = function() {
           scope.isEditing = true;
         };
 
-        scope.onFocus = function() {
-          scope.isEditing = true;
-        };
+        elem.addClass('msm-click-to-edit');
 
-        elem.addClass('editable-text');
+        function handleEditingPromise(promise) {
+          scope.isBusy = true;
+          promise.then(
+              function (value) {
+                scope.msmClickToEdit = value;
+                scope.editingValue = value;
+                scope.isBusy = false;
+              }, function () {
+                scope.editingValue = scope.msmClickToEdit;
+                scope.isBusy = false;
+              }
+          );
+        }
+
+        /**
+         * Method for handling the start of editing
+         */
+        function handleStartEditing() {
+          var inputElement = input[0];
+          var length = scope.editingValue ? scope.editingValue.length : 0;
+
+          elem['addClass']('editing');
+          inputElement.focus();
+          // fix for FF
+          inputElement.selectionStart = length;
+          inputElement.selectionEnd = length;
+        }
+
+        /**
+         * Method for handling the end of editing
+         *
+         * @param {boolean} wasEditing True if the previous mode was Editing, false else
+         */
+        function handleDoneEditing(wasEditing) {
+          var editingPromise;
+
+          elem['removeClass']('editing');
+
+          // Check whether to save the value of not
+          if (!scope.saveValue) {
+            scope.saveValue = true;
+            scope.editingValue = scope.msmClickToEdit;
+            return;
+          }
+
+          if (attrs.onChange &&
+              wasEditing &&
+              scope.editingValue !== lastValue) {
+            // accept promise, or a normal function
+            editingPromise = scope.onChange({value: scope.editingValue});
+            if (editingPromise && editingPromise.then) {
+              handleEditingPromise(editingPromise);
+            } else if (editingPromise) {
+              scope.msmClickToEdit = editingPromise;
+              scope.editingValue = editingPromise;
+            } else {
+              scope.msmClickToEdit = scope.editingValue;
+            }
+          } else {
+            scope.msmClickToEdit = scope.editingValue;
+          }
+        }
 
         scope.$watch('isEditing',
-            function (val, oldVal) {
+            function (value, oldValue) {
               if (attrs.editMode !== undefined) {
-                scope.editMode = val;
+                scope.editMode = value;
               }
-              if (val) {
-                elem['addClass']('editing');
-                var inputElm = input[0];
-                inputElm.focus();
-                // fix for FF
-                var tmp = scope.editingValue ? scope.editingValue.length : 0;
-                inputElm.selectionStart = tmp;
-                inputElm.selectionEnd = tmp;
+              if (value) {
+                handleStartEditing();
               } else {
-                elem['removeClass']('editing');
-                var editPromise;
-                if(!scope.saveValue) {
-                  scope.saveValue = true;
-                  scope.editingValue = scope.msmEditableText;
-                  return;
-                }
-                if (attrs.onChange && val !== oldVal && scope.editingValue !== lastValue) {
-                  // accept promise, or a normal function
-                  editPromise = scope.onChange({value: scope.editingValue});
-                  if (editPromise && editPromise.then) {
-                    scope.isWorking = true;
-                    editPromise.then(
-                        function (value) {
-                          scope.msmEditableText = value;
-                          scope.editingValue = value;
-                          scope.isWorking = false;
-                        }, function () {
-                          scope.editingValue = scope.msmEditableText;
-                          scope.isWorking = false;
-                        }
-                    );
-                  } else if (editPromise) {
-                    scope.msmEditableText = editPromise;
-                    scope.editingValue = editPromise;
-                  } else {
-                    scope.msmEditableText = scope.editingValue;
-                  }
-                } else {
-                  scope.msmEditableText = scope.editingValue;
-                }
+                handleDoneEditing(oldValue);
               }
             }
         );
@@ -162,7 +186,7 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
           scope.isEditing = !!val;
         });
 
-        scope.$watch('msmEditableText', function (newVal) {
+        scope.$watch('msmClickToEdit', function (newVal) {
           lastValue = newVal;
           scope.editingValue = newVal;
         });
@@ -172,6 +196,9 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
 
 })();
 
+angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
+$templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"msm-click-to-edit-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"enableEditingMode()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isBusy\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"enableEditingMode()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
+$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");}]);
 (function() {
 	'use strict';
 
@@ -216,9 +243,6 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
 	}
 })();
 
-angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
-$templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"editable-text-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"onClick()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isWorking\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"onFocus()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
-$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");}]);
 (function() {
     'use strict';
 
