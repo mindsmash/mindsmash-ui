@@ -103,7 +103,7 @@
       $scope.open = function (size) {
         var modalInstance = $modal.open({
           animation: true,
-          templateUrl: 'components/ui/msm-modal/modal.tpl.html',
+          templateUrl: 'components/ui/msm-modal/modal.html',
           controller: 'ModalInstanceController',
           size: size,
           resolve: {
