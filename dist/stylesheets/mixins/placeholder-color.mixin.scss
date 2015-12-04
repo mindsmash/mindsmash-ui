@@ -1,0 +1,30 @@
+// Mixins - Set the placeholder color
+// --------------------------------------------------
+
+// example usage:
+// @include placeholder-color(#ccc)
+@mixin placeholder-color($color) {
+
+  // scss-lint:disable VendorPrefix
+  // WebKit, Blink, Edge
+  input::-webkit-input-placeholder {
+    color: $color;
+  }
+
+  // Mozilla Firefox 4-18
+  input:-moz-placeholder {
+    color: $color;
+  }
+
+  // Mozilla Firefox 19+
+  input::-moz-placeholder {
+    color: $color;
+  }
+
+  // Internet Explorer 10+
+  input:-ms-input-placeholder {
+    color: $color;
+  }
+  // scss-lint:enable VendorPrefix
+
+}
