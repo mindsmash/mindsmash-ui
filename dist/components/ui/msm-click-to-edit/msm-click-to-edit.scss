@@ -6,7 +6,7 @@
 
     .original-text {
         transition: border-color 0.3s;
-        border: dashed rgba(255, 255, 255, 0) 1px;
+        border: dashed rgba($msm-black, 0) 1px;
         padding: 2px;
 
         &:hover {
