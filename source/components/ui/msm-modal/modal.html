@@ -1,7 +1,7 @@
 <div class="modal-header">
     <div class="modal-header-inner clearfix">
         <h3 class="pull-left">Modal title</h3>
-        <span class="pull-right close-modal" ng-click="cancel()"><i class="zmdi zmdi-close"></i></span>
+        <span class="pull-right modal-close" ng-click="cancel()"><i class="zmdi zmdi-close"></i></span>
     </div>
 </div>
 <div class="modal-body">
@@ -13,5 +13,5 @@
     Selected: <b>{{ selected.item }}</b>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary mr-s" ng-click="ok()">OK</button>
+    <span class="pull-right modal-ok" ng-click="ok()"><i class="zmdi zmdi-check-circle inner"></i></span>
 </div>
