@@ -62,27 +62,7 @@
       line-height: 18px;
       padding: 0 20px;
 
-      // scss-lint:disable VendorPrefix
-      // WebKit, Blink, Edge
-      &::-webkit-input-placeholder {
-        color: rgba(255, 255, 255, 0.5);
-      }
-
-      // Mozilla Firefox 4-18
-      &:-moz-placeholder {
-        color: rgba(255, 255, 255, 0.5);
-      }
-
-      // Mozilla Firefox 19+
-      &::-moz-placeholder {
-        color: rgba(255, 255, 255, 0.5);
-      }
-
-      // Internet Explorer 10+
-      &:-ms-input-placeholder {
-        color: rgba(255, 255, 255, 0.5);
-      }
-      // scss-lint:enable VendorPrefix
+      @include placeholder-color(rgba($msm-black, 0.5));
     }
   }
 }

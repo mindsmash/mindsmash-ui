@@ -3528,10 +3528,10 @@ dl dd { margin-bottom: 12px; }
 
 .navbar.msm-navbar .navbar-form .form-control { background-color: rgba(0, 0, 0, 0.25); border: 0; border-radius: 36px; box-shadow: none; color: #FDFDFD; height: 36px; line-height: 18px; padding: 0 20px; }
 
-.navbar.msm-navbar .navbar-form .form-control::-webkit-input-placeholder { color: rgba(255, 255, 255, 0.5); }
+.navbar.msm-navbar .navbar-form .form-control input::-webkit-input-placeholder { color: rgba(51, 51, 51, 0.5); }
 
-.navbar.msm-navbar .navbar-form .form-control:-moz-placeholder { color: rgba(255, 255, 255, 0.5); }
+.navbar.msm-navbar .navbar-form .form-control input:-moz-placeholder { color: rgba(51, 51, 51, 0.5); }
 
-.navbar.msm-navbar .navbar-form .form-control::-moz-placeholder { color: rgba(255, 255, 255, 0.5); }
+.navbar.msm-navbar .navbar-form .form-control input::-moz-placeholder { color: rgba(51, 51, 51, 0.5); }
 
-.navbar.msm-navbar .navbar-form .form-control:-ms-input-placeholder { color: rgba(255, 255, 255, 0.5); }
+.navbar.msm-navbar .navbar-form .form-control input:-ms-input-placeholder { color: rgba(51, 51, 51, 0.5); }
