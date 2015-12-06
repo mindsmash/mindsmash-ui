@@ -1,0 +1,68 @@
+.navbar.msm-navbar {
+  background-color: $msm-blue;
+  border: 0;
+  color: $msm-white;
+  height: 60px;
+
+  a {
+    color: $msm-white;
+  }
+
+  .navbar-brand {
+    font-size: 24px;
+    height: 60px;
+    padding: 18px 20px;
+  }
+
+  .navbar-toggle {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin: 13px 20px;
+
+    .icon-bar {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    &:hover, &:focus {
+      border-color: $msm-white;
+      .icon-bar {
+        background-color: white;
+      }
+    }
+  }
+
+  ul.nav {
+    > li > a {
+      color: rgba(255, 255, 255, 0.75);
+      height: 60px;
+      padding: 18px 20px;
+
+      &:hover, &:focus {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: $msm-white;
+      }
+    }
+
+    > li.active > a {
+      background-color: rgba(0, 0, 0, 0.25);
+      color: $msm-white;
+    }
+  }
+
+  .navbar-form {
+    margin: 0;
+    padding: 13px 20px;
+
+    .form-control {
+      background-color: rgba(0, 0, 0, 0.25);
+      border: 0;
+      border-radius: 36px;
+      box-shadow: none;
+      color: $msm-white;
+      height: 36px;
+      line-height: 18px;
+      padding: 0 20px;
+
+      @include placeholder-color(rgba($msm-black, 0.5));
+    }
+  }
+}
