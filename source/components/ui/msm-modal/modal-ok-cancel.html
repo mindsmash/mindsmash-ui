@@ -1,16 +1,19 @@
 <div class="modal-header">
     <div class="modal-header-inner clearfix">
-        <h3 class="pull-left">Modal title</h3>
+        <h3 class="pull-left">{{ title || '' }}</h3>
         <span class="pull-right modal-close" ng-click="cancel()"><i class="zmdi zmdi-close"></i></span>
     </div>
 </div>
 <div class="modal-body">
-    <ul>
-        <li ng-repeat="item in items">
-            <a ng-click="selected.item = item">{{ item }}</a>
-        </li>
-    </ul>
-    Selected: <b>{{ selected.item }}</b>
+    <div class="modal-body-inner clearfix">
+        {{ text || ''}}
+        <ul>
+            <li ng-repeat="item in items">
+                <a ng-click="selected.item = item">{{ item }}</a>
+            </li>
+        </ul>
+        Currently selected: <b>{{ selected.item }}</b>
+    </div>
 </div>
 <div class="modal-footer">
     <span class="pull-right modal-ok" ng-click="ok()"><i class="zmdi zmdi-check-circle inner"></i></span>

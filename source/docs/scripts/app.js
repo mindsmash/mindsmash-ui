@@ -60,7 +60,7 @@
 
     .controller('ModalController', ModalController)
 
-    .controller('ModalInstanceController', ModalInstanceController);
+    .controller('ModalInstanceControllerOkCancel', ModalInstanceControllerOkCancel);
 
     function Main(msmNotification) {
       // use an i18n key here
@@ -97,30 +97,35 @@
       })();
     }
 
-    function ModalController($scope, $log, $modal) {
-      $scope.items = ['Example item 1', 'Example item 2', 'Example item 3'];
+    function ModalController($scope, $log, msmModalOkCancel, msmNotification) {
+      var resolve = {
+        title: function() {
+          return 'Ok-cancel modal';
+        },
+        text: function () {
+          return 'Please select an item:';
+        },
+        items: function() {
+          return [
+            'Item 1',
+            'Item 2',
+            'Item 3'
+          ]
+        }
+      };
 
-      $scope.open = function (size) {
-        var modalInstance = $modal.open({
-          animation: true,
-          templateUrl: 'components/ui/msm-modal/modal.html',
-          controller: 'ModalInstanceController',
-          size: size,
-          resolve: {
-            items: function () {
-              return $scope.items;
-            }
-          }
-        });
-
-        modalInstance.result.then(
-            function (selectedItem) {
-              $log.info('Selected item: ' + selectedItem);
-            },
-            function () {
-              $log.info('Modal dismissed.');
-            }
-        );
+      $scope.open = function(size) {
+        msmModalOkCancel
+            .open('ModalInstanceControllerOkCancel', resolve, size)
+            .result.then(
+              function (selectedItem) {
+                $log.info('Modal: Clicked OK.');
+                msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
+              },
+              function () {
+                $log.info('Modal: Cancelled.');
+              }
+            );
       };
 
       (function initController() {
@@ -128,7 +133,9 @@
       })();
     }
 
-    function ModalInstanceController($scope, $log, $modalInstance, items) {
+    function ModalInstanceControllerOkCancel($scope, $log, $modalInstance, title, text, items) {
+      $scope.title = title;
+      $scope.text = text;
       $scope.items = items;
       $scope.selected = {
         item: $scope.items[0]
