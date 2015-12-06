@@ -1,5 +1,8 @@
 <div class="modal-header">
-    <h2>Modal title</h2>
+    <div class="modal-header-inner clearfix">
+        <h3 class="pull-left">Modal title</h3>
+        <span class="pull-right close-modal" ng-click="cancel()"><i class="zmdi zmdi-close"></i></span>
+    </div>
 </div>
 <div class="modal-body">
     <ul>
@@ -11,5 +14,4 @@
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary mr-s" ng-click="ok()">OK</button>
-    <button class="btn btn-danger mr-s" ng-click="cancel()">Cancel</button>
 </div>

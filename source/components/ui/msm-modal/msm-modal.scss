@@ -1,0 +1,23 @@
+.modal-header {
+  border-bottom: none;
+
+  h3 {
+    margin: 0;
+  }
+
+  .close-modal {
+    color: $msm-gray-dark;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 2px;
+
+    &:hover {
+      color: $msm-black;
+    }
+  }
+
+  .modal-header-inner {
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0 5px 10px 5px;
+  }
+}
