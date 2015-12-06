@@ -3355,6 +3355,34 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-mobile-menu-item .menu-label { text-align: left; white-space: nowrap; width: calc((100% - 40px - 64px) * .4); }
 
+.modal-header { border-bottom: none; }
+
+.modal-header h3 { margin: 0; }
+
+.modal-header .modal-close { color: #999; cursor: pointer; font-size: 18px; margin-top: 2px; }
+
+.modal-header .modal-close:hover { color: #333333; }
+
+.modal-header .modal-close:active { color: gray; }
+
+.modal-header .modal-header-inner { border-bottom: 1px solid #e5e5e5; padding: 0 5px 10px 5px; }
+
+.modal-body { padding: 0; }
+
+.modal-body .modal-body-inner { padding: 10px 20px 25px 20px; }
+
+.modal-footer { background-color: #EAEAEA; border-top: none; border-radius: 6px; border-top-left-radius: 0; padding: 0; }
+
+.modal-footer .modal-ok { background-color: #317DC1; border-bottom-right-radius: 4px; color: #FDFDFD; width: 60px; height: 40px; }
+
+.modal-footer .modal-ok .inner { padding: 12px 21px; }
+
+.modal-footer .modal-ok:focus { outline: 0; }
+
+.modal-footer .modal-ok:hover { background-color: #245D90; cursor: pointer; }
+
+.modal-footer .modal-ok:active { background-color: #1a4367; cursor: pointer; }
+
 .ui-notification { background-color: #317DC1; }
 
 .ui-notification.error { background-color: #D0021B; }

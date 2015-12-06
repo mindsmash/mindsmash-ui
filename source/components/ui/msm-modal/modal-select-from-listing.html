@@ -6,7 +6,12 @@
 </div>
 <div class="modal-body">
     <div class="modal-body-inner clearfix">
-        {{ text || ''}}
+        <ul>
+            <li ng-repeat="item in items">
+                <a ng-click="selected.item = item">{{ item }}</a>
+            </li>
+        </ul>
+        {{ textCurrentlySelected || 'Currently selected'}}: <b>{{ selected.item }}</b>
     </div>
 </div>
 <div class="modal-footer">

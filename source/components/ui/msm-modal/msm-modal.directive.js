@@ -10,19 +10,35 @@
    */
   angular
       .module('msm.components.ui')
-      .service('msmModalOkCancel', MsmModalOkCancel);
+      .service('msmModalOkCancel', MsmModalOkCancel)
+      .service('msmModalSelectFromListing', MsmModalSelectFromListing);
 
   function MsmModalOkCancel($modal) {
     return {
-      open: function(controller, resolveObj, size) {
+      open: function(controller, parameters, size) {
         return $modal.open({
           animation: true,
           templateUrl: 'components/ui/msm-modal/modal-ok-cancel.html',
           controller: controller,
           size: size || '',
-          resolve: resolveObj
+          resolve: parameters
         })
       }
     }
   }
+
+  function MsmModalSelectFromListing($modal) {
+    return {
+      open: function(controller, parameters, size) {
+        return $modal.open({
+          animation: true,
+          templateUrl: 'components/ui/msm-modal/modal-select-from-listing.html',
+          controller: controller,
+          size: size || '',
+          resolve: parameters
+        })
+      }
+    }
+  }
+
 })();

@@ -60,7 +60,9 @@
 
     .controller('ModalController', ModalController)
 
-    .controller('ModalInstanceController', ModalInstanceController);
+    .controller('ModalInstanceControllerOkCancel', ModalInstanceControllerOkCancel)
+
+    .controller('ModalInstanceControllerSelectItem', ModalInstanceControllerSelectItem);
 
     function Main(msmNotification) {
       // use an i18n key here
@@ -97,28 +99,57 @@
       })();
     }
 
-    function ModalController($scope, $log, $modal) {
-      $scope.items = ['Example item 1', 'Example item 2', 'Example item 3'];
+    function ModalController($scope, $log, msmModalOkCancel, msmModalSelectFromListing, msmNotification) {
+      var parametersOkCancel = {
+        title: function() {
+          return 'Ok-cancel modal';
+        },
+        text: function () {
+          return 'Here some information text.';
+        }
+      };
+      var parametersSelectItem = {
+        title: function() {
+          return 'Select-from-listing modal';
+        },
+        text: function () {
+          return 'Please select an item:';
+        },
+        textCurrentlySelected: function () {
+          return 'Currently selected';
+        },
+        items: function() {
+          return [
+            'Item 1',
+            'Item 2',
+            'Item 3'
+          ]
+        }
+      };
 
-      $scope.open = function (size) {
-        var modalInstance = $modal.open({
-          animation: true,
-          templateUrl: 'components/ui/msm-modal/modal.tpl.html',
-          controller: 'ModalInstanceController',
-          size: size,
-          resolve: {
-            items: function () {
-              return $scope.items;
-            }
-          }
-        });
+      $scope.openOkCancel = function(size) {
+        msmModalOkCancel
+            .open('ModalInstanceControllerOkCancel', parametersOkCancel, size)
+            .result.then(
+              function () {
+                $log.info('Modal (Ok-cancel): Clicked OK.');
+              },
+              function () {
+                $log.info('Modal (Ok-cancel): Cancelled.');
+              }
+            );
+      };
 
-        modalInstance.result.then(
+      $scope.openSelectItem = function(size) {
+        msmModalSelectFromListing
+            .open('ModalInstanceControllerSelectItem', parametersSelectItem, size)
+            .result.then(
             function (selectedItem) {
-              $log.info('Selected item: ' + selectedItem);
+              $log.info('Modal (select-from-listing): Clicked OK.');
+              msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
             },
             function () {
-              $log.info('Modal dismissed.');
+              $log.info('Modal (select-from-listing): Cancelled.');
             }
         );
       };
@@ -128,22 +159,42 @@
       })();
     }
 
-    function ModalInstanceController($scope, $log, $modalInstance, items) {
-      $scope.items = items;
-      $scope.selected = {
-        item: $scope.items[0]
-      };
+  function ModalInstanceControllerOkCancel($scope, $log, $modalInstance, title, text) {
+    $scope.title = title;
+    $scope.text = text;
 
-      $scope.ok = function () {
-        $modalInstance.close($scope.selected.item);
-      };
+    $scope.ok = function () {
+      $modalInstance.close();
+    };
 
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-      };
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
 
-      (function initController() {
-        $log.debug('[ModalInstanceController] Initializing...');
-      })();
-    }
+    (function initController() {
+      $log.debug('[ModalInstanceController] Initializing...');
+    })();
+  }
+
+  function ModalInstanceControllerSelectItem($scope, $log, $modalInstance, title, text, textCurrentlySelected, items) {
+    $scope.title = title;
+    $scope.text = text;
+    $scope.textCurrentlySelected = textCurrentlySelected;
+    $scope.items = items;
+    $scope.selected = {
+      item: $scope.items[0]
+    };
+
+    $scope.ok = function () {
+      $modalInstance.close($scope.selected.item);
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+
+    (function initController() {
+      $log.debug('[ModalInstanceControllerSelectItem] Initializing...');
+    })();
+  }
 })(angular);

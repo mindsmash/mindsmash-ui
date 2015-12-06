@@ -1,6 +1,54 @@
 angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-notification']);
 
 (function() {
+	'use strict';
+
+	/**
+	 * @ngdoc directive
+	 * @name commons.ui.msmMobileMenuItem:msmMobileMenuItem
+	 * @scope
+	 * @restrict 'E'
+	 * @element ANY
+	 *
+	 * @description Directive that renders a menu point for the mobile view with an icon, name, preview and link
+	 *
+	 * @param {string} targetState the string that identifies the state to go to
+	 * @param {string} name the string that reperesents the message key for the target
+	 * @param {string} preview the value to be previewed
+	 * @param {string} icon the classes for the icon
+	 */
+	angular
+		.module('msm.components.ui')
+		.directive('msmMobileMenuItem', MobileMenuItem);
+
+	function MobileMenuItem($state, $translate) {
+		return {
+			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
+			scope: {
+				previewValue: '=',
+				targetState: '=',
+				labelText: '=',
+				icon: '='
+			},
+			controller: function($scope) {
+
+				$scope.goToState = function() {
+					$state.go($scope.targetState);
+				};
+
+        $translate($scope.labelText).then(function(translatedValue) {
+          $scope.labelText = translatedValue;
+        });
+			}
+		};
+	}
+})();
+
+angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
+$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
+$templateCache.put("components/ui/msm-modal/modal-ok-cancel.html","<div class=\"modal-header\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"cancel()\"><i class=\"zmdi zmdi-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body\">\n    <div class=\"modal-body-inner clearfix\">\n        {{ text || \'\'}}\n    </div>\n</div>\n<div class=\"modal-footer\">\n    <span class=\"pull-right modal-ok\" ng-click=\"ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<div class=\"modal-header\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"cancel()\"><i class=\"zmdi zmdi-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body\">\n    <div class=\"modal-body-inner clearfix\">\n        <ul>\n            <li ng-repeat=\"item in items\">\n                <a ng-click=\"selected.item = item\">{{ item }}</a>\n            </li>\n        </ul>\n        {{ textCurrentlySelected || \'Currently selected\'}}: <b>{{ selected.item }}</b>\n    </div>\n</div>\n<div class=\"modal-footer\">\n    <span class=\"pull-right modal-ok\" ng-click=\"ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n");}]);
+(function() {
   'use strict';
 
   /**
@@ -46,52 +94,50 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
 })();
 
 (function() {
-	'use strict';
+  'use strict';
 
-	/**
-	 * @ngdoc directive
-	 * @name commons.ui.msmMobileMenuItem:msmMobileMenuItem
-	 * @scope
-	 * @restrict 'E'
-	 * @element ANY
-	 *
-	 * @description Directive that renders a menu point for the mobile view with an icon, name, preview and link
-	 *
-	 * @param {string} targetState the string that identifies the state to go to
-	 * @param {string} name the string that reperesents the message key for the target
-	 * @param {string} preview the value to be previewed
-	 * @param {string} icon the classes for the icon
-	 */
-	angular
-		.module('msm.components.ui')
-		.directive('msmMobileMenuItem', MobileMenuItem);
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmModal
+   * @restrict 'A'
+   *
+   * @description Renders a styled modal
+   */
+  angular
+      .module('msm.components.ui')
+      .service('msmModalOkCancel', MsmModalOkCancel)
+      .service('msmModalSelectFromListing', MsmModalSelectFromListing);
 
-	function MobileMenuItem($state, $translate) {
-		return {
-			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
-			scope: {
-				previewValue: '=',
-				targetState: '=',
-				labelText: '=',
-				icon: '='
-			},
-			controller: function($scope) {
+  function MsmModalOkCancel($modal) {
+    return {
+      open: function(controller, parameters, size) {
+        return $modal.open({
+          animation: true,
+          templateUrl: 'components/ui/msm-modal/modal-ok-cancel.html',
+          controller: controller,
+          size: size || '',
+          resolve: parameters
+        })
+      }
+    }
+  }
 
-				$scope.goToState = function() {
-					$state.go($scope.targetState);
-				};
+  function MsmModalSelectFromListing($modal) {
+    return {
+      open: function(controller, parameters, size) {
+        return $modal.open({
+          animation: true,
+          templateUrl: 'components/ui/msm-modal/modal-select-from-listing.html',
+          controller: controller,
+          size: size || '',
+          resolve: parameters
+        })
+      }
+    }
+  }
 
-        $translate($scope.labelText).then(function(translatedValue) {
-          $scope.labelText = translatedValue;
-        });
-			}
-		};
-	}
 })();
 
-angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
-$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
-$templateCache.put("components/ui/msm-modal/modal.tpl.html","<div class=\"modal-header\">\n    <h2>Modal title</h2>\n</div>\n<div class=\"modal-body\">\n    <ul>\n        <li ng-repeat=\"item in items\">\n            <a ng-click=\"selected.item = item\">{{ item }}</a>\n        </li>\n    </ul>\n    Selected: <b>{{ selected.item }}</b>\n</div>\n<div class=\"modal-footer\">\n    <button class=\"btn btn-primary mr-s\" ng-click=\"ok()\">OK</button>\n    <button class=\"btn btn-danger mr-s\" ng-click=\"cancel()\">Cancel</button>\n</div>\n");}]);
 (function() {
     'use strict';
 
