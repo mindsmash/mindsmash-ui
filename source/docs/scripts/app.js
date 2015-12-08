@@ -5,6 +5,7 @@
     .module('app', [
       'msm.components.ui',
       'ui.bootstrap',
+      'ui.bootstrap.dropdown',
       'ui.router',
       'pascalprecht.translate'
     ])
@@ -25,7 +26,7 @@
 
     .config(function ($urlRouterProvider, $stateProvider) {
 
-      $urlRouterProvider.otherwise('/');
+      //$urlRouterProvider.otherwise('/');
 
       $stateProvider
           .state('test', {

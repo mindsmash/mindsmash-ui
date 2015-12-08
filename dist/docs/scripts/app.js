@@ -5,6 +5,7 @@
     .module('app', [
       'msm.components.ui',
       'ui.bootstrap',
+      'ui.bootstrap.dropdown',
       'ui.router',
       'pascalprecht.translate'
     ])
@@ -25,7 +26,7 @@
 
     .config(function ($urlRouterProvider, $stateProvider) {
 
-      $urlRouterProvider.otherwise('/');
+      //$urlRouterProvider.otherwise('/');
 
       $stateProvider
           .state('test', {
@@ -133,6 +134,7 @@
             .result.then(
               function () {
                 $log.info('Modal (Ok-cancel): Clicked OK.');
+                msmNotification.success('Clicked ok', false);
               },
               function () {
                 $log.info('Modal (Ok-cancel): Cancelled.');

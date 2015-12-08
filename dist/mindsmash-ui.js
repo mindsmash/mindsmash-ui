@@ -44,10 +44,6 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
 	}
 })();
 
-angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
-$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
-$templateCache.put("components/ui/msm-modal/modal-ok-cancel.html","<div class=\"modal-header\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"cancel()\"><i class=\"zmdi zmdi-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body\">\n    <div class=\"modal-body-inner clearfix\">\n        {{ text || \'\'}}\n    </div>\n</div>\n<div class=\"modal-footer\">\n    <span class=\"pull-right modal-ok\" ng-click=\"ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n");
-$templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<div class=\"modal-header\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"cancel()\"><i class=\"zmdi zmdi-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body\">\n    <div class=\"modal-body-inner clearfix\">\n        <ul>\n            <li ng-repeat=\"item in items\">\n                <a ng-click=\"selected.item = item\">{{ item }}</a>\n            </li>\n        </ul>\n        {{ textCurrentlySelected || \'Currently selected\'}}: <b>{{ selected.item }}</b>\n    </div>\n</div>\n<div class=\"modal-footer\">\n    <span class=\"pull-right modal-ok\" ng-click=\"ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n");}]);
 (function() {
   'use strict';
 
@@ -116,7 +112,8 @@ $templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<di
           templateUrl: 'components/ui/msm-modal/modal-ok-cancel.html',
           controller: controller,
           size: size || '',
-          resolve: parameters
+          resolve: parameters,
+          windowClass: 'app-modal-window'
         })
       }
     }
@@ -130,7 +127,8 @@ $templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<di
           templateUrl: 'components/ui/msm-modal/modal-select-from-listing.html',
           controller: controller,
           size: size || '',
-          resolve: parameters
+          resolve: parameters,
+          windowClass: 'app-modal-window'
         })
       }
     }
@@ -138,6 +136,10 @@ $templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<di
 
 })();
 
+angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
+$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
+$templateCache.put("components/ui/msm-modal/modal-ok-cancel.html","<div class=\"modal-header modal-desktop\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"cancel()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body modal-desktop\">\n    <div class=\"modal-body-inner clearfix\">\n        {{ text || \'\'}}\n    </div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n    <span class=\"pull-right modal-ok\" ng-click=\"ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n\n<div class=\"modal-mobile\">\n    <div class=\"modal-mobile-header\" ng-click=\"ok()\">\n        <i class=\"zmdi zmdi-arrow-left pull-left img-back\" ng-click=\"cancel()\"></i>\n        <span class=\"modal-mobile-header-title pull-left\">{{ title || \'\' }}</span>\n        <i class=\"zmdi zmdi-check pull-right img-ok\" ng-click=\"ok()\"></i>\n    </div>\n    <div class=\"modal-mobile-body-ok-cancel\">\n        <div class=\"modal-mobile-body-inner clearfix\">\n            {{ text || \'\'}}\n        </div>\n    </div>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<div class=\"modal-header modal-desktop\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"cancel()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body modal-desktop\">\n    <div class=\"modal-body-inner clearfix\">\n        <ul>\n            <li ng-repeat=\"item in items\">\n                <a ng-click=\"selected.item = item\">{{ item }}</a>\n            </li>\n        </ul>\n        {{ textCurrentlySelected || \'Currently selected\'}}: <b>{{ selected.item }}</b>\n    </div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n    <span class=\"pull-right modal-ok\" ng-click=\"ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n\n<div class=\"modal-mobile\">\n    <div class=\"modal-mobile-header\">\n        <i class=\"zmdi zmdi-arrow-left pull-left img-back\" ng-click=\"cancel()\"></i>\n        <span class=\"modal-mobile-header-title pull-left\">{{ title || \'\' }}</span>\n        <i class=\"zmdi zmdi-check pull-right img-ok\" ng-click=\"ok()\"></i>\n    </div>\n    <div class=\"modal-mobile-body-select-from-listing\">\n        <div class=\"modal-mobile-body-inner clearfix\">\n            <div ng-repeat=\"item in items\" class=\"modal-mobile-item img-item-selection\" ng-click=\"selected.item = item\">\n                <i class=\"zmdi zmdi-circle\" ng-class=\n                        \"{\'img-item-selected\': item === selected.item,\n                        \'img-item-not-selected\': item !== selected.item}\"></i>\n                <span class=\"modal-mobile-item-text\">{{ item }}</span>\n            </div>\n        </div>\n    </div>\n</div>\n");}]);
 (function() {
     'use strict';
 
