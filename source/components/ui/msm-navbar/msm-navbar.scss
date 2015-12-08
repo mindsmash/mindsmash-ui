@@ -2,6 +2,7 @@
 * Use with .navbar (bootstrap) and .msm-navbar (mindsmash-ui)
 */
 .msm-navbar-flex {
+  border-radius: 0;
   display: flex;
   margin: 0 auto;
   max-width: $msm-layout-max-width;
