@@ -5,6 +5,7 @@
     .module('app', [
       'msm.components.ui',
       'ui.bootstrap',
+      'ui.bootstrap.dropdown',
       'ui.router',
       'pascalprecht.translate'
     ])
