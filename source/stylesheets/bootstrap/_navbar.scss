@@ -1,8 +1,13 @@
-.navbar.msm-navbar {
+/**
+* Use with bootstrap's .navbar
+*/
+.msm-navbar {
   background-color: $msm-blue;
   border: 0;
+  border-radius: 0;
   color: $msm-white;
   height: 60px;
+  margin-bottom: 0;
 
   a {
     color: $msm-white;
@@ -15,11 +20,11 @@
   }
 
   .navbar-toggle {
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba($msm-white, 0.5);
     margin: 13px 20px;
 
     .icon-bar {
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba($msm-white, 0.5);
     }
 
     &:hover, &:focus {
@@ -30,21 +35,29 @@
     }
   }
 
-  ul.nav {
-    > li > a {
-      color: rgba(255, 255, 255, 0.75);
+  .nav {
+    a {
+      color: rgba($msm-white, 0.75);
       height: 60px;
       padding: 18px 20px;
 
       &:hover, &:focus {
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgba($msm-black, 0.1);
         color: $msm-white;
       }
     }
 
-    > li.active > a {
-      background-color: rgba(0, 0, 0, 0.25);
+    .active > a {
+      background-color: rgba($msm-black, 0.25);
       color: $msm-white;
+    }
+
+    .disabled > a {
+      color: rgba($msm-white, 0.25);
+
+      &:hover, &:focus {
+        background-color: inherit;
+      }
     }
   }
 
@@ -54,8 +67,8 @@
 
     .form-control {
       background-color: rgba(0, 0, 0, 0.25);
-      border: 0;
       border-radius: 36px;
+      border: 0;
       box-shadow: none;
       color: $msm-white;
       height: 36px;

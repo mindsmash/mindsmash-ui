@@ -1,9 +1,11 @@
-.navbar.msm-navbar .msm-navbar-flex {
+/**
+* Use with .navbar (bootstrap) and .msm-navbar (mindsmash-ui)
+*/
+.msm-navbar-flex {
   display: flex;
-  max-width: $msm-layout-max-width;
   margin: 0 auto;
+  max-width: $msm-layout-max-width;
   position: relative;
-  overflow: hidden;
 
   &.nav-search-open {
     .nav-brand {
@@ -11,37 +13,35 @@
     }
   }
 
-  .nav {
-    .nav-item {
-      cursor: pointer;
+  .nav-item {
+    cursor: pointer;
+    float: left;
+  }
+
+  .nav-item-icon {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 20px 25px;
+  }
+
+  .nav-item-profile {
+    padding-top: 18px;
+    padding-bottom: 18px;
+
+    .profile-thumb {
+      background: #FFF;
+      border-radius: 26px;
+      height: 26px;
+      width: 26px;
       float: left;
+    }
 
-      .nav-item-icon {
-        font-size: 20px;
-        font-weight: 600;
-        padding: 20px 25px;
-      }
-
-      .nav-item-profile {
-        padding-top: 18px;
-        padding-bottom: 18px;
-
-        .profile-thumb {
-          background: #FFF;
-          border-radius: 26px;
-          height: 26px;
-          width: 26px;
-          float: left;
-        }
-
-        > i {
-          display: inline-block;
-          margin-left: 10px;
-          margin-top: 3px;
-          float: left;
-          font-size: 24px;
-        }
-      }
+    > i {
+      display: inline-block;
+      margin-left: 10px;
+      margin-top: 3px;
+      float: left;
+      font-size: 24px;
     }
   }
 
