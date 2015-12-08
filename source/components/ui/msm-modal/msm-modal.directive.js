@@ -21,7 +21,8 @@
           templateUrl: 'components/ui/msm-modal/modal-ok-cancel.html',
           controller: controller,
           size: size || '',
-          resolve: parameters
+          resolve: parameters,
+          windowClass: 'app-modal-window'
         })
       }
     }
@@ -35,7 +36,8 @@
           templateUrl: 'components/ui/msm-modal/modal-select-from-listing.html',
           controller: controller,
           size: size || '',
-          resolve: parameters
+          resolve: parameters,
+          windowClass: 'app-modal-window'
         })
       }
     }

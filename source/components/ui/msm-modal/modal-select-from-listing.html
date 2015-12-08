@@ -1,10 +1,10 @@
-<div class="modal-header">
+<div class="modal-header modal-desktop">
     <div class="modal-header-inner clearfix">
         <h3 class="pull-left">{{ title || '' }}</h3>
-        <span class="pull-right modal-close" ng-click="cancel()"><i class="zmdi zmdi-close"></i></span>
+        <span class="pull-right modal-close" ng-click="cancel()"><i class="zmdi zmdi-close img-close"></i></span>
     </div>
 </div>
-<div class="modal-body">
+<div class="modal-body modal-desktop">
     <div class="modal-body-inner clearfix">
         <ul>
             <li ng-repeat="item in items">
@@ -14,6 +14,23 @@
         {{ textCurrentlySelected || 'Currently selected'}}: <b>{{ selected.item }}</b>
     </div>
 </div>
-<div class="modal-footer">
+<div class="modal-footer modal-desktop">
     <span class="pull-right modal-ok" ng-click="ok()"><i class="zmdi zmdi-check-circle inner"></i></span>
+</div>
+
+<div class="modal-mobile">
+    <div class="modal-mobile-header" ng-click="ok()">
+        <i class="zmdi zmdi-arrow-left pull-left img-back"></i>
+        <span class="modal-mobile-header-title">{{ title || '' }}</span>
+    </div>
+    <div class="modal-mobile-body-select-from-listing">
+        <div class="modal-mobile-body-inner clearfix">
+            <div ng-repeat="item in items" class="modal-mobile-item img-item-selection" ng-click="selected.item = item">
+                <i class="zmdi zmdi-circle" ng-class=
+                        "{'img-item-selected': item === selected.item,
+                        'img-item-not-selected': item !== selected.item}"></i>
+                <span class="modal-mobile-item-text">{{ item }}</span>
+            </div>
+        </div>
+    </div>
 </div>
