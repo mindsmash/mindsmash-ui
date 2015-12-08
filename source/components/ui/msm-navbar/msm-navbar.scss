@@ -3,7 +3,6 @@
   max-width: $msm-layout-max-width;
   margin: 0 auto;
   position: relative;
-  overflow: hidden;
 
   &.nav-search-open {
     .nav-brand {
@@ -45,16 +44,12 @@
     }
   }
 
-  .nav-brand {
-    transition: all ease-in-out .15s;
+  .nav-brand-box {
+    overflow: hidden;
     display: none;
     height: 60px;
     left: calc(50% - 120px);
-    line-height: 60px;
-    margin: 0;
-    padding: 0;
     position: absolute;
-    text-align: center;
     top: 0;
     width: 240px;
     z-index: 2;
@@ -62,6 +57,16 @@
     @media screen and (min-width: $screen-md-min) {
       display: block;
     }
+  }
+
+  .nav-brand {
+    position: relative;
+    top: 0;
+    transition: all ease-in-out .15s;
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
   }
 
   .nav-search {
