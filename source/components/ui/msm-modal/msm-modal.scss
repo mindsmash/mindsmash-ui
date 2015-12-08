@@ -141,6 +141,13 @@
     .img-back {
       padding-top: 7px;
     }
+
+    .img-ok {
+      padding-top: 7px;
+      padding-left: 10px;
+      opacity: 0.6;
+      font-weight: 300;
+    }
   }
 
   .modal-backdrop.in {
@@ -153,13 +160,11 @@
     color: $msm-white;
     font-size: 26px;
     margin: 0;
+    min-width: 320px;
     padding: 20px 24px;
     text-align: center;
     width: 100%;
-
-    &:active {
-      background-color: $msm-blue-dark;
-    }
+    height: 78px;
   }
 
   .modal-mobile-header-title {
@@ -169,6 +174,7 @@
     white-space: nowrap;
     min-width: 150px;
     display: block;
+    width: 80%;
   }
 
   .modal-content {

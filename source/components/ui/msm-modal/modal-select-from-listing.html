@@ -19,9 +19,10 @@
 </div>
 
 <div class="modal-mobile">
-    <div class="modal-mobile-header" ng-click="ok()">
-        <i class="zmdi zmdi-arrow-left pull-left img-back"></i>
-        <span class="modal-mobile-header-title">{{ title || '' }}</span>
+    <div class="modal-mobile-header">
+        <i class="zmdi zmdi-arrow-left pull-left img-back" ng-click="cancel()"></i>
+        <span class="modal-mobile-header-title pull-left">{{ title || '' }}</span>
+        <i class="zmdi zmdi-check pull-left img-ok" ng-click="ok()"></i>
     </div>
     <div class="modal-mobile-body-select-from-listing">
         <div class="modal-mobile-body-inner clearfix">

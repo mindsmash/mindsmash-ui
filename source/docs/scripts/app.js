@@ -133,6 +133,7 @@
             .result.then(
               function () {
                 $log.info('Modal (Ok-cancel): Clicked OK.');
+                msmNotification.success('Clicked ok', false);
               },
               function () {
                 $log.info('Modal (Ok-cancel): Cancelled.');
