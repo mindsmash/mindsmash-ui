@@ -118,9 +118,6 @@
       text: function () {
         return 'Please select an item:';
       },
-      textCurrentlySelected: function () {
-        return 'Currently selected';
-      },
       items: function() {
         return [
           'Item 1',
@@ -196,17 +193,17 @@
     })();
   }
 
-  function ModalInstanceControllerSelectItem($scope, $log, $modalInstance, title, text, textCurrentlySelected, items) {
+  function ModalInstanceControllerSelectItem($scope, $log, $modalInstance, title, text, items) {
     $scope.title = title;
     $scope.text = text;
-    $scope.textCurrentlySelected = textCurrentlySelected;
-    $scope.items = items;
-    $scope.selected = {
-      item: $scope.items[0]
+    $scope.items = {
+      "type": "select",
+      "selected": items[0],
+      "values": items
     };
 
     $scope.ok = function () {
-      $modalInstance.close($scope.selected.item);
+      $modalInstance.close($scope.items.selected);
     };
 
     $scope.cancel = function () {

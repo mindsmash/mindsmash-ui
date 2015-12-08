@@ -74,6 +74,18 @@
 
     .modal-body-inner {
       padding: 10px 20px 25px 20px;
+      text-align: center;
+    }
+
+    .items-form,
+    .items-form-group {
+      width: 100%;
+    }
+
+    .items-form-select {
+      color: $msm-black;
+      margin-left: 10px;
+      width: 60%;
     }
   }
 

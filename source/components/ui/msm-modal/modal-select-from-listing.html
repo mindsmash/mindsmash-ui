@@ -6,12 +6,13 @@
 </div>
 <div class="modal-body modal-desktop">
     <div class="modal-body-inner clearfix">
-        <ul>
-            <li ng-repeat="item in items">
-                <a ng-click="selected.item = item">{{ item }}</a>
-            </li>
-        </ul>
-        {{ textCurrentlySelected || 'Currently selected'}}: <b>{{ selected.item }}</b>
+        <form action="" class="form-inline items-form">
+            <div class="form-group items-form-group">
+                <label for="items">{{ text || 'Select:'}}</label>
+                <select id="items" class="form-control items-form-select" ng-model="items.selected"
+                        ng-options="item for item in items.values"></select>
+            </div>
+        </form>
     </div>
 </div>
 <div class="modal-footer modal-desktop">
@@ -26,10 +27,11 @@
     </div>
     <div class="modal-mobile-body-select-from-listing">
         <div class="modal-mobile-body-inner clearfix">
-            <div ng-repeat="item in items" class="modal-mobile-item img-item-selection" ng-click="selected.item = item">
+            <div ng-repeat="item in items.values" class="modal-mobile-item img-item-selection"
+                 ng-click="items.selected = item">
                 <i class="zmdi zmdi-circle" ng-class=
-                        "{'img-item-selected': item === selected.item,
-                        'img-item-not-selected': item !== selected.item}"></i>
+                        "{'img-item-selected': item === items.selected,
+                        'img-item-not-selected': item !== items.selected}"></i>
                 <span class="modal-mobile-item-text">{{ item }}</span>
             </div>
         </div>
