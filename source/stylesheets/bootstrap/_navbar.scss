@@ -34,7 +34,7 @@
   }
 
   .nav {
-    a {
+    > li > a {
       color: lighten($msm-blue, 75%);
       height: 60px;
       padding: 18px 20px;
@@ -46,8 +46,8 @@
       }
     }
 
-    > li.active > a,
-    > li.dropdown.open > a {
+    > .active > a,
+    > .dropdown.open > a {
       background-color: $msm-blue-darker;
       color: $msm-white;
     }
