@@ -26,7 +26,7 @@
 
     .config(function ($urlRouterProvider, $stateProvider) {
 
-      $urlRouterProvider.otherwise('/');
+      //$urlRouterProvider.otherwise('/');
 
       $stateProvider
           .state('test', {
