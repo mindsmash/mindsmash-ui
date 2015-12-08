@@ -1,0 +1,19 @@
+<span class="msm-click-to-edit-container"
+      ng-class="{'is-placeholder': placeholder && !editingValue}"
+      ng-click="enableEditingMode()">
+  <input ng-show="isEditing"
+         ng-blur="onBlur()"
+         ng-keyup="onKeyPress($event)"
+         ng-model="editingValue"
+         placeholder="{{placeholder}}"/>
+  <span ng-hide="isEditing || isBusy"
+        class="original-text"
+        tabindex="0"
+        ng-focus="enableEditingMode()">
+    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}
+  </span>
+  <span ng-hide="isEditing"
+        ng-transclude>
+  </span>
+  <i ng-hide="isEditing" class="zmdi zmdi-edit"></i>
+</span>

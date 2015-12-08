@@ -3355,6 +3355,16 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-mobile-menu-item .menu-label { text-align: left; white-space: nowrap; width: calc((100% - 40px - 64px) * .4); }
 
+.msm-click-to-edit-container { cursor: pointer; }
+
+.msm-click-to-edit .original-text { border: dashed rgba(51, 51, 51, 0) 1px; padding: 2px; transition: border-color 0.3s; }
+
+.msm-click-to-edit .original-text:hover { border: dashed #333 1px; transition: border-color 0.3s; }
+
+.msm-click-to-edit textarea, .msm-click-to-edit input { background: inherit; border: dashed #333 1px; color: inherit; display: inline-block; font: inherit; height: inherit; line-height: inherit; padding: inherit; text-decoration: none; width: 100%; }
+
+.msm-click-to-edit textarea:focus, .msm-click-to-edit input:focus { outline: 0; }
+
 .ui-notification { background-color: #317DC1; }
 
 .ui-notification.error { background-color: #D0021B; }
