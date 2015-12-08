@@ -65,6 +65,8 @@
 
     .controller('ModalInstanceControllerSelectItem', ModalInstanceControllerSelectItem);
 
+    .controller('ClickToEditController', ClickToEditController);
+
     function Main(msmNotification) {
       // use an i18n key here
       msmNotification.primary('WELCOME');
@@ -178,6 +180,22 @@
     })();
   }
 
+  function ClickToEditController($scope, $log, msmNotification) {
+    $scope.model = {
+      text1: 'First text',
+      text2: 'Second text',
+      isEditing: false
+    };
+
+    $scope.changed = function(value) {
+      msmNotification.success('Successfully changed the value to \'' + value + '\'', false);
+    };
+
+    (function initController() {
+      $log.debug('[ClickToEditController] Initializing...');
+    })();
+  }
+
   function ModalInstanceControllerSelectItem($scope, $log, $modalInstance, title, text, textCurrentlySelected, items) {
     $scope.title = title;
     $scope.text = text;
@@ -199,4 +217,5 @@
       $log.debug('[ModalInstanceControllerSelectItem] Initializing...');
     })();
   }
+
 })(angular);

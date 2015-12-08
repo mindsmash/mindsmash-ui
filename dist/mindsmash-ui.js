@@ -1,5 +1,213 @@
 angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-notification']);
 
+/** Based on https://github.com/GabiGrin/angular-editable-text */
+(function () {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmClickToEdit
+   * @restrict 'E'
+   *
+   * @description Renders an editable text input
+   *
+   * @param {string} msmClickToEdit The model to be edited
+   * @param {string} editMode The edit mode
+   * @param {string} placeholder The placeholder for the model if empty
+   * @param {function} onChange A callback function on model change
+   */
+  angular.module('msm.components.ui')
+      .directive('msmClickToEdit', ClickToEdit);
+
+  function ClickToEdit() {
+    return {
+      scope: {
+        msmClickToEdit: '=',
+        editMode: '=',
+        placeholder: '@',
+        onChange: '&'
+      },
+      transclude: true,
+      templateUrl: 'components/ui/msm-click-to-edit/msm-click-to-edit.html',
+      link: function (scope, elem, attrs) {
+        var input = elem.find('input');
+        var lastValue;
+        var KEYCODES = {
+          ENTER: 13,
+          ESCAPE: 27
+        };
+        scope.saveValue = true;
+        scope.isEditing = !!scope.editMode;
+        scope.editingValue = scope.msmClickToEdit;
+
+        elem.addClass('msm-click-to-edit');
+
+        /**
+         *  Event handlers
+         */
+
+        scope.onBlur = function() {
+          scope.isEditing = false;
+        };
+
+        scope.onKeyPress = function(event) {
+          if (event) {
+            if (event.which === KEYCODES.ENTER) {
+              scope.isEditing = false;
+            } else if (event.which === KEYCODES.ESCAPE) {
+              scope.saveValue = false;
+              scope.isEditing = false;
+            }
+          }
+        };
+
+        scope.enableEditingMode = function() {
+          scope.isEditing = true;
+        };
+
+        /**
+         *  Helper functions
+         */
+
+        function handleEditingPromise(promise) {
+          scope.isBusy = true;
+          promise.then(
+              function (value) {
+                scope.msmClickToEdit = value;
+                scope.editingValue = value;
+                scope.isBusy = false;
+              }, function () {
+                scope.editingValue = scope.msmClickToEdit;
+                scope.isBusy = false;
+              }
+          );
+        }
+
+        /**
+         * Method for handling the start of editing
+         */
+        function handleStartEditing() {
+          var inputElement = input[0];
+          var length = scope.editingValue ? scope.editingValue.length : 0;
+
+          elem['addClass']('editing');
+          inputElement.focus();
+          // fix for FF
+          inputElement.selectionStart = length;
+          inputElement.selectionEnd = length;
+        }
+
+        /**
+         * Method for handling the end of editing
+         *
+         * @param {boolean} wasEditing True if the previous mode was Editing, false else
+         */
+        function handleDoneEditing(wasEditing) {
+          var editingPromise;
+
+          elem['removeClass']('editing');
+
+          // Check whether to save the value of not
+          if (!scope.saveValue) {
+            scope.saveValue = true;
+            scope.editingValue = scope.msmClickToEdit;
+            return;
+          }
+
+          if (attrs.onChange &&
+              wasEditing &&
+              scope.editingValue !== lastValue) {
+            // accept promise, or a normal function
+            editingPromise = scope.onChange({value: scope.editingValue});
+            if (editingPromise && editingPromise.then) {
+              handleEditingPromise(editingPromise);
+            } else if (editingPromise) {
+              scope.msmClickToEdit = editingPromise;
+              scope.editingValue = editingPromise;
+            } else {
+              scope.msmClickToEdit = scope.editingValue;
+            }
+          } else {
+            scope.msmClickToEdit = scope.editingValue;
+          }
+        }
+
+        /**
+         *  Watch tasks
+         */
+
+        scope.$watch('isEditing',
+            function (value, oldValue) {
+              if (attrs.editMode !== undefined) {
+                scope.editMode = value;
+              }
+              if (value) {
+                handleStartEditing();
+              } else {
+                handleDoneEditing(oldValue);
+              }
+            }
+        );
+
+        scope.$watch('editMode', function (val) {
+          scope.isEditing = !!val;
+        });
+
+        scope.$watch('msmClickToEdit', function (newVal) {
+          lastValue = newVal;
+          scope.editingValue = newVal;
+        });
+      }
+    }
+  }
+
+})();
+
+(function() {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmButton
+   * @restrict 'E'
+   *
+   * @description Renders a delete button which executes the callback you passed on click
+   *
+   * @param {function} cb the function that should be executed on click
+   */
+  angular
+      .module('msm.components.ui')
+      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
+      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-delete', 'btn-danger'))
+      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-plus-circle', 'btn-primary'))
+  ;
+
+
+  function MsmButtonFactory(iconClass, btnClass) {
+    return function MsmButton($translate) {
+      return {
+        restrict: 'E',
+        scope: {
+          labelText: '@',
+          isMobileMenuItem: '='
+        },
+        templateUrl: 'components/ui/msm-button/msm-button.html',
+        controller: function ($scope) {
+          $translate($scope.labelText)
+              .then(function (translatedValue) {
+                $scope.text = translatedValue;
+              }, function () {
+                $scope.text = $scope.labelText;
+              });
+
+          $scope.iconClass = iconClass || '';
+          $scope.btnClass = btnClass || '';
+        }
+      };
+    }
+  }
+})();
+
 (function() {
 	'use strict';
 
@@ -49,51 +257,6 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
 
   /**
    * @ngdoc directive
-   * @name components.ui.msmButton
-   * @restrict 'E'
-   *
-   * @description Renders a delete button which executes the callback you passed on click
-   *
-   * @param {function} cb the function that should be executed on click
-   */
-  angular
-      .module('msm.components.ui')
-      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
-      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-delete', 'btn-danger'))
-      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-plus-circle', 'btn-primary'))
-  ;
-
-
-  function MsmButtonFactory(iconClass, btnClass) {
-    return function MsmButton($translate) {
-      return {
-        restrict: 'E',
-        scope: {
-          labelText: '@',
-          isMobileMenuItem: '='
-        },
-        templateUrl: 'components/ui/msm-button/msm-button.html',
-        controller: function ($scope) {
-          $translate($scope.labelText)
-              .then(function (translatedValue) {
-                $scope.text = translatedValue;
-              }, function () {
-                $scope.text = $scope.labelText;
-              });
-
-          $scope.iconClass = iconClass || '';
-          $scope.btnClass = btnClass || '';
-        }
-      };
-    }
-  }
-})();
-
-(function() {
-  'use strict';
-
-  /**
-   * @ngdoc directive
    * @name components.ui.msmModal
    * @restrict 'A'
    *
@@ -136,10 +299,6 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
 
 })();
 
-angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
-$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
-$templateCache.put("components/ui/msm-modal/modal-ok-cancel.html","<div class=\"modal-header modal-desktop\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"cancel()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body modal-desktop\">\n    <div class=\"modal-body-inner clearfix\">\n        {{ text || \'\'}}\n    </div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n    <span class=\"pull-right modal-ok\" ng-click=\"ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n\n<div class=\"modal-mobile\">\n    <div class=\"modal-mobile-header\" ng-click=\"ok()\">\n        <i class=\"zmdi zmdi-arrow-left pull-left img-back\" ng-click=\"cancel()\"></i>\n        <span class=\"modal-mobile-header-title pull-left\">{{ title || \'\' }}</span>\n        <i class=\"zmdi zmdi-check pull-right img-ok\" ng-click=\"ok()\"></i>\n    </div>\n    <div class=\"modal-mobile-body-ok-cancel\">\n        <div class=\"modal-mobile-body-inner clearfix\">\n            {{ text || \'\'}}\n        </div>\n    </div>\n</div>\n");
-$templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<div class=\"modal-header modal-desktop\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"cancel()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body modal-desktop\">\n    <div class=\"modal-body-inner clearfix\">\n        <ul>\n            <li ng-repeat=\"item in items\">\n                <a ng-click=\"selected.item = item\">{{ item }}</a>\n            </li>\n        </ul>\n        {{ textCurrentlySelected || \'Currently selected\'}}: <b>{{ selected.item }}</b>\n    </div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n    <span class=\"pull-right modal-ok\" ng-click=\"ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n\n<div class=\"modal-mobile\">\n    <div class=\"modal-mobile-header\">\n        <i class=\"zmdi zmdi-arrow-left pull-left img-back\" ng-click=\"cancel()\"></i>\n        <span class=\"modal-mobile-header-title pull-left\">{{ title || \'\' }}</span>\n        <i class=\"zmdi zmdi-check pull-right img-ok\" ng-click=\"ok()\"></i>\n    </div>\n    <div class=\"modal-mobile-body-select-from-listing\">\n        <div class=\"modal-mobile-body-inner clearfix\">\n            <div ng-repeat=\"item in items\" class=\"modal-mobile-item img-item-selection\" ng-click=\"selected.item = item\">\n                <i class=\"zmdi zmdi-circle\" ng-class=\n                        \"{\'img-item-selected\': item === selected.item,\n                        \'img-item-not-selected\': item !== selected.item}\"></i>\n                <span class=\"modal-mobile-item-text\">{{ item }}</span>\n            </div>\n        </div>\n    </div>\n</div>\n");}]);
 (function() {
     'use strict';
 
@@ -220,3 +379,9 @@ $templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<di
     }
 
 })();
+
+angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"msm-click-to-edit-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"enableEditingMode()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isBusy\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"enableEditingMode()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
+$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
+$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/modal-ok-cancel.html","<div class=\"modal-header modal-desktop\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"cancel()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body modal-desktop\">\n    <div class=\"modal-body-inner clearfix\">\n        {{ text || \'\'}}\n    </div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n    <span class=\"pull-right modal-ok\" ng-click=\"ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n\n<div class=\"modal-mobile\">\n    <div class=\"modal-mobile-header\" ng-click=\"ok()\">\n        <i class=\"zmdi zmdi-arrow-left pull-left img-back\" ng-click=\"cancel()\"></i>\n        <span class=\"modal-mobile-header-title pull-left\">{{ title || \'\' }}</span>\n        <i class=\"zmdi zmdi-check pull-right img-ok\" ng-click=\"ok()\"></i>\n    </div>\n    <div class=\"modal-mobile-body-ok-cancel\">\n        <div class=\"modal-mobile-body-inner clearfix\">\n            {{ text || \'\'}}\n        </div>\n    </div>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<div class=\"modal-header modal-desktop\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"cancel()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body modal-desktop\">\n    <div class=\"modal-body-inner clearfix\">\n        <ul>\n            <li ng-repeat=\"item in items\">\n                <a ng-click=\"selected.item = item\">{{ item }}</a>\n            </li>\n        </ul>\n        {{ textCurrentlySelected || \'Currently selected\'}}: <b>{{ selected.item }}</b>\n    </div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n    <span class=\"pull-right modal-ok\" ng-click=\"ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n\n<div class=\"modal-mobile\">\n    <div class=\"modal-mobile-header\">\n        <i class=\"zmdi zmdi-arrow-left pull-left img-back\" ng-click=\"cancel()\"></i>\n        <span class=\"modal-mobile-header-title pull-left\">{{ title || \'\' }}</span>\n        <i class=\"zmdi zmdi-check pull-right img-ok\" ng-click=\"ok()\"></i>\n    </div>\n    <div class=\"modal-mobile-body-select-from-listing\">\n        <div class=\"modal-mobile-body-inner clearfix\">\n            <div ng-repeat=\"item in items\" class=\"modal-mobile-item img-item-selection\" ng-click=\"selected.item = item\">\n                <i class=\"zmdi zmdi-circle\" ng-class=\n                        \"{\'img-item-selected\': item === selected.item,\n                        \'img-item-not-selected\': item !== selected.item}\"></i>\n                <span class=\"modal-mobile-item-text\">{{ item }}</span>\n            </div>\n        </div>\n    </div>\n</div>\n");}]);

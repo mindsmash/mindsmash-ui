@@ -1,0 +1,36 @@
+.msm-click-to-edit-container {
+    cursor: pointer;
+}
+
+.msm-click-to-edit {
+
+    .original-text {
+        border: dashed rgba($msm-black, 0) 1px;
+        padding: 2px;
+        transition: border-color 0.3s;
+
+        &:hover {
+            border: dashed $msm-black 1px;
+            transition: border-color 0.3s;
+        }
+    }
+
+    textarea,
+    input {
+        background: inherit;
+        border: dashed $msm-black 1px;
+        color: inherit;
+        display:inline-block;
+        font: inherit;
+        height:inherit;
+        line-height:inherit;
+        padding: inherit;
+        text-decoration: none;
+        width: 100%;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+}
