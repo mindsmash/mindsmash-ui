@@ -9,11 +9,8 @@
   height: 60px;
   margin-bottom: 0;
 
-  a {
-    color: $msm-white;
-  }
-
   .navbar-brand {
+    color: $msm-white;
     font-size: 24px;
     height: 60px;
     padding: 18px 20px;
@@ -37,7 +34,7 @@
   }
 
   .nav {
-    a {
+    > li > a {
       color: lighten($msm-blue, 75%);
       height: 60px;
       padding: 18px 20px;
@@ -49,7 +46,8 @@
       }
     }
 
-    .active > a {
+    > .active > a,
+    > .dropdown.open > a {
       background-color: $msm-blue-darker;
       color: $msm-white;
     }

@@ -45,15 +45,12 @@
     }
   }
 
-  .nav-brand {
+  .nav-brand-box {
     display: none;
     height: 60px;
     left: calc(50% - 120px);
-    line-height: 60px;
-    margin: 0;
-    padding: 0;
+    overflow: hidden;
     position: absolute;
-    text-align: center;
     top: 0;
     transition: all ease-in-out .15s;
     width: 240px;
@@ -64,10 +61,21 @@
     }
   }
 
+  .nav-brand {
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    top: 0;
+    transition: all ease-in-out .15s;
+  }
+
   .nav-search {
     flex: auto;
     height: 60px;
     position: relative;
+    z-index: 3;
   }
 
   .search-icon {

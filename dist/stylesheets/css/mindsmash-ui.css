@@ -3365,6 +3365,41 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .ui-notification.warning { background-color: #f0ad4e; }
 
+/** Use with bootstrap's .navbar */
+.msm-navbar { background-color: #317DC1; border: 0; border-radius: 0; color: #FDFDFD; height: 60px; margin-bottom: 0; }
+
+.msm-navbar .navbar-brand { color: #FDFDFD; font-size: 24px; height: 60px; padding: 18px 20px; }
+
+.msm-navbar .navbar-toggle { border: 1px solid #0491C9; margin: 13px 20px; }
+
+.msm-navbar .navbar-toggle .icon-bar { background-color: #0491C9; }
+
+.msm-navbar .navbar-toggle:hover, .msm-navbar .navbar-toggle:focus { border-color: #FDFDFD; }
+
+.msm-navbar .navbar-toggle:hover .icon-bar, .msm-navbar .navbar-toggle:focus .icon-bar { background-color: white; }
+
+.msm-navbar .nav > li > a { color: white; height: 60px; padding: 18px 20px; }
+
+.msm-navbar .nav > li > a:hover, .msm-navbar .nav > li > a:focus { background-color: #276398; color: #FDFDFD; }
+
+.msm-navbar .nav > .active > a, .msm-navbar .nav > .dropdown.open > a { background-color: #225584; color: #FDFDFD; }
+
+.msm-navbar .nav .disabled > a { color: #8fbbe3; }
+
+.msm-navbar .nav .disabled > a:hover, .msm-navbar .nav .disabled > a:focus { background-color: inherit; }
+
+.msm-navbar .navbar-form { margin: 0; padding: 13px 20px; }
+
+.msm-navbar .navbar-form .form-control { background-color: #225584; border-radius: 36px; border: 0; box-shadow: none; color: #FDFDFD; height: 36px; line-height: 18px; padding: 0 20px; }
+
+.msm-navbar .navbar-form .form-control input::-webkit-input-placeholder { color: #0491C9; }
+
+.msm-navbar .navbar-form .form-control input:-moz-placeholder { color: #0491C9; }
+
+.msm-navbar .navbar-form .form-control input::-moz-placeholder { color: #0491C9; }
+
+.msm-navbar .navbar-form .form-control input:-ms-input-placeholder { color: #0491C9; }
+
 /** Use with .navbar (bootstrap) and .msm-navbar (mindsmash-ui) */
 .msm-navbar-flex { display: flex; margin: 0 auto; max-width: 1280px; position: relative; }
 
@@ -3380,11 +3415,13 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-navbar-flex .nav-item-profile > i { display: inline-block; float: left; font-size: 24px; margin-left: 10px; margin-top: 3px; }
 
-.msm-navbar-flex .nav-brand { display: none; height: 60px; left: calc(50% - 120px); line-height: 60px; margin: 0; padding: 0; position: absolute; text-align: center; top: 0; transition: all ease-in-out .15s; width: 240px; z-index: 2; }
+.msm-navbar-flex .nav-brand-box { display: none; height: 60px; left: calc(50% - 120px); overflow: hidden; position: absolute; top: 0; transition: all ease-in-out .15s; width: 240px; z-index: 2; }
 
-@media screen and (min-width: 992px) { .msm-navbar-flex .nav-brand { display: block; } }
+@media screen and (min-width: 992px) { .msm-navbar-flex .nav-brand-box { display: block; } }
 
-.msm-navbar-flex .nav-search { flex: auto; height: 60px; position: relative; }
+.msm-navbar-flex .nav-brand { line-height: 60px; margin: 0; padding: 0; position: relative; text-align: center; top: 0; transition: all ease-in-out .15s; }
+
+.msm-navbar-flex .nav-search { flex: auto; height: 60px; position: relative; z-index: 3; }
 
 .msm-navbar-flex .search-icon { color: rgba(253, 253, 253, 0.75); cursor: pointer; display: inline-block; position: absolute; text-decoration: none; z-index: 3; }
 
@@ -3494,40 +3531,3 @@ dl dd { margin-bottom: 12px; }
 .dl-horizontal dt { clear: left; float: left; margin-right: 24px; text-align: right; width: calc(35% - 12px); }
 
 .dl-horizontal dd { margin-left: 0; width: calc(65% - 12px); }
-
-/** Use with bootstrap's .navbar */
-.msm-navbar { background-color: #317DC1; border: 0; border-radius: 0; color: #FDFDFD; height: 60px; margin-bottom: 0; }
-
-.msm-navbar a { color: #FDFDFD; }
-
-.msm-navbar .navbar-brand { font-size: 24px; height: 60px; padding: 18px 20px; }
-
-.msm-navbar .navbar-toggle { border: 1px solid #0491C9; margin: 13px 20px; }
-
-.msm-navbar .navbar-toggle .icon-bar { background-color: #0491C9; }
-
-.msm-navbar .navbar-toggle:hover, .msm-navbar .navbar-toggle:focus { border-color: #FDFDFD; }
-
-.msm-navbar .navbar-toggle:hover .icon-bar, .msm-navbar .navbar-toggle:focus .icon-bar { background-color: white; }
-
-.msm-navbar .nav a { color: white; height: 60px; padding: 18px 20px; }
-
-.msm-navbar .nav a:hover, .msm-navbar .nav a:focus { background-color: #276398; color: #FDFDFD; }
-
-.msm-navbar .nav .active > a { background-color: #225584; color: #FDFDFD; }
-
-.msm-navbar .nav .disabled > a { color: #8fbbe3; }
-
-.msm-navbar .nav .disabled > a:hover, .msm-navbar .nav .disabled > a:focus { background-color: inherit; }
-
-.msm-navbar .navbar-form { margin: 0; padding: 13px 20px; }
-
-.msm-navbar .navbar-form .form-control { background-color: #225584; border-radius: 36px; border: 0; box-shadow: none; color: #FDFDFD; height: 36px; line-height: 18px; padding: 0 20px; }
-
-.msm-navbar .navbar-form .form-control input::-webkit-input-placeholder { color: #0491C9; }
-
-.msm-navbar .navbar-form .form-control input:-moz-placeholder { color: #0491C9; }
-
-.msm-navbar .navbar-form .form-control input::-moz-placeholder { color: #0491C9; }
-
-.msm-navbar .navbar-form .form-control input:-ms-input-placeholder { color: #0491C9; }

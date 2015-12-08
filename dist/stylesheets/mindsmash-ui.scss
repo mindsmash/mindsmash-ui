@@ -1,12 +1,15 @@
 
-
 @import 'mixins/placeholder-color.mixin';
+
+
 @import '../../../css-spaces/source/spaces';
+
 @import '../components/ui/msm-mobile-menu-item/msm-mobile-menu-item';
 @import '../components/ui/msm-notification/msm-notification';
 @import '../components/ui/msm-navbar/msm-navbar';
+@import '../components/ui/msm-navbar/msm-navbar-flex';
+
 @import 'common/colors';
 @import 'bootstrap/buttons';
 @import 'bootstrap/panel';
 @import 'bootstrap/type';
-@import 'bootstrap/navbar';

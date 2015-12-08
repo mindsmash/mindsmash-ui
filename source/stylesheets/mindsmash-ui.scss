@@ -1,12 +1,15 @@
 @import 'variables'; // @@gulp-remove-line
-@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap'; // @@gulp-remove-line
 @import 'mixins/placeholder-color.mixin';
+
+@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap'; // @@gulp-remove-line
 @import '../../bower_components/css-spaces/source/spaces';
+
 @import '../components/ui/msm-mobile-menu-item/msm-mobile-menu-item';
 @import '../components/ui/msm-notification/msm-notification';
 @import '../components/ui/msm-navbar/msm-navbar';
+@import '../components/ui/msm-navbar/msm-navbar-flex';
+
 @import 'common/colors';
 @import 'bootstrap/buttons';
 @import 'bootstrap/panel';
 @import 'bootstrap/type';
-@import 'bootstrap/navbar';
