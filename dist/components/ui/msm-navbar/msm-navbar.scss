@@ -1,9 +1,11 @@
-.navbar.msm-navbar .msm-navbar-flex {
+/**
+* Use with .navbar (bootstrap) and .msm-navbar (mindsmash-ui)
+*/
+.msm-navbar-flex {
   display: flex;
-  max-width: $msm-layout-max-width;
   margin: 0 auto;
+  max-width: $msm-layout-max-width;
   position: relative;
-  overflow: hidden;
 
   &.nav-search-open {
     .nav-brand {
@@ -11,51 +13,46 @@
     }
   }
 
-  .nav {
-    .nav-item {
-      cursor: pointer;
+  .nav-item {
+    cursor: pointer;
+    float: left;
+  }
+
+  .nav-item-icon {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 20px 25px;
+  }
+
+  .nav-item-profile {
+    padding-bottom: 18px;
+    padding-top: 18px;
+
+    .profile-thumb {
+      background: $msm-white;
+      border-radius: 26px;
       float: left;
+      height: 26px;
+      width: 26px;
+    }
 
-      .nav-item-icon {
-        font-size: 20px;
-        font-weight: 600;
-        padding: 20px 25px;
-      }
-
-      .nav-item-profile {
-        padding-top: 18px;
-        padding-bottom: 18px;
-
-        .profile-thumb {
-          background: #FFF;
-          border-radius: 26px;
-          height: 26px;
-          width: 26px;
-          float: left;
-        }
-
-        > i {
-          display: inline-block;
-          margin-left: 10px;
-          margin-top: 3px;
-          float: left;
-          font-size: 24px;
-        }
-      }
+    > i {
+      display: inline-block;
+      float: left;
+      font-size: 24px;
+      margin-left: 10px;
+      margin-top: 3px;
     }
   }
 
-  .nav-brand {
-    transition: all ease-in-out .15s;
+  .nav-brand-box {
+    overflow: hidden;
     display: none;
     height: 60px;
     left: calc(50% - 120px);
-    line-height: 60px;
-    margin: 0;
-    padding: 0;
     position: absolute;
-    text-align: center;
     top: 0;
+    transition: all ease-in-out .15s;
     width: 240px;
     z-index: 2;
 
@@ -64,70 +61,81 @@
     }
   }
 
+  .nav-brand {
+    position: relative;
+    top: 0;
+    transition: all ease-in-out .15s;
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
   .nav-search {
     flex: auto;
-    position: relative;
     height: 60px;
+    position: relative;
+    z-index: 3;
+  }
 
-    .search-icon {
-      cursor: pointer;
-      display: inline-block;
-      position: absolute;
-      text-decoration: none;
-      z-index: 3;
+  .search-icon {
+    color: rgba($msm-white, .75);
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    text-decoration: none;
+    z-index: 3;
 
-      &.search-icon-close {
-        top: 12px;
-        right: 16px;
-        width: 36px;
-        height: 36px;
-        padding: 8px;
-      }
-
-      &.search-icon-open {
-        height: 60px;
-        padding: 20px 25px;
-        right: 0;
-        top: 0;
-
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.1);
-        }
-      }
-
-      > i {
-        font-size: 20px;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.75);
-
-        &:hover {
-          color: #FFF;
-        }
-      }
+    &:hover {
+      color: $msm-white;
     }
 
-    .form-control {
-      border: 0;
-      box-shadow: none;
-      background-color: rgba(0, 0, 0, 0.25);
-      border-radius: 36px;
-      color: #FFF;
-      height: 36px;
-      line-height: 18px;
-      opacity: 0;
-      outline: none;
-      padding: 0 20px;
-      transition: all ease-in-out .3s;
-      width: 0;
+    > i {
+      font-size: 20px;
+      font-weight: 600;
+    }
 
-      position: absolute;
-      top: 12px;
-      right: 12px;
+  }
 
-      &.open {
-        opacity: 1;
-        width: calc(100% - 25px);
-      }
+  .search-icon-close {
+    height: 36px;
+    padding: 8px;
+    right: 16px;
+    top: 12px;
+    width: 36px;
+  }
+
+  .search-icon-open {
+    height: 60px;
+    padding: 20px 25px;
+    right: 0;
+    top: 0;
+
+    &:hover {
+      background-color: $msm-blue-dark;
+    }
+  }
+
+  .form-control {
+    background-color: $msm-blue-darker;
+    border: 0;
+    border-radius: 36px;
+    box-shadow: none;
+    color: $msm-white;
+    height: 36px;
+    line-height: 18px;
+    opacity: 0;
+    outline: none;
+    padding: 0 20px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    transition: all ease-in-out .3s;
+    width: 0;
+
+    &.open {
+      opacity: 1;
+      width: calc(100% - 25px);
     }
   }
 }

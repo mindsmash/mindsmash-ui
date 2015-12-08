@@ -262,10 +262,12 @@
     <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
       <nav class="navbar msm-navbar">
         <div class="msm-navbar-flex" ng-class="{'nav-search-open' : searchVisible}">
-          <h1 class="nav-brand">Title</h1>
+          <div class="nav-brand-box">
+            <h1 class="nav-brand">Title</h1>
+          </div>
           <ul class="nav nav-left">
             <li class="nav-item visible-xs">
-              <a class="nav-item-icon icon-list"></a>
+              <a class="nav-item-icon icon-menu"></a>
             </li>
             <li class="nav-item hidden-xs">
               <a class="nav-item-icon icon-globe"></a>
@@ -295,11 +297,18 @@
             <li class="nav-item hidden-xs">
               <a class="nav-item-icon icon-bubbles"></a>
             </li>
-            <li class="nav-item hidden-xs">
-              <a class="nav-item-profile">
-                <div class="profile-thumb"></div>
+            <li class="nav-item hidden-xs" dropdown is-open="status.isopen">
+              <a class="nav-item-profile" dropdown-toggle>
+                <span class="profile-thumb"></span>
                 <i class="zmdi zmdi-caret-down"></i>
               </a>
+              <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                <li role="menuitem"><a href="#">Action</a></li>
+                <li role="menuitem"><a href="#">Another action</a></li>
+                <li role="menuitem"><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#">Separated link</a></li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -322,7 +331,7 @@
       <nav class="navbar msm-navbar">
         <div class="container-fluid">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -335,16 +344,16 @@
             <ul class="nav navbar-nav">
               <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
               <li><a href="#">Link</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">One more separated link</a></li>
+              <li dropdown is-open="status2.isopen">
+                <a href="#" dropdown-toggle>Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li role="menuitem"><a href="#">Action</a></li>
+                  <li role="menuitem"><a href="#">Another action</a></li>
+                  <li role="menuitem"><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li role="menuitem"><a href="#">Separated link</a></li>
+                  <li class="divider"></li>
+                  <li role="menuitem"><a href="#">One more separated link</a></li>
                 </ul>
               </li>
             </ul>
@@ -355,14 +364,14 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
               <li><a href="#">Link</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
+              <li dropdown is-open="status3.isopen">
+                <a href="#" dropdown-toggle>Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                  <li role="menuitem"><a href="#">Action</a></li>
+                  <li role="menuitem"><a href="#">Another action</a></li>
+                  <li role="menuitem"><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li role="menuitem"><a href="#">Separated link</a></li>
                 </ul>
               </li>
             </ul>
@@ -370,7 +379,7 @@
         </div>
       </nav>
     </div>
-    <div class="panel-footer js-insert-code">
+    <div class="panel-footer js-insert-code"></div>
   </div>
 </section>
 
