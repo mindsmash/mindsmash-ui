@@ -1,5 +1,50 @@
 angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-notification']);
 
+(function() {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmButton
+   * @restrict 'E'
+   *
+   * @description Renders a delete button which executes the callback you passed on click
+   *
+   * @param {function} cb the function that should be executed on click
+   */
+  angular
+      .module('msm.components.ui')
+      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
+      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-delete', 'btn-danger'))
+      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-plus-circle', 'btn-primary'))
+  ;
+
+
+  function MsmButtonFactory(iconClass, btnClass) {
+    return function MsmButton($translate) {
+      return {
+        restrict: 'E',
+        scope: {
+          labelText: '@',
+          isMobileMenuItem: '='
+        },
+        templateUrl: 'components/ui/msm-button/msm-button.html',
+        controller: function ($scope) {
+          $translate($scope.labelText)
+              .then(function (translatedValue) {
+                $scope.text = translatedValue;
+              }, function () {
+                $scope.text = $scope.labelText;
+              });
+
+          $scope.iconClass = iconClass || '';
+          $scope.btnClass = btnClass || '';
+        }
+      };
+    }
+  }
+})();
+
 /** Based on https://github.com/GabiGrin/angular-editable-text */
 (function () {
   'use strict';
@@ -164,54 +209,6 @@ angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-
 })();
 
 (function() {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmButton
-   * @restrict 'E'
-   *
-   * @description Renders a delete button which executes the callback you passed on click
-   *
-   * @param {function} cb the function that should be executed on click
-   */
-  angular
-      .module('msm.components.ui')
-      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
-      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-delete', 'btn-danger'))
-      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-plus-circle', 'btn-primary'))
-  ;
-
-
-  function MsmButtonFactory(iconClass, btnClass) {
-    return function MsmButton($translate) {
-      return {
-        restrict: 'E',
-        scope: {
-          labelText: '@',
-          isMobileMenuItem: '='
-        },
-        templateUrl: 'components/ui/msm-button/msm-button.html',
-        controller: function ($scope) {
-          $translate($scope.labelText)
-              .then(function (translatedValue) {
-                $scope.text = translatedValue;
-              }, function () {
-                $scope.text = $scope.labelText;
-              });
-
-          $scope.iconClass = iconClass || '';
-          $scope.btnClass = btnClass || '';
-        }
-      };
-    }
-  }
-})();
-
-angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"msm-click-to-edit-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"enableEditingMode()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isBusy\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"enableEditingMode()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
-$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
-$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");}]);
-(function() {
 	'use strict';
 
 	/**
@@ -255,6 +252,9 @@ $templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html
 	}
 })();
 
+angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
+$templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"msm-click-to-edit-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"enableEditingMode()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isBusy\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"enableEditingMode()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
+$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");}]);
 (function() {
     'use strict';
 
