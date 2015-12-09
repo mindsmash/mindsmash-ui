@@ -93,13 +93,13 @@ $headings-line-height:    1.25 !default;
 //## Define common padding and border radius sizes and more.
 
 $padding-base-vertical:     8px !default;
-$padding-base-horizontal:   24px !default;
+$padding-base-horizontal:   16px !default;
 
 $padding-large-vertical:    10px !default;
-$padding-large-horizontal:  36px !default;
+$padding-large-horizontal:  22px !default;
 
 $padding-small-vertical:    3px !default;
-$padding-small-horizontal:  12px !default;
+$padding-small-horizontal:  8px !default;
 
 $padding-xs-vertical:       3px !default;
 $padding-xs-horizontal:     6px !default;
@@ -107,9 +107,9 @@ $padding-xs-horizontal:     6px !default;
 $line-height-large:         1.5 !default; //extra decimals for Win 8.1 Chrome
 $line-height-small:         1.5 !default;
 
-$border-radius-base:        5px !default;
-//$border-radius-large:       6px !default;
-//$border-radius-small:       3px !default;
+$border-radius-base:        4px !default;
+$border-radius-large:       6px !default;
+$border-radius-small:       3px !default;
 
 //** Global color for active items (e.g., navs or dropdowns).
 //$component-active-color:    #fff !default;
@@ -186,14 +186,14 @@ $btn-danger-border:              transparent !default;
 //##
 
 //** `<input>` background color
-//$input-bg:                       #fff !default;
+$input-bg:                       #fafafa !default;
 //** `<input disabled>` background color
-//$input-bg-disabled:              $gray-lighter !default;
+$input-bg-disabled:              $gray-lighter !default;
 
 //** Text color for `<input>`s
-//$input-color:                    $gray !default;
+$input-color:                    $msm-black !default;
 //** `<input>` border color
-//$input-border:                   #ccc !default;
+$input-border:                   $msm-gray-light !default;
 
 //TODO: Rename `$input-border-radius` to `$input-border-radius-base` in v4
 //** Default `.form-control` border radius
@@ -204,11 +204,12 @@ $btn-danger-border:              transparent !default;
 //** Small `.form-control` border radius
 //$input-border-radius-small:      $border-radius-small !default;
 
-//** Border color for inputs on focus
-//$input-border-focus:             #66afe9 !default;
+//** Border color for inputs on hover / focus
+$input-border-hover:             mix($msm-blue, $input-border,20%) !default;
+$input-border-focus:             mix($msm-blue, $input-border,40%) !default;
 
 //** Placeholder text color
-//$input-color-placeholder:        #999 !default;
+$input-color-placeholder:        $msm-gray !default;
 
 //** Default `.form-control` height
 //$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;

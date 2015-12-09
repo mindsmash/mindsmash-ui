@@ -59,7 +59,9 @@
 
     .controller('NotificationController', NotificationController)
 
-    .controller('ClickToEditController', ClickToEditController);
+    .controller('ClickToEditController', ClickToEditController)
+
+    .controller('EditableTextController', EditableTextController);
 
     function Main(msmNotification) {
       // use an i18n key here
@@ -111,4 +113,13 @@
         $log.debug('[ClickToEditController] Initializing...');
       })();
     }
+
+    function EditableTextController($scope) {
+      $scope.data = {
+        show: false,
+        value: 'Text value',
+        value2: 'Textarea value'
+      };
+    }
+
 })(angular);
