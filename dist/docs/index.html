@@ -15,6 +15,7 @@
 </head>
 
 <body class="container-fluid">
+
 <h1>mindsmash-UI</h1>
 
 <hr>
@@ -71,7 +72,24 @@
       <span ng-show="model.isEditing">You are editing the second text.</span>
       <span ng-show="!model.isEditing">You are not editing the second text.</span>
     </div>
+  </div>
+</section>
 
+<section class="mb-xl p-s bg-gray-light">
+  <h1>Modals</h1>
+  <div ng-controller="ModalController">
+    <div>
+      <h4>Ok-cancel modals:</h4>
+      <button class="btn btn-primary mr-s" ng-click="openOkCancel()">Default</button>
+      <button class="btn btn-primary mr-s" ng-click="openOkCancel('sm')">Small</button>
+      <button class="btn btn-primary mr-s" ng-click="openOkCancel('lg')">Large</button>
+    </div>
+    <div>
+      <h4>Select-from-listing modals:</h4>
+      <button class="btn btn-primary mr-s" ng-click="openSelectItem()">Default</button>
+      <button class="btn btn-primary mr-s" ng-click="openSelectItem('sm')">Small</button>
+      <button class="btn btn-primary mr-s" ng-click="openSelectItem('lg')">Large</button>
+    </div>
   </div>
 </section>
 
@@ -385,6 +403,7 @@
 
 <script src="../../bower_components/angular/angular.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="../../bower_components/anchor-js/anchor.js"></script>
 <script src="../../bower_components/holderjs/holder.js"></script>
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
@@ -396,6 +415,7 @@
 <script src="../components/ui/components.ui.module.js"></script>
 <script src="../components/ui/msm-click-to-edit/msm-click-to-edit.directive.js"></script>
 <script src="../components/ui/msm-button/msm-button.directive.js"></script>
+<script src="../components/ui/msm-modal/msm-modal.directive.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>
 <script src="scripts/app.js"></script>
