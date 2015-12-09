@@ -17,11 +17,13 @@
   }
 
   .navbar-toggle {
-    border: 1px solid rgba($msm-navbar-highlight, 0.5);
+    border: 1px solid rgba($msm-navbar-text, 0.5);
     margin: 13px 20px;
+    transition: border-color linear 0.2s;
 
     .icon-bar {
-      background-color: rgba($msm-navbar-highlight, 0.5);
+      background-color: rgba($msm-navbar-text, 0.5);
+      transition: background-color linear 0.2s;
     }
 
     &:hover, &:focus {
