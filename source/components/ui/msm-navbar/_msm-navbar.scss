@@ -2,26 +2,26 @@
 * Use with bootstrap's .navbar
 */
 .msm-navbar {
-  background-color: $msm-blue;
+  background-color: $msm-navbar-bg;
   border: 0;
   border-radius: 0;
-  color: $msm-white;
+  color: $msm-navbar-text;
   height: 60px;
   margin-bottom: 0;
 
   .navbar-brand {
-    color: $msm-white;
+    color: $msm-navbar-text;
     font-size: 24px;
     height: 60px;
     padding: 18px 20px;
   }
 
   .navbar-toggle {
-    border: 1px solid $msm-blue-light;
+    border: 1px solid rgba($msm-navbar-highlight, 0.5);
     margin: 13px 20px;
 
     .icon-bar {
-      background-color: $msm-blue-light;
+      background-color: rgba($msm-navbar-highlight, 0.5);
     }
 
     &:hover, &:focus {
@@ -35,25 +35,26 @@
 
   .nav {
     > li > a {
-      color: lighten($msm-blue, 75%);
+      color: $msm-navbar-text;
       height: 60px;
       padding: 18px 20px;
+      transition: background-color linear 0.1s;
 
       &:hover,
       &:focus {
-        background-color: $msm-blue-dark;
-        color: $msm-white;
+        background-color: rgba($msm-navbar-highlight, 0.15);
+        color: $msm-navbar-text;
       }
     }
 
     > .active > a,
     > .dropdown.open > a {
-      background-color: $msm-blue-darker;
-      color: $msm-white;
+      background-color: rgba($msm-navbar-highlight, 0.25);
+      color: $msm-navbar-text;
     }
 
     .disabled > a {
-      color: lighten($msm-blue, 25%);
+      color: rgba($msm-navbar-text, 0.5);
 
       &:hover,
       &:focus {
@@ -67,7 +68,7 @@
     padding: 13px 20px;
 
     .form-control {
-      background-color: $msm-blue-darker;
+      background-color: rgba($msm-navbar-highlight, 0.25);
       border-radius: 36px;
       border: 0;
       box-shadow: none;
@@ -75,8 +76,13 @@
       height: 36px;
       line-height: 18px;
       padding: 0 20px;
+      transition: background-color linear 0.25s;
 
-      @include placeholder-color($msm-blue-light);
+      &:focus {
+        background-color: rgba($msm-navbar-highlight, 0.35);
+      }
+
+      @include placeholder-color(rgba($msm-navbar-text, 0.5));
     }
   }
 }
