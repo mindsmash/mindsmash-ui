@@ -1,0 +1,82 @@
+/**
+* Use with bootstrap's .navbar
+*/
+.msm-navbar {
+  background-color: $msm-blue;
+  border: 0;
+  border-radius: 0;
+  color: $msm-white;
+  height: 60px;
+  margin-bottom: 0;
+
+  .navbar-brand {
+    color: $msm-white;
+    font-size: 24px;
+    height: 60px;
+    padding: 18px 20px;
+  }
+
+  .navbar-toggle {
+    border: 1px solid $msm-blue-light;
+    margin: 13px 20px;
+
+    .icon-bar {
+      background-color: $msm-blue-light;
+    }
+
+    &:hover, &:focus {
+      border-color: $msm-white;
+
+      .icon-bar {
+        background-color: white;
+      }
+    }
+  }
+
+  .nav {
+    > li > a {
+      color: lighten($msm-blue, 75%);
+      height: 60px;
+      padding: 18px 20px;
+
+      &:hover,
+      &:focus {
+        background-color: $msm-blue-dark;
+        color: $msm-white;
+      }
+    }
+
+    > .active > a,
+    > .dropdown.open > a {
+      background-color: $msm-blue-darker;
+      color: $msm-white;
+    }
+
+    .disabled > a {
+      color: lighten($msm-blue, 25%);
+
+      &:hover,
+      &:focus {
+        background-color: inherit;
+      }
+    }
+  }
+
+  .navbar-form {
+    margin: 0;
+    padding: 13px 20px;
+
+    .form-control {
+      background-color: $msm-blue-darker;
+      border-radius: 36px;
+      border: 0;
+      box-shadow: none;
+      color: $msm-white;
+      height: 36px;
+      line-height: 18px;
+      padding: 0 20px;
+
+      @include placeholder-color($msm-blue-light);
+    }
+  }
+}
