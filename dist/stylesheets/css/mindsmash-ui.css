@@ -3501,6 +3501,12 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .gray-darker { color: #404040 !important; }
 
+.pos-rel { position: relative !important; }
+
+.pos-sta { position: static !important; }
+
+.pos-abs { position: absolute !important; }
+
 .btn.is-msm-mobile-menu-item { border: 0; border-radius: 0; display: flex; height: 48px; padding-left: 0; padding-right: 0; text-align: left; width: 100%; }
 
 .btn.is-msm-mobile-menu-item i { font-size: 22px; text-align: center; width: 64px; }
@@ -3526,13 +3532,11 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .light { font-weight: 300 !important; }
 
-.size-normal { font-size: 16px; }
+.size-normal, .msm-label, dt { font-size: 16px; }
 
-.m-h1 { margin: 24px 0 12px !important; }
+.msm-label, dt { color: #AAA; font-weight: 300; text-transform: uppercase; }
 
 dl dt, dl dd { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-dl dt { color: #AAA; font-weight: 300; text-transform: uppercase; }
 
 dl dd { margin-bottom: 12px; }
 
