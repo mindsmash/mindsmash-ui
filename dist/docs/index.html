@@ -245,13 +245,13 @@
       <h1 class="panel-title">Notifications</h1>
     </div>
     <div class="panel-body">
-      <div ng-controller="NotificationController">
-        <button class="btn btn-primary mr-s" ng-click="primary()">Primary</button>
-        <button class="btn btn-danger mr-s" ng-click="error()">Error</button>
-        <button class="btn btn-success mr-s" ng-click="success()">Success</button>
-        <button class="btn btn-info mr-s" ng-click="info()">Info</button>
-        <button class="btn btn-warning mr-s" ng-click="warning()">Warning</button>
-        <button class="btn btn-default mr-s" ng-click="clearAll()">Clear all</button>
+      <div ng-controller="NotificationController as vm">
+        <button class="btn btn-primary mr-s" ng-click="vm.primary()">Primary</button>
+        <button class="btn btn-danger mr-s" ng-click="vm.error()">Error</button>
+        <button class="btn btn-success mr-s" ng-click="vm.success()">Success</button>
+        <button class="btn btn-info mr-s" ng-click="vm.info()">Info</button>
+        <button class="btn btn-warning mr-s" ng-click="vm.warning()">Warning</button>
+        <button class="btn btn-default mr-s" ng-click="vm.clearAll()">Clear all</button>
       </div>
     </div>
   </section>
@@ -262,14 +262,14 @@
       <h1 class="panel-title">In-place editing</h1>
     </div>
     <div class="panel-body">
-      <div ng-controller="ClickToEditController">
-        <div msm-click-to-edit="model.text1" on-change="changed(value)"
+      <div ng-controller="ClickToEditController as vm">
+        <div msm-click-to-edit="vm.model.text1" on-change="vm.changed(value)"
              placeholder="Text 1 placeholder"></div>
-        <div msm-click-to-edit="model.text2" on-change="changed(value)"
-             style="text-decoration: underline" edit-mode="model.isEditing"></div>
+        <div msm-click-to-edit="vm.model.text2" on-change="vm.changed(value)"
+             style="text-decoration: underline" edit-mode="vm.model.isEditing"></div>
         <div>
-          <span ng-show="model.isEditing">You are editing the second text.</span>
-          <span ng-show="!model.isEditing">You are not editing the second text.</span>
+          <span ng-show="vm.model.isEditing">You are editing the second text.</span>
+          <span ng-show="!vm.model.isEditing">You are not editing the second text.</span>
         </div>
       </div>
     </div>
@@ -281,18 +281,18 @@
       <h1 class="panel-title">Modals</h1>
     </div>
     <div class="panel-body">
-      <div ng-controller="ModalController">
+      <div ng-controller="ModalController as vm">
         <div>
           <h4>Ok-cancel modals:</h4>
-          <button class="btn btn-primary mr-s" ng-click="openOkCancel()">Default</button>
-          <button class="btn btn-primary mr-s" ng-click="openOkCancel('sm')">Small</button>
-          <button class="btn btn-primary mr-s" ng-click="openOkCancel('lg')">Large</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel()">Default</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel('sm')">Small</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel('lg')">Large</button>
         </div>
         <div>
           <h4>Select-from-listing modals:</h4>
-          <button class="btn btn-primary mr-s" ng-click="openSelectItem()">Default</button>
-          <button class="btn btn-primary mr-s" ng-click="openSelectItem('sm')">Small</button>
-          <button class="btn btn-primary mr-s" ng-click="openSelectItem('lg')">Large</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem()">Default</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem('sm')">Small</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem('lg')">Large</button>
         </div>
       </div>
     </div>
