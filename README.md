@@ -2,7 +2,6 @@
 A Bootstrap 3 UI Kit by mindsmash.
 
 ## Contents
-* [Change log](#change-log)
 * [Install with bower](#install-with-bower-to-use-the-theme-css-or-scss-version)  
 * [Use in an SCSS project](#use-in-a-sass-scss-project)
 * [Use in a CSS project](#use-with-pure-css)
