@@ -1,18 +1,13 @@
 .control-label {
-  color: $msm-gray;
-  font-weight: 300;
-  text-transform: uppercase;
+  @extend .msm-label;
+  
+  color: $msm-gray-darker;
 }
 
 .form-control {
   box-shadow: none;
 
-  &:hover {
-    border-color: $input-border-hover;
-  }
-
   &:focus {
-    border-color: $input-border-focus;
     box-shadow: none;
   }
 }

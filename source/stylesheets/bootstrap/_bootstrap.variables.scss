@@ -193,7 +193,7 @@ $input-bg-disabled:              $gray-lighter !default;
 //** Text color for `<input>`s
 $input-color:                    $msm-black !default;
 //** `<input>` border color
-$input-border:                   $msm-gray-light !default;
+$input-border:                   #ddd !default;
 
 //TODO: Rename `$input-border-radius` to `$input-border-radius-base` in v4
 //** Default `.form-control` border radius
@@ -205,8 +205,7 @@ $input-border:                   $msm-gray-light !default;
 //$input-border-radius-small:      $border-radius-small !default;
 
 //** Border color for inputs on hover / focus
-$input-border-hover:             mix($msm-blue, $input-border,20%) !default;
-$input-border-focus:             mix($msm-blue, $input-border,40%) !default;
+$input-border-focus:             darken($input-border, 20%) !default;
 
 //** Placeholder text color
 $input-color-placeholder:        $msm-gray !default;
