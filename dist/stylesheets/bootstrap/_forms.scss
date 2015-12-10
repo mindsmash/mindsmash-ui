@@ -1,0 +1,13 @@
+.control-label {
+  @extend .msm-label;
+  
+  color: $msm-gray-darker;
+}
+
+.form-control {
+  box-shadow: none;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
