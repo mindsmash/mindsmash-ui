@@ -2,7 +2,7 @@
 * Use with bootstrap's .navbar
 */
 .msm-navbar {
-  background-color: $msm-navbar-bg;
+  background-color: $msm-navbar;
   border: 0;
   border-radius: 0;
   color: $msm-navbar-text;
@@ -17,17 +17,17 @@
   }
 
   .navbar-toggle {
-    border: 1px solid rgba($msm-navbar-text, 0.5);
+    border: 1px solid $msm-navbar-toggle;
     margin: 13px 20px;
     transition: border-color linear 0.2s;
 
     .icon-bar {
-      background-color: rgba($msm-navbar-text, 0.5);
+      background-color: $msm-navbar-toggle;
       transition: background-color linear 0.2s;
     }
 
     &:hover, &:focus {
-      border-color: $msm-white;
+      border-color: $msm-navbar-text;
 
       .icon-bar {
         background-color: white;
@@ -44,19 +44,20 @@
 
       &:hover,
       &:focus {
-        background-color: rgba($msm-navbar-highlight, 0.15);
+        background-color: $msm-navbar-hover;
         color: $msm-navbar-text;
       }
     }
 
     > .active > a,
     > .dropdown.open > a {
-      background-color: rgba($msm-navbar-highlight, 0.25);
+      background-color: $msm-navbar-active;
       color: $msm-navbar-text;
     }
 
-    .disabled > a {
-      color: rgba($msm-navbar-text, 0.5);
+    .disabled > a,
+    .disabled > a:hover {
+      color: $msm-navbar-text-disabled;
 
       &:hover,
       &:focus {
@@ -70,21 +71,21 @@
     padding: 13px 20px;
 
     .form-control {
-      background-color: rgba($msm-navbar-highlight, 0.25);
+      background-color: $msm-navbar-input;
       border-radius: 36px;
       border: 0;
       box-shadow: none;
-      color: $msm-white;
+      color: $msm-navbar-input-text;
       height: 36px;
       line-height: 18px;
       padding: 0 20px;
       transition: background-color linear 0.25s;
 
       &:focus {
-        background-color: rgba($msm-navbar-highlight, 0.35);
+        background-color: $msm-navbar-input-active
       }
 
-      @include placeholder-color(rgba($msm-navbar-text, 0.5));
+      @include placeholder-color($msm-navbar-placeholder);
     }
   }
 }

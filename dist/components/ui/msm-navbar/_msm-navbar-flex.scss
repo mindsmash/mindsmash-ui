@@ -111,16 +111,16 @@
     top: 0;
 
     &:hover {
-      background-color: rgba($msm-navbar-highlight, 0.15);
+      background-color: $msm-navbar-hover;
     }
   }
 
   .form-control {
-    background-color: rgba($msm-navbar-highlight, 0.25);
-    border: 0;
+    background-color: $msm-navbar-active;
     border-radius: 36px;
+    border: 0;
     box-shadow: none;
-    color: $msm-white;
+    color: $msm-navbar-text;
     height: 36px;
     line-height: 18px;
     opacity: 0;
@@ -133,7 +133,7 @@
     width: 0;
 
     &:focus {
-      background-color: rgba($msm-navbar-highlight, 0.35);
+      background-color: $msm-navbar-input-active;
     }
 
     &.open {

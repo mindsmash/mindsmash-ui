@@ -143,6 +143,22 @@
     </div>
   </section>
 
+  <section class="panel panel-default" name="grid">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Grid</h1>
+    </div>
+    <div class="panel-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-8 bg-gray-light p-xs"><code>.col-xl-8</code></div>
+          <div class="col-xl-4 bg-gray p-xs"><code>.col-xl-4</code></div>
+        </div>
+      </div>
+      <div class="well mt-xs visible-xl-block"><code>.visible-xl-block</code></div>
+      <div class="well mt-xs hidden-xl"><code>.hidden-xl</code></div>
+    </div>
+  </section>
+
   <section class="panel panel-default" data-ng-init="exampleValue='look at this'" name="buttons">
     <div class="panel-heading panel-heading-main">
       <h1 class="panel-title">Buttons</h1>
@@ -556,7 +572,6 @@
 <script src="../../bower_components/angular/angular.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="../../bower_components/anchor-js/anchor.js"></script>
 <script src="../../bower_components/holderjs/holder.js"></script>
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
 <script src="../../bower_components/angular-translate/angular-translate.js"></script>
@@ -577,7 +592,6 @@
 
   createCodeExamples();
   initHighlighting();
-  addAnchors();
 
  function createCodeExamples () {
    var codeBlocks = document.querySelectorAll('[data-create-code]');
@@ -600,11 +614,6 @@
 
  function initHighlighting () {
   hljs.initHighlightingOnLoad();
- }
-
- function addAnchors () {
-  anchors.options.placement = 'left';
-  anchors.add('h1, h2');
  }
 
 </script>

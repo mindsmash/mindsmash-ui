@@ -463,7 +463,6 @@
 <script src="../../bower_components/angular/angular.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="../../bower_components/anchor-js/anchor.js"></script>
 <script src="../../bower_components/holderjs/holder.js"></script>
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
 <script src="../../bower_components/angular-translate/angular-translate.js"></script>
@@ -482,7 +481,6 @@
 
   createCodeExamples();
   initHighlighting();
-  addAnchors();
 
  function createCodeExamples () {
    var codeBlocks = document.querySelectorAll('[data-create-code]');
@@ -505,11 +503,6 @@
 
  function initHighlighting () {
   hljs.initHighlightingOnLoad();
- }
-
- function addAnchors () {
-  anchors.options.placement = 'left';
-  anchors.add('h1, h2');
  }
 
 </script>

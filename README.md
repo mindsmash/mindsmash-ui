@@ -2,23 +2,10 @@
 A Bootstrap 3 UI Kit by mindsmash.
 
 ## Contents
-* [Change log](#change-log)
 * [Install with bower](#install-with-bower-to-use-the-theme-css-or-scss-version)  
 * [Use in an SCSS project](#use-in-a-sass-scss-project)
 * [Use in a CSS project](#use-with-pure-css)
 * [Change and publish mindsmash-ui itself](#install-with-npm-to-change-and-deploy-the-theme)
-
-## Change log
-
-Release  | What's new
---------:|:-----------------------------------------------------------
-0.4.0    | Rename mindsmash-ui-kit.js to mindsmash-ui.js 
-0.2.4    | Fix rounded corners on panel header image
-0.2.3    | Small fixes, improved README
-0.2.0    | Load other fonts. Please update the google font `<link>`
-         | Add color classes, button sizes and first panels
-         | Add documentation (see dist/docs/)
-
 
 > **Heads up!** This theme uses a non-default font called "Source Sans Pro".<br>
 > Please add the following line of code to your `<head>`:
