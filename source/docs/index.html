@@ -75,6 +75,25 @@
   </div>
 </section>
 
+
+<section class="mb-xl p-s bg-gray-light">
+  <h1>Date Picker</h1>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label for="inputDate" class="col-sm-2 control-label">Date</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" datepicker-popup ng-model="date" is-open="opened" ng-click="opened = !opened"/>
+            <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None' }}</em></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
 <section class="mb-xl p-s">
   <h1>Headings</h1>
 
@@ -385,6 +404,7 @@
 
 <script src="../../bower_components/angular/angular.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="../../bower_components/anchor-js/anchor.js"></script>
 <script src="../../bower_components/holderjs/holder.js"></script>
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
@@ -394,6 +414,7 @@
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
 
 <script src="../components/ui/components.ui.module.js"></script>
+<script src="../components/ui/components.ui.config.js"></script>
 <script src="../components/ui/msm-click-to-edit/msm-click-to-edit.directive.js"></script>
 <script src="../components/ui/msm-button/msm-button.directive.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
