@@ -3436,9 +3436,9 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-navbar .nav > .active > a, .msm-navbar .nav > .dropdown.open > a { background-color: #326b9e; color: #FDFDFD; }
 
-.msm-navbar .nav .disabled > a { color: #989898; }
+.msm-navbar .nav .disabled > a, .msm-navbar .nav .disabled > a:hover { color: #abcae5; }
 
-.msm-navbar .nav .disabled > a:hover, .msm-navbar .nav .disabled > a:focus { background-color: inherit; }
+.msm-navbar .nav .disabled > a:hover, .msm-navbar .nav .disabled > a:focus, .msm-navbar .nav .disabled > a:hover:hover, .msm-navbar .nav .disabled > a:hover:focus { background-color: inherit; }
 
 .msm-navbar .navbar-form { margin: 0; padding: 13px 20px; }
 

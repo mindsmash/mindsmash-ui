@@ -25,7 +25,7 @@ $msm-navbar-active:        mix($msm-navbar, $msm-black, 75%);
 
 $msm-navbar-text:          $msm-white;
 $msm-navbar-text-active:   $msm-white;
-$msm-navbar-text-disabled: mix($msm-navbar-text, $msm-black, 50%);
+$msm-navbar-text-disabled: mix($msm-navbar, $msm-white, 40%);
 
 $msm-navbar-input:         $msm-navbar-active;
 $msm-navbar-input-active:  mix($msm-navbar, $msm-black, 65%);
