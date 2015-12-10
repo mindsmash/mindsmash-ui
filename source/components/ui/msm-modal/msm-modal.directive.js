@@ -20,10 +20,11 @@
           animation: true,
           templateUrl: 'components/ui/msm-modal/modal-ok-cancel.html',
           controller: controller,
+          controllerAs: 'vm',
           size: size || '',
           resolve: parameters,
           windowClass: 'app-modal-window'
-        })
+        });
       }
     }
   }
@@ -35,10 +36,11 @@
           animation: true,
           templateUrl: 'components/ui/msm-modal/modal-select-from-listing.html',
           controller: controller,
+          controllerAs: 'vm',
           size: size || '',
           resolve: parameters,
           windowClass: 'app-modal-window'
-        })
+        });
       }
     }
   }

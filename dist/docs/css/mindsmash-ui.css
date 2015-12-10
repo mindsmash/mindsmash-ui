@@ -3372,22 +3372,22 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 @media (min-width: 768px) { .modal-mobile { display: none; }
   .modal-backdrop.in { opacity: 0.65; }
   .modal { text-align: center; padding: 0 !important; }
-  .modal:before { content: ''; display: inline-block; height: 100%; vertical-align: middle; margin-right: -4px; }
+  .modal:before { content: ''; display: inline-block; height: 100%; margin-right: -4px; vertical-align: middle; }
   .modal-dialog { display: inline-block; margin: 0; text-align: left; vertical-align: middle; }
-  .modal-content { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; }
-  .modal-header { border-bottom: none; margin: 10px 10px 0px 10px; }
+  .modal-content { box-shadow: none; }
+  .modal-header { border-bottom: none; margin: 10px 10px 0; }
   .modal-header h3 { margin: 0; }
   .modal-header .img-close { font-size: 21px; padding-top: 2px; }
   .modal-header .modal-close { color: #999; cursor: pointer; margin-top: 2px; }
   .modal-header .modal-close:hover { color: #333333; }
   .modal-header .modal-close:active { color: gray; }
-  .modal-header .modal-header-inner { border-bottom: 1px solid #e5e5e5; padding: 0 5px 10px 5px; }
+  .modal-header .modal-header-inner { border-bottom: 1px solid #e5e5e5; padding: 0 5px 10px; }
   .modal-body { margin: 10px; padding: 0; }
-  .modal-body .modal-body-inner { padding: 10px 20px 25px 20px; text-align: center; }
+  .modal-body .modal-body-inner { padding: 10px 20px 25px; text-align: center; }
   .modal-body .items-form, .modal-body .items-form-group { width: 100%; }
   .modal-body .items-form-select { color: #333; margin-left: 10px; width: 60%; }
   .modal-footer { background-color: #F3F3F3; border-top: none; border-radius: 6px; border-top-left-radius: 0; padding: 0; }
-  .modal-footer .modal-ok { background-color: #317DC1; border-bottom-right-radius: 4px; color: #FDFDFD; width: 70px; height: 45px; }
+  .modal-footer .modal-ok { background-color: #317DC1; border-bottom-right-radius: 4px; color: #FDFDFD; height: 45px; width: 70px; }
   .modal-footer .modal-ok .inner { padding: 15px 28px; }
   .modal-footer .modal-ok:focus { outline: 0; }
   .modal-footer .modal-ok:hover { background-color: #276398; cursor: pointer; }
@@ -3395,14 +3395,14 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 @media (max-width: 767px) { .modal-desktop { display: none; }
   .app-modal-window .modal-dialog { margin: 0; }
-  .app-modal-window .modal-content { height: 100%; overflow: auto; border: none; }
+  .app-modal-window .modal-content { border: none; height: 100%; overflow: auto; }
   .modal-backdrop.in { opacity: 1; }
   .modal-mobile .img-back { padding-top: 7px; padding-right: 18px; }
-  .modal-mobile .img-ok { padding-top: 7px; padding-left: 15px; opacity: 0.6; font-weight: 300; }
+  .modal-mobile .img-ok { font-weight: 300; opacity: 0.6; padding-top: 7px; padding-left: 15px; }
   .modal-backdrop.in { background-color: #FDFDFD; }
-  .modal-mobile-header { background-color: #317DC1; border-radius: 0; color: #FDFDFD; font-size: 26px; margin: 0; min-width: 320px; padding: 14px 24px; text-align: center; width: 100%; height: 65px; }
+  .modal-mobile-header { background-color: #317DC1; border-radius: 0; color: #FDFDFD; font-size: 26px; height: 65px; margin: 0; min-width: 320px; padding: 14px 24px; text-align: center; width: 100%; }
   .modal-mobile-header-title { margin: 0 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 150px; display: block; font-size: 18px; padding-top: 6px; width: calc(100% - 80px); }
-  .modal-content { -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; border-radius: 0 !important; }
+  .modal-content { box-shadow: none; border-radius: 0 !important; }
   .modal-mobile-body-ok-cancel { margin: 10px; }
   .modal-mobile-body-select-from-listing { margin: 0; }
   .modal-mobile-item { background-color: #FDFDFD; border-radius: 0; color: #333; font-size: 20px; margin: 0; padding: 20px 24px; width: 100%; border-bottom: 1px solid #EAEAEA; }

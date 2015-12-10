@@ -1,37 +1,37 @@
 <div class="modal-header modal-desktop">
     <div class="modal-header-inner clearfix">
-        <h3 class="pull-left">{{ title || '' }}</h3>
-        <span class="pull-right modal-close" ng-click="cancel()"><i class="zmdi zmdi-close img-close"></i></span>
+        <h3 class="pull-left">{{ vm.title }}</h3>
+        <span class="pull-right modal-close" ng-click="vm.cancel()"><i class="zmdi zmdi-close img-close"></i></span>
     </div>
 </div>
 <div class="modal-body modal-desktop">
     <div class="modal-body-inner clearfix">
         <form action="" class="form-inline items-form">
             <div class="form-group items-form-group">
-                <label for="items">{{ text || 'Select:'}}</label>
-                <select id="items" class="form-control items-form-select" ng-model="items.selected"
-                        ng-options="item for item in items.values"></select>
+                <label for="items">{{ vm.text || 'Select:' }}</label>
+                <select id="items" class="form-control items-form-select" ng-model="vm.items.selected"
+                        ng-options="item for item in vm.items.values"></select>
             </div>
         </form>
     </div>
 </div>
 <div class="modal-footer modal-desktop">
-    <span class="pull-right modal-ok" ng-click="ok()"><i class="zmdi zmdi-check-circle inner"></i></span>
+    <span class="pull-right modal-ok" ng-click="vm.ok()"><i class="zmdi zmdi-check-circle inner"></i></span>
 </div>
 
 <div class="modal-mobile">
     <div class="modal-mobile-header">
-        <i class="zmdi zmdi-arrow-left pull-left img-back" ng-click="cancel()"></i>
-        <span class="modal-mobile-header-title pull-left">{{ title || '' }}</span>
-        <i class="zmdi zmdi-check pull-right img-ok" ng-click="ok()"></i>
+        <i class="zmdi zmdi-arrow-left pull-left img-back" ng-click="vm.cancel()"></i>
+        <span class="modal-mobile-header-title pull-left">{{ vm.title }}</span>
+        <i class="zmdi zmdi-check pull-right img-ok" ng-click="vm.ok()"></i>
     </div>
     <div class="modal-mobile-body-select-from-listing">
         <div class="modal-mobile-body-inner clearfix">
-            <div ng-repeat="item in items.values" class="modal-mobile-item img-item-selection"
-                 ng-click="items.selected = item">
+            <div ng-repeat="item in vm.items.values" class="modal-mobile-item img-item-selection"
+                 ng-click="vm.items.selected = item">
                 <i class="zmdi zmdi-circle" ng-class=
-                        "{'img-item-selected': item === items.selected,
-                        'img-item-not-selected': item !== items.selected}"></i>
+                        "{'img-item-selected': item === vm.items.selected,
+                        'img-item-not-selected': item !== vm.items.selected}"></i>
                 <span class="modal-mobile-item-text">{{ item }}</span>
             </div>
         </div>
