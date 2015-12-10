@@ -107,7 +107,7 @@
 
   function EditableTextController($scope, $log) {
     $scope.data = {
-      show: false,
+      isEditable: false,
       value: 'Text value',
       value2: 'Textarea value'
     };

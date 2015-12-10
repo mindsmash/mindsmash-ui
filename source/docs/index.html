@@ -120,21 +120,21 @@
       </div>
 
       <div ng-controller="EditableTextController">
-        <button class="btn btn-default pull-right" ng-click="data.show = !data.show">Toggle</button>
+        <button class="btn btn-default pull-right" ng-click="data.isEditable = !data.isEditable">Toggle</button>
         <h2>Toggle State</h2>
 
         <div class="mb-l">
-          <form msm-editable-form="data.show" class="form-horizontal">
+          <form msm-editable-form="data.isEditable" class="form-horizontal">
             <div class="form-group">
               <label for="inputText" class="col-sm-2 control-label">Text</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputText" ng-model="data.value" msm-editable-text="data.show">
+                <input type="text" class="form-control" id="inputText" ng-model="data.value" msm-editable-text="data.isEditable">
               </div>
             </div>
             <div class="form-group">
               <label for="inputTextarea" class="col-sm-2 control-label">Textarea</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="inputTextarea" rows="3" ng-model="data.value2" msm-editable-text="data.show" msm-editable-display="data.value2 | uppercase"></textarea>
+                <textarea class="form-control" id="inputTextarea" rows="3" ng-model="data.value2" msm-editable-text="data.isEditable" msm-editable-display="data.value2 | uppercase"></textarea>
               </div>
             </div>
           </form>
