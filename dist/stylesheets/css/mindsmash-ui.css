@@ -3497,6 +3497,10 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-navbar-flex .form-control.open { opacity: 1; width: calc(100% - 25px); }
 
+.scroll-link { display: block; margin-top: -70px; padding-top: 70px; }
+
+.scroll-link:focus { outline: 0; }
+
 .bg-white { background-color: #FDFDFD !important; }
 
 .white { color: #FDFDFD !important; }

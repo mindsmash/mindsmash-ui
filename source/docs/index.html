@@ -25,6 +25,7 @@
       <li dropdown is-open="status4.isopen">
         <a href="#" dropdown-toggle>Components <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
+          <li role="menuitem"><a href="#forms" target="_self">Forms</a></li>
           <li role="menuitem"><a href="#buttons" target="_self">Buttons</a></li>
           <li role="menuitem"><a href="#definition-list" target="_self">Definition List</a></li>
           <li role="menuitem"><a href="#notifications" target="_self">Notifications</a></li>
@@ -49,7 +50,8 @@
 </nav>
 
 <div class="container-fluid">
-  <section class="panel panel-default" name="forms">
+  <scroll-link name="forms"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main">
       <h1 class="panel-title">Forms</h1>
     </div>
@@ -146,7 +148,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="grid">
+  <scroll-link name="grid"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main">
       <h1 class="panel-title">Grid</h1>
     </div>
@@ -162,7 +165,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" data-ng-init="exampleValue='look at this'" name="buttons">
+  <scroll-link name="buttons"></scroll-link>
+  <section class="panel panel-default" data-ng-init="exampleValue='look at this'">
     <div class="panel-heading panel-heading-main">
       <h1 class="panel-title">Buttons</h1>
     </div>
@@ -218,7 +222,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="definition-list">
+  <scroll-link name="definition-list"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Definition List</h1>
     </div>
@@ -234,7 +239,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="notifications">
+  <scroll-link name="notifications"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Notifications</h1>
     </div>
@@ -250,7 +256,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="in-place">
+  <scroll-link name="in-place"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">In-place editing</h1>
     </div>
@@ -268,7 +275,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="modals">
+  <scroll-link name="modals"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Modals</h1>
     </div>
@@ -290,7 +298,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="headings">
+  <scroll-link name="headings"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Headings</h1>
     </div>
@@ -311,7 +320,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="colors">
+  <scroll-link name="colors"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Colors</h1>
     </div>
@@ -343,7 +353,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="panels">
+  <scroll-link name="panels"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Panels</h1>
     </div>
@@ -431,7 +442,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="navbar">
+  <scroll-link name="navbar"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Navbar</h1>
     </div>
@@ -589,6 +601,9 @@
 <script src="../components/ui/msm-modal/msm-modal.directive.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>
+
+<script src="../components/util/components.util.module.js"></script>
+<script src="../components/util/scroll-link/scroll-link.directive.js"></script>
 <script src="scripts/app.js"></script>
 <script>
 

@@ -4,6 +4,7 @@
   angular
       .module('app', [
         'msm.components.ui',
+        'msm.components.util',
         'ui.bootstrap',
         'ui.bootstrap.dropdown',
         'ui.router',
@@ -111,7 +112,7 @@
       value: 'Text value',
       value2: 'Textarea value'
     };
-    
+
     (function initController() {
       $log.debug('[EditableTextController] Initializing...');
     })();
