@@ -1,13 +1,29 @@
 .msm-datepicker {
-  padding: 0;
+  border-radius: 0;
+  border: 0;
+  bottom: 0 !important;
   box-shadow: none;
+  left: 0 !important;
+  padding: 8px;
+  position: fixed;
+  right: 0 !important;
+  top: 0 !important;
   
   table {
-    margin: 8px;
+    margin: 0;
     outline: none;
+    width: 100%;
     
     .btn-sm {
       font-size: 16px;
+    }
+    
+    .caret {
+      margin-left: .4em;
+    }
+    
+    th button {
+      width: 100%;
     }
     
     button {
@@ -15,19 +31,19 @@
       border-color: transparent;
       color: $msm-black;
       display: block;
-      padding: 6px 10px;
+      padding: 10px;
       
       i {
         font-weight: 600;
         padding: 0;
       }
       
-      &:active, &:focus, &:active:focus, &:hover,
+      &:active, &:focus, &:active:focus, &:hover, &:active:hover,
       &.btn-default[disabled]:hover, &.btn-default[disabled]:focus {
-        color: inherit;
         background-color: transparent;
         border-color: transparent;
         box-shadow: none;
+        color: inherit;
         outline: none;
       }
       
@@ -59,6 +75,26 @@
         * {
           color: $btn-primary-color;
         }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .msm-datepicker {
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    bottom: inherit !important;
+    left: inherit !important;
+    position: absolute;
+    right: inherit !important;
+    top: inherit !important;
+    
+    table {
+      width: auto;
+      
+      button {
+        padding: 6px 10px;
       }
     }
   }
