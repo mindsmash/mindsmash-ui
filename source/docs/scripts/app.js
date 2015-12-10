@@ -4,6 +4,7 @@
   angular
       .module('app', [
         'msm.components.ui',
+        'msm.components.util',
         'ui.bootstrap',
         'ui.bootstrap.dropdown',
         'ui.router',
@@ -74,28 +75,30 @@
     msmNotification.primary('WELCOME');
   }
 
-  function NotificationController($scope, $log, msmNotification) {
-    $scope.primary = function() {
+  function NotificationController($log, msmNotification) {
+    var vm = this;
+
+    vm.primary = function() {
       msmNotification.primary('Primary', false);
     };
 
-    $scope.error = function() {
+    vm.error = function() {
       msmNotification.error('Error', false);
     };
 
-    $scope.success = function() {
+    vm.success = function() {
       msmNotification.success('Success', false);
     };
 
-    $scope.info = function() {
+    vm.info = function() {
       msmNotification.info('Info', false);
     };
 
-    $scope.warning = function() {
+    vm.warning = function() {
       msmNotification.warning('Warning', false);
     };
 
-    $scope.clearAll = function() {
+    vm.clearAll = function() {
       msmNotification.clearAll();
     };
 
@@ -104,20 +107,39 @@
     })();
   }
 
-
   function EditableTextController($scope, $log) {
     $scope.data = {
       isEditable: false,
       value: 'Text value',
       value2: 'Textarea value'
     };
-    
+
     (function initController() {
       $log.debug('[EditableTextController] Initializing...');
     })();
   }
 
-  function ModalController($scope, $log, msmModalOkCancel, msmModalSelectFromListing, msmNotification) {
+  function ClickToEditController($log, msmNotification) {
+    var vm = this;
+
+    vm.model = {
+      text1: 'First text',
+      text2: 'Second text',
+      isEditing: false
+    };
+
+    vm.changed = function(value) {
+      msmNotification.success('Successfully changed the value to \'' + value + '\'', false);
+    };
+
+    (function initController() {
+      $log.debug('[ClickToEditController] Initializing...');
+    })();
+  }
+
+  function ModalController($log, msmModalOkCancel, msmModalSelectFromListing, msmNotification) {
+    var vm = this;
+
     var parametersOkCancel = {
       title: function() {
         return 'Ok-cancel modal';
@@ -142,7 +164,7 @@
       }
     };
 
-    $scope.openOkCancel = function(size) {
+    vm.openOkCancel = function(size) {
       msmModalOkCancel
           .open('ModalInstanceControllerOkCancel', parametersOkCancel, size)
           .result.then(
@@ -156,7 +178,7 @@
       );
     };
 
-    $scope.openSelectItem = function(size) {
+    vm.openSelectItem = function(size) {
       msmModalSelectFromListing
           .open('ModalInstanceControllerSelectItem', parametersSelectItem, size)
           .result.then(
@@ -175,15 +197,17 @@
     })();
   }
 
-  function ModalInstanceControllerOkCancel($scope, $log, $modalInstance, title, text) {
-    $scope.title = title;
-    $scope.text = text;
+  function ModalInstanceControllerOkCancel($log, $modalInstance, title, text) {
+    var vm = this;
 
-    $scope.ok = function () {
+    vm.title = title;
+    vm.text = text;
+
+    vm.ok = function () {
       $modalInstance.close();
     };
 
-    $scope.cancel = function () {
+    vm.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
 
@@ -192,36 +216,22 @@
     })();
   }
 
-  function ClickToEditController($scope, $log, msmNotification) {
-    $scope.model = {
-      text1: 'First text',
-      text2: 'Second text',
-      isEditing: false
-    };
+  function ModalInstanceControllerSelectItem($log, $modalInstance, title, text, items) {
+    var vm = this;
 
-    $scope.changed = function(value) {
-      msmNotification.success('Successfully changed the value to \'' + value + '\'', false);
-    };
-
-    (function initController() {
-      $log.debug('[ClickToEditController] Initializing...');
-    })();
-  }
-
-  function ModalInstanceControllerSelectItem($scope, $log, $modalInstance, title, text, items) {
-    $scope.title = title;
-    $scope.text = text;
-    $scope.items = {
+    vm.title = title;
+    vm.text = text;
+    vm.items = {
       "type": "select",
       "selected": items[0],
       "values": items
     };
 
-    $scope.ok = function () {
-      $modalInstance.close($scope.items.selected);
+    vm.ok = function () {
+      $modalInstance.close(vm.items.selected);
     };
 
-    $scope.cancel = function () {
+    vm.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
 
