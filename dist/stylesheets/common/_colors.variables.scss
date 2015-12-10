@@ -1,22 +1,35 @@
-$msm-white:             #FDFDFD;
-$msm-black:             #333;
+// general colos
+$msm-white:                #FDFDFD;
+$msm-black:                #333;
 
-$msm-blue:              #317DC1;
-$msm-blue-dark:         darken($msm-blue, 10%);
-$msm-blue-darker:       darken($msm-blue, 15%);
-$msm-blue-light:        #0491C9;
-$msm-blue-lighter:      lighten(#0491C9, 20%);
+$msm-blue:                 #317DC1;
+$msm-blue-dark:            darken($msm-blue, 10%);
+$msm-blue-darker:          darken($msm-blue, 15%);
+$msm-blue-light:           #0491C9;
+$msm-blue-lighter:         lighten(#0491C9, 20%);
 
-$msm-green:             #9BBF29;
-$msm-yellow:            #f0ad4e;
-$msm-red:               #D0021B;
+$msm-green:                #9BBF29;
+$msm-yellow:               #f0ad4e;
+$msm-red:                  #D0021B;
 
-$msm-gray:              #AAA;
-$msm-gray-lighter:      #F3F3F3;
-$msm-gray-light:        #EAEAEA;
-$msm-gray-dark:         #999;
-$msm-gray-darker:       #404040;
+$msm-gray:                 #AAA;
+$msm-gray-lighter:         #F3F3F3;
+$msm-gray-light:           #EAEAEA;
+$msm-gray-dark:            #999;
+$msm-gray-darker:          #404040;
 
-$msm-navbar-bg:         $msm-blue;
-$msm-navbar-highlight:  $msm-black;
-$msm-navbar-text:       $msm-white;
+// navbar
+$msm-navbar:               $msm-blue;
+$msm-navbar-hover:         mix($msm-navbar, $msm-black, 85%);
+$msm-navbar-active:        mix($msm-navbar, $msm-black, 75%);
+
+$msm-navbar-text:          $msm-white;
+$msm-navbar-text-active:   $msm-white;
+$msm-navbar-text-disabled: mix($msm-navbar, $msm-white, 40%);
+
+$msm-navbar-input:         $msm-navbar-active;
+$msm-navbar-input-active:  mix($msm-navbar, $msm-black, 65%);
+$msm-navbar-input-text:    $msm-white;
+
+$msm-navbar-placeholder:   mix($msm-navbar-text, $msm-black, 50%);
+$msm-navbar-toggle:        mix($msm-navbar-text, $msm-black, 50%);

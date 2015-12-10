@@ -3422,9 +3422,9 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-navbar .navbar-brand { color: #FDFDFD; font-size: 24px; height: 60px; padding: 18px 20px; }
 
-.msm-navbar .navbar-toggle { border: 1px solid rgba(253, 253, 253, 0.5); margin: 13px 20px; transition: border-color linear 0.2s; }
+.msm-navbar .navbar-toggle { border: 1px solid #989898; margin: 13px 20px; transition: border-color linear 0.2s; }
 
-.msm-navbar .navbar-toggle .icon-bar { background-color: rgba(253, 253, 253, 0.5); transition: background-color linear 0.2s; }
+.msm-navbar .navbar-toggle .icon-bar { background-color: #989898; transition: background-color linear 0.2s; }
 
 .msm-navbar .navbar-toggle:hover, .msm-navbar .navbar-toggle:focus { border-color: #FDFDFD; }
 
@@ -3432,27 +3432,27 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-navbar .nav > li > a { color: #FDFDFD; height: 60px; padding: 18px 20px; transition: background-color linear 0.1s; }
 
-.msm-navbar .nav > li > a:hover, .msm-navbar .nav > li > a:focus { background-color: rgba(51, 51, 51, 0.15); color: #FDFDFD; }
+.msm-navbar .nav > li > a:hover, .msm-navbar .nav > li > a:focus { background-color: #3172ac; color: #FDFDFD; }
 
-.msm-navbar .nav > .active > a, .msm-navbar .nav > .dropdown.open > a { background-color: rgba(51, 51, 51, 0.25); color: #FDFDFD; }
+.msm-navbar .nav > .active > a, .msm-navbar .nav > .dropdown.open > a { background-color: #326b9e; color: #FDFDFD; }
 
-.msm-navbar .nav .disabled > a { color: rgba(253, 253, 253, 0.5); }
+.msm-navbar .nav .disabled > a, .msm-navbar .nav .disabled > a:hover { color: #abcae5; }
 
-.msm-navbar .nav .disabled > a:hover, .msm-navbar .nav .disabled > a:focus { background-color: inherit; }
+.msm-navbar .nav .disabled > a:hover, .msm-navbar .nav .disabled > a:focus, .msm-navbar .nav .disabled > a:hover:hover, .msm-navbar .nav .disabled > a:hover:focus { background-color: inherit; }
 
 .msm-navbar .navbar-form { margin: 0; padding: 13px 20px; }
 
-.msm-navbar .navbar-form .form-control { background-color: rgba(51, 51, 51, 0.25); border-radius: 36px; border: 0; box-shadow: none; color: #FDFDFD; height: 36px; line-height: 18px; padding: 0 20px; transition: background-color linear 0.25s; }
+.msm-navbar .navbar-form .form-control { background-color: #326b9e; border-radius: 36px; border: 0; box-shadow: none; color: #FDFDFD; height: 36px; line-height: 18px; padding: 0 20px; transition: background-color linear 0.25s; }
 
-.msm-navbar .navbar-form .form-control:focus { background-color: rgba(51, 51, 51, 0.35); }
+.msm-navbar .navbar-form .form-control:focus { background-color: #32638f; }
 
-.msm-navbar .navbar-form .form-control::-webkit-input-placeholder { color: rgba(253, 253, 253, 0.5); }
+.msm-navbar .navbar-form .form-control::-webkit-input-placeholder { color: #989898; }
 
-.msm-navbar .navbar-form .form-control:-moz-placeholder { color: rgba(253, 253, 253, 0.5); }
+.msm-navbar .navbar-form .form-control:-moz-placeholder { color: #989898; }
 
-.msm-navbar .navbar-form .form-control::-moz-placeholder { color: rgba(253, 253, 253, 0.5); }
+.msm-navbar .navbar-form .form-control::-moz-placeholder { color: #989898; }
 
-.msm-navbar .navbar-form .form-control:-ms-input-placeholder { color: rgba(253, 253, 253, 0.5); }
+.msm-navbar .navbar-form .form-control:-ms-input-placeholder { color: #989898; }
 
 /** Use with .navbar (bootstrap) and .msm-navbar (mindsmash-ui) */
 .msm-navbar-flex { display: flex; margin: 0 auto; max-width: 1280px; position: relative; }
@@ -3485,11 +3485,11 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-navbar-flex .search-icon-open { height: 60px; padding: 20px 25px; right: 0; top: 0; }
 
-.msm-navbar-flex .search-icon-open:hover { background-color: rgba(51, 51, 51, 0.15); }
+.msm-navbar-flex .search-icon-open:hover { background-color: #3172ac; }
 
-.msm-navbar-flex .form-control { background-color: rgba(51, 51, 51, 0.25); border: 0; border-radius: 36px; box-shadow: none; color: #FDFDFD; height: 36px; line-height: 18px; opacity: 0; outline: none; padding: 0 20px; position: absolute; right: 12px; top: 12px; transition: all ease-in-out .3s; width: 0; }
+.msm-navbar-flex .form-control { background-color: #326b9e; border-radius: 36px; border: 0; box-shadow: none; color: #FDFDFD; height: 36px; line-height: 18px; opacity: 0; outline: none; padding: 0 20px; position: absolute; right: 12px; top: 12px; transition: all ease-in-out .3s; width: 0; }
 
-.msm-navbar-flex .form-control:focus { background-color: rgba(51, 51, 51, 0.35); }
+.msm-navbar-flex .form-control:focus { background-color: #32638f; }
 
 .msm-navbar-flex .form-control.open { opacity: 1; width: calc(100% - 25px); }
 

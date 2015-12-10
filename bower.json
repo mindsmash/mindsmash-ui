@@ -40,7 +40,6 @@
     "angular-ui-notification": "~0.1.0"
   },
   "devDependencies": {
-    "anchor-js": "~2.0.0",
     "holderjs": "~2.9.0",
     "highlightjs": "~8.9.1"
   }
