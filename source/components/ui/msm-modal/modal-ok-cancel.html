@@ -1,0 +1,27 @@
+<div class="modal-header modal-desktop">
+    <div class="modal-header-inner clearfix">
+        <h3 class="pull-left">{{ title || '' }}</h3>
+        <span class="pull-right modal-close" ng-click="cancel()"><i class="zmdi zmdi-close img-close"></i></span>
+    </div>
+</div>
+<div class="modal-body modal-desktop">
+    <div class="modal-body-inner clearfix">
+        {{ text || ''}}
+    </div>
+</div>
+<div class="modal-footer modal-desktop">
+    <span class="pull-right modal-ok" ng-click="ok()"><i class="zmdi zmdi-check-circle inner"></i></span>
+</div>
+
+<div class="modal-mobile">
+    <div class="modal-mobile-header" ng-click="ok()">
+        <i class="zmdi zmdi-arrow-left pull-left img-back" ng-click="cancel()"></i>
+        <span class="modal-mobile-header-title pull-left">{{ title || '' }}</span>
+        <i class="zmdi zmdi-check pull-right img-ok" ng-click="ok()"></i>
+    </div>
+    <div class="modal-mobile-body-ok-cancel">
+        <div class="modal-mobile-body-inner clearfix">
+            {{ text || ''}}
+        </div>
+    </div>
+</div>
