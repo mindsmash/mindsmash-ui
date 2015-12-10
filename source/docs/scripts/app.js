@@ -59,6 +59,8 @@
 
       .controller('NotificationController', NotificationController)
 
+      .controller('EditableTextController', EditableTextController)
+
       .controller('ModalController', ModalController)
 
       .controller('ModalInstanceControllerOkCancel', ModalInstanceControllerOkCancel)
@@ -99,6 +101,19 @@
 
     (function initController() {
       $log.debug('[NotificationController] Initializing...');
+    })();
+  }
+
+
+  function EditableTextController($scope, $log) {
+    $scope.data = {
+      isEditable: false,
+      value: 'Text value',
+      value2: 'Textarea value'
+    };
+    
+    (function initController() {
+      $log.debug('[EditableTextController] Initializing...');
     })();
   }
 

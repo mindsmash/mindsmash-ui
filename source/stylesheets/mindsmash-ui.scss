@@ -6,14 +6,17 @@
 
 @import '../components/ui/msm-mobile-menu-item/msm-mobile-menu-item';
 @import '../components/ui/msm-click-to-edit/msm-click-to-edit';
+@import '../components/ui/msm-editable-text/msm-editable-text';
 @import '../components/ui/msm-modal/msm-modal';
 @import '../components/ui/msm-notification/msm-notification';
 @import '../components/ui/msm-navbar/msm-navbar';
 @import '../components/ui/msm-navbar/msm-navbar-flex';
 
+// Note: import statements are order sensitive
 @import 'common/colors';
 @import 'common/util';
+@import 'bootstrap/type';
 @import 'bootstrap/buttons';
 @import 'bootstrap/grid';
 @import 'bootstrap/panel';
-@import 'bootstrap/type';
+@import 'bootstrap/forms';
