@@ -16,7 +16,6 @@
   function MsmModalOkCancel($modal) {
     return {
       open: function(controller, parameters, size) {
-        console.log(parameters.text(), parameters.title());
         return $modal.open({
           animation: true,
           templateUrl: 'components/ui/msm-modal/modal-ok-cancel.html',

@@ -88,7 +88,7 @@ gulp.task('server', function () {
     notify: false,
     port: 8000,
     ui: {
-      port: 8080
+      port: 8001
     },
     file: true,
     server: {

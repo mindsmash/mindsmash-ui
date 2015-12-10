@@ -13,15 +13,17 @@
     }
   }
 
-  .nav-item {
-    cursor: pointer;
-    float: left;
-  }
+  .nav > {
+    .nav-item {
+      cursor: pointer;
+      float: left;
 
-  .nav-item-icon {
-    font-size: 20px;
-    font-weight: 600;
-    padding: 20px 25px;
+      .nav-item-icon {
+        font-size: 20px;
+        font-weight: 600;
+        padding: 20px 25px;
+      }
+    }
   }
 
   .nav-item-profile {
@@ -29,7 +31,7 @@
     padding-top: 18px;
 
     .profile-thumb {
-      background: $msm-white;
+      background: $msm-navbar-text;
       border-radius: 26px;
       float: left;
       height: 26px;
@@ -57,11 +59,12 @@
     z-index: 2;
 
     @media screen and (min-width: $screen-md-min) {
-      display: block;
+      display: block !important;
     }
   }
 
   .nav-brand {
+    font-size: 32px;
     line-height: 60px;
     margin: 0;
     padding: 0;
@@ -79,16 +82,12 @@
   }
 
   .search-icon {
-    color: rgba($msm-white, .75);
+    color: $msm-navbar-text;
     cursor: pointer;
     display: inline-block;
     position: absolute;
     text-decoration: none;
     z-index: 3;
-
-    &:hover {
-      color: $msm-white;
-    }
 
     > i {
       font-size: 20px;
@@ -112,12 +111,12 @@
     top: 0;
 
     &:hover {
-      background-color: $msm-blue-dark;
+      background-color: rgba($msm-navbar-highlight, 0.15);
     }
   }
 
   .form-control {
-    background-color: $msm-blue-darker;
+    background-color: rgba($msm-navbar-highlight, 0.25);
     border: 0;
     border-radius: 36px;
     box-shadow: none;
@@ -132,6 +131,10 @@
     top: 12px;
     transition: all ease-in-out .3s;
     width: 0;
+
+    &:focus {
+      background-color: rgba($msm-navbar-highlight, 0.35);
+    }
 
     &.open {
       opacity: 1;

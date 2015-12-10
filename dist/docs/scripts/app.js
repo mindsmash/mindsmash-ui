@@ -133,28 +133,30 @@
 
     vm.openOkCancel = function(size) {
       msmModalOkCancel
-          .open('ModalInstanceControllerOkCancel as vm', parametersOkCancel, size)
+          .open('ModalInstanceControllerOkCancel', parametersOkCancel, size)
           .result.then(
-            function () {
-              $log.info('Modal (Ok-cancel): Clicked OK.');
-              msmNotification.success('Clicked ok', false);
-            }
-          ).catch(function() {
+          function () {
+            $log.info('Modal (Ok-cancel): Clicked OK.');
+            msmNotification.success('Clicked ok', false);
+          },
+          function () {
             $log.info('Modal (Ok-cancel): Cancelled.');
-          });
+          }
+      );
     };
 
     vm.openSelectItem = function(size) {
       msmModalSelectFromListing
-          .open('ModalInstanceControllerSelectItem as vm', parametersSelectItem, size)
+          .open('ModalInstanceControllerSelectItem', parametersSelectItem, size)
           .result.then(
-            function (selectedItem) {
-              $log.info('Modal (select-from-listing): Clicked OK.');
-              msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
-            }
-          ).catch(function() {
+          function (selectedItem) {
+            $log.info('Modal (select-from-listing): Clicked OK.');
+            msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
+          },
+          function () {
             $log.info('Modal (select-from-listing): Cancelled.');
-          });
+          }
+      );
     };
 
     (function initController() {
