@@ -55,7 +55,8 @@
       color: $msm-navbar-text;
     }
 
-    .disabled > a {
+    .disabled > a,
+    .disabled > a:hover {
       color: $msm-navbar-text-disabled;
 
       &:hover,
