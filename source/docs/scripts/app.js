@@ -68,7 +68,9 @@
 
       .controller('ModalInstanceControllerSelectItem', ModalInstanceControllerSelectItem)
 
-      .controller('ClickToEditController', ClickToEditController);
+      .controller('ClickToEditController', ClickToEditController)
+
+      .controller('TableController', TableController);
 
   function Main(msmNotification) {
     // use an i18n key here
@@ -134,6 +136,21 @@
 
     (function initController() {
       $log.debug('[ClickToEditController] Initializing...');
+    })();
+  }
+
+  function TableController($log) {
+    var vm = this;
+
+    vm.model = {
+      isHover: false,
+      isStriped: false,
+      isBordered: false,
+      isCondensed: false
+    };
+
+    (function initController() {
+      $log.debug('[TableController] Initializing...');
     })();
   }
 
