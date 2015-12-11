@@ -25,6 +25,7 @@
       <li dropdown is-open="status4.isopen">
         <a href="#" dropdown-toggle>Components <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
+          <li role="menuitem"><a href="#forms" target="_self">Forms</a></li>
           <li role="menuitem"><a href="#buttons" target="_self">Buttons</a></li>
           <li role="menuitem"><a href="#definition-list" target="_self">Definition List</a></li>
           <li role="menuitem"><a href="#notifications" target="_self">Notifications</a></li>
@@ -50,8 +51,123 @@
 </nav>
 
 <div class="container-fluid">
+  <scroll-link name="forms"></scroll-link>
+  <section class="panel panel-default">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Forms</h1>
+    </div>
+    <div class="panel-body">
+      <h2>Basic example</h2>
 
-  <section class="panel panel-default" data-ng-init="exampleValue='look at this'" name="buttons">
+      <div class="mb-l">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="inputText" class="col-sm-2 control-label">Text</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputText" placeholder="Text">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputText" class="col-sm-2 control-label">Text (disabled)</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputText" placeholder="Text (disabled)" disabled>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputTextarea" class="col-sm-2 control-label">Textarea</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" id="inputTextarea" placeholder="Textarea" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Checkbox
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <h2>Control Sizing</h2>
+
+      <div class="mb-l">
+        <form class="form-horizontal">
+          <div class="form-group form-group-lg">
+            <label class="col-sm-2 control-label" for="formGroupInputLarge">Large label</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="formGroupInputNormal">Normal label</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" id="formGroupInputNormal" placeholder="Normal input">
+            </div>
+          </div>
+          <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label" for="formGroupInputSmall">Small label</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Small input">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div ng-controller="EditableTextController">
+        <button class="btn btn-default pull-right" ng-click="data.isEditable = !data.isEditable">Toggle</button>
+        <h2>Toggle State</h2>
+
+        <div class="mb-l" data-create-code=".js-insert-code">
+          <!-- Using scope variable data.isEditable -->
+          <form ng-class="{ 'editable-text-read-only': !data.isEditable }" class="form-horizontal">
+            <div class="form-group">
+              <label for="inputText" class="col-sm-2 control-label">Text</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputText" ng-model="data.value" msm-editable-text="data.isEditable">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputTextarea" class="col-sm-2 control-label">Textarea</label>
+              <div class="col-sm-10">
+                <textarea class="form-control" id="inputTextarea" rows="3" ng-model="data.value2" msm-editable-text="data.isEditable" msm-editable-display="data.value2 | uppercase"></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer js-insert-code">
+    </div>
+  </section>
+
+  <scroll-link name="grid"></scroll-link>
+  <section class="panel panel-default">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Grid</h1>
+    </div>
+    <div class="panel-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-8 bg-gray-light p-xs"><code>.col-xl-8</code></div>
+          <div class="col-xl-4 bg-gray p-xs"><code>.col-xl-4</code></div>
+        </div>
+      </div>
+      <div class="well mt-xs visible-xl-block"><code>.visible-xl-block</code></div>
+      <div class="well mt-xs hidden-xl"><code>.hidden-xl</code></div>
+    </div>
+  </section>
+
+  <scroll-link name="buttons"></scroll-link>
+  <section class="panel panel-default" data-ng-init="exampleValue='look at this'">
     <div class="panel-heading panel-heading-main">
       <h1 class="panel-title">Buttons</h1>
     </div>
@@ -107,7 +223,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="definition-list">
+  <scroll-link name="definition-list"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Definition List</h1>
     </div>
@@ -123,18 +240,19 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="notifications">
+  <scroll-link name="notifications"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Notifications</h1>
     </div>
     <div class="panel-body">
-      <div ng-controller="NotificationController">
-        <button class="btn btn-primary mr-s" ng-click="primary()">Primary</button>
-        <button class="btn btn-danger mr-s" ng-click="error()">Error</button>
-        <button class="btn btn-success mr-s" ng-click="success()">Success</button>
-        <button class="btn btn-info mr-s" ng-click="info()">Info</button>
-        <button class="btn btn-warning mr-s" ng-click="warning()">Warning</button>
-        <button class="btn btn-default mr-s" ng-click="clearAll()">Clear all</button>
+      <div ng-controller="NotificationController as vm">
+        <button class="btn btn-primary mr-s" ng-click="vm.primary()">Primary</button>
+        <button class="btn btn-danger mr-s" ng-click="vm.error()">Error</button>
+        <button class="btn btn-success mr-s" ng-click="vm.success()">Success</button>
+        <button class="btn btn-info mr-s" ng-click="vm.info()">Info</button>
+        <button class="btn btn-warning mr-s" ng-click="vm.warning()">Warning</button>
+        <button class="btn btn-default mr-s" ng-click="vm.clearAll()">Clear all</button>
       </div>
     </div>
   </section>
@@ -157,47 +275,50 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="in-place">
+  <scroll-link name="in-place"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">In-place editing</h1>
     </div>
     <div class="panel-body">
-      <div ng-controller="ClickToEditController">
-        <div msm-click-to-edit="model.text1" on-change="changed(value)"
+      <div ng-controller="ClickToEditController as vm">
+        <div msm-click-to-edit="vm.model.text1" on-change="vm.changed(value)"
              placeholder="Text 1 placeholder"></div>
-        <div msm-click-to-edit="model.text2" on-change="changed(value)"
-             style="text-decoration: underline" edit-mode="model.isEditing"></div>
+        <div msm-click-to-edit="vm.model.text2" on-change="vm.changed(value)"
+             style="text-decoration: underline" edit-mode="vm.model.isEditing"></div>
         <div>
-          <span ng-show="model.isEditing">You are editing the second text.</span>
-          <span ng-show="!model.isEditing">You are not editing the second text.</span>
+          <span ng-show="vm.model.isEditing">You are editing the second text.</span>
+          <span ng-show="!vm.model.isEditing">You are not editing the second text.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="panel panel-default" name="modals">
+  <scroll-link name="modals"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Modals</h1>
     </div>
     <div class="panel-body">
-      <div ng-controller="ModalController">
+      <div ng-controller="ModalController as vm">
         <div>
           <h4>Ok-cancel modals:</h4>
-          <button class="btn btn-primary mr-s" ng-click="openOkCancel()">Default</button>
-          <button class="btn btn-primary mr-s" ng-click="openOkCancel('sm')">Small</button>
-          <button class="btn btn-primary mr-s" ng-click="openOkCancel('lg')">Large</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel()">Default</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel('sm')">Small</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel('lg')">Large</button>
         </div>
         <div>
           <h4>Select-from-listing modals:</h4>
-          <button class="btn btn-primary mr-s" ng-click="openSelectItem()">Default</button>
-          <button class="btn btn-primary mr-s" ng-click="openSelectItem('sm')">Small</button>
-          <button class="btn btn-primary mr-s" ng-click="openSelectItem('lg')">Large</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem()">Default</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem('sm')">Small</button>
+          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem('lg')">Large</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="panel panel-default" name="headings">
+  <scroll-link name="headings"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Headings</h1>
     </div>
@@ -218,7 +339,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="colors">
+  <scroll-link name="colors"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Colors</h1>
     </div>
@@ -250,7 +372,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="panels">
+  <scroll-link name="panels"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Panels</h1>
     </div>
@@ -338,7 +461,8 @@
     </div>
   </section>
 
-  <section class="panel panel-default" name="navbar">
+  <scroll-link name="navbar"></scroll-link>
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main panel-dl">
       <h1 class="panel-title">Navbar</h1>
     </div>
@@ -482,7 +606,6 @@
 <script src="../../bower_components/angular/angular.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="../../bower_components/anchor-js/anchor.js"></script>
 <script src="../../bower_components/holderjs/holder.js"></script>
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
 <script src="../../bower_components/angular-translate/angular-translate.js"></script>
@@ -493,16 +616,19 @@
 <script src="../components/ui/components.ui.module.js"></script>
 <script src="../components/ui/components.ui.config.js"></script>
 <script src="../components/ui/msm-click-to-edit/msm-click-to-edit.directive.js"></script>
+<script src="../components/ui/msm-editable-text/msm-editable-text.directive.js"></script>
 <script src="../components/ui/msm-button/msm-button.directive.js"></script>
 <script src="../components/ui/msm-modal/msm-modal.directive.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>
+
+<script src="../components/util/components.util.module.js"></script>
+<script src="../components/util/scroll-link/scroll-link.directive.js"></script>
 <script src="scripts/app.js"></script>
 <script>
 
   createCodeExamples();
   initHighlighting();
-  addAnchors();
 
  function createCodeExamples () {
    var codeBlocks = document.querySelectorAll('[data-create-code]');
@@ -525,11 +651,6 @@
 
  function initHighlighting () {
   hljs.initHighlightingOnLoad();
- }
-
- function addAnchors () {
-  anchors.options.placement = 'left';
-  anchors.add('h1, h2');
  }
 
 </script>

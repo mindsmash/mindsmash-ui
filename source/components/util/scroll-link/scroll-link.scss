@@ -1,0 +1,9 @@
+// Set element below sticky header on scrollTo
+.scroll-link {
+  display: block;
+  margin-top: -70px;
+  padding-top: 70px; // create space above
+  &:focus {
+    outline: 0; // remove :focus outline
+  }
+}
