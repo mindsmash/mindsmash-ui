@@ -109,11 +109,13 @@
     })();
   }
 
-  function EditableTextController($scope, $log) {
-    $scope.data = {
+  function EditableTextController($log) {
+    var vm = this;
+
+    vm.model = {
+      text1: 'First text',
+      text2: 'Second text',
       isEditable: false,
-      value: 'Text value',
-      value2: 'Textarea value'
     };
 
     (function initController() {
