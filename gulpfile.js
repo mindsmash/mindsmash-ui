@@ -76,7 +76,7 @@ gulp.task('build:js', function() {
   var precompiledTemplates = gulp.src(['source/**/*.html', '!source/docs/**/*.html'])
     .pipe(templateCache('templateCache.js', {module: 'msm.components.ui'}));
 
-  var componentScripts = gulp.src('source/components/**/*.js');
+  var componentScripts = gulp.src(['source/components/**/*.module.js','source/components/**/*.js']);
 
   return merge(precompiledTemplates, componentScripts)
     .pipe(concat('mindsmash-ui.js'))
