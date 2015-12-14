@@ -104,7 +104,7 @@
         </div>
         <div class="panel-footer bg-gray-lighter js-insert-code"></div>
       </div>
-      
+
       <h3>Responsive utilities</h3>
       <div class="example panel panel-default">
         <div class="panel-body">
@@ -238,7 +238,7 @@
           </form>
         </div>
       </div>
-      
+
       <h3>Control Sizing</h3>
       <div class="example panel panel-default">
         <div class="panel-body">
@@ -264,7 +264,7 @@
           </form>
         </div>
       </div>
-      
+
       <div ng-controller="EditableTextController as vm">
         <button class="btn btn-sm btn-default mt-xxs pull-right" ng-click="vm.model.isEditable = !vm.model.isEditable">Toggle</button>
         <h3>Toggle State</h3>
@@ -381,7 +381,7 @@
       </div>
     </div>
   </section>
-  
+
   <scroll-link name="datepicker"></scroll-link>
   <section class="panel panel-default">
     <div class="panel-heading panel-heading-main">
@@ -793,7 +793,7 @@
 <script src="../components/ui/msm-click-to-edit/msm-click-to-edit.directive.js"></script>
 <script src="../components/ui/msm-editable-text/msm-editable-text.directive.js"></script>
 <script src="../components/ui/msm-button/msm-button.directive.js"></script>
-<script src="../components/ui/msm-modal/msm-modal.directive.js"></script>
+<script src="../components/ui/msm-modal/msm-modal.service.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>
 
@@ -807,7 +807,7 @@
 
   function createCodeExamples () {
     var codeBlocks = document.querySelectorAll('[data-create-code]');
-    
+
     for (var i = 0; i < codeBlocks.length; i++) {
       var code = codeBlocks[i],
          targetSelector = code.dataset.createCode,
@@ -815,7 +815,7 @@
          example = document.createElement('code'),
          codeText = code.innerHTML,
          leadingWhitespace = codeText.match(/^\s{3,}/)[0];
-      
+
       codeText = codeText.replace(RegExp(leadingWhitespace, 'g'), '\n');
       example.textContent = codeText;
       example.classList.add('html', 'code');
