@@ -3355,7 +3355,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-click-to-edit textarea:focus, .msm-click-to-edit input:focus { outline: 0; }
 
-.msm-datepicker { border-radius: 0; border: 0; bottom: 0 !important; box-shadow: none; left: 0 !important; padding: 8px; position: fixed; right: 0 !important; top: 0 !important; z-index: 1050; }
+.msm-datepicker { border-radius: 0; border: 0; bottom: 0 !important; box-shadow: none; left: 0 !important; margin: 0; padding: 8px; position: fixed; right: 0 !important; top: 0 !important; z-index: 1050; }
 
 .msm-datepicker table { margin: 0; outline: none; width: 100%; }
 
