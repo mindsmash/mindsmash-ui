@@ -25,6 +25,7 @@
       <li dropdown is-open="status4.isopen">
         <a href="#" dropdown-toggle>Components <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
+          <li role="menuitem"><a href="#grid" target="_self">Grid system</a></li>
           <li role="menuitem"><a href="#forms" target="_self">Forms</a></li>
           <li role="menuitem"><a href="#buttons" target="_self">Buttons</a></li>
           <li role="menuitem"><a href="#definition-list" target="_self">Definition List</a></li>
@@ -50,118 +51,153 @@
 </nav>
 
 <div class="container-fluid">
+
+  <scroll-link name="grid"></scroll-link>
+  <section class="panel panel-default">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Grid system</h1>
+    </div>
+    <div class="panel-body">
+      <h3>Extra large devices <small>Desktops (≥1400px)</small></h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xl-8 bg-gray-lighter p-xs"><code>.col-xl-8</code></div>
+              <div class="col-xl-4 bg-gray-light p-xs"><code>.col-xl-4</code></div>
+            </div>
+            <div class="row">
+              <div class="col-xl-4 col-xl-offset-8 bg-gray p-xs"><code>.col-xl-4 .col-xl-offset-8</code></div>
+            </div>
+          </div>
+          <div class="hidden" data-create-code=".js-insert-code">
+            <div class="row">
+              <div class="col-xl-8"><!-- ... --></div>
+              <div class="col-xl-4"><!-- ... --></div>
+            </div>
+            <div class="row">
+              <div class="col-xl-4 col-xl-offset-8"><!-- ... --></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
+      </div>
+      
+      <h3>Responsive utilities</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-6"><div class="well mt-xs visible-xl-block"><code>.visible-xl-block</code></div></div>
+              <div class="col-sm-6"><div class="well mt-xs hidden-xl"><code>.hidden-xl</code></div></div>
+            </div>
+          </div>
+          <div class="hidden" data-create-code=".js-insert-code">
+            <div class="well mt-xs visible-xl-block"><!-- ... --></div>
+            <div class="well mt-xs hidden-xl"><!-- ... --></div>
+          </div>
+        </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
+      </div>
+    </div>
+  </section>
+
   <scroll-link name="forms"></scroll-link>
   <section class="panel panel-default">
     <div class="panel-heading panel-heading-main">
       <h1 class="panel-title">Forms</h1>
     </div>
     <div class="panel-body">
-      <h2>Basic example</h2>
-
-      <div class="mb-l">
-        <form class="form-horizontal">
-          <div class="form-group">
-            <label for="inputText" class="col-sm-2 control-label">Text</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputText" placeholder="Text">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputText" class="col-sm-2 control-label">Text (disabled)</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputText" placeholder="Text (disabled)" disabled>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputTextarea" class="col-sm-2 control-label">Textarea</label>
-            <div class="col-sm-10">
-              <textarea class="form-control" id="inputTextarea" placeholder="Textarea" rows="3"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Checkbox
-                </label>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <h2>Control Sizing</h2>
-
-      <div class="mb-l">
-        <form class="form-horizontal">
-          <div class="form-group form-group-lg">
-            <label class="col-sm-2 control-label" for="formGroupInputLarge">Large label</label>
-            <div class="col-sm-10">
-              <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="formGroupInputNormal">Normal label</label>
-            <div class="col-sm-10">
-              <input class="form-control" type="text" id="formGroupInputNormal" placeholder="Normal input">
-            </div>
-          </div>
-          <div class="form-group form-group-sm">
-            <label class="col-sm-2 control-label" for="formGroupInputSmall">Small label</label>
-            <div class="col-sm-10">
-              <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Small input">
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div ng-controller="EditableTextController">
-        <button class="btn btn-default pull-right" ng-click="data.isEditable = !data.isEditable">Toggle</button>
-        <h2>Toggle State</h2>
-
-        <div class="mb-l" data-create-code=".js-insert-code">
-          <!-- Using scope variable data.isEditable -->
-          <form ng-class="{ 'editable-text-read-only': !data.isEditable }" class="form-horizontal">
+      <h3>Basic example</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <form class="form-horizontal">
             <div class="form-group">
               <label for="inputText" class="col-sm-2 control-label">Text</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputText" ng-model="data.value" msm-editable-text="data.isEditable">
+                <input type="text" class="form-control" id="inputText" placeholder="Text">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputText" class="col-sm-2 control-label">Text (disabled)</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputText" placeholder="Text (disabled)" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
               </div>
             </div>
             <div class="form-group">
               <label for="inputTextarea" class="col-sm-2 control-label">Textarea</label>
               <div class="col-sm-10">
-                <textarea class="form-control" id="inputTextarea" rows="3" ng-model="data.value2" msm-editable-text="data.isEditable" msm-editable-display="data.value2 | uppercase"></textarea>
+                <textarea class="form-control" id="inputTextarea" placeholder="Textarea" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox"> Checkbox
+                  </label>
+                </div>
               </div>
             </div>
           </form>
         </div>
       </div>
-    </div>
-    <div class="panel-footer js-insert-code">
-    </div>
-  </section>
-
-  <scroll-link name="grid"></scroll-link>
-  <section class="panel panel-default">
-    <div class="panel-heading panel-heading-main">
-      <h1 class="panel-title">Grid</h1>
-    </div>
-    <div class="panel-body">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xl-8 bg-gray-light p-xs"><code>.col-xl-8</code></div>
-          <div class="col-xl-4 bg-gray p-xs"><code>.col-xl-4</code></div>
+      
+      <h3>Control Sizing</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group form-group-lg">
+              <label class="col-sm-2 control-label" for="formGroupInputLarge">Large label</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" for="formGroupInputNormal">Normal label</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" id="formGroupInputNormal" placeholder="Normal input">
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <label class="col-sm-2 control-label" for="formGroupInputSmall">Small label</label>
+              <div class="col-sm-10">
+                <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Small input">
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      <div class="well mt-xs visible-xl-block"><code>.visible-xl-block</code></div>
-      <div class="well mt-xs hidden-xl"><code>.hidden-xl</code></div>
+      
+      <div ng-controller="EditableTextController as vm">
+        <button class="btn btn-sm btn-default mt-xxs pull-right" ng-click="vm.model.isEditable = !vm.model.isEditable">Toggle</button>
+        <h3>Toggle State</h3>
+        <div class="example panel panel-default">
+          <div class="panel-body" data-create-code=".js-insert-code">
+            <form ng-class="{ 'editable-text-read-only': !vm.model.isEditable }" class="form-horizontal">
+              <div class="form-group">
+                <label for="inputText" class="col-sm-2 control-label">Text</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputText" ng-model="vm.model.text1" msm-editable-text="vm.model.isEditable">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputTextarea" class="col-sm-2 control-label">Textarea</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" id="inputTextarea" rows="3" ng-model="vm.model.text2" msm-editable-text="vm.model.isEditable" msm-editable-display="vm.model.text2 | uppercase"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="panel-footer bg-gray-lighter js-insert-code"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -277,23 +313,68 @@
 
   <scroll-link name="modals"></scroll-link>
   <section class="panel panel-default">
-    <div class="panel-heading panel-heading-main panel-dl">
+    <div class="panel-heading panel-heading-main">
       <h1 class="panel-title">Modals</h1>
     </div>
-    <div class="panel-body">
-      <div ng-controller="ModalController as vm">
-        <div>
-          <h4>Ok-cancel modals:</h4>
-          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel()">Default</button>
-          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel('sm')">Small</button>
-          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel('lg')">Large</button>
+    <div class="panel-body" ng-controller="ModalController as vm">
+      <h3>Notification modals</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <div class="container-fluid">
+            <button class="btn btn-primary mr-s" ng-click="vm.openNote()">Default</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openNote('sm')">Small</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openNote('lg')">Large</button>
+          </div>
+          <div class="hidden" data-create-code=".js-insert-code">
+            <script>
+              showNotification = function(size) {
+                return msmModal
+                  .note('Note', 'This is some very important information.', size);
+              };
+            </script>
+          </div>
         </div>
-        <div>
-          <h4>Select-from-listing modals:</h4>
-          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem()">Default</button>
-          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem('sm')">Small</button>
-          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem('lg')">Large</button>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
+      </div>
+      <h3>Confirmation modals</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <div class="container-fluid">
+            <button class="btn btn-primary mr-s" ng-click="vm.openConfirm()">Default</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openConfirm('sm')">Small</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openConfirm('lg')">Large</button>
+          </div>
+          <div class="hidden" data-create-code=".js-insert-code">
+            <script>
+              showConfirmation = function(size) {
+                return msmModal
+                  .confirm('Confirmation', 'Are you sure you want to continue?', size, 'Yes', 'No')
+                  .result.then(function() { /* ... */ });
+              };
+            </script>
+          </div>
         </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
+      </div>
+      <h3>Selection modals</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <div class="container-fluid">
+            <button class="btn btn-primary mr-s" ng-click="vm.openSelect()">Default</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openSelect('sm')">Small</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openSelect('lg')">Large</button>
+          </div>
+          <div class="hidden" data-create-code=".js-insert-code">
+            <script>
+              showSelection = function(size) {
+                return msmModal
+                  .select('Selection', 'Please select:', ['Item 1', 'Item 2', 'Item 3'], size)
+                  .result.then(function(selectedItem) { /* ... */ });
+              };
+            </script>
+          </div>
+        </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
       </div>
     </div>
   </section>

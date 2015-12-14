@@ -262,11 +262,6 @@ angular.module('msm.components.util', []);
 
 })();
 
-angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
-$templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"msm-click-to-edit-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"enableEditingMode()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isBusy\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"enableEditingMode()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
-$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
-$templateCache.put("components/ui/msm-modal/modal-ok-cancel.html","<div class=\"modal-header modal-desktop\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ vm.title || \'\' }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"vm.cancel()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body modal-desktop\">\n    <div class=\"modal-body-inner clearfix\">\n        {{ vm.text }}\n    </div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n    <span class=\"pull-right modal-ok\" ng-click=\"vm.ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n\n<div class=\"modal-mobile\">\n    <div class=\"modal-mobile-header\">\n        <i class=\"zmdi zmdi-arrow-left pull-left img-back\" ng-click=\"vm.cancel()\"></i>\n        <span class=\"modal-mobile-header-title pull-left\">{{ vm.title || \'\' }}</span>\n        <i class=\"zmdi zmdi-check pull-right img-ok\" ng-click=\"vm.ok()\"></i>\n    </div>\n    <div class=\"modal-mobile-body-ok-cancel\">\n        <div class=\"modal-mobile-body-inner clearfix\">\n            {{ vm.text }}\n        </div>\n    </div>\n</div>\n");
-$templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<div class=\"modal-header modal-desktop\">\n    <div class=\"modal-header-inner clearfix\">\n        <h3 class=\"pull-left\">{{ vm.title }}</h3>\n        <span class=\"pull-right modal-close\" ng-click=\"vm.cancel()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n    </div>\n</div>\n<div class=\"modal-body modal-desktop\">\n    <div class=\"modal-body-inner clearfix\">\n        <form action=\"\" class=\"form-inline items-form\">\n            <div class=\"form-group items-form-group\">\n                <label for=\"items\">{{ vm.text || \'Select:\' }}</label>\n                <select id=\"items\" class=\"form-control items-form-select\" ng-model=\"vm.items.selected\"\n                        ng-options=\"item for item in vm.items.values\"></select>\n            </div>\n        </form>\n    </div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n    <span class=\"pull-right modal-ok\" ng-click=\"vm.ok()\"><i class=\"zmdi zmdi-check-circle inner\"></i></span>\n</div>\n\n<div class=\"modal-mobile\">\n    <div class=\"modal-mobile-header\">\n        <i class=\"zmdi zmdi-arrow-left pull-left img-back\" ng-click=\"vm.cancel()\"></i>\n        <span class=\"modal-mobile-header-title pull-left\">{{ vm.title }}</span>\n        <i class=\"zmdi zmdi-check pull-right img-ok\" ng-click=\"vm.ok()\"></i>\n    </div>\n    <div class=\"modal-mobile-body-select-from-listing\">\n        <div class=\"modal-mobile-body-inner clearfix\">\n            <div ng-repeat=\"item in vm.items.values\" class=\"modal-mobile-item img-item-selection\"\n                 ng-click=\"vm.items.selected = item\">\n                <i class=\"zmdi zmdi-circle\" ng-class=\n                        \"{\'img-item-selected\': item === vm.items.selected,\n                        \'img-item-not-selected\': item !== vm.items.selected}\"></i>\n                <span class=\"modal-mobile-item-text\">{{ item }}</span>\n            </div>\n        </div>\n    </div>\n</div>\n");}]);
 (function() {
 	'use strict';
 
@@ -311,50 +306,208 @@ $templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<di
 	}
 })();
 
-(function() {
+(function () {
   'use strict';
 
   /**
-   * @ngdoc directive
+   * @ngdoc service
    * @name components.ui.msmModal
-   * @restrict 'A'
    *
-   * @description Renders a styled modal
+   * @description
+   *     Renders styled modals.
    */
   angular
       .module('msm.components.ui')
-      .service('msmModalOkCancel', MsmModalOkCancel)
-      .service('msmModalSelectFromListing', MsmModalSelectFromListing);
+      .service('msmModal', MsmModal);
 
-  function MsmModalOkCancel($modal) {
+  function MsmModal($modal) {
     return {
-      open: function(controller, parameters, size) {
-        return $modal.open({
-          animation: true,
-          templateUrl: 'components/ui/msm-modal/modal-ok-cancel.html',
-          controller: controller,
-          controllerAs: 'vm',
-          size: size || '',
-          resolve: parameters,
-          windowClass: 'app-modal-window'
-        });
+      open: open,
+      note: note,
+      confirm: confirm,
+      select: select
+    };
+
+    /**
+     * @ngdoc method
+     * @name components.ui.msmModal#open
+     * @methodOf components.ui.msmModal
+     *
+     * @description
+     *     Display a modal dialog.
+     * @param {object=} parameters
+     *     The modal's scope parameters. All parameters will automatically
+     *     converted to resolvable functions and bound to the controller
+     *     instance using the object's key name.
+     * @param {object=} controller
+     *     The modal's controller. A default controller will be provided
+     *     with all parameter bindings.
+     */
+    function open(parameters, controller) {
+      var modalSize = parameters.size || '';
+      parameters = withDefaults(parameters);
+
+      // auto-generate controller if missing
+      if (angular.isUndefined(controller)) {
+        var keys = Object.keys(parameters);
+        var args = keys.join(',');
+        var assign =
+          'var vm = this;' +
+          'vm.onClose = function() { $modalInstance.close(); };' +
+          'vm.onDismiss = function() { $modalInstance.dismiss(\'cancel\'); };' +
+          keys.map(function (arg) {
+            return 'this[\'' + arg + '\'] = ' + arg + ';';
+          }).join('');
+        eval('controller = function($modalInstance,' + args + ') {' + assign + '};');
       }
+
+      // convert parameters to functions
+      angular.forEach(parameters, function (value, key) {
+        parameters[key] = angular.isFunction(value) ? value : function () {
+          return value;
+        };
+      });
+
+      return $modal.open({
+        animation: true,
+        templateUrl: 'components/ui/msm-modal/msm-modal.html',
+        controller: controller,
+        controllerAs: 'vm',
+        size: modalSize,
+        resolve: parameters,
+        bindToController: true,
+        windowClass: 'app-modal-window'
+      });
     }
-  }
 
-  function MsmModalSelectFromListing($modal) {
-    return {
-      open: function(controller, parameters, size) {
-        return $modal.open({
-          animation: true,
-          templateUrl: 'components/ui/msm-modal/modal-select-from-listing.html',
-          controller: controller,
-          controllerAs: 'vm',
-          size: size || '',
-          resolve: parameters,
-          windowClass: 'app-modal-window'
-        });
-      }
+    /*
+     * Provides default values for all parameters.
+     */
+    function withDefaults(parameters) {
+      return angular.merge({
+        title: '',
+        text: '',
+        templateUrl: 'components/ui/msm-modal/msm-modal-default.html',
+        templateUrlMobile: 'components/ui/msm-modal/msm-modal-default-mobile.html',
+        close: {
+          icon: 'check-circle',
+          iconMobile: 'check',
+          title: 'Ok'
+        },
+        dismiss: {
+          icon: 'close-circle',
+          iconMobile: 'arrow-left',
+          title: 'Cancel'
+        }
+      }, parameters);
+    }
+
+    /**
+     * @ngdoc method
+     * @name components.ui.msmModal#note
+     * @methodOf components.ui.msmModal
+     *
+     * @description
+     *     Display a modal notification dialog.
+     * @param {string} title
+     *     The modal's title.
+     * @param {string} text
+     *     The modal's text.
+     * @param {string=} size
+     *     The modal's size.
+     * @param {string=Ok} closeTitle
+     *     The label of the modal's close button.
+     */
+    function note(title, text, size, closeTitle) {
+      return open(angular.merge({
+        title: title,
+        text: text,
+        size: size || '',
+        dismiss: false
+      }, angular.isDefined(closeTitle) ? { close: { title: closeTitle }} : {}
+      ));
+    }
+
+    /**
+     * @ngdoc method
+     * @name components.ui.msmModal#confirm
+     * @methodOf components.ui.msmModal
+     *
+     * @description
+     *     Display a modal confirmation dialog.
+     * @param {string} title
+     *     The modal's title.
+     * @param {string} text
+     *     The modal's text.
+     * @param {string=} size
+     *     The modal's size.
+     * @param {string=Ok} closeTitle
+     *     The label of the modal's confirm button.
+     * @param {string=Cancel} dismissTitle
+     *     The label of the modal's cancel button.
+     */
+    function confirm(title, text, size, closeTitle, dismissTitle) {
+      return open(angular.merge({
+        title: title,
+        text: text,
+        size: size || ''
+      }, angular.isDefined(closeTitle) ? { close: { title: closeTitle }} : {},
+         angular.isDefined(dismissTitle) ? { dismiss: { title: dismissTitle }} : {},
+         { dismiss: { iconMobile: 'close' }}
+      ));
+    }
+
+    /**
+     * @ngdoc method
+     * @name components.ui.msmModal#select
+     * @methodOf components.ui.msmModal
+     *
+     * @description
+     *     Display a modal selection dialog.
+     * @param {string} title
+     *     The modal's title.
+     * @param {string} text
+     *     The modal's text.
+     * @param {array} options
+     *     The modal's selection options.
+     * @param {string=} size
+     *     The modal's size.
+     * @param {string=Ok} closeTitle
+     *     The label of the modal's confirm button.
+     * @param {string=Cancel} dismissTitle
+     *     The label of the modal's cancel button.
+     */
+    function select(title, text, options, size, closeTitle, dismissTitle) {
+      return open({
+        size: size || '',
+        options: options
+      }, function ($modalInstance, options) {
+        var vm = this;
+        vm.title = title || '';
+        vm.text = text || '';
+        vm.options = {
+          values: options,
+          selected: options[0]
+        };
+        vm.templateUrl = 'components/ui/msm-modal/msm-modal-select.html';
+        vm.templateUrlMobile = 'components/ui/msm-modal/msm-modal-select-mobile.html';
+        vm.close = {
+          icon: 'check-circle',
+          iconMobile: false,
+          title: closeTitle || 'Select'
+        };
+        vm.dismiss = {
+          icon: 'close-circle',
+          iconMobile: 'arrow-left',
+          title: dismissTitle || 'Cancel'
+        };
+        vm.onClose = function (option) {
+          $modalInstance.close(option || vm.options.selected);
+        };
+        vm.onDismiss = function () {
+          $modalInstance.dismiss('cancel');
+        };
+      });
     }
   }
 
@@ -441,6 +594,14 @@ $templateCache.put("components/ui/msm-modal/modal-select-from-listing.html","<di
 
 })();
 
+angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
+$templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"msm-click-to-edit-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"enableEditingMode()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isBusy\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"enableEditingMode()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
+$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/msm-modal-default-mobile.html","<h4>{{ vm.text | translate }}</h4>\n");
+$templateCache.put("components/ui/msm-modal/msm-modal-default.html","<span>{{ vm.text | translate }}</span>\n");
+$templateCache.put("components/ui/msm-modal/msm-modal-select-mobile.html","<ul class=\"modal-mobile-options\">\n  <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.onClose(option)\">{{ option }}</li>\n</ul>\n");
+$templateCache.put("components/ui/msm-modal/msm-modal-select.html","<form class=\"form-inline items-form\">\n  <div class=\"form-group items-form-group\">\n    <label for=\"items\">{{ vm.text }}</label>\n    <select id=\"items\" class=\"form-control items-form-select\"\n            ng-model=\"vm.options.selected\"\n            ng-options=\"option for option in vm.options.values\"></select>\n  </div>\n</form>\n");
+$templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header modal-desktop\">\n  <div class=\"modal-header-inner clearfix\">\n    <h3 class=\"pull-left\">{{ vm.title | translate }}</h3>\n    <span class=\"pull-right modal-close\" ng-click=\"vm.onDismiss()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n  </div>\n</div>\n\n<div class=\"modal-body modal-desktop\">\n  <div class=\"modal-body-inner clearfix\" ng-include=\"vm.templateUrl\"></div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n  <button ng-if=\"vm.close.icon || vm.close.title\" class=\"btn btn-primary pull-right\" type=\"button\" ng-click=\"vm.onClose()\"><i ng-if=\"vm.close.icon\" class=\"zmdi zmdi-{{ vm.close.icon }} inner\"></i>{{ vm.close.title | translate }}</button>\n  <button ng-if=\"vm.dismiss.icon || vm.dismiss.title\" class=\"btn btn-default pull-right\" type=\"button\" ng-click=\"vm.onDismiss()\"><i ng-if=\"vm.dismiss.icon\" class=\"zmdi zmdi-{{ vm.dismiss.icon }} inner\"></i>{{ vm.dismiss.title | translate }}</button>\n</div>\n\n<div class=\"modal-mobile\">\n  <div class=\"modal-mobile-header\">\n    <i ng-if=\"vm.dismiss.iconMobile\" class=\"zmdi zmdi-{{ vm.dismiss.iconMobile }} pull-left img-back\" ng-click=\"vm.onDismiss()\"></i>\n    <span class=\"modal-mobile-header-title pull-left\">{{ vm.title | translate }}</span>\n    <i ng-if=\"vm.close.iconMobile\" class=\"zmdi zmdi-{{ vm.close.iconMobile }} pull-right img-ok\" ng-click=\"vm.onClose()\"></i>\n  </div>\n  <div class=\"modal-mobile-body\">\n    <div class=\"modal-mobile-body-inner clearfix\" ng-include=\"vm.templateUrlMobile || vm.templateUrl\"></div>\n  </div>\n</div>\n");}]);
 angular.module('msm.components.util')
 .directive('scrollLink', ScrollLink);
 
