@@ -64,10 +64,6 @@
 
       .controller('ModalController', ModalController)
 
-      .controller('ModalInstanceControllerOkCancel', ModalInstanceControllerOkCancel)
-
-      .controller('ModalInstanceControllerSelectItem', ModalInstanceControllerSelectItem)
-
       .controller('ClickToEditController', ClickToEditController)
 
       .controller('TableController', TableController);
