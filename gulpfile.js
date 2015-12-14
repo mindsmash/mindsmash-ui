@@ -10,6 +10,7 @@ var sass = require('gulp-sass');
 var scsslint = require('gulp-scss-lint');
 var concat = require('gulp-concat');
 var templateCache = require('gulp-angular-templatecache');
+var wiredep = require('wiredep').stream;
 
 var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 
@@ -17,11 +18,11 @@ var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 gulp.task('default', ['build']);
 
 // start scss watch mode
-gulp.task('dev', gulpSequence('dev:sass', 'server'));
+gulp.task('dev', gulpSequence('dev:sass', 'bower:dev', 'server'));
 gulp.task('serve', ['dev']); //alias
 
 // create normal and minified versions
-gulp.task('build', gulpSequence('clean', ['build:sass', 'build:js'], ['copy:module', 'copy:sass', 'copy:docs']));
+gulp.task('build', gulpSequence('clean', ['build:sass', 'build:js', 'bower:build'], ['copy:module', 'copy:sass', 'copy:docs']));
 
 // create readable css from scss files
 gulp.task('dev:sass', function() {
@@ -30,6 +31,27 @@ gulp.task('dev:sass', function() {
     .pipe(sass({outputStyle: 'compact'}).on('warning', gutil.log))
     .pipe(gulp.dest('.tmp/css'))
     .pipe(browserSync.stream());
+});
+
+gulp.task('bower:build', function () {
+  gulp.src('source/docs/index.html')
+    .pipe(wiredep({
+      onError: gutil.log,
+      onMainNotFound: gutil.log,
+      onFileUpdated: gutil.log
+    }))
+    .pipe(gulp.dest('dist/docs'));
+});
+
+gulp.task('bower:dev', function () {
+  gulp.src('source/docs/index.html')
+    .pipe(wiredep({
+      devDependencies: true,
+      onError: gutil.log,
+      onMainNotFound: gutil.log,
+      onFileUpdated: gutil.log
+    }))
+    .pipe(gulp.dest('source/docs'));
 });
 
 // create minified css files
@@ -104,9 +126,13 @@ gulp.task('server', function() {
 
   gulp.watch([
     '!source/docs/bower_components/',
+    '!source/docs/*.html',
     'source/docs/*',
     'source/components/**/*'
   ]).on('change', browserSync.reload);
+
+  gulp.watch('source/docs/*.html',
+    ['bower:dev']);
 
   gulp.watch(['source/stylesheets/**/*.scss', 'source/components/**/*.scss'],
     ['dev:sass']);
