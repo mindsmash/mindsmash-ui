@@ -31,6 +31,7 @@
           <li role="menuitem"><a href="#buttons" target="_self">Buttons</a></li>
           <li role="menuitem"><a href="#definition-list" target="_self">Definition List</a></li>
           <li role="menuitem"><a href="#notifications" target="_self">Notifications</a></li>
+          <li role="menuitem"><a href="#datepicker" target="_self">Datepicker</a></li>
           <li role="menuitem"><a href="#in-place" target="_self">In-place editing</a></li>
           <li role="menuitem"><a href="#modals" target="_self">Modals</a></li>
           <li role="menuitem"><a href="#headings" target="_self">Headings</a></li>
@@ -377,6 +378,29 @@
         <button class="btn btn-info mr-s" ng-click="vm.info()">Info</button>
         <button class="btn btn-warning mr-s" ng-click="vm.warning()">Warning</button>
         <button class="btn btn-default mr-s" ng-click="vm.clearAll()">Clear all</button>
+      </div>
+    </div>
+  </section>
+  
+  <scroll-link name="datepicker"></scroll-link>
+  <section class="panel panel-default">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Datepicker</h1>
+    </div>
+    <div class="panel-body">
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <form class="form-horizontal" data-create-code=".js-insert-code">
+            <div class="form-group">
+              <label for="inputDate" class="col-sm-2 control-label">Date</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" datepicker-popup ng-model="date" is-open="opened" ng-click="opened = !opened"/>
+                <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None' }}</em></span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
       </div>
     </div>
   </section>
@@ -765,6 +789,7 @@
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
 
 <script src="../components/ui/components.ui.module.js"></script>
+<script src="../components/ui/components.ui.config.js"></script>
 <script src="../components/ui/msm-click-to-edit/msm-click-to-edit.directive.js"></script>
 <script src="../components/ui/msm-editable-text/msm-editable-text.directive.js"></script>
 <script src="../components/ui/msm-button/msm-button.directive.js"></script>

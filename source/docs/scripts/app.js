@@ -1,14 +1,16 @@
 (function(angular) {
   'use strict';
 
-  angular.module('app', [
-        'msm.components.ui',
-        'msm.components.util',
-        'ui.bootstrap',
-        'ui.bootstrap.dropdown',
-        'ui.router',
-        'pascalprecht.translate'
-      ])
+  angular
+    .module('app', [
+      'msm.components.ui',
+      'msm.components.util',
+      'ui.bootstrap',
+      'ui.bootstrap.datepicker',
+      'ui.bootstrap.dropdown',
+      'ui.router',
+      'pascalprecht.translate'
+    ])
 
       .config(configTranslations)
       .config(configRoutes)
