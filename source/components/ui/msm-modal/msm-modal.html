@@ -1,0 +1,25 @@
+<div class="modal-header modal-desktop">
+  <div class="modal-header-inner clearfix">
+    <h3 class="pull-left">{{ vm.title | translate }}</h3>
+    <span class="pull-right modal-close" ng-click="vm.onDismiss()"><i class="zmdi zmdi-close img-close"></i></span>
+  </div>
+</div>
+
+<div class="modal-body modal-desktop">
+  <div class="modal-body-inner clearfix" ng-include="vm.templateUrl"></div>
+</div>
+<div class="modal-footer modal-desktop">
+  <button ng-if="vm.close.icon || vm.close.title" class="btn btn-primary pull-right" type="button" ng-click="vm.onClose()"><i ng-if="vm.close.icon" class="zmdi zmdi-{{ vm.close.icon }} inner"></i>{{ vm.close.title | translate }}</button>
+  <button ng-if="vm.dismiss.icon || vm.dismiss.title" class="btn btn-default pull-right" type="button" ng-click="vm.onDismiss()"><i ng-if="vm.dismiss.icon" class="zmdi zmdi-{{ vm.dismiss.icon }} inner"></i>{{ vm.dismiss.title | translate }}</button>
+</div>
+
+<div class="modal-mobile">
+  <div class="modal-mobile-header">
+    <i ng-if="vm.dismiss.iconMobile" class="zmdi zmdi-{{ vm.dismiss.iconMobile }} pull-left img-back" ng-click="vm.onDismiss()"></i>
+    <span class="modal-mobile-header-title pull-left">{{ vm.title | translate }}</span>
+    <i ng-if="vm.close.iconMobile" class="zmdi zmdi-{{ vm.close.iconMobile }} pull-right img-ok" ng-click="vm.onClose()"></i>
+  </div>
+  <div class="modal-mobile-body">
+    <div class="modal-mobile-body-inner clearfix" ng-include="vm.templateUrlMobile || vm.templateUrl"></div>
+  </div>
+</div>
