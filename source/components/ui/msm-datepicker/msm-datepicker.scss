@@ -4,6 +4,7 @@
   bottom: 0 !important;
   box-shadow: none;
   left: 0 !important;
+  margin: 0;
   padding: 8px;
   position: fixed;
   right: 0 !important;
@@ -39,8 +40,13 @@
         padding: 0;
       }
 
-      &:active, &:focus, &:active:focus, &:hover, &:active:hover,
-      &.btn-default[disabled]:hover, &.btn-default[disabled]:focus {
+      &:active,
+      &:focus,
+      &:active:focus,
+      &:hover,
+      &:active:hover,
+      &.btn-default[disabled]:hover,
+      &.btn-default[disabled]:focus {
         background-color: transparent;
         border-color: transparent;
         box-shadow: none;
@@ -67,7 +73,8 @@
         border-color: transparent;
         box-shadow: none;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           background-color: $btn-primary-bg;
           border-color: transparent;
           outline: none;
