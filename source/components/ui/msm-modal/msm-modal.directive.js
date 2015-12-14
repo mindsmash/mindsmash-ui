@@ -45,12 +45,12 @@
         var args = keys.join(',');
         var assign =
           'var vm = this;' +
-          'vm.onClose = function () { $modalInstance.close(); };' +
-          'vm.onDismiss = function () { $modalInstance.dismiss(\'cancel\'); };' +
+          'vm.onClose = function() { $modalInstance.close(); };' +
+          'vm.onDismiss = function() { $modalInstance.dismiss(\'cancel\'); };' +
           keys.map(function (arg) {
             return 'this[\'' + arg + '\'] = ' + arg + ';';
           }).join('');
-        eval('controller = function ($modalInstance,' + args + ') {' + assign + '};');
+        eval('controller = function($modalInstance,' + args + ') {' + assign + '};');
       }
 
       // convert parameters to functions
