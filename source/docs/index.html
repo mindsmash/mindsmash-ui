@@ -313,23 +313,68 @@
 
   <scroll-link name="modals"></scroll-link>
   <section class="panel panel-default">
-    <div class="panel-heading panel-heading-main panel-dl">
+    <div class="panel-heading panel-heading-main">
       <h1 class="panel-title">Modals</h1>
     </div>
-    <div class="panel-body">
-      <div ng-controller="ModalController as vm">
-        <div>
-          <h4>Ok-cancel modals:</h4>
-          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel()">Default</button>
-          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel('sm')">Small</button>
-          <button class="btn btn-primary mr-s" ng-click="vm.openOkCancel('lg')">Large</button>
+    <div class="panel-body" ng-controller="ModalController as vm">
+      <h3>Notification modals</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <div class="container-fluid">
+            <button class="btn btn-primary mr-s" ng-click="vm.openNote()">Default</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openNote('sm')">Small</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openNote('lg')">Large</button>
+          </div>
+          <div class="hidden" data-create-code=".js-insert-code">
+            <script>
+              showNotification = function(size) {
+                return msmModal
+                  .note('Note', 'This is some very important information.', size);
+              };
+            </script>
+          </div>
         </div>
-        <div>
-          <h4>Select-from-listing modals:</h4>
-          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem()">Default</button>
-          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem('sm')">Small</button>
-          <button class="btn btn-primary mr-s" ng-click="vm.openSelectItem('lg')">Large</button>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
+      </div>
+      <h3>Confirmation modals</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <div class="container-fluid">
+            <button class="btn btn-primary mr-s" ng-click="vm.openConfirm()">Default</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openConfirm('sm')">Small</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openConfirm('lg')">Large</button>
+          </div>
+          <div class="hidden" data-create-code=".js-insert-code">
+            <script>
+              showConfirmation = function(size) {
+                return msmModal
+                  .confirm('Confirmation', 'Are you sure you want to continue?', size, 'Yes', 'No')
+                  .result.then(function() { /* ... */ });
+              };
+            </script>
+          </div>
         </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
+      </div>
+      <h3>Selection modals</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <div class="container-fluid">
+            <button class="btn btn-primary mr-s" ng-click="vm.openSelect()">Default</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openSelect('sm')">Small</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openSelect('lg')">Large</button>
+          </div>
+          <div class="hidden" data-create-code=".js-insert-code">
+            <script>
+              showSelection = function(size) {
+                return msmModal
+                  .select('Selection', 'Please select:', ['Item 1', 'Item 2', 'Item 3'], size)
+                  .result.then(function(selectedItem) { /* ... */ });
+              };
+            </script>
+          </div>
+        </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
       </div>
     </div>
   </section>
