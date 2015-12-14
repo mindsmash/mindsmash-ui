@@ -80,8 +80,7 @@
         title: '',
         text: '',
         templateUrl: 'components/ui/msm-modal/msm-modal-default.html',
-        templateUrl: 'components/ui/msm-modal/msm-modal-default-mobile.html',
-        templateUrlMobile: null,
+        templateUrlMobile: 'components/ui/msm-modal/msm-modal-default-mobile.html',
         close: {
           icon: 'check-circle',
           iconMobile: 'check',
