@@ -18,10 +18,11 @@ var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 gulp.task('default', ['build']);
 
 // start scss watch mode
-gulp.task('dev', gulpSequence('dev:sass', 'bower', 'serve'));
+gulp.task('dev', gulpSequence('dev:sass', 'bower:dev', 'server'));
+gulp.task('serve', ['dev']); //alias
 
 // create normal and minified versions
-gulp.task('build', gulpSequence('clean', ['build:sass', 'build:js'], ['copy:module', 'copy:sass', 'copy:docs', 'bower']));
+gulp.task('build', gulpSequence('clean', ['build:sass', 'build:js', 'bower:build'], ['copy:module', 'copy:sass', 'copy:docs']));
 
 // create readable css from scss files
 gulp.task('dev:sass', function () {
@@ -32,7 +33,7 @@ gulp.task('dev:sass', function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('bower', function () {
+gulp.task('bower:build', function () {
   gulp.src('source/docs/index.html')
     .pipe(wiredep({
       onError: gutil.log,
@@ -40,6 +41,17 @@ gulp.task('bower', function () {
       onFileUpdated: gutil.log
     }))
     .pipe(gulp.dest('dist/docs'));
+});
+
+gulp.task('bower:dev', function () {
+  gulp.src('source/docs/index.html')
+    .pipe(wiredep({
+      devDependencies: true,
+      onError: gutil.log,
+      onMainNotFound: gutil.log,
+      onFileUpdated: gutil.log
+    }))
+    .pipe(gulp.dest('source/docs'));
 });
 
 // create minified css files
@@ -89,16 +101,16 @@ gulp.task('build:js', function () {
   var componentScripts = gulp.src('source/components/**/*.js');
 
   return merge(precompiledTemplates, componentScripts)
-    .pipe(concat('mindsmash-ui-kit.js'))
+    .pipe(concat('mindsmash-ui.js'))
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('serve', function () {
+gulp.task('server', function () {
   browserSync({
     notify: false,
     port: 8000,
     ui: {
-      port: 8080
+      port: 8001
     },
     file: true,
     server: {
@@ -119,7 +131,7 @@ gulp.task('serve', function () {
   ]).on('change', browserSync.reload);
 
   gulp.watch('source/docs/*.html',
-    ['bower']);
+    ['bower:dev']);
 
   gulp.watch(['source/stylesheets/**/*.scss', 'source/components/**/*.scss'],
     ['dev:sass']);

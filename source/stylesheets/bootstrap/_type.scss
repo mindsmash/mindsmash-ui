@@ -11,9 +11,14 @@
   font-size: $font-size-base;
 }
 
-// TODO: do we need something like this?
-.m-h1 {
-  margin: 24px 0 12px !important;
+
+
+.msm-label,
+dt {
+  @extend .size-normal;
+
+  color: $msm-gray;
+  font-weight: 400;
 }
 
 dl {
@@ -24,11 +29,6 @@ dl {
     white-space: nowrap;
   }
 
-  dt {
-    color: $msm-gray;
-    font-weight: 300;
-    text-transform: uppercase;
-  }
   dd {
     margin-bottom: 12px;
   }
