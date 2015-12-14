@@ -110,6 +110,11 @@
         border-bottom-right-radius: 6px;
       }
     }
+    
+    .btn-default {
+      background-color: transparent;
+      &:hover { background-color: #e6e6e6; }
+    }
   }
 }
 
