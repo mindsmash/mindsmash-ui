@@ -262,50 +262,6 @@ angular.module('msm.components.util', []);
 
 })();
 
-(function() {
-	'use strict';
-
-	/**
-	 * @ngdoc directive
-	 * @name commons.ui.msmMobileMenuItem:msmMobileMenuItem
-	 * @scope
-	 * @restrict 'E'
-	 * @element ANY
-	 *
-	 * @description Directive that renders a menu point for the mobile view with an icon, name, preview and link
-	 *
-	 * @param {string} targetState the string that identifies the state to go to
-	 * @param {string} name the string that reperesents the message key for the target
-	 * @param {string} preview the value to be previewed
-	 * @param {string} icon the classes for the icon
-	 */
-	angular
-		.module('msm.components.ui')
-		.directive('msmMobileMenuItem', MobileMenuItem);
-
-	function MobileMenuItem($state, $translate) {
-		return {
-			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
-			scope: {
-				previewValue: '=',
-				targetState: '=',
-				labelText: '=',
-				icon: '='
-			},
-			controller: function($scope) {
-
-				$scope.goToState = function() {
-					$state.go($scope.targetState);
-				};
-
-        $translate($scope.labelText).then(function(translatedValue) {
-          $scope.labelText = translatedValue;
-        });
-			}
-		};
-	}
-})();
-
 (function () {
   'use strict';
 
@@ -514,6 +470,50 @@ angular.module('msm.components.util', []);
 })();
 
 (function() {
+	'use strict';
+
+	/**
+	 * @ngdoc directive
+	 * @name commons.ui.msmMobileMenuItem:msmMobileMenuItem
+	 * @scope
+	 * @restrict 'E'
+	 * @element ANY
+	 *
+	 * @description Directive that renders a menu point for the mobile view with an icon, name, preview and link
+	 *
+	 * @param {string} targetState the string that identifies the state to go to
+	 * @param {string} name the string that reperesents the message key for the target
+	 * @param {string} preview the value to be previewed
+	 * @param {string} icon the classes for the icon
+	 */
+	angular
+		.module('msm.components.ui')
+		.directive('msmMobileMenuItem', MobileMenuItem);
+
+	function MobileMenuItem($state, $translate) {
+		return {
+			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
+			scope: {
+				previewValue: '=',
+				targetState: '=',
+				labelText: '=',
+				icon: '='
+			},
+			controller: function($scope) {
+
+				$scope.goToState = function() {
+					$state.go($scope.targetState);
+				};
+
+        $translate($scope.labelText).then(function(translatedValue) {
+          $scope.labelText = translatedValue;
+        });
+			}
+		};
+	}
+})();
+
+(function() {
     'use strict';
 
     /**
@@ -596,12 +596,12 @@ angular.module('msm.components.util', []);
 
 angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"mr-0 {{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
 $templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"msm-click-to-edit-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"enableEditingMode()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isBusy\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"enableEditingMode()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
-$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-default-mobile.html","<h4>{{ vm.text | translate }}</h4>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-default.html","<span>{{ vm.text | translate }}</span>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-select-mobile.html","<ul class=\"modal-mobile-options\">\n  <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.onClose(option)\">{{ option }}</li>\n</ul>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-select.html","<form class=\"form-inline items-form\">\n  <div class=\"form-group items-form-group\">\n    <label for=\"items\">{{ vm.text }}</label>\n    <select id=\"items\" class=\"form-control items-form-select\"\n            ng-model=\"vm.options.selected\"\n            ng-options=\"option for option in vm.options.values\"></select>\n  </div>\n</form>\n");
-$templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header modal-desktop\">\n  <div class=\"modal-header-inner clearfix\">\n    <h3 class=\"pull-left\">{{ vm.title | translate }}</h3>\n    <span class=\"pull-right modal-close\" ng-click=\"vm.onDismiss()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n  </div>\n</div>\n\n<div class=\"modal-body modal-desktop\">\n  <div class=\"modal-body-inner clearfix\" ng-include=\"vm.templateUrl\"></div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n  <button ng-if=\"vm.close.icon || vm.close.title\" class=\"btn btn-primary pull-right\" type=\"button\" ng-click=\"vm.onClose()\"><i ng-if=\"vm.close.icon\" class=\"zmdi zmdi-{{ vm.close.icon }} inner\"></i>{{ vm.close.title | translate }}</button>\n  <button ng-if=\"vm.dismiss.icon || vm.dismiss.title\" class=\"btn btn-default pull-right\" type=\"button\" ng-click=\"vm.onDismiss()\"><i ng-if=\"vm.dismiss.icon\" class=\"zmdi zmdi-{{ vm.dismiss.icon }} inner\"></i>{{ vm.dismiss.title | translate }}</button>\n</div>\n\n<div class=\"modal-mobile\">\n  <div class=\"modal-mobile-header\">\n    <i ng-if=\"vm.dismiss.iconMobile\" class=\"zmdi zmdi-{{ vm.dismiss.iconMobile }} pull-left img-back\" ng-click=\"vm.onDismiss()\"></i>\n    <span class=\"modal-mobile-header-title pull-left\">{{ vm.title | translate }}</span>\n    <i ng-if=\"vm.close.iconMobile\" class=\"zmdi zmdi-{{ vm.close.iconMobile }} pull-right img-ok\" ng-click=\"vm.onClose()\"></i>\n  </div>\n  <div class=\"modal-mobile-body\">\n    <div class=\"modal-mobile-body-inner clearfix\" ng-include=\"vm.templateUrlMobile || vm.templateUrl\"></div>\n  </div>\n</div>\n");}]);
+$templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header modal-desktop\">\n  <div class=\"modal-header-inner clearfix\">\n    <h3 class=\"pull-left\">{{ vm.title | translate }}</h3>\n    <span class=\"pull-right modal-close\" ng-click=\"vm.onDismiss()\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n  </div>\n</div>\n\n<div class=\"modal-body modal-desktop\">\n  <div class=\"modal-body-inner clearfix\" ng-include=\"vm.templateUrl\"></div>\n</div>\n<div class=\"modal-footer modal-desktop\">\n  <button ng-if=\"vm.close.icon || vm.close.title\" class=\"btn btn-primary pull-right\" type=\"button\" ng-click=\"vm.onClose()\"><i ng-if=\"vm.close.icon\" class=\"zmdi zmdi-{{ vm.close.icon }} inner\"></i>{{ vm.close.title | translate }}</button>\n  <button ng-if=\"vm.dismiss.icon || vm.dismiss.title\" class=\"btn btn-default pull-right\" type=\"button\" ng-click=\"vm.onDismiss()\"><i ng-if=\"vm.dismiss.icon\" class=\"zmdi zmdi-{{ vm.dismiss.icon }} inner\"></i>{{ vm.dismiss.title | translate }}</button>\n</div>\n\n<div class=\"modal-mobile\">\n  <div class=\"modal-mobile-header\">\n    <i ng-if=\"vm.dismiss.iconMobile\" class=\"zmdi zmdi-{{ vm.dismiss.iconMobile }} pull-left img-back\" ng-click=\"vm.onDismiss()\"></i>\n    <span class=\"modal-mobile-header-title pull-left\">{{ vm.title | translate }}</span>\n    <i ng-if=\"vm.close.iconMobile\" class=\"zmdi zmdi-{{ vm.close.iconMobile }} pull-right img-ok\" ng-click=\"vm.onClose()\"></i>\n  </div>\n  <div class=\"modal-mobile-body\">\n    <div class=\"modal-mobile-body-inner clearfix\" ng-include=\"vm.templateUrlMobile || vm.templateUrl\"></div>\n  </div>\n</div>\n");
+$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");}]);
 angular.module('msm.components.util')
 .directive('scrollLink', ScrollLink);
 
