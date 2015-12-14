@@ -1,4 +1,4 @@
-(function (angular) {
+(function(angular) {
   'use strict';
 
   angular
@@ -12,64 +12,62 @@
       'pascalprecht.translate'
     ])
 
-      .config(function ($translateProvider) {
-        $translateProvider.translations('en', {
-          BUTTON_DELETE: 'Delete',
-          WELCOME: 'Welcome to the Mindsmash UI kit!'
-        });
-        $translateProvider.translations('de', {
-          BUTTON_DELETE: 'Löschen',
-          WELCOME: 'Willkommen zum Mindsmash UI-Kit!'
-        });
-
-        $translateProvider.preferredLanguage('en');
-        $translateProvider.useSanitizeValueStrategy(null);
-      })
-
-      .config(function ($urlRouterProvider, $stateProvider) {
-
-        //$urlRouterProvider.otherwise('/');
-
-        $stateProvider
-            .state('test', {
-              url: '/mobile-menu-test',
-              views: {
-                'mobile-menu-test': {template: '<span>it works! <a ui-sref="index">close</a></span>'}
-              }
-            })
-            .state('index', {
-              url: '',
-              views: {
-                'mobile-menu-test': {template: ''}
-              }
-            })
-      })
-
-      .config(function(NotificationProvider) {
-        NotificationProvider.setOptions({
-          delay: 3500,
-          startTop: 20,
-          startRight: 10,
-          verticalSpacing: 20,
-          horizontalSpacing: 20,
-          positionX: 'right',
-          positionY: 'top'
-        });
-      })
+      .config(configTranslations)
+      .config(configRoutes)
+      .config(configNotifications)
 
       .run(Main)
 
       .controller('NotificationController', NotificationController)
-
       .controller('EditableTextController', EditableTextController)
-
       .controller('ModalController', ModalController)
+      .controller('ClickToEditController', ClickToEditController)
+      .controller('TableController', TableController);
 
-      .controller('ModalInstanceControllerOkCancel', ModalInstanceControllerOkCancel)
+  //////////////
 
-      .controller('ModalInstanceControllerSelectItem', ModalInstanceControllerSelectItem)
+  function configNotifications(NotificationProvider) {
+    NotificationProvider.setOptions({
+      delay: 3500,
+      startTop: 20,
+      startRight: 10,
+      verticalSpacing: 20,
+      horizontalSpacing: 20,
+      positionX: 'right',
+      positionY: 'top'
+    });
+  }
 
-      .controller('ClickToEditController', ClickToEditController);
+  function configRoutes($stateProvider) {
+
+    $stateProvider
+        .state('test', {
+          url: '/mobile-menu-test',
+          views: {
+            'mobile-menu-test': {template: '<span>it works! <a ui-sref="index">close</a></span>'}
+          }
+        })
+        .state('index', {
+          url: '',
+          views: {
+            'mobile-menu-test': {template: ''}
+          }
+        })
+  }
+
+  function configTranslations($translateProvider) {
+    $translateProvider.translations('en', {
+      BUTTON_DELETE: 'Delete',
+      WELCOME: 'Welcome to the Mindsmash UI kit!'
+    });
+    $translateProvider.translations('de', {
+      BUTTON_DELETE: 'Löschen',
+      WELCOME: 'Willkommen zum Mindsmash UI-Kit!'
+    });
+
+    $translateProvider.preferredLanguage('en');
+    $translateProvider.useSanitizeValueStrategy(null);
+  }
 
   function Main(msmNotification) {
     // use an i18n key here
@@ -140,106 +138,61 @@
     })();
   }
 
-  function ModalController($log, msmModalOkCancel, msmModalSelectFromListing, msmNotification) {
+  function TableController($log) {
     var vm = this;
 
-    var parametersOkCancel = {
-      title: function() {
-        return 'Ok-cancel modal';
-      },
-      text: function () {
-        return 'Here some information text.';
-      }
-    };
-    var parametersSelectItem = {
-      title: function() {
-        return 'Select-from-listing modal';
-      },
-      text: function () {
-        return 'Please select an item:';
-      },
-      items: function() {
-        return [
-          'Item 1',
-          'Item 2',
-          'Item 3'
-        ]
-      }
+    vm.model = {
+      isHover: false,
+      isStriped: false,
+      isBordered: false,
+      isCondensed: false
     };
 
-    vm.openOkCancel = function(size) {
-      msmModalOkCancel
-          .open('ModalInstanceControllerOkCancel', parametersOkCancel, size)
-          .result.then(
-          function () {
-            $log.info('Modal (Ok-cancel): Clicked OK.');
-            msmNotification.success('Clicked ok', false);
-          },
-          function () {
-            $log.info('Modal (Ok-cancel): Cancelled.');
-          }
+    (function initController() {
+      $log.debug('[TableController] Initializing...');
+    })();
+  }
+
+  function ModalController($log, msmModal, msmNotification) {
+    var vm = this;
+
+    vm.openNote = function(size) {
+      return msmModal.note(
+          'Note',
+          'This is some very important information.',
+          size
       );
     };
 
-    vm.openSelectItem = function(size) {
-      msmModalSelectFromListing
-          .open('ModalInstanceControllerSelectItem', parametersSelectItem, size)
-          .result.then(
-          function (selectedItem) {
-            $log.info('Modal (select-from-listing): Clicked OK.');
-            msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
-          },
-          function () {
-            $log.info('Modal (select-from-listing): Cancelled.');
-          }
-      );
+    vm.openConfirm = function(size) {
+      return msmModal.confirm(
+          'Confirmation',
+          'Are you sure you want to continue?',
+          size, 'Yes', 'No'
+      ).result.then(function() {
+        $log.info('Modal (confirm): Confirmed.');
+        msmNotification.success('Confirmed', false);
+      }, function() {
+        $log.info('Modal (confirm): Cancelled.');
+      });
+    };
+
+    vm.openSelect = function(size) {
+      return msmModal.select(
+          'Selection',
+          'Please select:',
+          ['Item 1', 'Item 2', 'Item 3'],
+          size
+      ).result.then(function(selectedItem) {
+        $log.info('Modal (select): Clicked OK.');
+        msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
+      }, function() {
+        $log.info('Modal (select): Cancelled.');
+      });
     };
 
     (function initController() {
       $log.debug('[ModalController] Initializing...');
-    })();
-  }
-
-  function ModalInstanceControllerOkCancel($log, $modalInstance, title, text) {
-    var vm = this;
-
-    vm.title = title;
-    vm.text = text;
-
-    vm.ok = function () {
-      $modalInstance.close();
-    };
-
-    vm.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-
-    (function initController() {
-      $log.debug('[ModalInstanceController] Initializing...');
-    })();
-  }
-
-  function ModalInstanceControllerSelectItem($log, $modalInstance, title, text, items) {
-    var vm = this;
-
-    vm.title = title;
-    vm.text = text;
-    vm.items = {
-      "type": "select",
-      "selected": items[0],
-      "values": items
-    };
-
-    vm.ok = function () {
-      $modalInstance.close(vm.items.selected);
-    };
-
-    vm.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-
-    (function initController() {
-      $log.debug('[ModalInstanceControllerSelectItem] Initializing...');
     })();
   }
 
