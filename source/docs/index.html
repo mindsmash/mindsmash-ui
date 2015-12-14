@@ -26,6 +26,7 @@
         <a href="#" dropdown-toggle>Components <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li role="menuitem"><a href="#grid" target="_self">Grid system</a></li>
+          <li role="menuitem"><a href="#tables" target="_self">Tables</a></li>
           <li role="menuitem"><a href="#forms" target="_self">Forms</a></li>
           <li role="menuitem"><a href="#buttons" target="_self">Buttons</a></li>
           <li role="menuitem"><a href="#definition-list" target="_self">Definition List</a></li>
@@ -51,6 +52,26 @@
 </nav>
 
 <div class="container-fluid">
+
+  <!-- Template -->
+  <!--
+  <section class="panel panel-default">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Title</h1>
+    </div>
+    <div class="panel-body">
+      <h3>Subtitle</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          sdfsd
+        </div>
+        <div class="panel-footer bg-gray-lighter">
+          <code class="html code">HTML Sample</code>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
 
   <scroll-link name="grid"></scroll-link>
   <section class="panel panel-default">
@@ -96,6 +117,74 @@
             <div class="well mt-xs visible-xl-block"><!-- ... --></div>
             <div class="well mt-xs hidden-xl"><!-- ... --></div>
           </div>
+        </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
+      </div>
+    </div>
+  </section>
+
+  <scroll-link name="tables"></scroll-link>
+  <section class="panel panel-default" ng-controller="TableController">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Tables</h1>
+    </div>
+    <div class="panel-body">
+      <h3>Basic example</h3>
+      <form class="form-inline mb-xxs">
+        <div class="form-group mr-xs">
+          <label><input type="checkbox" ng-model="model.isStriped"> <code>.table-striped</code>: {{model.isStriped ? "Yes" : "No"}}</label>
+        </div>
+        <div class="form-group mr-xs">
+          <label><input type="checkbox" ng-model="model.isBordered"> <code>.table-bordered</code>: {{model.isBordered ? "Yes" : "No"}}</label>
+        </div>
+        <div class="form-group mr-xs">
+          <label><input type="checkbox" ng-model="model.isHover"> <code>.table-hover</code>: {{model.isHover ? "Yes" : "No"}}</label>
+        </div>
+        <div class="form-group">
+          <label><input type="checkbox" ng-model="model.isCondensed"> <code>.table-condensed</code>: {{model.isCondensed ? "Yes" : "No"}}</label>
+        </div>
+      </form>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <table class="table m-0" ng-class="{'table-striped': model.isStriped, 'table-bordered': model.isBordered, 'table-hover': model.isHover, 'table-condensed': model.isCondensed}">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="hidden" data-create-code=".js-insert-code">
+          <table class="table">
+            <!-- Use Bootstrap's table classes for further styling options: -->
+              <!-- .table-striped -->
+              <!-- .table-bordered -->
+              <!-- .table-hover -->
+              <!-- .table-condensed -->
+          </table>
         </div>
         <div class="panel-footer bg-gray-lighter js-insert-code"></div>
       </div>
@@ -686,34 +775,34 @@
 <script src="../components/util/components.util.module.js"></script>
 <script src="../components/util/scroll-link/scroll-link.directive.js"></script>
 <script src="scripts/app.js"></script>
-<script>
 
+<script>
   createCodeExamples();
   initHighlighting();
 
- function createCodeExamples () {
-   var codeBlocks = document.querySelectorAll('[data-create-code]');
-
-   for (var i = 0; i < codeBlocks.length; i++) {
-     var code = codeBlocks[i],
+  function createCodeExamples () {
+    var codeBlocks = document.querySelectorAll('[data-create-code]');
+    
+    for (var i = 0; i < codeBlocks.length; i++) {
+      var code = codeBlocks[i],
          targetSelector = code.dataset.createCode,
          target = document.querySelectorAll(targetSelector)[i],
          example = document.createElement('code'),
          codeText = code.innerHTML,
          leadingWhitespace = codeText.match(/^\s{3,}/)[0];
+      
+      codeText = codeText.replace(RegExp(leadingWhitespace, 'g'), '\n');
+      example.textContent = codeText;
+      example.classList.add('html', 'code');
+      target.appendChild(example);
+      hljs.highlightBlock(example);
+    }
+  }
 
-     codeText = codeText.replace(RegExp(leadingWhitespace, 'g'), '\n');
-     example.textContent = codeText;
-     example.classList.add('html', 'code');
-     target.appendChild(example);
-     hljs.highlightBlock(example);
-   }
- }
-
- function initHighlighting () {
-  hljs.initHighlightingOnLoad();
- }
-
+  function initHighlighting () {
+    hljs.initHighlightingOnLoad();
+  }
 </script>
+
 </body>
 </html>
