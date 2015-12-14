@@ -3434,7 +3434,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
   .modal-mobile .img-ok { font-weight: 300; opacity: 0.6; padding-top: 7px; padding-left: 15px; }
   .modal-backdrop.in { background-color: #FDFDFD; }
   .modal-mobile-header { background-color: #317DC1; border-radius: 0; color: #FDFDFD; font-size: 26px; height: 65px; margin: 0; min-width: 320px; padding: 14px 24px; text-align: center; width: 100%; }
-  .modal-mobile-header-title { margin: 0 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 150px; display: block; font-size: 18px; padding-top: 6px; width: calc(100% - 80px); }
+  .modal-mobile-header-title { display: block; font-size: 18px; left: 0; margin: 0 auto; min-width: 150px; overflow: hidden; padding: 6px 16px 0; position: absolute; right: 0; text-overflow: ellipsis; white-space: nowrap; width: calc(100% - 80px); }
   .modal-content { box-shadow: none; border-radius: 0 !important; }
   .modal-content h4 { margin: 24px 48px; text-align: center; }
   .modal-mobile-options { font-size: 20px; margin: 0; padding: 0; list-style: none; }
