@@ -156,17 +156,9 @@
     })();
   }
 
-  function ModalController($log, msmModalOkCancel, msmModalSelectFromListing, msmNotification) {
+  function ModalController($log, msmModal, msmNotification) {
     var vm = this;
 
-    var parametersOkCancel = {
-      title: function() {
-        return 'Ok-cancel modal';
-      },
-      text: function () {
-        return 'Here some information text.';
-      }
-    };
     var parametersSelectItem = {
       title: function() {
         return 'Select-from-listing modal';
@@ -183,79 +175,43 @@
       }
     };
 
-    vm.openOkCancel = function(size) {
-      msmModalOkCancel
-          .open('ModalInstanceControllerOkCancel', parametersOkCancel, size)
-          .result.then(
-          function () {
-            $log.info('Modal (Ok-cancel): Clicked OK.');
-            msmNotification.success('Clicked ok', false);
-          },
-          function () {
-            $log.info('Modal (Ok-cancel): Cancelled.');
-          }
+    vm.openNote = function(size) {
+      return msmModal.note(
+        'Note',
+        'This is some very important information.',
+        size
       );
     };
 
-    vm.openSelectItem = function(size) {
-      msmModalSelectFromListing
-          .open('ModalInstanceControllerSelectItem', parametersSelectItem, size)
-          .result.then(
-          function (selectedItem) {
-            $log.info('Modal (select-from-listing): Clicked OK.');
-            msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
-          },
-          function () {
-            $log.info('Modal (select-from-listing): Cancelled.');
-          }
-      );
+    vm.openConfirm = function(size) {
+      return msmModal.confirm(
+        'Confirmation',
+        'Are you sure you want to continue?',
+        size, 'Yes', 'No'
+      ).result.then(function() {
+        $log.info('Modal (confirm): Confirmed.');
+        msmNotification.success('Confirmed', false);
+      }, function() {
+        $log.info('Modal (confirm): Cancelled.');
+      });
+    };
+
+    vm.openSelect = function(size) {
+      return msmModal.select(
+        'Selection',
+        'Please select:',
+        ['Item 1', 'Item 2', 'Item 3'],
+        size
+      ).result.then(function(selectedItem) {
+        $log.info('Modal (select): Clicked OK.');
+        msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
+      }, function() {
+        $log.info('Modal (select): Cancelled.');
+      });
     };
 
     (function initController() {
       $log.debug('[ModalController] Initializing...');
-    })();
-  }
-
-  function ModalInstanceControllerOkCancel($log, $modalInstance, title, text) {
-    var vm = this;
-
-    vm.title = title;
-    vm.text = text;
-
-    vm.ok = function () {
-      $modalInstance.close();
-    };
-
-    vm.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-
-    (function initController() {
-      $log.debug('[ModalInstanceController] Initializing...');
-    })();
-  }
-
-  function ModalInstanceControllerSelectItem($log, $modalInstance, title, text, items) {
-    var vm = this;
-
-    vm.title = title;
-    vm.text = text;
-    vm.items = {
-      "type": "select",
-      "selected": items[0],
-      "values": items
-    };
-
-    vm.ok = function () {
-      $modalInstance.close(vm.items.selected);
-    };
-
-    vm.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-
-    (function initController() {
-      $log.debug('[ModalInstanceControllerSelectItem] Initializing...');
     })();
   }
 
