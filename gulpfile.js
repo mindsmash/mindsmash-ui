@@ -104,7 +104,8 @@ gulp.task('server', function() {
 
   gulp.watch([
     '!source/docs/bower_components/',
-    'source/docs/*'
+    'source/docs/*',
+    'source/components/**/*'
   ]).on('change', browserSync.reload);
 
   gulp.watch(['source/stylesheets/**/*.scss', 'source/components/**/*.scss'],
