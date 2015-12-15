@@ -6,7 +6,7 @@
       .controller('MsmModalController', MsmModalController);
 
   function MsmModalController(msmModalDefaults) {
-    angular.extend(this, msmModalDefaults);
+    angular.extend(this, msmModalDefaults.get());
   }
 
 })();
