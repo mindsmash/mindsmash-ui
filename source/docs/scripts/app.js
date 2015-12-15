@@ -151,15 +151,48 @@
     })();
   }
 
-  function ModalController($log, msmModal, msmNotification) {
+  function ModalController($log, $q, msmModal, msmNotification) {
     var vm = this;
+
+    function valueAsync() {
+      return $q(function(resolve) {
+        setTimeout(function() {
+          resolve('Some async value...');
+        }, 1000);
+      });
+    }
+
+    function valueFunction() {
+      return 'Some return value...';
+    }
+
+    vm.openCustom = function(size) {
+      return msmModal.open({
+        value: 'Some value...',
+        valueAsync: valueAsync(),
+        valueFunction: valueFunction
+      }, function($controller, value, valueAsync, valueFunction) {
+        var vm = angular.extend(this, $controller('MsmModalController'));
+        vm.title = 'Customization';
+        vm.text = valueAsync;
+      }, size).result.then(function(selectedItem) {
+        $log.info('Modal (custom): Clicked OK.');
+      }, function() {
+        $log.info('Modal (custom): Cancelled.');
+      });
+    };
 
     vm.openNote = function(size) {
       return msmModal.note(
-          'Note',
-          'This is some very important information.',
-          size
-      );
+        'Note',
+        'This is some very important information.',
+        size
+      ).result.then(function(selectedItem) {
+        $log.info('Modal (note): Clicked OK.');
+        msmNotification.success('Closed', false);
+      }, function() {
+        $log.info('Modal (note): Cancelled.');
+      });
     };
 
     vm.openConfirm = function(size) {

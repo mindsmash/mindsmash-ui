@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  angular
+      .module('msm.components.ui')
+      .service('msmModal', msmModal);
+
   /**
    * @ngdoc service
    * @name components.ui.msmModal
@@ -8,11 +12,7 @@
    * @description
    *     Renders styled modals.
    */
-  angular
-      .module('msm.components.ui')
-      .service('msmModal', MsmModal);
-
-  function MsmModal($modal) {
+  function msmModal($modal, msmModalDefaults) {
     return {
       open: open,
       note: note,
@@ -35,9 +35,8 @@
      *     The modal's controller. A default controller will be provided
      *     with all parameter bindings.
      */
-    function open(parameters, controller) {
-      var modalSize = parameters.size || '';
-      parameters = withDefaults(parameters);
+    function open(parameters, controller, size) {
+      parameters = parameters || {};
 
       // auto-generate controller if missing
       if (angular.isUndefined(controller)) {
@@ -45,12 +44,12 @@
         var args = keys.join(',');
         var assign =
           'var vm = this;' +
-          'vm.onClose = function() { $modalInstance.close(); };' +
-          'vm.onDismiss = function() { $modalInstance.dismiss(\'cancel\'); };' +
+          'angular.extend(this, $controller(\'MsmModalController\'));' +
           keys.map(function (arg) {
             return 'this[\'' + arg + '\'] = ' + arg + ';';
           }).join('');
-        eval('controller = function($modalInstance,' + args + ') {' + assign + '};');
+        eval('controller = function ($controller, ' + args + ') {' + assign + '};');
+        controller = angular.extend(controller, msmModalDefaults.get(), controller);
       }
 
       // convert parameters to functions
@@ -65,33 +64,11 @@
         templateUrl: 'components/ui/msm-modal/msm-modal.html',
         controller: controller,
         controllerAs: 'vm',
-        size: modalSize,
+        size: size || '',
         resolve: parameters,
         bindToController: true,
         windowClass: 'app-modal-window'
       });
-    }
-
-    /*
-     * Provides default values for all parameters.
-     */
-    function withDefaults(parameters) {
-      return angular.merge({
-        title: '',
-        text: '',
-        templateUrl: 'components/ui/msm-modal/msm-modal-default.html',
-        templateUrlMobile: 'components/ui/msm-modal/msm-modal-default-mobile.html',
-        close: {
-          icon: 'check-circle',
-          iconMobile: 'check',
-          title: 'Ok'
-        },
-        dismiss: {
-          icon: 'close-circle',
-          iconMobile: 'arrow-left',
-          title: 'Cancel'
-        }
-      }, parameters);
     }
 
     /**
@@ -111,13 +88,19 @@
      *     The label of the modal's close button.
      */
     function note(title, text, size, closeTitle) {
-      return open(angular.merge({
-        title: title,
-        text: text,
-        size: size || '',
-        dismiss: false
-      }, angular.isDefined(closeTitle) ? { close: { title: closeTitle }} : {}
-      ));
+      return open(null, function () {
+        var vm = this;
+
+        angular.extend(vm, msmModalDefaults.get(), {
+          title: title,
+          text: text,
+          dismiss: false
+        });
+
+        if (angular.isDefined(closeTitle)) {
+          vm.close.title = closeTitle;
+        }
+      }, size);
     }
 
     /**
@@ -139,14 +122,21 @@
      *     The label of the modal's cancel button.
      */
     function confirm(title, text, size, closeTitle, dismissTitle) {
-      return open(angular.merge({
-        title: title,
-        text: text,
-        size: size || ''
-      }, angular.isDefined(closeTitle) ? { close: { title: closeTitle }} : {},
-         angular.isDefined(dismissTitle) ? { dismiss: { title: dismissTitle }} : {},
-         { dismiss: { iconMobile: 'close' }}
-      ));
+      return open(null, function () {
+        var vm = this;
+
+        angular.extend(vm, msmModalDefaults.get(), {
+          title: title,
+          text: text
+        });
+
+        if (angular.isDefined(closeTitle)) {
+          vm.close.title = closeTitle;
+        }
+        if (angular.isDefined(dismissTitle)) {
+          vm.dismiss.title = dismissTitle;
+        }
+      }, size);
     }
 
     /**
@@ -170,36 +160,31 @@
      *     The label of the modal's cancel button.
      */
     function select(title, text, options, size, closeTitle, dismissTitle) {
-      return open({
-        size: size || '',
-        options: options
-      }, function ($modalInstance, options) {
+
+      return open({ options: options }, function ($modalInstance, options) {
         var vm = this;
-        vm.title = title || '';
-        vm.text = text || '';
+
+        angular.extend(vm, msmModalDefaults.get(), {
+          title: title,
+          text: text,
+          templateUrl: 'components/ui/msm-modal/msm-modal-select.html',
+          templateUrlMobile: 'components/ui/msm-modal/msm-modal-select-mobile.html'
+        });
+
+        vm.close.title = closeTitle || 'Select';
+        if (angular.isDefined(dismissTitle)) {
+          vm.dismiss.title = dismissTitle;
+        }
+
         vm.options = {
           values: options,
           selected: options[0]
         };
-        vm.templateUrl = 'components/ui/msm-modal/msm-modal-select.html';
-        vm.templateUrlMobile = 'components/ui/msm-modal/msm-modal-select-mobile.html';
-        vm.close = {
-          icon: 'check-circle',
-          iconMobile: false,
-          title: closeTitle || 'Select'
-        };
-        vm.dismiss = {
-          icon: 'close-circle',
-          iconMobile: 'arrow-left',
-          title: dismissTitle || 'Cancel'
-        };
+
         vm.onClose = function (option) {
           $modalInstance.close(option || vm.options.selected);
         };
-        vm.onDismiss = function () {
-          $modalInstance.dismiss('cancel');
-        };
-      });
+      }, size);
     }
   }
 
