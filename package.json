@@ -1,6 +1,6 @@
 {
   "name": "mindsmash-ui",
-  "version": "0.5.1",
+  "version": "0.5.5",
   "description": "A ui kit by mindsmash",
   "main": "gulpfile.js",
   "scripts": {
@@ -60,8 +60,10 @@
     "gulp-sass": "^2.1.0",
     "gulp-scss-lint": "^0.3.8",
     "gulp-sequence": "^0.4.1",
+    "gulp-useref": "^3.0.3",
     "gulp-util": "^3.0.7",
     "merge-stream": "^1.0.0",
-    "sc5-styleguide": "^0.3.39"
+    "sc5-styleguide": "^0.3.39",
+    "wiredep": "^3.0.0-beta"
   }
 }

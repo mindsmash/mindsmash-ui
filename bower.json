@@ -30,17 +30,17 @@
     "tests"
   ],
   "dependencies": {
-    "css-spaces": "~0.3.5",
-    "material-design-iconic-font": "~2.2.0",
     "angular": "~1.4.8",
     "angular-bootstrap": "~0.13.4",
-    "simple-line-icons": "~2.2.3",
     "angular-translate": "~2.8.1",
+    "angular-ui-notification": "~0.1.0",
     "angular-ui-router": "~0.2.15",
-    "angular-ui-notification": "~0.1.0"
+    "css-spaces": "~0.3.5",
+    "material-design-iconic-font": "~2.2.0",
+    "simple-line-icons": "~2.2.3"
   },
   "devDependencies": {
-    "holderjs": "~2.9.0",
-    "highlightjs": "~8.9.1"
+    "highlightjs": "~8.9.1",
+    "holderjs": "~2.9.0"
   }
 }

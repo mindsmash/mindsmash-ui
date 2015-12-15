@@ -5,11 +5,15 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <title>mindsmash-UI | Pattern Library</title>
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic" rel="stylesheet">
-  <link rel="stylesheet" href="../../bower_components/css-spaces/dist/spaces.css">
-  <link rel="stylesheet" href="../../bower_components/highlightjs/styles/color-brewer.css">
-  <link rel="stylesheet" href="../../bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.css">
-  <link rel="stylesheet" href="../../bower_components/simple-line-icons/css/simple-line-icons.css">
-  <link rel="stylesheet" href="../../bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+
+  <!-- bower:css -->
+  <link rel="stylesheet" href="../../bower_components/angular-ui-notification/dist/angular-ui-notification.css" />
+  <link rel="stylesheet" href="../../bower_components/css-spaces/dist/spaces.css" />
+  <link rel="stylesheet" href="../../bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" />
+  <link rel="stylesheet" href="../../bower_components/simple-line-icons/css/simple-line-icons.css" />
+  <link rel="stylesheet" href="../../bower_components/highlightjs/styles/default.css" />
+  <!-- endbower -->
+
   <link rel="stylesheet" href="css/mindsmash-ui.css">
   <link rel="stylesheet" href="doc.styles.css">
 </head>
@@ -31,6 +35,7 @@
           <li role="menuitem"><a href="#buttons" target="_self">Buttons</a></li>
           <li role="menuitem"><a href="#definition-list" target="_self">Definition List</a></li>
           <li role="menuitem"><a href="#notifications" target="_self">Notifications</a></li>
+          <li role="menuitem"><a href="#datepicker" target="_self">Datepicker</a></li>
           <li role="menuitem"><a href="#in-place" target="_self">In-place editing</a></li>
           <li role="menuitem"><a href="#modals" target="_self">Modals</a></li>
           <li role="menuitem"><a href="#headings" target="_self">Headings</a></li>
@@ -103,7 +108,7 @@
         </div>
         <div class="panel-footer bg-gray-lighter js-insert-code"></div>
       </div>
-      
+
       <h3>Responsive utilities</h3>
       <div class="example panel panel-default">
         <div class="panel-body">
@@ -237,7 +242,7 @@
           </form>
         </div>
       </div>
-      
+
       <h3>Control Sizing</h3>
       <div class="example panel panel-default">
         <div class="panel-body">
@@ -263,7 +268,7 @@
           </form>
         </div>
       </div>
-      
+
       <div ng-controller="EditableTextController as vm">
         <button class="btn btn-sm btn-default mt-xxs pull-right" ng-click="vm.model.isEditable = !vm.model.isEditable">Toggle</button>
         <h3>Toggle State</h3>
@@ -377,6 +382,29 @@
         <button class="btn btn-info mr-s" ng-click="vm.info()">Info</button>
         <button class="btn btn-warning mr-s" ng-click="vm.warning()">Warning</button>
         <button class="btn btn-default mr-s" ng-click="vm.clearAll()">Clear all</button>
+      </div>
+    </div>
+  </section>
+
+  <scroll-link name="datepicker"></scroll-link>
+  <section class="panel panel-default">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Datepicker</h1>
+    </div>
+    <div class="panel-body">
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <form class="form-horizontal" data-create-code=".js-insert-code">
+            <div class="form-group">
+              <label for="inputDate" class="col-sm-2 control-label">Date</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" datepicker-popup ng-model="date" is-open="opened" ng-click="opened = !opened"/>
+                <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None' }}</em></span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
       </div>
     </div>
   </section>
@@ -781,22 +809,21 @@
   </section>
 </div>
 
+<!-- bower:js -->
 <script src="../../bower_components/angular/angular.js"></script>
-<script src="../../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 <script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="../../bower_components/holderjs/holder.js"></script>
-<script src="../../bower_components/highlightjs/highlight.pack.js"></script>
 <script src="../../bower_components/angular-translate/angular-translate.js"></script>
-<script src="../../bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+<script src="../../bower_components/angular-ui-notification/dist/angular-ui-notification.js"></script>
 <script src="../../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
+<script src="../../bower_components/holderjs/holder.js"></script>
+<!-- endbower -->
 
 <script src="../components/ui/components.ui.module.js"></script>
+<script src="../components/ui/components.ui.config.js"></script>
 <script src="../components/ui/msm-click-to-edit/msm-click-to-edit.directive.js"></script>
 <script src="../components/ui/msm-editable-text/msm-editable-text.directive.js"></script>
 <script src="../components/ui/msm-button/msm-button.directive.js"></script>
-<script src="../components/ui/msm-modal/msm-modal-defaults.service.js"></script>
-<script src="../components/ui/msm-modal/msm-modal.controller.js"></script>
 <script src="../components/ui/msm-modal/msm-modal.service.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>
@@ -811,7 +838,7 @@
 
   function createCodeExamples () {
     var codeBlocks = document.querySelectorAll('[data-create-code]');
-    
+
     for (var i = 0; i < codeBlocks.length; i++) {
       var code = codeBlocks[i],
          targetSelector = code.dataset.createCode,
@@ -819,7 +846,7 @@
          example = document.createElement('code'),
          codeText = code.innerHTML,
          leadingWhitespace = codeText.match(/^\s{3,}/)[0];
-      
+
       codeText = codeText.replace(RegExp(leadingWhitespace, 'g'), '\n');
       example.textContent = codeText;
       example.classList.add('html', 'code');
