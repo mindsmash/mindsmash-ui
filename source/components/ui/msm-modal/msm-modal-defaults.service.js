@@ -3,15 +3,7 @@
 
   angular
       .module('msm.components.ui')
-      .service('msmModalDefaults', msmModalDefaults);
-
-  function msmModalDefaults() {
-    return {
-      get: get
-    };
-    
-    function get() {
-      return {
+      .constant('msmModalDefaults', {
         title: '',
         text: '',
         templateUrl: 'components/ui/msm-modal/msm-modal-default.html',
@@ -26,8 +18,5 @@
           iconMobile: 'arrow-left',
           title: 'Cancel'
         }
-      };
-    }
-  }
-
+      });
 })();

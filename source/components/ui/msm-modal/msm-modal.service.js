@@ -49,7 +49,7 @@
             return 'this[\'' + arg + '\'] = ' + arg + ';';
           }).join('');
         eval('controller = function ($controller, ' + args + ') {' + assign + '};');
-        controller = angular.extend(controller, msmModalDefaults.get(), controller);
+        controller = angular.extend(controller, msmModalDefaults, controller);
       }
 
       // convert parameters to functions
@@ -91,7 +91,7 @@
       return open(null, function () {
         var vm = this;
 
-        angular.extend(vm, msmModalDefaults.get(), {
+        angular.merge(vm, msmModalDefaults, {
           title: title,
           text: text,
           dismiss: false
@@ -125,7 +125,7 @@
       return open(null, function () {
         var vm = this;
 
-        angular.extend(vm, msmModalDefaults.get(), {
+        angular.merge(vm, msmModalDefaults, {
           title: title,
           text: text
         });
@@ -164,7 +164,7 @@
       return open({ options: options }, function ($modalInstance, options) {
         var vm = this;
 
-        angular.extend(vm, msmModalDefaults.get(), {
+        angular.merge(vm, msmModalDefaults, {
           title: title,
           text: text,
           templateUrl: 'components/ui/msm-modal/msm-modal-select.html',
