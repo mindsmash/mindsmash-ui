@@ -434,6 +434,33 @@
       <h1 class="panel-title">Modals</h1>
     </div>
     <div class="panel-body" ng-controller="ModalController as vm">
+      <h3>Custom modals</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <div class="container-fluid">
+            <button class="btn btn-primary mr-s" ng-click="vm.openCustom()">Default</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openCustom('sm')">Small</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openCustom('lg')">Large</button>
+          </div>
+          <div class="hidden" data-create-code=".js-insert-code">
+            <script>
+              showCustom = function(size) {
+                return msmModal
+                  .open({
+                    value: 'Some value...',      // primitive value
+                    valueAsync: valueAsync(),    // $q promise (1sec. delay)
+                    valueFunction: valueFunction // function
+                  }, function($controller, value, valueAsync, valueFunction) {
+                    var vm = angular.extend(this, $controller('msmModalController'));
+                    vm.title = 'Customization';
+                    vm.text = valueAsync;
+                  }, size);
+              };
+            </script>
+          </div>
+        </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
+      </div>
       <h3>Notification modals</h3>
       <div class="example panel panel-default">
         <div class="panel-body">
@@ -798,6 +825,8 @@
 <script src="../components/ui/msm-editable-text/msm-editable-text.directive.js"></script>
 <script src="../components/ui/msm-button/msm-button.directive.js"></script>
 <script src="../components/ui/msm-modal/msm-modal.service.js"></script>
+<script src="../components/ui/msm-modal/msm-modal.controller.js"></script>
+<script src="../components/ui/msm-modal/msm-modal-defaults.service.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>
 
