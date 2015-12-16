@@ -175,7 +175,7 @@
      *     The label of the modal's cancel button.
      */
     function select(title, text, options, size, closeTitle, dismissTitle) {
-      return open({ options: options }, function ($modalInstance, options) {
+      return open({ values: options.values, selectedValue: options.selected }, function ($modalInstance, values, selectedValue) {
         var vm = angular.extend(this, {
           title: title,
           text: text,
@@ -195,13 +195,13 @@
 
         vm.select = select;
         vm.options = {
-          values: options.values,
-          selected: options.selected ? options.selected : null
+          values: values,
+          selected: selectedValue ? selectedValue : values[0]
         };
 
         function select(option) {
           $modalInstance.close(option || vm.options.selected);
-        };
+        }
       }, size, 'components/ui/msm-modal/msm-modal-select.html');
     }
   }
