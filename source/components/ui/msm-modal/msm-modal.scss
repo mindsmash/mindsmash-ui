@@ -35,6 +35,7 @@
 .modal-footer {
   border: 0;
   display: flex;
+  overflow: hidden;
 
   .btn {
     border-radius: 0;
@@ -132,8 +133,8 @@
   }
 
   .modal-footer {
-    .btn:first-child { border-bottom-right-radius: 4px; }
-    .btn:last-child { border-bottom-left-radius: 4px; }
+    .btn:first-child { border-bottom-right-radius: 6px; }
+    .btn:last-child { border-bottom-left-radius: 6px; }
   }
 }
 
