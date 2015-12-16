@@ -172,8 +172,8 @@
         value: 'Some value...',
         valueAsync: valueAsync(),
         valueFunction: valueFunction
-      }, function($controller, value, valueAsync, valueFunction) {
-        var vm = angular.extend(this, $controller('MsmModalController'));
+      }, function(value, valueAsync, valueFunction) {
+        var vm = this;
         vm.title = 'Customization';
         vm.text = valueAsync;
       }, size).result.then(function(selectedItem) {
@@ -213,7 +213,10 @@
       return msmModal.select(
           'Selection',
           'Please select:',
-          ['Item 1', 'Item 2', 'Item 3'],
+          {
+            values: ['Item 1', 'Item 2', 'Item 3'],
+            selected: 'Item 1'
+          },
           size
       ).result.then(function(selectedItem) {
         $log.info('Modal (select): Clicked OK.');

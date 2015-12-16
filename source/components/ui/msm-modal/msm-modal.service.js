@@ -195,8 +195,8 @@
 
         vm.select = select;
         vm.options = {
-          values: options,
-          selected: options[0]
+          values: options.values,
+          selected: options.selected ? options.selected : null
         };
 
         function select(option) {

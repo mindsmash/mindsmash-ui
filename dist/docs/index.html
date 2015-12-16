@@ -450,8 +450,8 @@
                     value: 'Some value...',      // primitive value
                     valueAsync: valueAsync(),    // $q promise (1sec. delay)
                     valueFunction: valueFunction // function
-                  }, function($controller, value, valueAsync, valueFunction) {
-                    var vm = angular.extend(this, $controller('msmModalController'));
+                  }, function(value, valueAsync, valueFunction) {
+                    var vm = this;
                     vm.title = 'Customization';
                     vm.text = valueAsync;
                   }, size);
@@ -825,8 +825,6 @@
 <script src="../components/ui/msm-editable-text/msm-editable-text.directive.js"></script>
 <script src="../components/ui/msm-button/msm-button.directive.js"></script>
 <script src="../components/ui/msm-modal/msm-modal.service.js"></script>
-<script src="../components/ui/msm-modal/msm-modal.controller.js"></script>
-<script src="../components/ui/msm-modal/msm-modal-defaults.service.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>
 
