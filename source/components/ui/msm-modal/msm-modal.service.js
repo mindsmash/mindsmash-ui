@@ -12,7 +12,7 @@
    * @description
    *     Renders styled modals.
    */
-  function msmModal($modal, msmModalDefaults) {
+  function msmModal($window, $document, $modal, msmModalDefaults) {
     return {
       open: open,
       note: note,
@@ -36,6 +36,7 @@
      *     with all parameter bindings.
      */
     function open(parameters, controller, size) {
+
       parameters = parameters || {};
 
       // auto-generate controller if missing
@@ -59,7 +60,7 @@
         };
       });
 
-      return $modal.open({
+      var modalInstance = $modal.open({
         animation: true,
         templateUrl: 'components/ui/msm-modal/msm-modal.html',
         controller: controller,
@@ -69,6 +70,19 @@
         bindToController: true,
         windowClass: 'app-modal-window'
       });
+      
+      modalInstance.opened['finally'](function() {
+        modalInstance.pageXOffset = $window.pageXOffset;
+        modalInstance.pageYOffset = $window.pageYOffset;
+        angular.element($document[0].body).css('position', 'fixed');
+      });
+      
+      modalInstance.result['finally'](function() {
+        angular.element($document[0].body).css('position', 'inherit');
+        $window.scrollTo(modalInstance.pageXOffset, modalInstance.pageYOffset);
+      })
+      
+      return modalInstance;
     }
 
     /**
@@ -84,22 +98,17 @@
      *     The modal's text.
      * @param {string=} size
      *     The modal's size.
-     * @param {string=Ok} closeTitle
-     *     The label of the modal's close button.
      */
-    function note(title, text, size, closeTitle) {
+    function note(title, text, size) {
       return open(null, function () {
         var vm = this;
 
-        angular.merge(vm, msmModalDefaults, {
+        angular.extend(vm, msmModalDefaults, {
           title: title,
           text: text,
-          dismiss: false
+          buttons: buttons.slice(0, 1)
         });
-
-        if (angular.isDefined(closeTitle)) {
-          vm.close.title = closeTitle;
-        }
+        vm.buttons.splice(1, 2);
       }, size);
     }
 
@@ -122,7 +131,7 @@
      *     The label of the modal's cancel button.
      */
     function confirm(title, text, size, closeTitle, dismissTitle) {
-      return open(null, function () {
+      return open(null, function ($modalInstance) {
         var vm = this;
 
         angular.merge(vm, msmModalDefaults, {
@@ -131,10 +140,12 @@
         });
 
         if (angular.isDefined(closeTitle)) {
-          vm.close.title = closeTitle;
+          vm.buttons[0].title = closeTitle;
+          vm.buttons[0].onClick = $modalInstance.close;
         }
         if (angular.isDefined(dismissTitle)) {
-          vm.dismiss.title = dismissTitle;
+          vm.buttons[1].title = dismissTitle;
+          vm.buttons[1].onClick = $modalInstance.dismiss;
         }
       }, size);
     }
@@ -160,7 +171,6 @@
      *     The label of the modal's cancel button.
      */
     function select(title, text, options, size, closeTitle, dismissTitle) {
-
       return open({ options: options }, function ($modalInstance, options) {
         var vm = this;
 
