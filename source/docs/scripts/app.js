@@ -213,7 +213,10 @@
       return msmModal.select(
           'Selection',
           'Please select:',
-          ['Item 1', 'Item 2', 'Item 3'],
+          {
+            values: ['Item 1', 'Item 2', 'Item 3'],
+            selected: 0
+          },
           size
       ).result.then(function(selectedItem) {
         $log.info('Modal (select): Clicked OK.');

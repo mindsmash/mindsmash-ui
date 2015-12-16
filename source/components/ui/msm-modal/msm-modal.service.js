@@ -194,10 +194,12 @@
           }]
         });
 
+        options.selected = (options.selected && options.selected >= 0 && options.selected < options.values.length) ?
+            options.selected : 0;
         vm.select = select;
         vm.options = {
-          values: options,
-          selected: options[0]
+          values: options.values,
+          selected: options.values[options.selected]
         };
 
         function select(option) {
