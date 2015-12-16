@@ -1,5 +1,11 @@
+.modal-open > :not(.modal) {
+  @include filter(blur, 5px);
+  //transform: scale(1.1);
+}
 
 .modal-content {
+  border: 0;
+  box-shadow: none;
   display: flex;
   flex-direction: column;
 }
@@ -38,11 +44,8 @@
   overflow: hidden;
 
   .btn {
-    border-radius: 0;
     border: 0;
     flex: 1;
-    padding-bottom: 9px;
-    padding-top: 9px;
   }
 
   .btn + .btn {
@@ -53,6 +56,8 @@
 
 
 @media (max-width: 767px) {
+  .modal-mobile-hide { display: none !important; }
+
   .modal-dialog {
     bottom: 0;
     left: 0;
@@ -87,6 +92,8 @@
 
     .btn {
       margin-top: 15px;
+      padding-bottom: 9px;
+      padding-top: 9px;
       
       &:first-child {
         margin-top: 0;
@@ -97,8 +104,6 @@
       border-right: 1 px solid rgba(255,255,255,0.25);
     }
   }
-
-  .modal-mobile-hide { display: none !important; }
 
   .modal-mobile-options {
     font-size: 20px;
@@ -119,12 +124,33 @@
 @media (min-width: 768px) {
   .modal-mobile-show { display: none !important; }
 
+  .modal {
+    display: flex !important;
+  }
+
+  .modal-dialog {
+    align-self: center;
+    margin: 0 auto;
+  }
+
+  .modal-header {
+    padding: 28px 0 18px;
+    margin: 0 28px;
+  }
+
+  .modal-body {
+    padding: 28px;
+  }
+
   .modal-footer {
     flex-direction: row-reverse;
     padding: 0;
 
-    .btn, {
+    .btn {
+      border-radius: 0;
       margin: 0;
+      padding-bottom: 12px;
+      padding-top: 12px;
     }
 
     .btn + .btn {
@@ -137,6 +163,3 @@
     .btn:last-child { border-bottom-left-radius: 6px; }
   }
 }
-
-
-
