@@ -2,8 +2,9 @@
   <h3 class="modal-title">{{ vm.title | translate }}</h3>
   <span class="modal-close" ng-click="vm.onDismiss ? vm.onDismiss() : $dismiss('cancel')"><i class="zmdi zmdi-close img-close"></i></span>
 </div>
-<div class="modal-body" ng-class="{ 'modal-mobile-hide': vm.templateUrlMobile }" ng-include="vm.templateUrl"></div>
-<div class="modal-body" ng-class="{ 'modal-mobile-show': vm.templateUrlMobile }" ng-include="vm.templateUrlMobile" ng-if="vm.templateUrlMobile"></div>
+<div class="modal-body">
+  <span>{{ vm.text | translate }}</span>
+</div>
 <div class="modal-footer">
   <button ng-repeat="button in vm.buttons" class="btn btn-{{ button.context }}" ng-class="{ 'modal-mobile-hide': button.hideMobile }" ng-click="button.onClick()"><i ng-if="button.icon" class="zmdi zmdi-{{ button.icon }}"></i>{{ button.title | translate }}</button>
 </div>

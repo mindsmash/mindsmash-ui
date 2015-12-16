@@ -12,7 +12,7 @@
    * @description
    *     Renders styled modals.
    */
-  function msmModal($window, $document, $modal, msmModalDefaults) {
+  function msmModal($window, $document, $modal) {
     return {
       open: open,
       note: note,
@@ -34,8 +34,12 @@
      * @param {object=} controller
      *     The modal's controller. A default controller will be provided
      *     with all parameter bindings.
+     * @param {string=} size
+     *     The modal's size.
+     * @param {string=} templateUrl
+     *     The modal's template URL.
      */
-    function open(parameters, controller, size) {
+    function open(parameters, controller, size, templateUrl) {
 
       parameters = parameters || {};
 
@@ -45,12 +49,10 @@
         var args = keys.join(',');
         var assign =
           'var vm = this;' +
-          'angular.extend(this, $controller(\'MsmModalController\'));' +
           keys.map(function (arg) {
             return 'this[\'' + arg + '\'] = ' + arg + ';';
           }).join('');
-        eval('controller = function ($controller, ' + args + ') {' + assign + '};');
-        controller = angular.extend(controller, msmModalDefaults, controller);
+        eval('controller = function (' + args + ') {' + assign + '};');
       }
 
       // convert parameters to functions
@@ -62,7 +64,7 @@
 
       var modalInstance = $modal.open({
         animation: true,
-        templateUrl: 'components/ui/msm-modal/msm-modal.html',
+        templateUrl: templateUrl || 'components/ui/msm-modal/msm-modal.html',
         controller: controller,
         controllerAs: 'vm',
         size: size || '',
@@ -101,7 +103,7 @@
      */
     function note(title, text, size) {
       return open(null, function ($modalInstance) {
-        var vm = angular.extend(this, msmModalDefaults, {
+        var vm = angular.extend(this, {
           title: title,
           text: text,
           buttons: [{
@@ -111,7 +113,6 @@
             onClick: $modalInstance.close
           }]
         });
-        vm.buttons.splice(1, 2);
       }, size);
     }
 
@@ -135,7 +136,7 @@
      */
     function confirm(title, text, size, closeTitle, dismissTitle) {
       return open(null, function ($modalInstance) {
-        var vm = angular.extend(this, msmModalDefaults, {
+        var vm = angular.extend(this, {
           title: title,
           text: text,
           buttons: [{
@@ -175,11 +176,9 @@
      */
     function select(title, text, options, size, closeTitle, dismissTitle) {
       return open({ options: options }, function ($modalInstance, options) {
-        var vm = angular.merge(this, msmModalDefaults, {
+        var vm = angular.extend(this, {
           title: title,
           text: text,
-          templateUrl: 'components/ui/msm-modal/msm-modal-select.html',
-          templateUrlMobile: 'components/ui/msm-modal/msm-modal-select-mobile.html',
           buttons: [{
             icon: 'check-circle',
             title: closeTitle || 'Select',
@@ -203,7 +202,7 @@
         function select(option) {
           $modalInstance.close(option || vm.options.selected);
         };
-      }, size);
+      }, size, 'components/ui/msm-modal/msm-modal-select.html');
     }
   }
 

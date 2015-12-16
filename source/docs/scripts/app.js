@@ -172,8 +172,8 @@
         value: 'Some value...',
         valueAsync: valueAsync(),
         valueFunction: valueFunction
-      }, function($controller, value, valueAsync, valueFunction) {
-        var vm = angular.extend(this, $controller('MsmModalController'));
+      }, function(value, valueAsync, valueFunction) {
+        var vm = this;
         vm.title = 'Customization';
         vm.text = valueAsync;
       }, size).result.then(function(selectedItem) {

@@ -3401,44 +3401,41 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-mobile-menu-item .menu-label { text-align: left; white-space: nowrap; width: calc((100% - 40px - 64px) * .4); }
 
-@media (min-width: 768px) { .modal-mobile { display: none; }
-  .modal-backdrop.in { opacity: 0.65; }
-  .modal { text-align: center; padding: 0 !important; }
-  .modal:before { content: ''; display: inline-block; height: 100%; margin-right: -4px; vertical-align: middle; }
-  .modal-dialog { display: inline-block; margin: 0; text-align: left; vertical-align: middle; }
-  .modal-content { box-shadow: none; border-bottom-right-radius: 10px; }
-  .modal-header { border-bottom: none; margin: 10px 10px 0; }
-  .modal-header h3 { margin: 0; }
-  .modal-header .img-close { font-size: 21px; padding-top: 2px; }
-  .modal-header .modal-close { color: #999; cursor: pointer; margin-top: 2px; }
-  .modal-header .modal-close:hover { color: #333333; }
-  .modal-header .modal-close:active { color: gray; }
-  .modal-header .modal-header-inner { border-bottom: 1px solid #e5e5e5; padding: 0 5px 10px; }
-  .modal-body { margin: 10px; padding: 0; }
-  .modal-body .modal-body-inner { padding: 10px 20px 25px; text-align: center; }
-  .modal-body h4 { margin: 0; text-align: center; }
-  .modal-body .items-form, .modal-body .items-form-group { width: 100%; }
-  .modal-body .items-form-select { color: #333; margin-left: 10px; width: 60%; }
-  .modal-footer { background-color: #F3F3F3; border-top: none; border-radius: 6px; border-top-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 10px; padding: 0; }
-  .modal-footer .btn { border: 0; border-radius: 0; }
-  .modal-footer .btn:first-child { border-bottom-right-radius: 6px; }
-  .modal-footer .btn-default { background-color: transparent; }
-  .modal-footer .btn-default:hover { background-color: #e6e6e6; } }
+.modal-content { display: flex; flex-direction: column; }
 
-@media (max-width: 767px) { .modal { background: #fff; }
-  .modal-desktop { display: none; }
-  .app-modal-window .modal-dialog { margin: 0; }
-  .app-modal-window .modal-content { border: none; height: 100%; overflow: auto; }
-  .modal-backdrop.in { opacity: 1; }
-  .modal-mobile .img-back { padding-top: 7px; padding-right: 18px; }
-  .modal-mobile .img-ok { font-weight: 300; opacity: 0.6; padding-top: 7px; padding-left: 15px; }
-  .modal-backdrop.in { background-color: #FDFDFD; }
-  .modal-mobile-header { background-color: #317DC1; border-radius: 0; color: #FDFDFD; font-size: 26px; height: 65px; margin: 0; min-width: 320px; padding: 14px 24px; text-align: center; width: 100%; }
-  .modal-mobile-header-title { display: block; font-size: 18px; left: 0; margin: 0 auto; min-width: 150px; overflow: hidden; padding: 6px 16px 0; position: absolute; right: 0; text-overflow: ellipsis; white-space: nowrap; width: calc(100% - 80px); }
-  .modal-content { box-shadow: none; border-radius: 0 !important; }
-  .modal-content h4 { margin: 24px 48px; text-align: center; }
-  .modal-mobile-options { font-size: 20px; margin: 0; padding: 0; list-style: none; }
-  .modal-mobile-option { border-bottom: 1px solid #EAEAEA; padding: 18px 24px; } }
+.modal-header { display: flex; flex-direction: row; padding: 12px 24px; }
+
+.modal-header h3 { flex-grow: 1; line-height: 35px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.modal-header .modal-close { color: #AAA; font-size: 20px; line-height: 35px; padding: 0 12px; position: relative; right: -12px; cursor: pointer; }
+
+.modal-body { flex-grow: 1; }
+
+.modal-footer { border: 0; display: flex; overflow: hidden; }
+
+.modal-footer .btn { border-radius: 0; border: 0; flex-grow: 1; padding-bottom: 9px; padding-top: 9px; }
+
+.modal-footer .btn + .btn { margin-left: 0; }
+
+@media (max-width: 767px) { .modal-dialog { bottom: 0; left: 0; margin: 0; position: fixed; right: 0; top: 0; }
+  .modal-content { border-radius: 0; height: 100%; width: 100%; }
+  .modal-header { background-color: #317DC1; border: 0; color: #FDFDFD; }
+  .modal-header h3 { text-align: center; }
+  .modal-header .modal-close { color: #FDFDFD; }
+  .modal-footer { flex-direction: column; }
+  .modal-footer .btn { margin-top: 15px; }
+  .modal-footer .btn:first-child { margin-top: 0; }
+  .modal-footer .btn + .btn { border-right: 1 px solid rgba(255, 255, 255, 0.25); }
+  .modal-mobile-hide { display: none !important; }
+  .modal-mobile-options { font-size: 20px; margin: -15px; padding: 0; list-style: none; }
+  .modal-mobile-option { border-bottom: 1px solid #EAEAEA; padding: 18px 24px; cursor: pointer; } }
+
+@media (min-width: 768px) { .modal-mobile-show { display: none !important; }
+  .modal-footer { flex-direction: row-reverse; padding: 0; }
+  .modal-footer .btn { margin: 0; }
+  .modal-footer .btn + .btn { border-right: 1px solid rgba(255, 255, 255, 0.25); }
+  .modal-footer .btn:first-child { border-bottom-right-radius: 6px; }
+  .modal-footer .btn:last-child { border-bottom-left-radius: 6px; } }
 
 /** Use with bootstrap's .navbar */
 .msm-navbar { background-color: #317DC1; border: 0; border-radius: 0; color: #FDFDFD; height: 60px; margin-bottom: 0; }
