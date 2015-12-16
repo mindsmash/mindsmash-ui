@@ -161,33 +161,23 @@
      *
      * @description
      *     Display a modal selection dialog.
-     * @param {string} title
-     *     The modal's title.
-     * @param {string} text
-     *     The modal's text.
      * @param {array} options
      *     The modal's selection options.
-     * @param {string=} size
-     *     The modal's size.
-     * @param {string=Ok} closeTitle
-     *     The label of the modal's confirm button.
-     * @param {string=Cancel} dismissTitle
-     *     The label of the modal's cancel button.
      */
-    function select(title, text, options, size, closeTitle, dismissTitle) {
+    function select(options) {
       return open({ values: options.values, selectedValue: options.selected }, function ($modalInstance, values, selectedValue) {
         var vm = angular.extend(this, {
-          title: title,
-          text: text,
+          title: options.keyTitle,
+          text: options.keyText,
           buttons: [{
             icon: 'check-circle',
-            title: closeTitle || 'Select',
+            title: options.keyClose || 'Select',
             context: 'primary',
             onClick: select,
             hideMobile: true
           }, {
             icon: 'close-circle',
-            title: dismissTitle || 'Cancel',
+            title: options.keyDismiss || 'Cancel',
             context: 'default',
             onClick: $modalInstance.dismiss
           }]
@@ -202,7 +192,7 @@
         function select(option) {
           $modalInstance.close(option || vm.options.selected);
         }
-      }, size, 'components/ui/msm-modal/msm-modal-select.html');
+      }, options.size, 'components/ui/msm-modal/msm-modal-select.html');
     }
   }
 
