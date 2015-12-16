@@ -165,7 +165,7 @@
      *     The modal's selection options.
      */
     function select(options) {
-      return open({ values: options.values, selectedValue: options.selected }, function ($modalInstance, values, selectedValue) {
+      return open({ values: options.values, options: options }, function ($modalInstance, values, options) {
         var vm = angular.extend(this, {
           title: options.keyTitle,
           text: options.keyText,
@@ -186,7 +186,7 @@
         vm.select = select;
         vm.options = {
           values: values,
-          selected: selectedValue ? selectedValue : values[0]
+          selected: options.selected ? options.selected : values[0]
         };
 
         function select(option) {
