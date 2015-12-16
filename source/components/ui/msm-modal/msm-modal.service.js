@@ -161,38 +161,71 @@
      *
      * @description
      *     Display a modal selection dialog.
+     * @param {string} title
+     *     The modal's title.
+     * @param {string} text
+     *     The modal's text.
      * @param {array} options
      *     The modal's selection options.
+     * @param {string=} size
+     *     The modal's size.
+     * @param {string=Ok} closeTitle
+     *     The label of the modal's confirm button.
+     * @param {string=Cancel} dismissTitle
+     *     The label of the modal's cancel button.
      */
-    function select(options) {
+    function select(title, text, options, size, closeTitle, dismissTitle) {
       return open({ values: options.values, options: options }, function ($modalInstance, values, options) {
         var vm = angular.extend(this, {
-          title: options.keyTitle,
-          text: options.keyText,
+          title: title,
+          text: text,
           buttons: [{
             icon: 'check-circle',
-            title: options.keyClose || 'Select',
+            title: closeTitle || 'Select',
             context: 'primary',
             onClick: select,
             hideMobile: true
           }, {
             icon: 'close-circle',
-            title: options.keyDismiss || 'Cancel',
+            title: dismissTitle || 'Cancel',
             context: 'default',
             onClick: $modalInstance.dismiss
           }]
         });
 
-        vm.select = select;
+        var valueList = [];
+        var selectedVaL = null;
+        for (var key in values) {
+          var val = values[key].value;
+          valueList.push(val);
+          if (options.selected === values[key].key) {
+            selectedVaL = val;
+          }
+        }
+
         vm.options = {
-          values: values,
-          selected: options.selected ? options.selected : values[0]
+          values: valueList,
+          selected: selectedVaL
         };
 
-        function select(option) {
-          $modalInstance.close(option || vm.options.selected);
+        vm.select = select;
+
+        function select (option) {
+          var found = false;
+          var selectedItem = option || vm.options.selected;
+
+          for (var key in values) {
+            if (selectedItem === values[key].value) {
+              $modalInstance.close(values[key].key);
+              found = true;
+              break;
+            }
+          }
+          if (!found) {
+            $modalInstance.close(selectedItem);
+          }
         }
-      }, options.size, 'components/ui/msm-modal/msm-modal-select.html');
+      }, size, 'components/ui/msm-modal/msm-modal-select.html');
     }
   }
 

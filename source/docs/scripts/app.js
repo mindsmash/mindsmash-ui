@@ -210,12 +210,26 @@
     };
 
     vm.openSelect = function(size) {
+      var values = [
+        {
+          key: 'KeyItem1',
+          value: 'Item 1'
+        },
+        {
+          key: 'KeyItem2',
+          value: 'Item 2'
+        },
+        {
+          key: 'KeyItem3',
+          value: 'Item 3'
+        }
+      ];
       return msmModal.select(
           'Selection',
           'Please select:',
           {
-            values: ['Item 1', 'Item 2', 'Item 3'],
-            selected: 'Item 1'
+            values: values,
+            selected: values[0].key
           },
           size
       ).result.then(function(selectedItem) {
