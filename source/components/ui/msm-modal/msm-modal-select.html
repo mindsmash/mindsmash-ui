@@ -1,8 +1,10 @@
-<form class="form-inline items-form">
-  <div class="form-group items-form-group">
-    <label for="items">{{ vm.text }}</label>
-    <select id="items" class="form-control items-form-select"
+<form class="form-horizontal">
+  <div class="form-group">
+    <label for="selectItems" class="col-sm-3 control-label">{{ vm.text }}</label>
+    <div class="col-sm-9">
+    <select id="selectItems" class="form-control" id="selectItems"
             ng-model="vm.options.selected"
             ng-options="option for option in vm.options.values"></select>
+    </div>
   </div>
 </form>

@@ -71,16 +71,16 @@
         windowClass: 'app-modal-window'
       });
       
-      modalInstance.opened['finally'](function() {
-        modalInstance.pageXOffset = $window.pageXOffset;
-        modalInstance.pageYOffset = $window.pageYOffset;
-        angular.element($document[0].body).css('position', 'fixed');
-      });
-      
-      modalInstance.result['finally'](function() {
-        angular.element($document[0].body).css('position', 'inherit');
-        $window.scrollTo(modalInstance.pageXOffset, modalInstance.pageYOffset);
-      })
+//      modalInstance.opened['finally'](function() {
+//        modalInstance.pageXOffset = $window.pageXOffset;
+//        modalInstance.pageYOffset = $window.pageYOffset;
+//        angular.element($document[0].body).css('position', 'fixed');
+//      });
+//      
+//      modalInstance.result['finally'](function() {
+//        angular.element($document[0].body).css('position', 'inherit');
+//        $window.scrollTo(modalInstance.pageXOffset, modalInstance.pageYOffset);
+//      })
       
       return modalInstance;
     }
@@ -100,13 +100,16 @@
      *     The modal's size.
      */
     function note(title, text, size) {
-      return open(null, function () {
-        var vm = this;
-
-        angular.extend(vm, msmModalDefaults, {
+      return open(null, function ($modalInstance) {
+        var vm = angular.extend(this, msmModalDefaults, {
           title: title,
           text: text,
-          buttons: buttons.slice(0, 1)
+          buttons: [{
+            icon: 'check-circle',
+            title: 'Ok',
+            context: 'primary',
+            onClick: $modalInstance.close
+          }]
         });
         vm.buttons.splice(1, 2);
       }, size);
@@ -132,21 +135,21 @@
      */
     function confirm(title, text, size, closeTitle, dismissTitle) {
       return open(null, function ($modalInstance) {
-        var vm = this;
-
-        angular.merge(vm, msmModalDefaults, {
+        var vm = angular.extend(this, msmModalDefaults, {
           title: title,
-          text: text
+          text: text,
+          buttons: [{
+            icon: 'check-circle',
+            title: closeTitle || 'Ok',
+            context: 'primary',
+            onClick: $modalInstance.close
+          }, {
+            icon: 'close-circle',
+            title: dismissTitle || 'Cancel',
+            context: 'default',
+            onClick: $modalInstance.dismiss
+          }]
         });
-
-        if (angular.isDefined(closeTitle)) {
-          vm.buttons[0].title = closeTitle;
-          vm.buttons[0].onClick = $modalInstance.close;
-        }
-        if (angular.isDefined(dismissTitle)) {
-          vm.buttons[1].title = dismissTitle;
-          vm.buttons[1].onClick = $modalInstance.dismiss;
-        }
       }, size);
     }
 
@@ -172,26 +175,32 @@
      */
     function select(title, text, options, size, closeTitle, dismissTitle) {
       return open({ options: options }, function ($modalInstance, options) {
-        var vm = this;
-
-        angular.merge(vm, msmModalDefaults, {
+        var vm = angular.merge(this, msmModalDefaults, {
           title: title,
           text: text,
           templateUrl: 'components/ui/msm-modal/msm-modal-select.html',
-          templateUrlMobile: 'components/ui/msm-modal/msm-modal-select-mobile.html'
+          templateUrlMobile: 'components/ui/msm-modal/msm-modal-select-mobile.html',
+          buttons: [{
+            icon: 'check-circle',
+            title: closeTitle || 'Select',
+            context: 'primary',
+            onClick: select,
+            hideMobile: true
+          }, {
+            icon: 'close-circle',
+            title: dismissTitle || 'Cancel',
+            context: 'default',
+            onClick: $modalInstance.dismiss
+          }]
         });
 
-        vm.close.title = closeTitle || 'Select';
-        if (angular.isDefined(dismissTitle)) {
-          vm.dismiss.title = dismissTitle;
-        }
-
+        vm.select = select;
         vm.options = {
           values: options,
           selected: options[0]
         };
 
-        vm.onClose = function (option) {
+        function select(option) {
           $modalInstance.close(option || vm.options.selected);
         };
       }, size);

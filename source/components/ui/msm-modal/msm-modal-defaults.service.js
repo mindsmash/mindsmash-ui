@@ -8,16 +8,6 @@
       text: '',
       templateUrl: 'components/ui/msm-modal/msm-modal-default.html',
       templateUrlMobile: 'components/ui/msm-modal/msm-modal-default-mobile.html',
-      buttons: [{
-        icon: 'check-circle',
-        title: 'Ok',
-        context: 'primary',
-        onClick: angular.noop
-      }, {
-        icon: 'close-circle',
-        title: 'Cancel',
-        context: 'primary',
-        onClick: angular.noop
-      }]
+      buttons: []
     });
 })();
