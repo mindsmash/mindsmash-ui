@@ -3413,7 +3413,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .modal-footer { border: 0; display: flex; overflow: hidden; }
 
-.modal-footer .btn { border-radius: 0; border: 0; flex-grow: 1; padding-bottom: 9px; padding-top: 9px; }
+.modal-footer .btn { border-radius: 0; border: 0; flex: 1; padding-bottom: 9px; padding-top: 9px; }
 
 .modal-footer .btn + .btn { margin-left: 0; }
 
