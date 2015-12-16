@@ -215,7 +215,7 @@
           'Please select:',
           {
             values: ['Item 1', 'Item 2', 'Item 3'],
-            selected: 0
+            selected: 'Item 1'
           },
           size
       ).result.then(function(selectedItem) {
