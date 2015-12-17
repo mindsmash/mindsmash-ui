@@ -261,7 +261,8 @@
                 name: 'Label 1 name',
                 model: 'field1',
                 errorClass: 'has-error',
-                errorDefinitions: 'form.id1.$dirty'
+                errorDefinitions: 'form.id1.$dirty',
+                required: true
               },
               {
                 id: 'id2',
@@ -272,7 +273,8 @@
                 name: 'Label 2 name',
                 model: 'field2',
                 errorClass: 'has-error',
-                errorDefinitions: 'form.id2.$dirty'
+                errorDefinitions: 'form.id2.$dirty',
+                required: true
               },
               {
                 id: 'id3',
@@ -283,7 +285,8 @@
                 name: 'Label 3 name',
                 model: 'field3',
                 errorClass: 'has-error',
-                errorDefinitions: 'form.id3.$dirty'
+                errorDefinitions: 'form.id3.$dirty',
+                required: false
               }
             ]
           },

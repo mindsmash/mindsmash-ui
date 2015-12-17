@@ -11,10 +11,11 @@
       <div class="form-group" ng-repeat="field in vm.inputFields">
         <label for="{{ field.id }}">{{ field.label | translate }}</label>
         <div class="input-group input-group-lg">
-        <span class="input-group-addon">
-            <i class="zmdi {{ field.image }}"></i>
-        </span>
+          <span class="input-group-addon">
+              <i class="zmdi {{ field.image }}"></i>
+          </span>
           <input
+                  ng-if="field.required"
                   type="{{ field.type }}"
                   class="form-control"
                   placeholder="{{ field.placeholder | translate }}"
@@ -22,6 +23,14 @@
                   id="{{ field.id }}"
                   data-ng-model="vm.models[field.id]"
                   required />
+          <input
+                  ng-if="!field.required"
+                  type="{{ field.type }}"
+                  class="form-control"
+                  placeholder="{{ field.placeholder | translate }}"
+                  name="{{ field.name }}"
+                  id="{{ field.id }}"
+                  data-ng-model="vm.models[field.id]" />
         </div>
       </div>
     </form>

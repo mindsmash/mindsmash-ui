@@ -229,7 +229,7 @@
       }, size, 'components/ui/msm-modal/msm-modal-select.html');
     }
 
-    function form(title, options, beforeClose, size, closeTitle, dismissTitle) {
+    function form(title, options, checkCloseModal, size, closeTitle, dismissTitle) {
       return open({ inputFields: options.inputFields }, function ($modalInstance, inputFields) {
         var vm = angular.extend(this, {
           title: title,
@@ -255,8 +255,23 @@
         }
 
         function checkValues() {
-          if(beforeClose(vm.models)) {
+          var check = checkCloseModal(vm.models);
+          // if the given callback is a promise
+          if(check.then) {
+            check.then(function(result) {
+              console.log(result);
+              if(result) {
+                $modalInstance.close(vm.models);
+              } else {
+                // TODO: Error handling
+              }
+            }).catch(function() {
+              // TODO: Error handling
+            })
+          } else if(check) {
             $modalInstance.close(vm.models);
+          } else {
+            // TODO: Error handling
           }
         }
       }, size, 'components/ui/msm-modal/msm-modal-form.html');
