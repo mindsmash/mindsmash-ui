@@ -3405,7 +3405,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .modal-content { border: 0; box-shadow: none; display: flex; flex-direction: column; }
 
-.modal-header { display: flex; flex-direction: row; min-height: 60px; padding: 12px 24px; }
+.modal-header { display: flex; flex-direction: row; padding: 12px 24px; }
 
 .modal-header h3 { flex-grow: 1; line-height: 35px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
@@ -3422,10 +3422,10 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 @media (max-width: 767px) { .modal-mobile-hide { display: none !important; }
   .modal-dialog { bottom: 0; left: 0; margin: 0; position: fixed; right: 0; top: 0; }
   .modal-content { border-radius: 0; height: 100%; width: 100%; }
-  .modal-header { background-color: #317DC1; border: 0; color: #FDFDFD; }
+  .modal-header { background-color: #317DC1; border: 0; color: #FDFDFD; min-height: 60px; }
   .modal-header h3 { text-align: center; }
   .modal-header .modal-close { color: #FDFDFD; }
-  .modal-footer { flex-direction: column; }
+  .modal-footer { flex-direction: column; min-height: 60px; padding: 0; }
   .modal-footer .btn { margin-top: 15px; padding-bottom: 9px; padding-top: 9px; }
   .modal-footer .btn:first-child { margin-top: 0; }
   .modal-footer .btn + .btn { border-right: 1 px solid rgba(255, 255, 255, 0.25); }

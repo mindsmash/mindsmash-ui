@@ -13,7 +13,6 @@
 .modal-header {
   display: flex;
   flex-direction: row;
-  min-height: 60px;
   padding: 12px 24px;
 
   h3 {
@@ -79,6 +78,7 @@
     background-color: $msm-blue;
     border: 0;
     color: $msm-white;
+    min-height: 60px;
 
     h3 {
       text-align: center;
@@ -91,6 +91,8 @@
 
   .modal-footer {
     flex-direction: column;
+    min-height: 60px;
+    padding: 0;
 
     .btn {
       margin-top: 15px;
