@@ -3425,6 +3425,9 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
   .modal-header { background-color: #317DC1; border: 0; color: #FDFDFD; min-height: 60px; }
   .modal-header h3 { text-align: center; }
   .modal-header .modal-close { color: #FDFDFD; }
+  .modal-body .item-selected { color: #9BBF29; margin-right: 10px; }
+  .modal-body .item-not-selected { color: #fdfdfd; margin-right: 10px; }
+  .modal-body .item-not-selected:active { color: #eaeaea; }
   .modal-footer { flex-direction: column; min-height: 60px; padding: 0; }
   .modal-footer .btn { margin-top: 0; padding-bottom: 9px; padding-top: 9px; }
   .modal-footer .btn:first-child { margin-top: 0; }

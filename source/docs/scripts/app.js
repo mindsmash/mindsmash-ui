@@ -209,31 +209,33 @@
       });
     };
 
+    var values = [
+      {
+        key: 'KeyItem1',
+        value: 'Item 1'
+      },
+      {
+        key: 'KeyItem2',
+        value: 'Item 2'
+      },
+      {
+        key: 'KeyItem3',
+        value: 'Item 3'
+      }
+    ];
+    var selectedSelectModalItem = values[0].key;
     vm.openSelect = function(size) {
-      var values = [
-        {
-          key: 'KeyItem1',
-          value: 'Item 1'
-        },
-        {
-          key: 'KeyItem2',
-          value: 'Item 2'
-        },
-        {
-          key: 'KeyItem3',
-          value: 'Item 3'
-        }
-      ];
       return msmModal.select(
           'Selection',
           'Please select:',
           {
             values: values,
-            selected: values[0].key
+            selected: selectedSelectModalItem
           },
           size
       ).result.then(function(selectedItem) {
         $log.info('Modal (select): Clicked OK.');
+        selectedSelectModalItem = selectedItem;
         msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
       }, function() {
         $log.info('Modal (select): Cancelled.');

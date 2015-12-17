@@ -89,6 +89,22 @@
     }
   }
 
+  .modal-body {
+    .item-selected {
+      color: $msm-green;
+      margin-right: 10px;
+    }
+
+    .item-not-selected {
+      color: opacify($msm-white, 1.0);
+      margin-right: 10px;
+
+      &:active {
+        color: opacify($msm-gray-light, 1.0);
+      }
+    }
+  }
+
   .modal-footer {
     flex-direction: column;
     min-height: 60px;
