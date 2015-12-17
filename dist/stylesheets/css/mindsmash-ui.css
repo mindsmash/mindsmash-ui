@@ -3430,7 +3430,8 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
   .modal-footer .btn:first-child { margin-top: 0; }
   .modal-footer .btn + .btn { border-right: 1 px solid rgba(255, 255, 255, 0.25); }
   .modal-mobile-options { font-size: 20px; margin: -15px; padding: 0; list-style: none; }
-  .modal-mobile-option { border-bottom: 1px solid #EAEAEA; padding: 18px 24px; cursor: pointer; } }
+  .modal-mobile-option { border-bottom: 1px solid #EAEAEA; padding: 18px 24px; cursor: pointer; }
+  .modal-mobile-option:active { background-color: #EAEAEA; } }
 
 @media (min-width: 768px) { .modal-mobile-show { display: none !important; }
   .modal { display: flex !important; }

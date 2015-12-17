@@ -120,6 +120,10 @@
     border-bottom: 1px solid $msm-gray-light;
     padding: 18px 24px;
     cursor: pointer;
+
+    &:active {
+      background-color: $msm-gray-light;
+    }
   }
 }
 
