@@ -3631,6 +3631,8 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .pos-abs { position: absolute !important; }
 
+.no-overflow { overflow: hidden !important; }
+
 .normal { font-weight: normal !important; font-size: 16px; }
 
 .light { font-weight: 300 !important; }
