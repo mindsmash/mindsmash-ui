@@ -18,19 +18,46 @@ var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 gulp.task('default', ['build']);
 
 // start scss watch mode
-gulp.task('dev', gulpSequence('dev:sass', 'bower:dev', 'server'));
+gulp.task('dev', gulpSequence('sass:dev', 'bower:dev', 'server'));
 gulp.task('serve', ['dev']); //alias
 
 // create normal and minified versions
-gulp.task('build', gulpSequence('clean', ['build:sass', 'build:js', 'bower:build'], ['copy:module', 'copy:sass', 'copy:docs']));
+gulp.task('build', gulpSequence('clean', ['sass:build', 'build:js', 'bower:build'], ['copy:module', 'copy:sass', 'copy:docs']));
 
 // create readable css from scss files
-gulp.task('dev:sass', function() {
-  return gulp.src('source/stylesheets/*.scss')
+gulp.task('sass:dev', function() {
+  var kit = gulp.src('source/stylesheets/*.scss')
     .pipe(scsslint())
     .pipe(sass({outputStyle: 'compact'}).on('warning', gutil.log))
     .pipe(gulp.dest('.tmp/css'))
     .pipe(browserSync.stream());
+
+  var docs = gulp.src('source/docs/*.scss')
+    .pipe(sass({outputStyle: 'compact'}).on('warning', gutil.log))
+    .pipe(gulp.dest('.tmp/css'))
+    .pipe(browserSync.stream());
+
+  return merge(kit, docs);
+});
+
+// create minified css files
+gulp.task('sass:build', function() {
+  var kit = gulp.src('source/stylesheets/*.scss')
+    .pipe(scsslint())
+    .pipe(sass({outputStyle: 'compact'}).on('error', gutil.log))
+    .pipe(gulp.dest('dist/stylesheets/css'))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', gutil.log))
+    .pipe(rename(function(path) {
+      path.basename += ".min";
+      return path;
+    }))
+    .pipe(gulp.dest('dist/stylesheets/css'));
+
+  var docs = gulp.src('source/docs/*.scss')
+    .pipe(sass({outputStyle: 'compact'}).on('error', gutil.log))
+    .pipe(gulp.dest('dist/docs/css'));
+
+  return merge(kit, docs);
 });
 
 gulp.task('bower:build', function () {
@@ -54,20 +81,6 @@ gulp.task('bower:dev', function () {
     .pipe(gulp.dest('source/docs'));
 });
 
-// create minified css files
-gulp.task('build:sass', function() {
-  return gulp.src('source/stylesheets/*.scss')
-    .pipe(scsslint())
-    .pipe(sass({outputStyle: 'compact'}).on('error', gutil.log))
-    .pipe(gulp.dest('dist/stylesheets/css'))
-    .pipe(sass({outputStyle: 'compressed'}).on('error', gutil.log))
-    .pipe(rename(function(path) {
-      path.basename += ".min";
-      return path;
-    }))
-    .pipe(gulp.dest('dist/stylesheets/css'))
-});
-
 //copy scss files
 gulp.task('copy:sass', function() {
   return gulp.src('source/stylesheets/**/*')
@@ -77,12 +90,10 @@ gulp.task('copy:sass', function() {
 });
 
 gulp.task('copy:docs', function() {
-  var docs = gulp.src('source/docs/**')
+  var scripts = gulp.src('source/docs/scripts/*.js')
+    .pipe(gulp.dest('dist/docs/scripts'));
+  var html = gulp.src('source/docs/*.html')
     .pipe(gulp.dest('dist/docs/'));
-  var css = gulp.src('dist/stylesheets/css/**')
-    .pipe(gulp.dest('dist/docs/css'));
-
-  return merge(docs, css);
 });
 
 gulp.task('copy:module', function() {
@@ -135,7 +146,7 @@ gulp.task('server', function() {
     ['bower:dev']);
 
   gulp.watch(['source/stylesheets/**/*.scss', 'source/components/**/*.scss'],
-    ['dev:sass']);
+    ['sass:dev']);
 });
 
 // delete dist and .tmp folder
