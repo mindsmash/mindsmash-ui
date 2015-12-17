@@ -1,39 +1,19 @@
-.btn {
-  i {
-    margin-left: -4px;
-    margin-right: 8px;
-  }
-  &.btn-zmdi i {
-    margin-right: -4px;
-  }
+.btn i {
+  margin-right: 4px;
 }
 
-.btn-lg {
-  i {
-    margin-left: -8px;
-    margin-right: 10px;
-  }
-  &.btn-zmdi i {
-    margin-right: -8px;
-  }
+.btn-lg i {
+  margin-right: 6px;
 }
 
-.btn-sm {
-  i {
-    margin-left: -3px;
-    margin-right: 6px;
-  }
-  &.btn-zmdi i {
-    margin: -3px;
-  }
+.btn-sm i {
+  margin-right: 3px;
 }
 
-.btn-xs {
-  i {
-    margin-left: -2px;
-    margin-right: 4px;
-  }
-  &.btn-zmdi i {
-    margin-right: -2px;
-  }
+.btn-xs i {
+  margin-right: 2px;
+}
+
+.btn-zmdi i {
+  margin: 0;
 }

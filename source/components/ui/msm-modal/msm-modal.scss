@@ -16,8 +16,9 @@
   padding: 12px 24px;
 
   h3 {
+    font-size: $font-size-h3;
+    line-height: 32px;
     flex-grow: 1;
-    line-height: 35px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -26,7 +27,7 @@
   .modal-close {
     color: $msm-gray;
     font-size: 20px;
-    line-height: 35px;
+    line-height: 32px;
     padding: 0 12px;
     position: relative;
     right: -12px;
@@ -47,6 +48,13 @@
   .btn {
     border: 0;
     flex: 1;
+    
+    &.btn-default {
+      background-color: $msm-gray-lighter;
+      &:active, &:focus, &:hover {
+        background-color: $msm-gray-light;
+      }
+    }
   }
 
   .btn + .btn {
@@ -56,7 +64,7 @@
 
 
 
-@media (max-width: 767px) {
+@include sm-and-down {
   .modal-mobile-hide { display: none !important; }
 
   .modal-dialog {
@@ -145,11 +153,15 @@
 
 
 
-@media (min-width: 768px) {
+@include md-and-up {
   .modal-mobile-show { display: none !important; }
 
   .modal {
     display: flex !important;
+  }
+
+  .modal-content {
+    border-radius: $border-radius-base;
   }
 
   .modal-dialog {
@@ -158,8 +170,8 @@
   }
 
   .modal-header {
-    padding: 28px 0 18px;
-    margin: 0 28px;
+    margin: $panel-sm-heading-margin;
+    padding: $panel-sm-heading-padding;
   }
 
   .modal-body {
@@ -169,6 +181,7 @@
   .modal-footer {
     flex-direction: row-reverse;
     padding: 0;
+    margin-bottom: -2px; // fix rendering glitch
 
     .btn {
       border-radius: 0;
@@ -183,7 +196,7 @@
   }
 
   .modal-footer {
-    .btn:first-child { border-bottom-right-radius: 6px; }
-    .btn:last-child { border-bottom-left-radius: 6px; }
+    .btn:first-child { border-bottom-right-radius: $border-radius-base; }
+    .btn:last-child { border-bottom-left-radius: $border-radius-base; }
   }
 }
