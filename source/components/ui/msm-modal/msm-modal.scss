@@ -36,6 +36,7 @@
 
 .modal-body {
   flex-grow: 1;
+  overflow: scroll;
 }
 
 .modal-footer {
@@ -77,6 +78,7 @@
     background-color: $msm-blue;
     border: 0;
     color: $msm-white;
+    min-height: 60px;
 
     h3 {
       text-align: center;
@@ -87,11 +89,29 @@
     }
   }
 
+  .modal-body {
+    .item-selected {
+      color: $msm-green;
+      margin-right: 10px;
+    }
+
+    .item-not-selected {
+      color: opacify($msm-white, 1.0);
+      margin-right: 10px;
+
+      &:active {
+        color: opacify($msm-gray-light, 1.0);
+      }
+    }
+  }
+
   .modal-footer {
     flex-direction: column;
+    min-height: 60px;
+    padding: 0;
 
     .btn {
-      margin-top: 15px;
+      margin-top: 0;
       padding-bottom: 9px;
       padding-top: 9px;
       
@@ -116,6 +136,10 @@
     border-bottom: 1px solid $msm-gray-light;
     padding: 18px 24px;
     cursor: pointer;
+
+    &:active {
+      background-color: $msm-gray-light;
+    }
   }
 }
 
