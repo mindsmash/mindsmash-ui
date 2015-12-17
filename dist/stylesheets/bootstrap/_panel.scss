@@ -1,24 +1,99 @@
-.panel-heading-image {
-  padding: 0;
+$panel-sm-heading-margin:        0 24px 0 !default;
+$panel-sm-heading-padding:       24px 0 16px !default;
+$panel-sm-body-padding:          16px 24px !default;
+$panel-sm-footer-padding:        12px 24px 16px !default;
+
+$panel-xs-heading-margin:        0 16px 0 !default;
+$panel-xs-heading-padding:       16px 0 12px !default;
+$panel-xs-body-padding:          12px 16px !default;
+$panel-xs-footer-padding:        8px 16px 12px !default;
+
+.panel .panel-heading .btn { margin-left: 12px; }
+.panel-sm .panel-heading .btn { margin-left: 8px; }
+.panel-xs .panel-heading .btn { margin-left: 4px; }
+
+@include sm-and-down {
+  .panel {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    margin-bottom: 12px;
+
+    .panel-heading {
+      font-size: $font-size-h4;
+      margin: $panel-xs-heading-margin;
+      padding: $panel-xs-heading-padding;
+
+      .btn {
+        @include button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+        margin-left: 8px;
+        position: relative;
+        top: -6px;
+      }
+    }
+
+    .panel-body {
+      padding: $panel-xs-body-padding;
+    }
+
+    .panel-footer {
+      padding: $panel-xs-footer-padding;
+    }
+  }
 }
 
-.panel-default {
-  border-color: transparent;
-}
+@include md-and-up {
+  .panel {
+    .panel-heading {
+      margin: $panel-heading-padding;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
 
-.panel-heading-main {
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: 36px;
-  margin-right: 36px;
-}
+    .panel-title {
+      font-size: $font-size-h2;
+      padding: 0;
+      margin: 0;
+    }
+  }
 
-.panel-title {
-  font-size: $font-size-h2;
-}
+  .panel-sm {
+    .panel-heading {
+      margin: $panel-sm-heading-margin;
+      padding: $panel-sm-heading-padding;
+    }
 
-.panel-title-small {
-  font-size: $font-size-h4;
-  font-weight: 400;
-  margin: 0;
+    .panel-title {
+      font-size: $font-size-h3;
+    }
+
+    .panel-body {
+      padding: $panel-sm-body-padding;
+    }
+
+    .panel-footer {
+      padding: $panel-sm-footer-padding;
+    }
+  }
+
+  .panel-xs {
+    .panel-heading {
+      margin: $panel-xs-heading-margin;
+      padding: $panel-xs-heading-padding;
+    }
+
+    .panel-title {
+      font-size: $font-size-h4;
+    }
+
+    .panel-body {
+      padding: $panel-xs-body-padding;
+    }
+
+    .panel-footer {
+      padding: $panel-xs-footer-padding;
+    }
+  }
 }

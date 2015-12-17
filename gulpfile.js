@@ -28,7 +28,7 @@ gulp.task('build', gulpSequence('clean', ['sass:build', 'build:js', 'bower:build
 gulp.task('sass:dev', function() {
   var kit = gulp.src('source/stylesheets/*.scss')
     .pipe(scsslint())
-    .pipe(sass({outputStyle: 'compact'}).on('warning', gutil.log))
+    .pipe(sass({outputStyle: 'compact', precision: 8}).on('warning', gutil.log))
     .pipe(gulp.dest('.tmp/css'))
     .pipe(browserSync.stream());
 
@@ -137,12 +137,11 @@ gulp.task('server', function() {
 
   gulp.watch([
     '!source/docs/bower_components/',
-    '!source/docs/*.html',
     'source/docs/*',
     'source/components/**/*'
   ]).on('change', browserSync.reload);
 
-  gulp.watch('source/docs/*.html',
+  gulp.watch('bower.json',
     ['bower:dev']);
 
   gulp.watch(['source/stylesheets/**/*.scss', 'source/components/**/*.scss'],

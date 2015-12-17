@@ -50,10 +50,10 @@ $font-family-sans-serif:  "Source Sans Pro", sans-serif !default;
 //$font-family-base:        $font-family-sans-serif !default;
 
 $font-size-base:          16px !default;
-$font-size-large:         18px !default;
+$font-size-large:         20px !default;
 $font-size-small:         12px !default;
 
-$font-size-h1:            38px !default;
+$font-size-h1:            36px !default;
 $font-size-h2:            32px !default;
 $font-size-h3:            24px !default;
 $font-size-h4:            18px !default;
@@ -68,7 +68,7 @@ $line-height-base:        1.5 !default;
 //** By default, this inherits from the `<body>`.
 //$headings-font-family:    inherit !default;
 $headings-font-weight:    300 !default;
-$headings-line-height:    1.25 !default;
+$headings-line-height:    1 + 1/3 !default;
 //$headings-color:          inherit !default;
 
 
@@ -95,14 +95,14 @@ $headings-line-height:    1.25 !default;
 $padding-base-vertical:     8px !default;
 $padding-base-horizontal:   16px !default;
 
-$padding-large-vertical:    10px !default;
-$padding-large-horizontal:  22px !default;
+$padding-large-vertical:    8px !default;
+$padding-large-horizontal:  24px !default;
 
-$padding-small-vertical:    3px !default;
-$padding-small-horizontal:  8px !default;
+$padding-small-vertical:    6px !default;
+$padding-small-horizontal:  12px !default;
 
-$padding-xs-vertical:       3px !default;
-$padding-xs-horizontal:     6px !default;
+$padding-xs-vertical:       2px !default;
+$padding-xs-horizontal:     8px !default;
 
 $line-height-large:         1.5 !default; //extra decimals for Win 8.1 Chrome
 $line-height-small:         1.5 !default;
@@ -709,8 +709,8 @@ $alert-link-font-weight:      600 !default;
 
 $panel-bg:                    $msm-white !default;
 $panel-body-padding:          24px 36px !default;
-$panel-heading-padding:       36px 36px  24px !default;
-$panel-footer-padding:        12px 36px !default;
+$panel-heading-padding:       36px 36px 24px !default;
+$panel-footer-padding:        18px 36px 24px !default;
 //$panel-border-radius:         $border-radius-base !default;
 
 //** Border color for elements within panels

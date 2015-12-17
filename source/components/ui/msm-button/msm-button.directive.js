@@ -13,8 +13,8 @@
   angular
       .module('msm.components.ui')
       .directive('msmButton', MsmButtonFactory('', 'btn-default'))
-      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-delete', 'btn-danger'))
-      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-plus-circle', 'btn-primary'))
+      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-delete', 'btn-danger'))
+      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-plus-circle', 'btn-primary'))
   ;
 
 
