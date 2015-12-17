@@ -1,4 +1,5 @@
 @import 'variables'; // @@gulp-remove-line
+@import 'mixins/filter.mixin';
 @import 'mixins/placeholder-color.mixin';
 
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap'; // @@gulp-remove-line
