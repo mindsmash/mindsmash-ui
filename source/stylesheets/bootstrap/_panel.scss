@@ -16,6 +16,10 @@ $panel-xs-footer-padding:        8px 0 12px !default;
   }
 }
 
+.panel .panel-heading .btn { margin-left: 12px; }
+.panel-sm .panel-heading .btn { margin-left: 8px; }
+.panel-xs .panel-heading .btn { margin-left: 4px; }
+
 @include sm-and-down {
   .panel {
     border-left: 0;
@@ -24,9 +28,9 @@ $panel-xs-footer-padding:        8px 0 12px !default;
     margin-bottom: 12px;
 
     .panel-heading {
+      font-size: $font-size-h4;
       margin: $panel-xs-heading-margin;
       padding: $panel-xs-heading-padding;
-      font-size: $font-size-h4;
     }
 
     .panel-body {

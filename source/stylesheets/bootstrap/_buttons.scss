@@ -1,11 +1,55 @@
-@mixin regular-btn() {
+.btn {
+  i {
+    margin-left: -4px;
+    margin-right: 8px;
+  }
+  &.btn-zmdi i {
+    margin-right: -2px;
+  }
 
-  border-radius: $border-radius-base;
-  display: inline-block;
-  height: auto;
-  padding-left: $padding-base-horizontal;
-  padding-right: $padding-base-horizontal;
-  width: auto;
+  &.btn-lg {
+    i {
+      margin-left: -6px;
+      margin-right: 10px;
+    }
+    &.btn-zmdi i {
+      margin-right: -2px;
+    }
+  }
+
+  &.btn-sm {
+    i {
+      margin-left: -3px;
+      margin-right: 6px;
+    }
+    &.btn-zmdi i {
+      margin-right: -2px;
+    }
+  }
+
+  &.btn-xs {
+    i {
+      margin-left: -2px;
+      margin-right: 4px;
+    }
+    &.btn-zmdi i {
+      margin-right: -2px;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@mixin regular-btn() {
 
   i {
     font-size: 16px;
@@ -35,7 +79,6 @@
 }
 
 .btn {
-  @include regular-btn();
 }
 
 
