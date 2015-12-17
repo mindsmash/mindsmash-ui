@@ -137,12 +137,11 @@ gulp.task('server', function() {
 
   gulp.watch([
     '!source/docs/bower_components/',
-    '!source/docs/*.html',
     'source/docs/*',
     'source/components/**/*'
   ]).on('change', browserSync.reload);
 
-  gulp.watch('source/docs/*.html',
+  gulp.watch('bower.json',
     ['bower:dev']);
 
   gulp.watch(['source/stylesheets/**/*.scss', 'source/components/**/*.scss'],
