@@ -31,6 +31,7 @@
         <a href="#" dropdown-toggle>Components <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li role="menuitem"><a href="#grid" target="_self">Grid system</a></li>
+          <li role="menuitem"><a href="#panels" target="_self">Panels</a></li>
           <li role="menuitem"><a href="#tables" target="_self">Tables</a></li>
           <li role="menuitem"><a href="#forms" target="_self">Forms</a></li>
           <li role="menuitem"><a href="#buttons" target="_self">Buttons</a></li>
@@ -41,7 +42,6 @@
           <li role="menuitem"><a href="#modals" target="_self">Modals</a></li>
           <li role="menuitem"><a href="#headings" target="_self">Headings</a></li>
           <li role="menuitem"><a href="#colors" target="_self">Colors</a></li>
-          <li role="menuitem"><a href="#panels" target="_self">Panels</a></li>
           <li role="menuitem"><a href="#navbar" target="_self">Navbar</a></li>
         </ul>
       </li>
@@ -127,11 +127,6 @@
       </div>
     </div>
   </section>
-  
-  
-  
-  
-  
 
   <scroll-link name="panels"></scroll-link>
   <section class="panel panel-default">
@@ -224,15 +219,42 @@
           </div>
         </div>
       </div>
+      
+      <h3>Image Panels</h3>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="example panel panel-default">
+            <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
+                <section class="panel panel-default">
+                  <img class="panel-heading-image" data-src="holder.js/100px200/?text=Image&theme=sky" alt="">
+                  <div class="panel-body">
+                    Panel content
+                  </div>
+                </section>
+            </div>
+            <div class="panel-footer js-insert-code"></div>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="example panel panel-default">
+            <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
+                <section class="panel panel-default">
+                  <img class="panel-heading-image" data-src="holder.js/100px200/?text=Image&theme=sky" alt="">
+                  <div class="panel-body">
+                    <span class="panel-title-small blue-light">Company News</span>
+                    <h3 class="panel-title-small">Welcome to our new office</h3>
+                    <span class="text-muted">Blog article &bull; 3 hours ago by Jan Marquardt</span>
+                  </div>
+                  <div class="panel-footer">Panel footer</div>
+                </section>
+            </div>
+            <div class="panel-footer js-insert-code">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
-  
-  
-  
-  
-  
-  
-  
 
   <scroll-link name="tables"></scroll-link>
   <section class="panel panel-default" ng-controller="TableController">
@@ -692,94 +714,6 @@
     </div>
   </section>
 
-  <scroll-link name="panels"></scroll-link>
-  <section class="panel panel-default">
-    <div class="panel-heading panel-heading-main panel-dl">
-      <h1 class="panel-title">Panels</h1>
-    </div>
-    <div class="panel-body">
-      <p>For panels use the default panel classes from Bootstrap. These are additional classes for mindsmash-ui:</p>
-
-      <pre><code class="css">
-        .panel-heading-image {} /* Make header image full-screen eg. `img.panel-header-image` */
-        .panel-heading-main {} /* Use for main headings the border-bottom has horizontal spaces */
-
-        .panel-title-small {} /* A small title without margins */
-      </code></pre>
-
-      <div class="example panel panel-default">
-
-        <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
-          <section class="panel panel-default">
-            <div class="panel-heading panel-heading-main clearfix">
-              <h1 class="panel-title pull-left">Account Settings</h1>
-              <button class="btn btn-danger pull-right"><i class="zmdi zmdi-delete mr-xxs"></i> Delete account</button>
-            </div>
-            <div class="panel-body row">
-              <div class="col-xs-12 col-sm-6">
-                <dl class="dl-horizontal">
-                  <dt>first name</dt>
-                  <dd>Robert</dd>
-                  <dt>last name</dt>
-                  <dd>Lang</dd>
-                  <dt>Member since</dt>
-                  <dd>11th April 2001</dd>
-                  <dt>email</dt>
-                  <dd>jeremias.dombrowski@mindsmash.com</dd>
-                </dl>
-              </div>
-              <div class="col-xs-12 col-sm-6">
-                <dl class="dl-horizontal">
-                  <dt>first name</dt>
-                  <dd>Robert</dd>
-                  <dt>last name</dt>
-                  <dd>Lang</dd>
-                  <dt>Member since</dt>
-                  <dd>11th April 2001</dd>
-                </dl>
-              </div>
-            </div>
-          </section>
-        </div>
-        <div class="panel-footer js-insert-code"></div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-6">
-          <div class="example panel panel-default">
-            <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
-                <section class="panel panel-default">
-                  <img class="panel-heading-image" data-src="holder.js/100px200/?text=Image&theme=sky" alt="">
-                  <div class="panel-body">
-                    Panel content
-                  </div>
-                </section>
-            </div>
-            <div class="panel-footer js-insert-code"></div>
-          </div>
-        </div>
-
-        <div class="col-xs-6">
-          <div class="example panel panel-default">
-            <div class="panel-body bg-gray-lighter" data-create-code=".js-insert-code">
-                <section class="panel panel-default">
-                  <img class="panel-heading-image" data-src="holder.js/100px200/?text=Image&theme=sky" alt="">
-                  <div class="panel-body">
-                    <span class="panel-title-small blue-light">Company News</span>
-                    <h3 class="panel-title-small">Welcome to our new office</h3>
-                    <span class="text-muted">Blog article &bull; 3 hours ago by Jan Marquardt</span>
-                  </div>
-                  <div class="panel-footer">Panel footer</div>
-                </section>
-
-            </div>
-            <div class="panel-footer js-insert-code">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <scroll-link name="navbar"></scroll-link>
   <section class="panel panel-default">
