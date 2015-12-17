@@ -8,3 +8,5 @@ node_modules
 
 source/stylesheets/**/*.css
 *.css.map
+
+*.iml

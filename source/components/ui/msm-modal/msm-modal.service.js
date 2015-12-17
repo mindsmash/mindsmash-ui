@@ -17,7 +17,8 @@
       open: open,
       note: note,
       confirm: confirm,
-      select: select
+      select: select,
+      form: form
     };
 
     /**
@@ -227,6 +228,40 @@
         }
       }, size, 'components/ui/msm-modal/msm-modal-select.html');
     }
+
+    function form(title, options, beforeClose, size, closeTitle, dismissTitle) {
+      return open({ inputFields: options.inputFields }, function ($modalInstance, inputFields) {
+        var vm = angular.extend(this, {
+          title: title,
+          buttons: [{
+            icon: 'check-circle',
+            title: closeTitle || 'Ok',
+            context: 'primary',
+            onClick: checkValues,
+            constraint: 'form.$invalid'
+          }, {
+            icon: 'close-circle',
+            title: dismissTitle || 'Cancel',
+            context: 'default',
+            onClick: $modalInstance.dismiss
+          }]
+        });
+
+        vm.inputFields = inputFields;
+
+        vm.models = {};
+        for(var field in vm.inputFields) {
+          vm.models[vm.inputFields[field].id] = '';
+        }
+
+        function checkValues() {
+          if(beforeClose(vm.models)) {
+            $modalInstance.close(vm.models);
+          }
+        }
+      }, size, 'components/ui/msm-modal/msm-modal-form.html');
+    }
+
   }
 
 })();

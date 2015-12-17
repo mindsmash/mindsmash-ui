@@ -242,6 +242,61 @@
       });
     };
 
+    vm.openForm = function(size) {
+      function beforeClose(models) {
+        console.log(models);
+        return true;
+      }
+
+      return msmModal.form(
+          'Custom form',
+          {
+            inputFields: [
+              {
+                id: 'id1',
+                label: 'Label 1',
+                type: 'text',
+                placeholder: 'Placeholder 1',
+                image: 'zmdi-flag',
+                name: 'Label 1 name',
+                model: 'field1',
+                errorClass: 'has-error',
+                errorDefinitions: 'form.id1.$dirty'
+              },
+              {
+                id: 'id2',
+                label: 'Label 2',
+                type: 'password',
+                placeholder: 'Placeholder 2',
+                image: 'zmdi-key',
+                name: 'Label 2 name',
+                model: 'field2',
+                errorClass: 'has-error',
+                errorDefinitions: 'form.id2.$dirty'
+              },
+              {
+                id: 'id3',
+                label: 'Label 3',
+                type: 'text',
+                placeholder: 'Placeholder 3',
+                image: 'zmdi-pin',
+                name: 'Label 3 name',
+                model: 'field3',
+                errorClass: 'has-error',
+                errorDefinitions: 'form.id3.$dirty'
+              }
+            ]
+          },
+          beforeClose,
+          size
+      ).result.then(function(result) {
+        $log.info('Modal (form): Ok.', result);
+        msmNotification.success('Ok', false);
+      }, function() {
+        $log.info('Modal (form): Cancel.');
+      });
+    };
+
     (function initController() {
       $log.debug('[ModalController] Initializing...');
     })();
