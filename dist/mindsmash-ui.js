@@ -508,7 +508,7 @@ angular.module('msm.components.ui')
      *     The label of the modal's cancel button.
      */
     function select(title, text, options, size, closeTitle, dismissTitle) {
-      return open({ values: options.values, options: options }, function ($modalInstance, values, options) {
+      return open({ values: options.values, selected: options.selected }, function ($modalInstance, values, selected) {
         var vm = angular.extend(this, {
           title: title,
           text: text,
@@ -531,7 +531,7 @@ angular.module('msm.components.ui')
         for (var key in values) {
           var val = values[key].value;
           valueList.push(val);
-          if (options.selected === values[key].key) {
+          if (selected === values[key].key) {
             selectedVaL = val;
           }
         }
