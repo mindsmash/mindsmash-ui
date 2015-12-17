@@ -1,20 +1,12 @@
 $panel-sm-heading-margin:        0 24px 0 !default;
 $panel-sm-heading-padding:       24px 0 16px !default;
 $panel-sm-body-padding:          16px 24px !default;
-$panel-sm-footer-margin:         0 24px !default;
-$panel-sm-footer-padding:        12px 0 16px !default;
+$panel-sm-footer-padding:        12px 24px 16px !default;
 
 $panel-xs-heading-margin:        0 16px 0 !default;
 $panel-xs-heading-padding:       16px 0 12px !default;
 $panel-xs-body-padding:          12px 16px !default;
-$panel-xs-footer-margin:         0 16px !default;
-$panel-xs-footer-padding:        8px 0 12px !default;
-
-.panel {
-  .panel-footer {
-    font-size: floor((100% * $font-size-small / $font-size-base));
-  }
-}
+$panel-xs-footer-padding:        8px 16px 12px !default;
 
 .panel .panel-heading .btn { margin-left: 12px; }
 .panel-sm .panel-heading .btn { margin-left: 8px; }
@@ -31,6 +23,13 @@ $panel-xs-footer-padding:        8px 0 12px !default;
       font-size: $font-size-h4;
       margin: $panel-xs-heading-margin;
       padding: $panel-xs-heading-padding;
+
+      .btn {
+        @include button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+        margin-left: 8px;
+        position: relative;
+        top: -6px;
+      }
     }
 
     .panel-body {
@@ -38,7 +37,6 @@ $panel-xs-footer-padding:        8px 0 12px !default;
     }
 
     .panel-footer {
-      margin: $panel-xs-footer-margin;
       padding: $panel-xs-footer-padding;
     }
   }
@@ -59,14 +57,6 @@ $panel-xs-footer-padding:        8px 0 12px !default;
       padding: 0;
       margin: 0;
     }
-
-    .panel-footer {
-      margin: $panel-footer-padding;
-      margin-top: 0;
-      margin-bottom: 0;
-      padding-left: 0;
-      padding-right: 0;
-    }
   }
 
   .panel-sm {
@@ -84,7 +74,6 @@ $panel-xs-footer-padding:        8px 0 12px !default;
     }
 
     .panel-footer {
-      margin: $panel-sm-footer-margin;
       padding: $panel-sm-footer-padding;
     }
   }
@@ -104,36 +93,7 @@ $panel-xs-footer-padding:        8px 0 12px !default;
     }
 
     .panel-footer {
-      margin: $panel-xs-footer-margin;
       padding: $panel-xs-footer-padding;
     }
   }
 }
-
-
-/*
-.panel-heading-image {
-  padding: 0;
-}
-
-.panel-default {
-  border-color: transparent;
-}
-
-.panel-heading-main {
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: 36px;
-  margin-right: 36px;
-}
-
-.panel-title {
-  font-size: $font-size-h2;
-}
-
-.panel-title-small {
-  font-size: $font-size-h4;
-  font-weight: 400;
-  margin: 0;
-}
-*/

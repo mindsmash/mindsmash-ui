@@ -42,5 +42,14 @@
   "devDependencies": {
     "highlightjs": "~8.9.1",
     "holderjs": "~2.9.0"
+  },
+  "overrides": {
+    "highlightjs": {
+      "main": [
+        "highlight.pack.js",
+        "styles/color-brewer.css"
+      ]
+    }
   }
+  
 }
