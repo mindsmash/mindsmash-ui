@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{ vm.title | translate }}</h3>
+  <span class="modal-close" ng-click="vm.onDismiss ? vm.onDismiss() : $dismiss('cancel')"><i class="zmdi zmdi-close img-close"></i></span>
+</div>
+<div class="modal-body modal-mobile-show">
+  Body
+</div>
+<div class="modal-body modal-mobile-hide">
+  <div>
+    <form name="form" id="changePassword-form" role="form">
+      <div class="form-group" ng-repeat="field in vm.inputFields">
+        <label for="{{ field.id }}">{{ field.label | translate }}</label>
+        <div class="input-group input-group-lg">
+        <span class="input-group-addon">
+            <i class="zmdi {{ field.image }}"></i>
+        </span>
+          <input
+                  type="{{ field.type }}"
+                  class="form-control"
+                  placeholder="{{ field.placeholder | translate }}"
+                  name="{{ field.name }}"
+                  id="{{ field.id }}"
+                  data-ng-model="vm.models[field.id]"
+                  required />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button ng-repeat="button in vm.buttons" class="btn btn-{{ button.context }}" data-ng-disabled="{{button.constraint}}"
+          ng-class="{ 'modal-mobile-hide': button.hideMobile }" ng-click="button.onClick()"><i ng-if="button.icon" class="zmdi zmdi-{{ button.icon }}"></i>{{ button.title | translate }}</button>
+</div>
