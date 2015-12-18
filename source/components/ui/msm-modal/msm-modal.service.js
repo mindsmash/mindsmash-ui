@@ -261,7 +261,7 @@
           formOptions: options.formOptions.options,
           inputFields: options.formOptions.inputFields
         },
-        controller: function ($modalInstance, model, formOptions, inputFields) {
+        controller: function ($modalInstance, $timeout, model, formOptions, inputFields) {
           var vm = angular.extend(this, {
             title: options.title || '',
             buttons: [angular.extend({
@@ -269,36 +269,61 @@
               title: 'Save',
               style: 'btn-primary',
               onClick: onModalSubmit,
-              constraint: 'vm.form.$invalid'
+              constraint: 'vm.form.$invalid',
+              showConstraint: '!vm.status.loading'
             }, options.close), angular.extend({
+              icon: 'zmdi zmdi-refresh zmdi-hc-spin',
+              title: 'Loading',
+              style: 'btn-primary',
+              constraint: 'true',
+              showConstraint: 'vm.status.loading'
+            }), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
               style: 'btn-default',
-              onClick: $modalInstance.dismiss
+              onClick: $modalInstance.dismiss,
+              showConstraint: 'true'
             }, options.dismiss)]
           });
 
+          vm.status = {
+            error: false,
+            errorMessage: '',
+            loading: false
+          };
           vm.model = model;
           vm.options = formOptions;
           vm.fields = inputFields;
 
           function onModalSubmit() {
+            vm.status.error = false;
+            vm.status.errorMessage = '';
+            vm.status.loading = true;
             var check = options.formOptions.onSubmit(vm.model);
+
             // check whether the given callback is a promise
             if(check.then) {
               check.then(function(result) {
-                if(result) {
+                if(!result.error) {
                   $modalInstance.close(vm.model);
                 } else {
-                  // TODO: Error handling
+                  vm.status.error = true;
+                  vm.status.errorMessage = result.errorMessage;
                 }
-              }).catch(function() {
-                // TODO: Error handling
-              })
-            } else if(check) {
-              $modalInstance.close(vm.model);
+              }).catch(function(result) {
+                vm.status.error = true;
+                vm.status.errorMessage = result.errorMessage;
+              }).finally(function() {
+                vm.status.loading = false;
+              });
             } else {
-              // TODO: Error handling
+              if(!check.error) {
+                $modalInstance.close(vm.model);
+              } else {
+                vm.status.error = true;
+                vm.status.errorMessage = check.errorMessage;
+              }
+              vm.status.loading = false;
             }
           }
         }

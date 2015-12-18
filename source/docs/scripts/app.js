@@ -253,7 +253,10 @@
     vm.openForm = function(size) {
       function onModalFormSubmit(models) {
         console.log(models);
-        return true;
+        return {
+          error: false,
+          errorMessage: ''
+        };
       }
 
       return msmModal.formly({
@@ -275,7 +278,15 @@
               type: 'input',
               templateOptions: {
                 label: 'Text',
-                placeholder: 'This is terrific!'
+                placeholder: 'This is terrific!',
+                required: true
+              },
+              validation: {
+                messages: {
+                  required: function(viewValue, modelValue, scope) {
+                    return scope.to.label + ' is required'
+                  }
+                }
               }
             },
             {
