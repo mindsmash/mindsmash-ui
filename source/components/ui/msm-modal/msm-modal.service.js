@@ -66,16 +66,15 @@
       });
 
       var modalInstance = $modal.open({
-        animation: false,
+        animation: true,
         templateUrl: config.templateUrl || 'components/ui/msm-modal/msm-modal.html',
         controller: config.controller,
         controllerAs: 'vm',
         size: config.size || '',
         resolve: config.resolve,
         bindToController: true,
-        windowClass: 'app-modal-window'
       });
-      
+
 //      modalInstance.opened['finally'](function() {
 //        modalInstance.pageXOffset = $window.pageXOffset;
 //        modalInstance.pageYOffset = $window.pageYOffset;
@@ -86,7 +85,7 @@
 //        angular.element($document[0].body).css('position', 'inherit');
 //        $window.scrollTo(modalInstance.pageXOffset, modalInstance.pageYOffset);
 //      })
-      
+
       return modalInstance;
     }
 

@@ -1,6 +1,11 @@
-.modal-open > :not(.modal) {
+.modal-open.modal-gray, .modal-open .modal-gray {
+  @include filter(grayscale, 1);
+}
+.modal-open.modal-blur, .modal-open .modal-blur {
   @include filter(blur, 5px);
-  //transform: scale(1.1);
+}
+.modal-open.modal-gray.modal-blur, .modal-open .modal-gray.modal-blur {
+  @include filter2(blur, 5px, grayscale, 1);
 }
 
 .modal-content {

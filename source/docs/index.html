@@ -21,7 +21,7 @@
 
 <body>
 
-<nav class="navbar msm-navbar navbar-fixed-top">
+<nav class="navbar msm-navbar navbar-fixed-top modal-blur">
   <div class="msm-navbar-flex" ng-class="{'nav-search-open' : searchVisible}">
     <div class="nav-brand-box">
       <h1 class="nav-brand">mindsmash UI</h1>
@@ -57,7 +57,7 @@
   </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container-fluid modal-blur">
 
   <!-- Template -->
   <!--
@@ -563,6 +563,8 @@
       <h1 class="panel-title">Modals</h1>
     </div>
     <div class="panel-body" ng-controller="ModalController as vm">
+      <p><b>Note:</b> When a modal window is opened, a CSS blur filter is applied to all DOM elements having the <code>.modal-blur</code> class
+      and a CSS grayscale filter is applied to all DOM elements having the <code>.modal-gray</code> class.</p>
       <h3>Custom modals</h3>
       <div class="example panel panel-default">
         <div class="panel-body">

@@ -1,5 +1,5 @@
-// https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html 
-//
+// https://dvcs.w3.org/hg/FXTF/raw-file/tip/filters/index.html
+
 // grayscale      ex: filter: grayscale(100%);
 // sepia          ex: filter: sepia(100%);
 // saturate       ex: filter: saturate(0%);
@@ -9,10 +9,18 @@
 // contrast       ex: filter: contrast(200%);
 // blur           ex: filter: blur(2px);
 
-@mixin filter($filter-type,$filter-amount) { 
+@mixin filter($filter-type, $filter-amount) {
   -webkit-filter: $filter-type+unquote('(#{$filter-amount})');
   -moz-filter: $filter-type+unquote('(#{$filter-amount})');
   -ms-filter: $filter-type+unquote('(#{$filter-amount})');
   -o-filter: $filter-type+unquote('(#{$filter-amount})');
   filter: $filter-type+unquote('(#{$filter-amount})');
+}
+
+@mixin filter2($filter-type, $filter-amount, $filter-type2, $filter-amount2) {
+  -webkit-filter: $filter-type+unquote('(#{$filter-amount})') $filter-type2+unquote('(#{$filter-amount2})');
+  -moz-filter: $filter-type+unquote('(#{$filter-amount})') $filter-type2+unquote('(#{$filter-amount2})');
+  -ms-filter: $filter-type+unquote('(#{$filter-amount})') $filter-type2+unquote('(#{$filter-amount2})');
+  -o-filter: $filter-type+unquote('(#{$filter-amount})') $filter-type2+unquote('(#{$filter-amount2})');
+  filter: $filter-type+unquote('(#{$filter-amount})') $filter-type2+unquote('(#{$filter-amount2})');
 }
