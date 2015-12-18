@@ -325,12 +325,15 @@
           },
           beforeClose,
           size
-      ).result.then(function(result) {
-        $log.info('Modal (form): Ok.', result);
-        msmNotification.success('Ok', false);
-      }, function() {
-        $log.info('Modal (form): Cancel.');
-      });
+      ).result.then(
+          function(result) {
+            $log.info('Modal (form): Ok.', result);
+            msmNotification.success('Ok', false);
+          },
+          function() {
+            $log.info('Modal (form): Cancel.');
+          }
+      );
     };
 
     (function initController() {
