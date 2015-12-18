@@ -648,7 +648,7 @@
                           {
                             values: [{key:'key1', value:'Item 1'}, {key:'key2', value:'Item 2'}, {key:'key3', value:'Item 3'}],
                             selected: 'key1'
-                          }, size)
+                          }, size, 'Ok', 'Cancel')
                   .result.then(function(selectedItem) { /* ... */ });
               };
             </script>
@@ -656,7 +656,6 @@
         </div>
         <div class="panel-footer bg-gray-lighter js-insert-code"></div>
       </div>
-
       <h3>Custom form modals</h3>
       <div class="example panel panel-default">
         <div class="panel-body">
@@ -665,9 +664,30 @@
             <button class="btn btn-primary mr-s" ng-click="vm.openForm('sm')">Small</button>
             <button class="btn btn-primary mr-s" ng-click="vm.openForm('lg')">Large</button>
           </div>
-          <div class="hidden" data-create-code=".js-insert-code">
+          <h3>
+            Create your custom form with <a href="http://angular-formly.com" target="_blank">Formly</a>:
+          </h3>
+          <div style="padding-top: 10px;" class="hidden"
+               data-create-code=".js-insert-code">
             <script>
-              // TODO: Write this docs
+              showCustomForm = function(size) {
+                return msmModal.form('Custom form',
+                  {
+                    model: { /* ... */ },
+                    options: { /* ... */ },
+                    inputFields: [
+                      {
+                        key: 'text',
+                        type: 'input',
+                        templateOptions: {
+                          label: 'Text',
+                          placeholder: 'A placeholder'
+                        }
+                      }, /* ... */
+                    ]
+                  }, beforeCloseFunction, size, 'Ok', 'Cancel'
+                ).result.then(function(selectedItem) { /* ... */ });
+              };
             </script>
           </div>
         </div>
@@ -881,6 +901,11 @@
 <script src="../../bower_components/angular-translate/angular-translate.js"></script>
 <script src="../../bower_components/angular-ui-notification/dist/angular-ui-notification.js"></script>
 <script src="../../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../../bower_components/api-check/dist/api-check.js"></script>
+<script src="../../bower_components/angular-formly/dist/formly.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.js"></script>
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
 <script src="../../bower_components/holderjs/holder.js"></script>
 <!-- endbower -->

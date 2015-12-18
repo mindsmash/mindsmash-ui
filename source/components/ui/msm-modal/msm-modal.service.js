@@ -230,15 +230,16 @@
     }
 
     function form(title, options, checkCloseModal, size, closeTitle, dismissTitle) {
-      return open({ inputFields: options.inputFields }, function ($modalInstance, inputFields) {
+      return open({ model: options.model, options: options.options, inputFields: options.inputFields },
+          function ($modalInstance, model, options, inputFields) {
         var vm = angular.extend(this, {
           title: title,
           buttons: [{
             icon: 'check-circle',
             title: closeTitle || 'Ok',
             context: 'primary',
-            onClick: checkValues,
-            constraint: 'form.$invalid'
+            onClick: onSubmit,
+            constraint: 'vm.form.$invalid'
           }, {
             icon: 'close-circle',
             title: dismissTitle || 'Cancel',
@@ -247,21 +248,17 @@
           }]
         });
 
-        vm.inputFields = inputFields;
+        vm.model = model;
+        vm.options = options;
+        vm.fields = inputFields;
 
-        vm.models = {};
-        for(var field in vm.inputFields) {
-          vm.models[vm.inputFields[field].id] = '';
-        }
-
-        function checkValues() {
-          var check = checkCloseModal(vm.models);
-          // if the given callback is a promise
+        function onSubmit() {
+          var check = checkCloseModal(vm.model);
+          // check whether the given callback is a promise
           if(check.then) {
             check.then(function(result) {
-              console.log(result);
               if(result) {
-                $modalInstance.close(vm.models);
+                $modalInstance.close(vm.model);
               } else {
                 // TODO: Error handling
               }
@@ -269,7 +266,7 @@
               // TODO: Error handling
             })
           } else if(check) {
-            $modalInstance.close(vm.models);
+            $modalInstance.close(vm.model);
           } else {
             // TODO: Error handling
           }

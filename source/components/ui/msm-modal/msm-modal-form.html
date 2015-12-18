@@ -8,35 +8,15 @@
 <div class="modal-body modal-mobile-hide">
   <div>
     <form name="form" id="changePassword-form" role="form">
-      <div class="form-group" ng-repeat="field in vm.inputFields">
-        <label for="{{ field.id }}">{{ field.label | translate }}</label>
-        <div class="input-group input-group-lg">
-          <span class="input-group-addon">
-              <i class="zmdi {{ field.image }}"></i>
-          </span>
-          <input
-                  ng-if="field.required"
-                  type="{{ field.type }}"
-                  class="form-control"
-                  placeholder="{{ field.placeholder | translate }}"
-                  name="{{ field.name }}"
-                  id="{{ field.id }}"
-                  data-ng-model="vm.models[field.id]"
-                  required />
-          <input
-                  ng-if="!field.required"
-                  type="{{ field.type }}"
-                  class="form-control"
-                  placeholder="{{ field.placeholder | translate }}"
-                  name="{{ field.name }}"
-                  id="{{ field.id }}"
-                  data-ng-model="vm.models[field.id]" />
-        </div>
-      </div>
+      <formly-form model="vm.model" fields="vm.fields" options="vm.options" form="vm.form">
+      </formly-form>
     </form>
   </div>
 </div>
 <div class="modal-footer">
   <button ng-repeat="button in vm.buttons" class="btn btn-{{ button.context }}" data-ng-disabled="{{button.constraint}}"
-          ng-class="{ 'modal-mobile-hide': button.hideMobile }" ng-click="button.onClick()"><i ng-if="button.icon" class="zmdi zmdi-{{ button.icon }}"></i>{{ button.title | translate }}</button>
+          ng-class="{ 'modal-mobile-hide': button.hideMobile }" ng-click="button.onClick()">
+    <i ng-if="button.icon" class="zmdi zmdi-{{ button.icon }}"></i>
+    {{ button.title | translate }}
+  </button>
 </div>

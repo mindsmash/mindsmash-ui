@@ -8,7 +8,9 @@
       'ui.bootstrap.datepicker',
       'ui.bootstrap.dropdown',
       'ui.router',
-      'pascalprecht.translate'
+      'pascalprecht.translate',
+      'formly',
+      'formlyBootstrap'
     ])
 
       .config(configTranslations)
@@ -251,42 +253,73 @@
       return msmModal.form(
           'Custom form',
           {
+            model: {
+              selected: true
+            },
+            options: {
+              formState: {
+                selectedIsForced: false
+              }
+            },
             inputFields: [
               {
-                id: 'id1',
-                label: 'Label 1',
-                type: 'text',
-                placeholder: 'Placeholder 1',
-                image: 'zmdi-flag',
-                name: 'Label 1 name',
-                model: 'field1',
-                errorClass: 'has-error',
-                errorDefinitions: 'form.id1.$dirty',
-                required: true
+                key: 'text',
+                type: 'input',
+                templateOptions: {
+                  label: 'Text',
+                  placeholder: 'This is terrific!'
+                }
               },
               {
-                id: 'id2',
-                label: 'Label 2',
-                type: 'password',
-                placeholder: 'Placeholder 2',
-                image: 'zmdi-key',
-                name: 'Label 2 name',
-                model: 'field2',
-                errorClass: 'has-error',
-                errorDefinitions: 'form.id2.$dirty',
-                required: true
+                key: 'nested.story',
+                type: 'textarea',
+                templateOptions: {
+                  label: 'A text area',
+                  placeholder: 'Text area placeholder',
+                  description: ''
+                },
+                expressionProperties: {
+                  'templateOptions.focus': 'formState.selectedIsForced',
+                  'templateOptions.description': function(viewValue, modelValue, scope) {
+                    if (scope.formState.selectedIsForced) {
+                      return 'This field magically got focus!';
+                    }
+                  }
+                }
               },
               {
-                id: 'id3',
-                label: 'Label 3',
-                type: 'text',
-                placeholder: 'Placeholder 3',
-                image: 'zmdi-pin',
-                name: 'Label 3 name',
-                model: 'field3',
-                errorClass: 'has-error',
-                errorDefinitions: 'form.id3.$dirty',
-                required: false
+                key: 'selected',
+                type: 'checkbox',
+                templateOptions: { label: '' },
+                expressionProperties: {
+                  'templateOptions.disabled': 'formState.selectedIsForced',
+                  'templateOptions.label': function(viewValue, modelValue, scope) {
+                    if (scope.formState.selectedIsForced) {
+                      return 'This is really awesome!';
+                    } else {
+                      return 'Is this totally awesome? (uncheck this and see what happens)';
+                    }
+                  }
+                }
+              },
+              {
+                key: 'whyNot',
+                type: 'textarea',
+                expressionProperties: {
+                  'templateOptions.placeholder': function(viewValue, modelValue, scope) {
+                    if (scope.formState.selectedIsForced) {
+                      return 'This is really awesome!';
+                    } else {
+                      return 'Type in here...';
+                    }
+                  },
+                  'templateOptions.disabled': 'formState.selectedIsForced'
+                },
+                hideExpression: 'model.selected',
+                templateOptions: {
+                  label: 'Why Not?',
+                  placeholder: 'Type in here...'
+                }
               }
             ]
           },
