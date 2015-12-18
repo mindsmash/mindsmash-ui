@@ -591,9 +591,9 @@ angular.module('msm.components.ui')
         size: options.size,
         templateUrl: 'components/ui/msm-modal/msm-modal-form.html',
         resolve: {
-          model: options.model,
-          formOptions: options.options,
-          inputFields: options.inputFields
+          model: options.formOptions.model,
+          formOptions: options.formOptions.options,
+          inputFields: options.formOptions.inputFields
         },
         controller: function ($modalInstance, model, formOptions, inputFields) {
           var vm = angular.extend(this, {
@@ -618,7 +618,7 @@ angular.module('msm.components.ui')
           vm.fields = inputFields;
 
           function onModalSubmit() {
-            var check = options.onSubmit(vm.model);
+            var check = options.formOptions.onSubmit(vm.model);
             // check whether the given callback is a promise
             if(check.then) {
               check.then(function(result) {

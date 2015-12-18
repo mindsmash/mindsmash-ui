@@ -261,76 +261,78 @@
         title: 'Custom form',
         closeTitle: 'Ok',
         dismissTitle: 'Cancel',
-        onSubmit: onModalFormSubmit,
-        model: {
-          selected: true
-        },
-        options: {
-          formState: {
-            selectedIsForced: false
-          }
-        },
-        inputFields: [
-          {
-            key: 'text',
-            type: 'input',
-            templateOptions: {
-              label: 'Text',
-              placeholder: 'This is terrific!'
+        formOptions: {
+          onSubmit: onModalFormSubmit,
+          model: {
+            selected: true
+          },
+          options: {
+            formState: {
+              selectedIsForced: false
             }
           },
-          {
-            key: 'nested.story',
-            type: 'textarea',
-            templateOptions: {
-              label: 'A text area',
-              placeholder: 'Text area placeholder',
-              description: ''
+          inputFields: [
+            {
+              key: 'text',
+              type: 'input',
+              templateOptions: {
+                label: 'Text',
+                placeholder: 'This is terrific!'
+              }
             },
-            expressionProperties: {
-              'templateOptions.focus': 'formState.selectedIsForced',
-              'templateOptions.description': function(viewValue, modelValue, scope) {
-                if (scope.formState.selectedIsForced) {
-                  return 'This field magically got focus!';
-                }
-              }
-            }
-          },
-          {
-            key: 'selected',
-            type: 'checkbox',
-            templateOptions: { label: '' },
-            expressionProperties: {
-              'templateOptions.disabled': 'formState.selectedIsForced',
-              'templateOptions.label': function(viewValue, modelValue, scope) {
-                if (scope.formState.selectedIsForced) {
-                  return 'This is really awesome!';
-                } else {
-                  return 'Is this totally awesome? (uncheck this and see what happens)';
-                }
-              }
-            }
-          },
-          {
-            key: 'whyNot',
-            type: 'textarea',
-            expressionProperties: {
-              'templateOptions.placeholder': function(viewValue, modelValue, scope) {
-                if (scope.formState.selectedIsForced) {
-                  return 'This is really awesome!';
-                } else {
-                  return 'Type in here...';
-                }
+            {
+              key: 'nested.story',
+              type: 'textarea',
+              templateOptions: {
+                label: 'A text area',
+                placeholder: 'Text area placeholder',
+                description: ''
               },
-              'templateOptions.disabled': 'formState.selectedIsForced'
+              expressionProperties: {
+                'templateOptions.focus': 'formState.selectedIsForced',
+                'templateOptions.description': function(viewValue, modelValue, scope) {
+                  if (scope.formState.selectedIsForced) {
+                    return 'This field magically got focus!';
+                  }
+                }
+              }
             },
-            hideExpression: 'model.selected',
-            templateOptions: {
-              label: 'Why Not?',
-              placeholder: 'Type in here...'
+            {
+              key: 'selected',
+              type: 'checkbox',
+              templateOptions: { label: '' },
+              expressionProperties: {
+                'templateOptions.disabled': 'formState.selectedIsForced',
+                'templateOptions.label': function(viewValue, modelValue, scope) {
+                  if (scope.formState.selectedIsForced) {
+                    return 'This is really awesome!';
+                  } else {
+                    return 'Is this totally awesome? (uncheck this and see what happens)';
+                  }
+                }
+              }
+            },
+            {
+              key: 'whyNot',
+              type: 'textarea',
+              expressionProperties: {
+                'templateOptions.placeholder': function(viewValue, modelValue, scope) {
+                  if (scope.formState.selectedIsForced) {
+                    return 'This is really awesome!';
+                  } else {
+                    return 'Type in here...';
+                  }
+                },
+                'templateOptions.disabled': 'formState.selectedIsForced'
+              },
+              hideExpression: 'model.selected',
+              templateOptions: {
+                label: 'Why Not?',
+                placeholder: 'Type in here...'
+              }
             }
-          }
-        ]
+          ]
+        }
       }).result.then(
           function(result) {
             $log.info('Modal (form): Ok.', result);

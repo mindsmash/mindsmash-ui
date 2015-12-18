@@ -686,21 +686,26 @@
                 return msmModal.form({
                   size: size,
                   title: 'Custom form',
-                  onSubmit:
-                  /* function to be called on form submit; returns true (modal closes) or false (modal does not close) */,
-                  model: { /* ... */ },
-                  options: { /* ... */ },
-                  inputFields: [
-                    {
-                      key: 'text',
-                      type: 'input',
-                      templateOptions: {
-                        label: 'Text',
-                        placeholder: 'This is terrific!'
-                      }
+                  formOptions: {
+                    onSubmit: function() {
+                      /* function to be called on form submit; returns true (modal closes) or false (modal does not close) */
                     },
-                    /* ... */
-                  ]
+                    model: { /* ... */ },
+                    options: { /* ... */ },
+                    inputFields: [
+                      {
+                        key: 'text',
+                        type: 'input',
+                        templateOptions: {
+                          label: 'Text',
+                          placeholder: 'This is terrific!'
+                        }
+                      },
+                      {
+                        /* ... */
+                      }
+                    ]
+                  }
                 }).result.then(function(selectedItem) { /* ... */ });
               }
             </script>
