@@ -208,7 +208,7 @@
         title: 'Confirmation',
         text: 'Are you sure you want to continue?',
         close: { title: 'Yes' },
-        dismiss: { title: 'No' }
+        dismiss: { title: 'No', style: 'btn-primary btn-condensed' }
       }).result.then(function() {
         $log.info('Modal (confirm): Confirmed.');
         msmNotification.success('Confirmed', false);

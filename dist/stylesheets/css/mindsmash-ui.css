@@ -3404,7 +3404,11 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 @media screen and (max-width: 991px) { .btn.is-msm-mobile-menu-item { border: 0; border-radius: 0; display: flex; height: 48px; padding-left: 0; padding-right: 0; text-align: left; width: 100%; }
   .btn.is-msm-mobile-menu-item i { font-size: 20px; text-align: center; width: 64px; line-height: 24px; margin: 0; } }
 
-.modal-open > :not(.modal) { -webkit-filter: blur(5px); -moz-filter: blur(5px); -ms-filter: blur(5px); -o-filter: blur(5px); filter: blur(5px); }
+.modal-open.modal-gray, .modal-open .modal-gray { -webkit-filter: grayscale(1); -moz-filter: grayscale(1); -ms-filter: grayscale(1); -o-filter: grayscale(1); filter: grayscale(1); }
+
+.modal-open.modal-blur, .modal-open .modal-blur { -webkit-filter: blur(5px); -moz-filter: blur(5px); -ms-filter: blur(5px); -o-filter: blur(5px); filter: blur(5px); }
+
+.modal-open.modal-gray.modal-blur, .modal-open .modal-gray.modal-blur { -webkit-filter: blur(5px) grayscale(1); -moz-filter: blur(5px) grayscale(1); -ms-filter: blur(5px) grayscale(1); -o-filter: blur(5px) grayscale(1); filter: blur(5px) grayscale(1); }
 
 .modal-content { border: 0; box-shadow: none; display: flex; flex-direction: column; }
 
@@ -3414,7 +3418,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .modal-header .modal-close { color: #AAA; font-size: 20px; line-height: 32px; padding: 0 12px; position: relative; right: -12px; cursor: pointer; }
 
-.modal-body { flex-grow: 1; overflow: scroll; }
+.modal-body { flex: 1; overflow: scroll; }
 
 .modal-footer { border: 0; display: flex; overflow: hidden; }
 
@@ -3429,16 +3433,15 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 @media screen and (max-width: 991px) { .modal-mobile-hide { display: none !important; }
   .modal-dialog { bottom: 0; left: 0; margin: 0; position: fixed; right: 0; top: 0; }
   .modal-content { border-radius: 0; height: 100%; width: 100%; }
-  .modal-header { background-color: #317DC1; border: 0; color: #FDFDFD; min-height: 60px; }
+  .modal-header { background-color: #317DC1; border: 0; color: #FDFDFD; }
   .modal-header h3 { text-align: center; }
   .modal-header .modal-close { color: #FDFDFD; }
   .modal-body .item-selected { color: #9BBF29; margin-right: 10px; }
   .modal-body .item-not-selected { color: #fdfdfd; margin-right: 10px; }
   .modal-body .item-not-selected:active { color: #eaeaea; }
-  .modal-footer { flex-direction: column; min-height: 60px; padding: 0; }
-  .modal-footer .btn { margin-top: 0; padding-bottom: 9px; padding-top: 9px; }
+  .modal-footer { flex-direction: column; }
+  .modal-footer .btn { margin-top: 15px; padding-bottom: 9px; padding-top: 9px; }
   .modal-footer .btn:first-child { margin-top: 0; }
-  .modal-footer .btn + .btn { border-right: 1 px solid rgba(255, 255, 255, 0.25); }
   .modal-mobile-options { font-size: 20px; margin: -15px; padding: 0; list-style: none; }
   .modal-mobile-option { border-bottom: 1px solid #EAEAEA; padding: 18px 24px; cursor: pointer; }
   .modal-mobile-option:active { background-color: #EAEAEA; } }
@@ -3452,6 +3455,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
   .modal-footer { flex-direction: row-reverse; padding: 0; margin-bottom: -2px; }
   .modal-footer .btn { border-radius: 0; margin: 0; padding-bottom: 12px; padding-top: 12px; }
   .modal-footer .btn + .btn { border-right: 1px solid rgba(255, 255, 255, 0.25); }
+  .modal-footer .btn.btn-condensed { flex: none; padding-left: 50px; padding-right: 50px; }
   .modal-footer .btn:first-child { border-bottom-right-radius: 5px; }
   .modal-footer .btn:last-child { border-bottom-left-radius: 5px; } }
 

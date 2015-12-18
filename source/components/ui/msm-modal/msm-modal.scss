@@ -191,6 +191,12 @@
     .btn + .btn {
       border-right: 1px solid rgba(255,255,255,0.25);
     }
+
+    .btn.btn-condensed {
+      flex: none;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
   }
 
   .modal-footer {

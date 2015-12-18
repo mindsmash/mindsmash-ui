@@ -117,7 +117,7 @@
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'Ok',
-              context: 'primary',
+              style: 'btn-btn-primary',
               onClick: $modalInstance.close
             }, options.close)]
           });
@@ -156,12 +156,12 @@
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'Ok',
-              context: 'primary',
+              style: 'btn-primary',
               onClick: $modalInstance.close
             }, options.close), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
-              context: 'default',
+              style: 'btn-default',
               onClick: $modalInstance.dismiss
             }, options.dismiss)]
           })
@@ -207,13 +207,13 @@
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'Select',
-              context: 'primary',
+              style: 'btn-primary',
               onClick: select,
               hideMobile: true
             }, options.close), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
-              context: 'default',
+              style: 'btn-default',
               onClick: $modalInstance.dismiss
             }, options.dismiss)]
           });
@@ -267,13 +267,13 @@
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'Save',
-              context: 'primary',
+              style: 'btn-primary',
               onClick: onModalSubmit,
               constraint: 'vm.form.$invalid'
             }, options.close), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
-              context: 'default',
+              style: 'btn-default',
               onClick: $modalInstance.dismiss
             }, options.dismiss)]
           });

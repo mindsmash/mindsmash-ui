@@ -24,5 +24,7 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button ng-repeat="button in vm.buttons" class="btn btn-{{ button.context }}" ng-class="{ 'modal-mobile-hide': button.hideMobile }" ng-click="button.onClick()"><i ng-if="button.icon" class="zmdi zmdi-{{ button.icon }}"></i>{{ button.title | translate }}</button>
+  <button ng-repeat="button in vm.buttons" class="btn {{ button.style }}"
+          ng-class="{ 'btn-zmdi': !button.title, 'modal-mobile-hide': button.hideMobile }" ng-click="button.onClick()">
+    <i ng-if="button.icon" class="zmdi zmdi-hc-fw zmdi-{{ button.icon }}"></i>{{ button.title | translate }}</button>
 </div>
