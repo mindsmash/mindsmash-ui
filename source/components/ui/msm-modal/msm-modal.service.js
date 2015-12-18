@@ -277,7 +277,7 @@
               style: 'btn-primary',
               constraint: 'true',
               showConstraint: 'vm.status.loading'
-            }), angular.extend({
+            }, options.loading), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
               style: 'btn-default',
