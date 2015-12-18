@@ -55,6 +55,18 @@
   }
 }
 
+@mixin lg-and-down {
+  @media #{screen} and (max-width: #{$screen-lg-max}) {
+    @content;
+  }
+}
+
+@mixin lg-and-up {
+  @media #{screen} and (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
 // specific
 @mixin breakpoint-max($w) {
   @media #{$screen} and (max-width: $w) {

@@ -3355,6 +3355,30 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-click-to-edit textarea:focus, .msm-click-to-edit input:focus { outline: 0; }
 
+.msm-checkbox.btn { margin: 8px 0px; padding: 0; }
+
+.msm-checkbox.btn:active, .msm-checkbox.btn:hover, .msm-checkbox.btn:focus { background: #fff; border-color: #ddd; box-shadow: none; outline: none; }
+
+.msm-checkbox.btn:focus { border-color: #aaaaaa; }
+
+.msm-checkbox.btn:active:focus { outline: none; }
+
+.msm-checkbox.btn i { margin: 0; line-height: 24px; width: 24px; }
+
+.msm-checkbox-sm.btn, .form-group-sm .msm-checkbox.btn { border-radius: 3px; font-size: 12px; margin: 6px 0px; }
+
+.msm-checkbox-sm.btn i, .form-group-sm .msm-checkbox.btn i { color: #333; line-height: 18px; width: 18px; }
+
+.msm-checkbox-lg.btn, .form-group-lg .msm-checkbox.btn { border-radius: 6px; font-size: 20px; }
+
+.msm-checkbox-lg.btn i, .form-group-lg .msm-checkbox.btn i { line-height: 30px; width: 30px; }
+
+.msm-checkbox.btn[disabled] { background-color: #F3F3F3; opacity: 1; }
+
+.form-group-checkbox { margin-bottom: 7px; }
+
+.form-group + .form-group-checkbox, .form-group-sm + .form-group-checkbox, .form-group-lg + .form-group-checkbox { margin-top: -8px; }
+
 .msm-datepicker { border-radius: 0; border: 0; bottom: 0 !important; box-shadow: none; left: 0 !important; margin: 0; padding: 8px; position: fixed; right: 0 !important; top: 0 !important; z-index: 1050; }
 
 .msm-datepicker table { margin: 0; outline: none; width: 100%; }
@@ -3430,7 +3454,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .modal-footer .btn + .btn { margin-left: 0; }
 
-@media screen and (max-width: 991px) { .modal-mobile-hide { display: none !important; }
+@media screen and (max-width: 767px) { .modal-mobile-hide { display: none !important; }
   .modal-dialog { bottom: 0; left: 0; margin: 0; position: fixed; right: 0; top: 0; }
   .modal-content { border-radius: 0; height: 100%; width: 100%; }
   .modal-header { background-color: #317DC1; border: 0; color: #FDFDFD; }
@@ -3446,7 +3470,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
   .modal-mobile-option { border-bottom: 1px solid #EAEAEA; padding: 18px 24px; cursor: pointer; }
   .modal-mobile-option:active { background-color: #EAEAEA; } }
 
-@media screen and (min-width: 992px) { .modal-mobile-show { display: none !important; }
+@media screen and (min-width: 768px) { .modal-mobile-show { display: none !important; }
   .modal { display: flex !important; }
   .modal-content { border-radius: 5px; }
   .modal-dialog { align-self: center; margin: 0 auto; }
@@ -3729,13 +3753,13 @@ dl dd { margin-bottom: 12px; }
 
 .panel-xs .panel-heading .btn { margin-left: 4px; }
 
-@media screen and (max-width: 991px) { .panel { border-left: 0; border-right: 0; border-radius: 0; margin-bottom: 12px; }
+@media screen and (max-width: 767px) { .panel { border-left: 0; border-right: 0; border-radius: 0; margin-bottom: 12px; }
   .panel .panel-heading { font-size: 18px; margin: 0 16px 0; padding: 16px 0 12px; }
   .panel .panel-heading .btn { padding: 6px 12px; font-size: 12px; line-height: 1.5; border-radius: 3px; margin-left: 8px; position: relative; top: -6px; }
   .panel .panel-body { padding: 12px 16px; }
   .panel .panel-footer { padding: 8px 16px 12px; } }
 
-@media screen and (min-width: 992px) { .panel .panel-heading { margin: 36px 36px 24px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; }
+@media screen and (min-width: 768px) { .panel .panel-heading { margin: 36px 36px 24px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; }
   .panel .panel-title { font-size: 32px; padding: 0; margin: 0; }
   .panel-sm .panel-heading { margin: 0 24px 0; padding: 24px 0 16px; }
   .panel-sm .panel-title { font-size: 24px; }

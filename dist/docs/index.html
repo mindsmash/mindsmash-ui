@@ -328,6 +328,7 @@
     </div>
     <div class="panel-body">
       <h3>Basic example</h3>
+      <p><b>Note:</b> Use the helper class <code>.form-group-checkbox</code> to fix margin offsets for form groups with checkboxes.</p>
       <div class="example panel panel-default">
         <div class="panel-body">
           <form class="form-horizontal">
@@ -343,6 +344,12 @@
                 <input type="text" class="form-control" id="inputText" placeholder="Text (disabled)" disabled>
               </div>
             </div>
+            <div class="form-group form-group-checkbox">
+              <label for="checkBoolean" class="col-sm-2 control-label">Checkbox</label>
+              <div class="col-sm-10">
+                <msm-checkbox ng-model="boolModel" id="checkBoolean"></msm-checkbox>
+              </div>
+            </div>
             <div class="form-group">
               <label for="inputPassword" class="col-sm-2 control-label">Password</label>
               <div class="col-sm-10">
@@ -355,15 +362,6 @@
                 <textarea class="form-control" id="inputTextarea" placeholder="Textarea" rows="3"></textarea>
               </div>
             </div>
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Checkbox
-                  </label>
-                </div>
-              </div>
-            </div>
           </form>
         </div>
       </div>
@@ -374,20 +372,29 @@
         <form class="form-horizontal">
             <div class="form-group form-group-lg">
               <label class="col-sm-2 control-label" for="formGroupInputLarge">Large label</label>
-              <div class="col-sm-10">
+              <div class="col-sm-9">
                 <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
+              </div>
+              <div class="col-sm-1">
+                <msm-checkbox ng-model="boolModel2" id="checkBoolean"></msm-checkbox>
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label" for="formGroupInputNormal">Normal label</label>
-              <div class="col-sm-10">
+              <div class="col-sm-9">
                 <input class="form-control" type="text" id="formGroupInputNormal" placeholder="Normal input">
+              </div>
+              <div class="col-sm-1">
+                <msm-checkbox ng-model="boolModel3" id="checkBoolean"></msm-checkbox>
               </div>
             </div>
             <div class="form-group form-group-sm">
               <label class="col-sm-2 control-label" for="formGroupInputSmall">Small label</label>
-              <div class="col-sm-10">
+              <div class="col-sm-9">
                 <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Small input">
+              </div>
+              <div class="col-sm-1">
+                <msm-checkbox ng-model="boolModel4" id="checkBoolean"></msm-checkbox>
               </div>
             </div>
           </form>
@@ -936,6 +943,7 @@
 <script src="../components/ui/msm-click-to-edit/msm-click-to-edit.directive.js"></script>
 <script src="../components/ui/msm-editable-text/msm-editable-text.directive.js"></script>
 <script src="../components/ui/msm-button/msm-button.directive.js"></script>
+<script src="../components/ui/msm-checkbox/msm-checkbox.directive.js"></script>
 <script src="../components/ui/msm-modal/msm-modal.service.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>

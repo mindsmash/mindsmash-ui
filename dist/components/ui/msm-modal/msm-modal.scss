@@ -69,7 +69,7 @@
 
 
 
-@include sm-and-down {
+@include xs {
   .modal-mobile-hide { display: none !important; }
 
   .modal-dialog {
@@ -151,7 +151,7 @@
 
 
 
-@include md-and-up {
+@include sm-and-up {
   .modal-mobile-show { display: none !important; }
 
   .modal {
