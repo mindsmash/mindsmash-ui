@@ -18,7 +18,7 @@
       note: note,
       confirm: confirm,
       select: select,
-      form: form
+      formly: formly
     };
 
     /**
@@ -252,7 +252,7 @@
       });
     }
 
-    function form(options) {
+    function formly(options) {
       return open({
         size: options.size,
         templateUrl: 'components/ui/msm-modal/msm-modal-form.html',

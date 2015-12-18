@@ -256,7 +256,7 @@
         return true;
       }
 
-      return msmModal.form({
+      return msmModal.formly({
         size: size,
         title: 'Form',
         formOptions: {
