@@ -169,14 +169,18 @@
 
     vm.openCustom = function(size) {
       return msmModal.open({
-        value: 'Some value...',
-        valueAsync: valueAsync(),
-        valueFunction: valueFunction
-      }, function(value, valueAsync, valueFunction) {
-        var vm = this;
-        vm.title = 'Customization';
-        vm.text = valueAsync;
-      }, size).result.then(function(selectedItem) {
+        size: size,
+        resolve: {
+          value: 'Some value...',
+          valueAsync: valueAsync(),
+          valueFunction: valueFunction
+        },
+        controller: function(value, valueAsync, valueFunction) {
+          var vm = this;
+          vm.title = 'Customization';
+          vm.text = valueAsync;
+        }
+      }).result.then(function(selectedItem) {
         $log.info('Modal (custom): Clicked OK.');
       }, function() {
         $log.info('Modal (custom): Cancelled.');
@@ -184,11 +188,11 @@
     };
 
     vm.openNote = function(size) {
-      return msmModal.note(
-        'Note',
-        'This is some very important information.',
-        size
-      ).result.then(function(selectedItem) {
+      return msmModal.note({
+        size: size,
+        title: 'Note',
+        text: 'This is some very important information.',
+      }).result.then(function(selectedItem) {
         $log.info('Modal (note): Clicked OK.');
         msmNotification.success('Closed', false);
       }, function() {
@@ -197,11 +201,13 @@
     };
 
     vm.openConfirm = function(size) {
-      return msmModal.confirm(
-          'Confirmation',
-          'Are you sure you want to continue?',
-          size, 'Yes', 'No'
-      ).result.then(function() {
+      return msmModal.confirm({
+        size: size,
+        title: 'Confirmation',
+        text: 'Are you sure you want to continue?',
+        close: { title: 'Yes' },
+        dismiss: { title: 'No' }
+      }).result.then(function() {
         $log.info('Modal (confirm): Confirmed.');
         msmNotification.success('Confirmed', false);
       }, function() {
@@ -225,15 +231,15 @@
     ];
     var selectedSelectModalItem = values[0].key;
     vm.openSelect = function(size) {
-      return msmModal.select(
-          'Selection',
-          'Please select:',
-          {
-            values: values,
-            selected: selectedSelectModalItem
-          },
-          size
-      ).result.then(function(selectedItem) {
+      return msmModal.select({
+        size: size,
+        title: 'Selection',
+        text: 'Please select:',
+        options: {
+          values: values,
+          selected: selectedSelectModalItem
+        }
+      }).result.then(function(selectedItem) {
         $log.info('Modal (select): Clicked OK.');
         selectedSelectModalItem = selectedItem;
         msmNotification.success('Selected item: \'' + selectedItem + '\'', false);

@@ -27,48 +27,50 @@
      *
      * @description
      *     Display a modal dialog.
-     * @param {object=} parameters
-     *     The modal's scope parameters. All parameters will automatically
-     *     converted to resolvable functions and bound to the controller
-     *     instance using the object's key name.
-     * @param {object=} controller
-     *     The modal's controller. A default controller will be provided
-     *     with all parameter bindings.
-     * @param {string=} size
-     *     The modal's size.
-     * @param {string=} templateUrl
-     *     The modal's template URL.
+     * @param {object} config
+     *     A configuration object. The following configuration keys are valid:
+     *       * size:
+     *           The modal's size.
+     *       * resolve:
+     *           The modal's scope parameters. All parameters will automatically
+     *           converted to resolvable functions and bound to the default controller
+     *           using the object's key name.
+     *       * controller:
+     *           The modal's controller. A default controller will be provided
+     *           with all parameter bindings.
+     *       * templateUrl:
+     *           The modal's template URL.
      */
-    function open(parameters, controller, size, templateUrl) {
-
-      parameters = parameters || {};
+    function open(config) {
+      if (angular.isUndefined(config)) { config = {}; }
+      if (angular.isUndefined(config.resolve)) { config.resolve = {}; }
 
       // auto-generate controller if missing
-      if (angular.isUndefined(controller)) {
-        var keys = Object.keys(parameters);
+      if (angular.isUndefined(config.controller)) {
+        var keys = Object.keys(config.resolve);
         var args = keys.join(',');
         var assign =
           'var vm = this;' +
           keys.map(function (arg) {
             return 'this[\'' + arg + '\'] = ' + arg + ';';
           }).join('');
-        eval('controller = function (' + args + ') {' + assign + '};');
+        eval('config.controller = function (' + args + ') {' + assign + '};');
       }
 
       // convert parameters to functions
-      angular.forEach(parameters, function (value, key) {
-        parameters[key] = angular.isFunction(value) ? value : function () {
+      angular.forEach(config.resolve, function (value, key) {
+        config.resolve[key] = angular.isFunction(value) ? value : function () {
           return value;
         };
       });
 
       var modalInstance = $modal.open({
-        animation: true,
-        templateUrl: templateUrl || 'components/ui/msm-modal/msm-modal.html',
-        controller: controller,
+        animation: false,
+        templateUrl: config.templateUrl || 'components/ui/msm-modal/msm-modal.html',
+        controller: config.controller,
         controllerAs: 'vm',
-        size: size || '',
-        resolve: parameters,
+        size: config.size || '',
+        resolve: config.resolve,
         bindToController: true,
         windowClass: 'app-modal-window'
       });
@@ -94,26 +96,33 @@
      *
      * @description
      *     Display a modal notification dialog.
-     * @param {string} title
-     *     The modal's title.
-     * @param {string} text
-     *     The modal's text.
-     * @param {string=} size
-     *     The modal's size.
+     * @param {object} options
+     *     An options object. The following option keys are valid:
+     *       * size:
+     *           The modal's size.
+     *       * title:
+     *           The modal's title.
+     *       * text:
+     *           The modal's text.
+     *       * close:
+     *           The close button configuration.
      */
-    function note(title, text, size) {
-      return open(null, function ($modalInstance) {
-        var vm = angular.extend(this, {
-          title: title,
-          text: text,
-          buttons: [{
-            icon: 'check-circle',
-            title: 'Ok',
-            context: 'primary',
-            onClick: $modalInstance.close
-          }]
-        });
-      }, size);
+    function note(options) {
+      return open({
+        size: options.size,
+        controller: function ($modalInstance) {
+          var vm = angular.extend(this, {
+            title: options.title || '',
+            text: options.text || '',
+            buttons: [angular.extend({
+              icon: 'check-circle',
+              title: 'Ok',
+              context: 'primary',
+              onClick: $modalInstance.close
+            }, options.close)]
+          });
+        }
+      });
     }
 
     /**
@@ -123,35 +132,41 @@
      *
      * @description
      *     Display a modal confirmation dialog.
-     * @param {string} title
-     *     The modal's title.
-     * @param {string} text
-     *     The modal's text.
-     * @param {string=} size
-     *     The modal's size.
-     * @param {string=Ok} closeTitle
-     *     The label of the modal's confirm button.
-     * @param {string=Cancel} dismissTitle
-     *     The label of the modal's cancel button.
+     * @param {object} options
+     *     An options object. The following option keys are valid:
+     *       * size:
+     *           The modal's size.
+     *       * title:
+     *           The modal's title.
+     *       * text:
+     *           The modal's text.
+     *       * close:
+     *           The close button configuration.
+     *       * dismiss:
+     *           The dismiss button configuration.
      */
-    function confirm(title, text, size, closeTitle, dismissTitle) {
-      return open(null, function ($modalInstance) {
-        var vm = angular.extend(this, {
-          title: title,
-          text: text,
-          buttons: [{
-            icon: 'check-circle',
-            title: closeTitle || 'Ok',
-            context: 'primary',
-            onClick: $modalInstance.close
-          }, {
-            icon: 'close-circle',
-            title: dismissTitle || 'Cancel',
-            context: 'default',
-            onClick: $modalInstance.dismiss
-          }]
-        });
-      }, size);
+    function confirm(options) {
+      // title, text, size, closeTitle, dismissTitle
+      return open({
+        size: options.size,
+        controller: function ($modalInstance) {
+          var vm = angular.extend(this, {
+            title: options.title || '',
+            text: options.text || '',
+            buttons: [angular.extend({
+              icon: 'check-circle',
+              title: 'Ok',
+              context: 'primary',
+              onClick: $modalInstance.close
+            }, options.close), angular.extend({
+              icon: 'close-circle',
+              title: 'Cancel',
+              context: 'default',
+              onClick: $modalInstance.dismiss
+            }, options.dismiss)]
+          })
+        }
+      });
     }
 
     /**
@@ -161,71 +176,80 @@
      *
      * @description
      *     Display a modal selection dialog.
-     * @param {string} title
-     *     The modal's title.
-     * @param {string} text
-     *     The modal's text.
-     * @param {array} options
-     *     The modal's selection options.
-     * @param {string=} size
-     *     The modal's size.
-     * @param {string=Ok} closeTitle
-     *     The label of the modal's confirm button.
-     * @param {string=Cancel} dismissTitle
-     *     The label of the modal's cancel button.
+     * @param {object} options
+     *     An options object. The following option keys are valid:
+     *       * size:
+     *           The modal's size.
+     *       * title:
+     *           The modal's title.
+     *       * text:
+     *           The modal's text.
+     *       * options:
+     *           The modal's selection options.
+     *       * close:
+     *           The close button configuration.
+     *       * dismiss:
+     *           The dismiss button configuration.
      */
-    function select(title, text, options, size, closeTitle, dismissTitle) {
-      return open({ values: options.values, selected: options.selected }, function ($modalInstance, values, selected) {
-        var vm = angular.extend(this, {
-          title: title,
-          text: text,
-          buttons: [{
-            icon: 'check-circle',
-            title: closeTitle || 'Select',
-            context: 'primary',
-            onClick: select,
-            hideMobile: true
-          }, {
-            icon: 'close-circle',
-            title: dismissTitle || 'Cancel',
-            context: 'default',
-            onClick: $modalInstance.dismiss
-          }]
-        });
+    function select(options) {
+      // title, text, options, size, closeTitle, dismissTitle
+      return open({
+        size: options.size,
+        templateUrl: 'components/ui/msm-modal/msm-modal-select.html',
+        resolve: {
+          values: options.options.values,
+          selected: options.options.selected
+        },
+        controller: function ($modalInstance, values, selected) {
+          var vm = angular.extend(this, {
+            title: options.title || '',
+            text: options.text || '',
+            buttons: [angular.extend({
+              icon: 'check-circle',
+              title: 'Select',
+              context: 'primary',
+              onClick: select,
+              hideMobile: true
+            }, options.close), angular.extend({
+              icon: 'close-circle',
+              title: 'Cancel',
+              context: 'default',
+              onClick: $modalInstance.dismiss
+            }, options.dismiss)]
+          });
 
-        var valueList = [];
-        var selectedVaL = null;
-        for (var key in values) {
-          var val = values[key].value;
-          valueList.push(val);
-          if (selected === values[key].key) {
-            selectedVaL = val;
-          }
-        }
-
-        vm.options = {
-          values: valueList,
-          selected: selectedVaL
-        };
-
-        vm.select = select;
-
-        function select (option) {
-          var found = false;
-          var selectedItem = option || vm.options.selected;
-
+          var valueList = [];
+          var selectedVaL = null;
           for (var key in values) {
-            if (selectedItem === values[key].value) {
-              $modalInstance.close(values[key].key);
-              found = true;
-              break;
+            var val = values[key].value;
+            valueList.push(val);
+            if (selected === values[key].key) {
+              selectedVaL = val;
             }
           }
-          if (!found) {
-            $modalInstance.close(selectedItem);
+
+          vm.options = {
+            values: valueList,
+            selected: selectedVaL
+          };
+
+          vm.select = select;
+          function select (option) {
+            var found = false;
+            var selectedItem = option || vm.options.selected;
+            for (var key in values) {
+              if (selectedItem === values[key].value) {
+                $modalInstance.close(values[key].key);
+                found = true;
+                break;
+              }
+            }
+            if (!found) {
+              $modalInstance.close(selectedItem);
+            }
           }
         }
-      }, size, 'components/ui/msm-modal/msm-modal-select.html');
+      });
     }
   }
 

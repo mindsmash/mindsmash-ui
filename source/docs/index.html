@@ -140,7 +140,6 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <button class="btn btn-primary pull-right"><i class="zmdi zmdi-star"></i> Action</button>
-              <button class="btn btn-primary pull-right"><i class="zmdi zmdi-star"></i> Action</button>
               <h3 class="panel-title">Panel title</h3>
             </div>
             <div class="panel-body">
@@ -157,7 +156,6 @@
             <div class="col-md-6">
               <div class="panel panel-sm panel-default">
                 <div class="panel-heading">
-                  <button class="btn btn-sm btn-primary pull-right"><i class="zmdi zmdi-star"></i> Action</button>
                   <button class="btn btn-sm btn-primary pull-right"><i class="zmdi zmdi-star"></i> Action</button>
                   <h3 class="panel-title">Panel title</h3>
                 </div>
@@ -187,7 +185,6 @@
             <div class="col-md-4">
               <div class="panel panel-xs panel-default">
                 <div class="panel-heading">
-                  <button class="btn btn-xs btn-primary pull-right"><i class="zmdi zmdi-star"></i> Action</button>
                   <button class="btn btn-xs btn-primary pull-right"><i class="zmdi zmdi-star"></i> Action</button>
                   <h3 class="panel-title">Panel title</h3>
                 </div>
@@ -577,16 +574,19 @@
           <div class="hidden" data-create-code=".js-insert-code">
             <script>
               showCustom = function(size) {
-                return msmModal
-                  .open({
+                return msmModal.open({
+                  size: size,
+                  resolve: {
                     value: 'Some value...',      // primitive value
                     valueAsync: valueAsync(),    // $q promise (1sec. delay)
                     valueFunction: valueFunction // function
-                  }, function(value, valueAsync, valueFunction) {
+                  },
+                  controller: function(value, valueAsync, valueFunction) {
                     var vm = this;
                     vm.title = 'Customization';
                     vm.text = valueAsync;
-                  }, size);
+                  }
+                });
               };
             </script>
           </div>
@@ -604,8 +604,11 @@
           <div class="hidden" data-create-code=".js-insert-code">
             <script>
               showNotification = function(size) {
-                return msmModal
-                  .note('Note', 'This is some very important information.', size);
+                return msmModal.note({
+                  size: size,
+                  title: 'Note',
+                  text: 'This is some very important information.'
+                });
               };
             </script>
           </div>
@@ -623,9 +626,13 @@
           <div class="hidden" data-create-code=".js-insert-code">
             <script>
               showConfirmation = function(size) {
-                return msmModal
-                  .confirm('Confirmation', 'Are you sure you want to continue?', size, 'Yes', 'No')
-                  .result.then(function() { /* ... */ });
+                return msmModal.confirm({
+                  size: size,
+                  title: 'Confirmation',
+                  text: 'Are you sure you want to continue?',
+                  close: { title: 'Yes' },
+                  dismiss: { title: 'No' }
+                }).result.then(function() { /* ... */ });
               };
             </script>
           </div>
@@ -643,13 +650,15 @@
           <div class="hidden" data-create-code=".js-insert-code">
             <script>
               showSelection = function(size) {
-                return msmModal
-                  .select('Selection', 'Please select:',
-                          {
-                            values: [{key:'key1', value:'Item 1'}, {key:'key2', value:'Item 2'}, {key:'key3', value:'Item 3'}],
-                            selected: 'key1'
-                          }, size)
-                  .result.then(function(selectedItem) { /* ... */ });
+                return msmModal.select({
+                  size: size,
+                  title: 'Selection',
+                  text: 'Please select:',
+                  options: {
+                    values: [{ key: 'key1', value: 'Item 1' }, { key: 'key2', value: 'Item 2' }, { key: 'key3', value: 'Item 3' }],
+                    selected: 'key1'
+                  }
+                }).result.then(function(selectedItem) { /* ... */ });
               };
             </script>
           </div>
