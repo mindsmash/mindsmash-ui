@@ -450,7 +450,7 @@ angular.module('msm.components.ui')
             text: options.text || '',
             buttons: [angular.extend({
               icon: 'check-circle',
-              title: 'Ok',
+              title: options.closeTitle || 'Ok',
               context: 'primary',
               onClick: $modalInstance.close
             }, options.close)]
@@ -489,12 +489,12 @@ angular.module('msm.components.ui')
             text: options.text || '',
             buttons: [angular.extend({
               icon: 'check-circle',
-              title: 'Ok',
+              title: options.closeTitle || 'Ok',
               context: 'primary',
               onClick: $modalInstance.close
             }, options.close), angular.extend({
               icon: 'close-circle',
-              title: 'Cancel',
+              title: options.dismissTitle || 'Cancel',
               context: 'default',
               onClick: $modalInstance.dismiss
             }, options.dismiss)]
@@ -540,13 +540,13 @@ angular.module('msm.components.ui')
             text: options.text || '',
             buttons: [angular.extend({
               icon: 'check-circle',
-              title: 'Select',
+              title: options.closeTitle || 'Select',
               context: 'primary',
               onClick: select,
               hideMobile: true
             }, options.close), angular.extend({
               icon: 'close-circle',
-              title: 'Cancel',
+              title: options.dismissTitle || 'Cancel',
               context: 'default',
               onClick: $modalInstance.dismiss
             }, options.dismiss)]
