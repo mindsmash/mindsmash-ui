@@ -171,14 +171,18 @@
 
     vm.openCustom = function(size) {
       return msmModal.open({
-        value: 'Some value...',
-        valueAsync: valueAsync(),
-        valueFunction: valueFunction
-      }, function(value, valueAsync, valueFunction) {
-        var vm = this;
-        vm.title = 'Customization';
-        vm.text = valueAsync;
-      }, size).result.then(function(selectedItem) {
+        size: size,
+        resolve: {
+          value: 'Some value...',
+          valueAsync: valueAsync(),
+          valueFunction: valueFunction
+        },
+        controller: function(value, valueAsync, valueFunction) {
+          var vm = this;
+          vm.title = 'Customization';
+          vm.text = valueAsync;
+        }
+      }).result.then(function(selectedItem) {
         $log.info('Modal (custom): Clicked OK.');
       }, function() {
         $log.info('Modal (custom): Cancelled.');
@@ -186,11 +190,11 @@
     };
 
     vm.openNote = function(size) {
-      return msmModal.note(
-        'Note',
-        'This is some very important information.',
-        size
-      ).result.then(function(selectedItem) {
+      return msmModal.note({
+        size: size,
+        title: 'Note',
+        text: 'This is some very important information.',
+      }).result.then(function(selectedItem) {
         $log.info('Modal (note): Clicked OK.');
         msmNotification.success('Closed', false);
       }, function() {
@@ -199,11 +203,13 @@
     };
 
     vm.openConfirm = function(size) {
-      return msmModal.confirm(
-          'Confirmation',
-          'Are you sure you want to continue?',
-          size, 'Yes', 'No'
-      ).result.then(function() {
+      return msmModal.confirm({
+        size: size,
+        title: 'Confirmation',
+        text: 'Are you sure you want to continue?',
+        close: { title: 'Yes' },
+        dismiss: { title: 'No' }
+      }).result.then(function() {
         $log.info('Modal (confirm): Confirmed.');
         msmNotification.success('Confirmed', false);
       }, function() {
@@ -227,15 +233,15 @@
     ];
     var selectedSelectModalItem = values[0].key;
     vm.openSelect = function(size) {
-      return msmModal.select(
-          'Selection',
-          'Please select:',
-          {
-            values: values,
-            selected: selectedSelectModalItem
-          },
-          size
-      ).result.then(function(selectedItem) {
+      return msmModal.select({
+        size: size,
+        title: 'Selection',
+        text: 'Please select:',
+        options: {
+          values: values,
+          selected: selectedSelectModalItem
+        }
+      }).result.then(function(selectedItem) {
         $log.info('Modal (select): Clicked OK.');
         selectedSelectModalItem = selectedItem;
         msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
@@ -245,87 +251,87 @@
     };
 
     vm.openForm = function(size) {
-      function beforeClose(models) {
+      function onModalFormSubmit(models) {
         console.log(models);
         return true;
       }
 
-      return msmModal.form(
-          'Custom form',
+      return msmModal.form({
+        size: size,
+        title: 'Custom form',
+        closeTitle: 'Ok',
+        dismissTitle: 'Cancel',
+        onSubmit: onModalFormSubmit,
+        model: {
+          selected: true
+        },
+        options: {
+          formState: {
+            selectedIsForced: false
+          }
+        },
+        inputFields: [
           {
-            model: {
-              selected: true
-            },
-            options: {
-              formState: {
-                selectedIsForced: false
-              }
-            },
-            inputFields: [
-              {
-                key: 'text',
-                type: 'input',
-                templateOptions: {
-                  label: 'Text',
-                  placeholder: 'This is terrific!'
-                }
-              },
-              {
-                key: 'nested.story',
-                type: 'textarea',
-                templateOptions: {
-                  label: 'A text area',
-                  placeholder: 'Text area placeholder',
-                  description: ''
-                },
-                expressionProperties: {
-                  'templateOptions.focus': 'formState.selectedIsForced',
-                  'templateOptions.description': function(viewValue, modelValue, scope) {
-                    if (scope.formState.selectedIsForced) {
-                      return 'This field magically got focus!';
-                    }
-                  }
-                }
-              },
-              {
-                key: 'selected',
-                type: 'checkbox',
-                templateOptions: { label: '' },
-                expressionProperties: {
-                  'templateOptions.disabled': 'formState.selectedIsForced',
-                  'templateOptions.label': function(viewValue, modelValue, scope) {
-                    if (scope.formState.selectedIsForced) {
-                      return 'This is really awesome!';
-                    } else {
-                      return 'Is this totally awesome? (uncheck this and see what happens)';
-                    }
-                  }
-                }
-              },
-              {
-                key: 'whyNot',
-                type: 'textarea',
-                expressionProperties: {
-                  'templateOptions.placeholder': function(viewValue, modelValue, scope) {
-                    if (scope.formState.selectedIsForced) {
-                      return 'This is really awesome!';
-                    } else {
-                      return 'Type in here...';
-                    }
-                  },
-                  'templateOptions.disabled': 'formState.selectedIsForced'
-                },
-                hideExpression: 'model.selected',
-                templateOptions: {
-                  label: 'Why Not?',
-                  placeholder: 'Type in here...'
-                }
-              }
-            ]
+            key: 'text',
+            type: 'input',
+            templateOptions: {
+              label: 'Text',
+              placeholder: 'This is terrific!'
+            }
           },
-          beforeClose,
-          size
-      ).result.then(
+          {
+            key: 'nested.story',
+            type: 'textarea',
+            templateOptions: {
+              label: 'A text area',
+              placeholder: 'Text area placeholder',
+              description: ''
+            },
+            expressionProperties: {
+              'templateOptions.focus': 'formState.selectedIsForced',
+              'templateOptions.description': function(viewValue, modelValue, scope) {
+                if (scope.formState.selectedIsForced) {
+                  return 'This field magically got focus!';
+                }
+              }
+            }
+          },
+          {
+            key: 'selected',
+            type: 'checkbox',
+            templateOptions: { label: '' },
+            expressionProperties: {
+              'templateOptions.disabled': 'formState.selectedIsForced',
+              'templateOptions.label': function(viewValue, modelValue, scope) {
+                if (scope.formState.selectedIsForced) {
+                  return 'This is really awesome!';
+                } else {
+                  return 'Is this totally awesome? (uncheck this and see what happens)';
+                }
+              }
+            }
+          },
+          {
+            key: 'whyNot',
+            type: 'textarea',
+            expressionProperties: {
+              'templateOptions.placeholder': function(viewValue, modelValue, scope) {
+                if (scope.formState.selectedIsForced) {
+                  return 'This is really awesome!';
+                } else {
+                  return 'Type in here...';
+                }
+              },
+              'templateOptions.disabled': 'formState.selectedIsForced'
+            },
+            hideExpression: 'model.selected',
+            templateOptions: {
+              label: 'Why Not?',
+              placeholder: 'Type in here...'
+            }
+          }
+        ]
+      }).result.then(
           function(result) {
             $log.info('Modal (form): Ok.', result);
             msmNotification.success('Ok', false);
