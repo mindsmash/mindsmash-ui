@@ -41,7 +41,7 @@
 }
 
 .modal-body {
-  flex-grow: 1;
+  flex: 1;
   overflow: scroll;
 }
 
@@ -91,7 +91,6 @@
     background-color: $msm-blue;
     border: 0;
     color: $msm-white;
-    min-height: 60px;
 
     h3 {
       text-align: center;
@@ -120,21 +119,15 @@
 
   .modal-footer {
     flex-direction: column;
-    min-height: 60px;
-    padding: 0;
 
     .btn {
-      margin-top: 0;
+      margin-top: 15px;
       padding-bottom: 9px;
       padding-top: 9px;
-      
+
       &:first-child {
         margin-top: 0;
       }
-    }
-
-    .btn + .btn {
-      border-right: 1 px solid rgba(255,255,255,0.25);
     }
   }
 
