@@ -1,0 +1,63 @@
+.msm-checkbox.btn {
+  margin: 8px 0px;
+  padding: 0;
+
+  &:active, &:hover, &:focus {
+    background: $input-bg;
+    border-color: $input-border;
+    box-shadow: none;
+    outline: none;
+  }
+
+  &:focus {
+    border-color: $input-border-focus;
+  }
+
+  &:active:focus {
+    outline: none;
+  }
+
+  i {
+    margin: 0;
+    line-height: 24px;
+    width: 24px;
+  }
+}
+
+.msm-checkbox-sm.btn,
+.form-group-sm .msm-checkbox.btn {
+  border-radius: $btn-border-radius-small;
+  font-size: 12px;
+  margin: 6px 0px;
+
+  i {
+    color: $input-color;
+    line-height: 18px;
+    width: 18px;
+  }
+}
+
+.msm-checkbox-lg.btn,
+.form-group-lg .msm-checkbox.btn {
+  border-radius: $btn-border-radius-large;
+  font-size: 20px;
+
+  i {
+    line-height: 30px;
+    width: 30px;
+  }
+}
+
+.msm-checkbox.btn[disabled] {
+  background-color: $input-bg-disabled;
+  opacity: 1;
+}
+
+.form-group-checkbox {
+  margin-bottom: 7px;
+}
+.form-group + .form-group-checkbox,
+.form-group-sm + .form-group-checkbox,
+.form-group-lg + .form-group-checkbox {
+  margin-top: -8px;
+}

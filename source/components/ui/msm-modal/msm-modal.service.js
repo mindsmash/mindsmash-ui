@@ -117,7 +117,7 @@
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'Ok',
-              style: 'btn-btn-primary',
+              style: 'btn-primary',
               onClick: $modalInstance.close
             }, options.close)]
           });
