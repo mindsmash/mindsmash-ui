@@ -8,7 +8,9 @@
       'ui.bootstrap.datepicker',
       'ui.bootstrap.dropdown',
       'ui.router',
-      'pascalprecht.translate'
+      'pascalprecht.translate',
+      'formly',
+      'formlyBootstrap'
     ])
 
       .config(configTranslations)
@@ -246,6 +248,98 @@
       }, function() {
         $log.info('Modal (select): Cancelled.');
       });
+    };
+
+    vm.openForm = function(size) {
+      function onModalFormSubmit(models) {
+        console.log(models);
+        return true;
+      }
+
+      return msmModal.form({
+        size: size,
+        title: 'Form',
+        formOptions: {
+          onSubmit: onModalFormSubmit,
+          model: {
+            selected: true
+          },
+          options: {
+            formState: {
+              selectedIsForced: false
+            }
+          },
+          inputFields: [
+            {
+              key: 'text',
+              type: 'input',
+              templateOptions: {
+                label: 'Text',
+                placeholder: 'This is terrific!'
+              }
+            },
+            {
+              key: 'nested.story',
+              type: 'textarea',
+              templateOptions: {
+                label: 'A text area',
+                placeholder: 'Text area placeholder',
+                description: ''
+              },
+              expressionProperties: {
+                'templateOptions.focus': 'formState.selectedIsForced',
+                'templateOptions.description': function(viewValue, modelValue, scope) {
+                  if (scope.formState.selectedIsForced) {
+                    return 'This field magically got focus!';
+                  }
+                }
+              }
+            },
+            {
+              key: 'selected',
+              type: 'checkbox',
+              templateOptions: { label: '' },
+              expressionProperties: {
+                'templateOptions.disabled': 'formState.selectedIsForced',
+                'templateOptions.label': function(viewValue, modelValue, scope) {
+                  if (scope.formState.selectedIsForced) {
+                    return 'This is really awesome!';
+                  } else {
+                    return 'Is this totally awesome? (uncheck this and see what happens)';
+                  }
+                }
+              }
+            },
+            {
+              key: 'whyNot',
+              type: 'textarea',
+              expressionProperties: {
+                'templateOptions.placeholder': function(viewValue, modelValue, scope) {
+                  if (scope.formState.selectedIsForced) {
+                    return 'This is really awesome!';
+                  } else {
+                    return 'Type in here...';
+                  }
+                },
+                'templateOptions.disabled': 'formState.selectedIsForced'
+              },
+              hideExpression: 'model.selected',
+              templateOptions: {
+                label: 'Why Not?',
+                placeholder: 'Type in here...'
+              }
+            }
+          ]
+        }
+      }).result.then(
+          function(result) {
+            $log.info('Modal (form): Ok.', result);
+            msmNotification.success('Ok', false);
+          },
+          function() {
+            $log.info('Modal (form): Cancel.');
+          }
+      );
     };
 
     (function initController() {

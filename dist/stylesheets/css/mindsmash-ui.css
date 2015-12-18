@@ -1192,7 +1192,7 @@ input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focu
 
 output { display: block; padding-top: 9px; font-size: 16px; line-height: 1.5; color: #333; }
 
-.form-control { display: block; width: 100%; height: 42px; padding: 8px 16px; font-size: 16px; line-height: 1.5; color: #333; background-color: #fafafa; background-image: none; border: 1px solid #ddd; border-radius: 5px; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
+.form-control { display: block; width: 100%; height: 42px; padding: 8px 16px; font-size: 16px; line-height: 1.5; color: #333; background-color: #fff; background-image: none; border: 1px solid #ddd; border-radius: 5px; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
 
 .form-control:focus { border-color: #aaaaaa; outline: 0; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(170, 170, 170, 0.6); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(170, 170, 170, 0.6); }
 
@@ -3383,7 +3383,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-datepicker table button.active * { color: #fff; }
 
-@media screen and (min-width: 768px) { .msm-datepicker { border-radius: 5px; border: 1px solid rgba(0, 0, 0, 0.15); bottom: inherit !important; left: inherit !important; position: absolute; right: inherit !important; top: inherit !important; }
+@media screen and (min-width: 768px) { .msm-datepicker { margin-top: 1px; border-radius: 5px; border: 1px solid rgba(0, 0, 0, 0.15); bottom: inherit !important; left: inherit !important; position: absolute; right: inherit !important; top: inherit !important; }
   .msm-datepicker table { width: auto; }
   .msm-datepicker table button { padding: 6px 10px; } }
 
@@ -3410,9 +3410,9 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .modal-header { display: flex; flex-direction: row; padding: 12px 24px; }
 
-.modal-header h3 { flex-grow: 1; line-height: 35px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.modal-header h3 { font-size: 24px; line-height: 32px; flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-.modal-header .modal-close { color: #AAA; font-size: 20px; line-height: 35px; padding: 0 12px; position: relative; right: -12px; cursor: pointer; }
+.modal-header .modal-close { color: #AAA; font-size: 20px; line-height: 32px; padding: 0 12px; position: relative; right: -12px; cursor: pointer; }
 
 .modal-body { flex-grow: 1; overflow: scroll; }
 
@@ -3420,9 +3420,13 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .modal-footer .btn { border: 0; flex: 1; }
 
+.modal-footer .btn.btn-default { background-color: #F3F3F3; }
+
+.modal-footer .btn.btn-default:active, .modal-footer .btn.btn-default:focus, .modal-footer .btn.btn-default:hover { background-color: #EAEAEA; }
+
 .modal-footer .btn + .btn { margin-left: 0; }
 
-@media (max-width: 767px) { .modal-mobile-hide { display: none !important; }
+@media screen and (max-width: 991px) { .modal-mobile-hide { display: none !important; }
   .modal-dialog { bottom: 0; left: 0; margin: 0; position: fixed; right: 0; top: 0; }
   .modal-content { border-radius: 0; height: 100%; width: 100%; }
   .modal-header { background-color: #317DC1; border: 0; color: #FDFDFD; min-height: 60px; }
@@ -3439,16 +3443,17 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
   .modal-mobile-option { border-bottom: 1px solid #EAEAEA; padding: 18px 24px; cursor: pointer; }
   .modal-mobile-option:active { background-color: #EAEAEA; } }
 
-@media (min-width: 768px) { .modal-mobile-show { display: none !important; }
+@media screen and (min-width: 992px) { .modal-mobile-show { display: none !important; }
   .modal { display: flex !important; }
+  .modal-content { border-radius: 5px; }
   .modal-dialog { align-self: center; margin: 0 auto; }
-  .modal-header { padding: 28px 0 18px; margin: 0 28px; }
+  .modal-header { margin: 0 24px 0; padding: 24px 0 16px; }
   .modal-body { padding: 28px; }
-  .modal-footer { flex-direction: row-reverse; padding: 0; }
+  .modal-footer { flex-direction: row-reverse; padding: 0; margin-bottom: -2px; }
   .modal-footer .btn { border-radius: 0; margin: 0; padding-bottom: 12px; padding-top: 12px; }
   .modal-footer .btn + .btn { border-right: 1px solid rgba(255, 255, 255, 0.25); }
-  .modal-footer .btn:first-child { border-bottom-right-radius: 6px; }
-  .modal-footer .btn:last-child { border-bottom-left-radius: 6px; } }
+  .modal-footer .btn:first-child { border-bottom-right-radius: 5px; }
+  .modal-footer .btn:last-child { border-bottom-left-radius: 5px; } }
 
 /** Use with bootstrap's .navbar */
 .msm-navbar { background-color: #317DC1; border: 0; border-radius: 0; color: #FDFDFD; height: 60px; margin-bottom: 0; }
@@ -3616,21 +3621,15 @@ dl dd { margin-bottom: 12px; }
 
 .dl-horizontal dd { margin-left: 0; width: calc(65% - 12px); }
 
-.btn i { margin-left: -4px; margin-right: 8px; }
+.btn i { margin-right: 4px; }
 
-.btn.btn-zmdi i { margin-right: -4px; }
+.btn-lg i, .btn-group-lg > .btn i { margin-right: 6px; }
 
-.btn-lg i, .btn-group-lg > .btn i { margin-left: -8px; margin-right: 10px; }
+.btn-sm i, .btn-group-sm > .btn i { margin-right: 3px; }
 
-.btn-lg.btn-zmdi i, .btn-group-lg > .btn-zmdi.btn i { margin-right: -8px; }
+.btn-xs i, .btn-group-xs > .btn i { margin-right: 2px; }
 
-.btn-sm i, .btn-group-sm > .btn i { margin-left: -3px; margin-right: 6px; }
-
-.btn-sm.btn-zmdi i, .btn-group-sm > .btn-zmdi.btn i { margin: -3px; }
-
-.btn-xs i, .btn-group-xs > .btn i { margin-left: -2px; margin-right: 4px; }
-
-.btn-xs.btn-zmdi i, .btn-group-xs > .btn-zmdi.btn i { margin-right: -2px; }
+.btn-zmdi i { margin: 0; }
 
 /* Grid modification: .col-xl This file utilizes the defined grid functions shipped with bootstrap-sass via copy-paste. It has not been beautified manually. ------------------------------------------------------------ */
 @media (min-width: 1400px) { .container { width: 1370px; } }
@@ -3749,4 +3748,4 @@ dl dd { margin-bottom: 12px; }
 
 .form-control:focus { box-shadow: none; }
 
-.table > thead > tr > th { color: #AAA; border-width: 1px; font-weight: 300; letter-spacing: .025em; text-transform: uppercase; }
+.table > thead > tr > th { color: #AAA; border-width: 1px; font-weight: normal; letter-spacing: .025em; text-transform: uppercase; }

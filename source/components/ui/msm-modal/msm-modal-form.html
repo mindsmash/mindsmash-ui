@@ -3,10 +3,14 @@
   <span class="modal-close" ng-click="vm.onDismiss ? vm.onDismiss() : $dismiss('cancel')"><i class="zmdi zmdi-close img-close"></i></span>
 </div>
 <div class="modal-body">
-  <span>{{ vm.text | translate }}</span>
+  <div>
+    <form name="form" id="modal-form" role="form">
+      <formly-form model="vm.model" fields="vm.fields" options="vm.options" form="vm.form"></formly-form>
+    </form>
+  </div>
 </div>
 <div class="modal-footer">
-  <button ng-repeat="button in vm.buttons" class="btn btn-{{ button.context }}"
+  <button ng-repeat="button in vm.buttons" class="btn btn-{{ button.context }}" data-ng-disabled="{{ button.constraint }}"
           ng-class="{ 'btn-zmdi': !button.title, 'modal-mobile-hide': button.hideMobile }" ng-click="button.onClick()">
     <i ng-if="button.icon" class="zmdi zmdi-hc-fw zmdi-{{ button.icon }}"></i>{{ button.title | translate }}
   </button>

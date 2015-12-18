@@ -665,6 +665,54 @@
         </div>
         <div class="panel-footer bg-gray-lighter js-insert-code"></div>
       </div>
+      <h3>Custom form modals</h3>
+      <div class="example panel panel-default">
+        <div class="panel-body">
+          <div class="container-fluid">
+            <button class="btn btn-primary mr-s" ng-click="vm.openForm()">Default</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openForm('sm')">Small</button>
+            <button class="btn btn-primary mr-s" ng-click="vm.openForm('lg')">Large</button>
+          </div>
+          <h3>
+            Create your custom form with <a href="http://angular-formly.com" target="_blank">Formly</a>:
+          </h3>
+          <div>
+            [Attention: You need to include 'formly' and 'formlyBootstrap' in your angular app configuration.]
+          </div>
+          <div style="padding-top: 10px;" class="hidden"
+               data-create-code=".js-insert-code">
+            <script>
+              showCustomForm = function(size) {
+                return msmModal.form({
+                  size: size,
+                  title: 'Custom form',
+                  formOptions: {
+                    onSubmit: function() {
+                      /* function to be called on form submit; returns true (modal closes) or false (modal does not close) */
+                    },
+                    model: { /* ... */ },
+                    options: { /* ... */ },
+                    inputFields: [
+                      {
+                        key: 'text',
+                        type: 'input',
+                        templateOptions: {
+                          label: 'Text',
+                          placeholder: 'This is terrific!'
+                        }
+                      },
+                      {
+                        /* ... */
+                      }
+                    ]
+                  }
+                }).result.then(function(selectedItem) { /* ... */ });
+              }
+            </script>
+          </div>
+        </div>
+        <div class="panel-footer bg-gray-lighter js-insert-code"></div>
+      </div>
     </div>
   </section>
 
@@ -872,6 +920,11 @@
 <script src="../../bower_components/angular-translate/angular-translate.js"></script>
 <script src="../../bower_components/angular-ui-notification/dist/angular-ui-notification.js"></script>
 <script src="../../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../../bower_components/api-check/dist/api-check.js"></script>
+<script src="../../bower_components/angular-formly/dist/formly.js"></script>
+<script src="../../bower_components/jquery/dist/jquery.js"></script>
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../bower_components/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js"></script>
 <script src="../../bower_components/highlightjs/highlight.pack.js"></script>
 <script src="../../bower_components/holderjs/holder.js"></script>
 <!-- endbower -->

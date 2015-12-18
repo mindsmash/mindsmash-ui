@@ -17,7 +17,8 @@
       open: open,
       note: note,
       confirm: confirm,
-      select: select
+      select: select,
+      form: form
     };
 
     /**
@@ -246,6 +247,59 @@
             }
             if (!found) {
               $modalInstance.close(selectedItem);
+            }
+          }
+        }
+      });
+    }
+
+    function form(options) {
+      return open({
+        size: options.size,
+        templateUrl: 'components/ui/msm-modal/msm-modal-form.html',
+        resolve: {
+          model: options.formOptions.model,
+          formOptions: options.formOptions.options,
+          inputFields: options.formOptions.inputFields
+        },
+        controller: function ($modalInstance, model, formOptions, inputFields) {
+          var vm = angular.extend(this, {
+            title: options.title || '',
+            buttons: [angular.extend({
+              icon: 'check-circle',
+              title: 'Save',
+              context: 'primary',
+              onClick: onModalSubmit,
+              constraint: 'vm.form.$invalid'
+            }, options.close), angular.extend({
+              icon: 'close-circle',
+              title: 'Cancel',
+              context: 'default',
+              onClick: $modalInstance.dismiss
+            }, options.dismiss)]
+          });
+
+          vm.model = model;
+          vm.options = formOptions;
+          vm.fields = inputFields;
+
+          function onModalSubmit() {
+            var check = options.formOptions.onSubmit(vm.model);
+            // check whether the given callback is a promise
+            if(check.then) {
+              check.then(function(result) {
+                if(result) {
+                  $modalInstance.close(vm.model);
+                } else {
+                  // TODO: Error handling
+                }
+              }).catch(function() {
+                // TODO: Error handling
+              })
+            } else if(check) {
+              $modalInstance.close(vm.model);
+            } else {
+              // TODO: Error handling
             }
           }
         }
