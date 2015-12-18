@@ -258,9 +258,7 @@
 
       return msmModal.form({
         size: size,
-        title: 'Custom form',
-        closeTitle: 'Ok',
-        dismissTitle: 'Cancel',
+        title: 'Form',
         formOptions: {
           onSubmit: onModalFormSubmit,
           model: {

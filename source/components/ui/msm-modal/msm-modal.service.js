@@ -117,7 +117,7 @@
             text: options.text || '',
             buttons: [angular.extend({
               icon: 'check-circle',
-              title: options.closeTitle || 'Ok',
+              title: 'Ok',
               context: 'primary',
               onClick: $modalInstance.close
             }, options.close)]
@@ -156,12 +156,12 @@
             text: options.text || '',
             buttons: [angular.extend({
               icon: 'check-circle',
-              title: options.closeTitle || 'Ok',
+              title: 'Ok',
               context: 'primary',
               onClick: $modalInstance.close
             }, options.close), angular.extend({
               icon: 'close-circle',
-              title: options.dismissTitle || 'Cancel',
+              title: 'Cancel',
               context: 'default',
               onClick: $modalInstance.dismiss
             }, options.dismiss)]
@@ -207,13 +207,13 @@
             text: options.text || '',
             buttons: [angular.extend({
               icon: 'check-circle',
-              title: options.closeTitle || 'Select',
+              title: 'Select',
               context: 'primary',
               onClick: select,
               hideMobile: true
             }, options.close), angular.extend({
               icon: 'close-circle',
-              title: options.dismissTitle || 'Cancel',
+              title: 'Cancel',
               context: 'default',
               onClick: $modalInstance.dismiss
             }, options.dismiss)]
@@ -267,14 +267,13 @@
             title: options.title || '',
             buttons: [angular.extend({
               icon: 'check-circle',
-              title: options.closeTitle || 'Ok',
+              title: 'Save',
               context: 'primary',
               onClick: onModalSubmit,
-              hideMobile: true,
               constraint: 'vm.form.$invalid'
             }, options.close), angular.extend({
               icon: 'close-circle',
-              title: options.dismissTitle || 'Cancel',
+              title: 'Cancel',
               context: 'default',
               onClick: $modalInstance.dismiss
             }, options.dismiss)]
@@ -306,7 +305,6 @@
         }
       });
     }
-
   }
 
 })();
