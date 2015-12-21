@@ -1,3 +1,7 @@
+.btn {
+  @include animate-easing(background-color, 0.2s);
+}
+
 .btn i {
   margin-right: 4px;
 }

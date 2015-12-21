@@ -146,6 +146,50 @@ angular.module('msm.components.ui')
   }
 
 })();
+(function() {
+	'use strict';
+
+	/**
+	 * @ngdoc directive
+	 * @name commons.ui.msmMobileMenuItem:msmMobileMenuItem
+	 * @scope
+	 * @restrict 'E'
+	 * @element ANY
+	 *
+	 * @description Directive that renders a menu point for the mobile view with an icon, name, preview and link
+	 *
+	 * @param {string} targetState the string that identifies the state to go to
+	 * @param {string} name the string that reperesents the message key for the target
+	 * @param {string} preview the value to be previewed
+	 * @param {string} icon the classes for the icon
+	 */
+	angular
+		.module('msm.components.ui')
+		.directive('msmMobileMenuItem', MobileMenuItem);
+
+	function MobileMenuItem($state, $translate) {
+		return {
+			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
+			scope: {
+				previewValue: '=',
+				targetState: '=',
+				labelText: '=',
+				icon: '='
+			},
+			controller: function($scope) {
+
+				$scope.goToState = function() {
+					$state.go($scope.targetState);
+				};
+
+        $translate($scope.labelText).then(function(translatedValue) {
+          $scope.labelText = translatedValue;
+        });
+			}
+		};
+	}
+})();
+
 /** Based on https://github.com/GabiGrin/angular-editable-text */
 (function () {
   'use strict';
@@ -362,47 +406,84 @@ angular.module('msm.components.ui')
 })();
 
 (function() {
-	'use strict';
+    'use strict';
 
-	/**
-	 * @ngdoc directive
-	 * @name commons.ui.msmMobileMenuItem:msmMobileMenuItem
-	 * @scope
-	 * @restrict 'E'
-	 * @element ANY
-	 *
-	 * @description Directive that renders a menu point for the mobile view with an icon, name, preview and link
-	 *
-	 * @param {string} targetState the string that identifies the state to go to
-	 * @param {string} name the string that reperesents the message key for the target
-	 * @param {string} preview the value to be previewed
-	 * @param {string} icon the classes for the icon
-	 */
-	angular
-		.module('msm.components.ui')
-		.directive('msmMobileMenuItem', MobileMenuItem);
+    /**
+     * A service for raising notifications.
+     *
+     * This service wraps all methods provided by the angular-ui-notification service and translates the
+     * message key if needed.
+     *
+     * Provided message functions:
+     *   * primary  - displays a primary notification
+     *   * error    - displays an error notification
+     *   * success  - displays a success notification
+     *   * info     - displays an info notification
+     *   * warning  - displays a warning notification
+     *   * clearAll - clears all notifications that are currently displayed
+     *
+     * Usage:
+     * msmNotification.<function>('i18nKey'); // use i18n
+     * msmNotification.<function>('i18nKey', true); // use i18n
+     * msmNotification.<function>('i18nKey', false); // don't use i18n
+     * msmNotification.<function>('i18nKey', { i18nArg: 'someArg' }); // use i18n with i18n options
+     * msmNotification.<function>({ message: 'i18nKey', delay: 1000 }); // use 18n with notify options
+     * msmNotification.<function>({ message: 'i18nKey', delay: 1000 }, { i18nArg: 'someArg' }); // use 18n with i18n & notify options
+     */
+    angular
+        .module('msm.components.ui')
+        .factory('msmNotification', NotificationService);
 
-	function MobileMenuItem($state, $translate) {
-		return {
-			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
-			scope: {
-				previewValue: '=',
-				targetState: '=',
-				labelText: '=',
-				icon: '='
-			},
-			controller: function($scope) {
+    function NotificationService($translate, Notification) {
+        var doFlash = function(args, i18n, notify) {
+            if (typeof args !== 'object') {
+                args = {
+                    message : args
+                };
+            }
 
-				$scope.goToState = function() {
-					$state.go($scope.targetState);
-				};
+            if (i18n === false) {
+                notify(args);
+            } else {
+                $translate(args.message, i18n === true ? undefined : i18n).then(function(msg) {
+                    notify(angular.extend(args, { message: msg }));
+                }, function(msg) {
+                    notify(angular.extend(args, { message: msg }));
+                });
+            }
+        };
+        return {
+            primary : function(args, i18n) {
+                doFlash(args, i18n, function(args) {
+                    Notification.primary(args);
+                });
+            },
+            error : function(args, i18n) {
+                doFlash(args, i18n, function(args) {
+                    Notification.error(args);
+                });
+            },
+            success : function(args, i18n) {
+                doFlash(args, i18n, function(args) {
+                    Notification.success(args);
+                });
+            },
+            info : function(args, i18n) {
+                doFlash(args, i18n, function(args) {
+                    Notification.info(args);
+                });
+            },
+            warning : function(args, i18n) {
+                doFlash(args, i18n, function(args) {
+                    Notification.warning(args);
+                });
+            },
+            clearAll : function() {
+                Notification.clearAll();
+            }
+        };
+    }
 
-        $translate($scope.labelText).then(function(translatedValue) {
-          $scope.labelText = translatedValue;
-        });
-			}
-		};
-	}
 })();
 
 (function () {
@@ -741,96 +822,15 @@ angular.module('msm.components.ui')
 })();
 
 angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"{{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
+$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
 $templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"msm-click-to-edit-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"enableEditingMode()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isBusy\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"enableEditingMode()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-day.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th colspan=\"{{::5 + showWeeks}}\"><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong><span class=\"caret\"></span></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n    <tr>\n      <th ng-if=\"showWeeks\" class=\"text-center\"></th>\n      <th ng-repeat=\"label in ::labels track by $index\" class=\"text-center\"><small aria-label=\"{{::label.full}}\">{{::label.abbr}}</small></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-if=\"showWeeks\" class=\"text-center h6\"><em>{{ weekNumbers[$index] }}</em></td>\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\" ng-class=\"::dt.customClass\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default btn-sm\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-muted\': dt.secondary, \'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-month.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong><span class=\"caret\"></span></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\" ng-class=\"::dt.customClass\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-popup.html","<ul class=\"dropdown-menu msm-datepicker\" ng-if=\"isOpen\" style=\"display: block\" ng-style=\"{top: position.top+\'px\', left: position.left+\'px\'}\" ng-keydown=\"keydown($event)\" ng-click=\"$event.stopPropagation()\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <li ng-transclude></li>\n  <li ng-if=\"showButtonBar\" style=\"padding:10px 9px 2px\">\n    <span class=\"btn-group pull-left\">\n      <button type=\"button\" class=\"btn btn-sm btn-info\" ng-click=\"select(\'today\')\" ng-disabled=\"isDisabled(\'today\')\">{{ getText(\'current\') }}</button>\n      <button type=\"button\" class=\"btn btn-sm btn-danger\" ng-click=\"select(null)\">{{ getText(\'clear\') }}</button>\n    </span>\n    <button type=\"button\" class=\"btn btn-sm btn-success pull-right\" ng-click=\"close()\">{{ getText(\'close\') }}</button>\n  </li>\n</ul>\n");
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-year.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th colspan=\"3\"><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
-$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\" data-ng-click=\"goToState()\"></i>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-form.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <div>\n    <div class=\"alert alert-danger\" ng-show=\"vm.status.error\" role=\"alert\">\n      {{ vm.status.errorMessage | translate }}\n    </div>\n    <form name=\"form\" id=\"modal-form\" role=\"form\">\n      <formly-form model=\"vm.model\" fields=\"vm.fields\" options=\"vm.options\" form=\"vm.form\"></formly-form>\n    </form>\n  </div>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\" ng-disabled=\"{{ button.constraint }}\"\n          ng-show=\"{{ button.showConstraint }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\" ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}\n  </button>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body modal-mobile-show\">\n  <ul class=\"modal-mobile-options\">\n    <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n      <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"vm.options.selected === option\"></i>\n      <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"vm.options.selected !== option\"></i>\n      {{ option }}\n    </li>\n  </ul>\n</div>\n<div class=\"modal-body modal-mobile-hide\">\n  <form class=\"form-horizontal\">\n    <div class=\"form-group\">\n      <label for=\"selectItems\" class=\"col-sm-3 control-label\">{{ vm.text | translate }}</label>\n      <div class=\"col-sm-9\">\n      <select id=\"selectItems\" class=\"form-control\" id=\"selectItems\"\n              ng-model=\"vm.options.selected\"\n              ng-options=\"option for option in vm.options.values\"></select>\n      </div>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\" ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}</button>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <span>{{ vm.text | translate }}</span>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\" ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}\n  </button>\n</div>\n");}]);
-(function() {
-    'use strict';
-
-    /**
-     * A service for raising notifications.
-     *
-     * This service wraps all methods provided by the angular-ui-notification service and translates the
-     * message key if needed.
-     *
-     * Provided message functions:
-     *   * primary  - displays a primary notification
-     *   * error    - displays an error notification
-     *   * success  - displays a success notification
-     *   * info     - displays an info notification
-     *   * warning  - displays a warning notification
-     *   * clearAll - clears all notifications that are currently displayed
-     *
-     * Usage:
-     * msmNotification.<function>('i18nKey'); // use i18n
-     * msmNotification.<function>('i18nKey', true); // use i18n
-     * msmNotification.<function>('i18nKey', false); // don't use i18n
-     * msmNotification.<function>('i18nKey', { i18nArg: 'someArg' }); // use i18n with i18n options
-     * msmNotification.<function>({ message: 'i18nKey', delay: 1000 }); // use 18n with notify options
-     * msmNotification.<function>({ message: 'i18nKey', delay: 1000 }, { i18nArg: 'someArg' }); // use 18n with i18n & notify options
-     */
-    angular
-        .module('msm.components.ui')
-        .factory('msmNotification', NotificationService);
-
-    function NotificationService($translate, Notification) {
-        var doFlash = function(args, i18n, notify) {
-            if (typeof args !== 'object') {
-                args = {
-                    message : args
-                };
-            }
-
-            if (i18n === false) {
-                notify(args);
-            } else {
-                $translate(args.message, i18n === true ? undefined : i18n).then(function(msg) {
-                    notify(angular.extend(args, { message: msg }));
-                }, function(msg) {
-                    notify(angular.extend(args, { message: msg }));
-                });
-            }
-        };
-        return {
-            primary : function(args, i18n) {
-                doFlash(args, i18n, function(args) {
-                    Notification.primary(args);
-                });
-            },
-            error : function(args, i18n) {
-                doFlash(args, i18n, function(args) {
-                    Notification.error(args);
-                });
-            },
-            success : function(args, i18n) {
-                doFlash(args, i18n, function(args) {
-                    Notification.success(args);
-                });
-            },
-            info : function(args, i18n) {
-                doFlash(args, i18n, function(args) {
-                    Notification.info(args);
-                });
-            },
-            warning : function(args, i18n) {
-                doFlash(args, i18n, function(args) {
-                    Notification.warning(args);
-                });
-            },
-            clearAll : function() {
-                Notification.clearAll();
-            }
-        };
-    }
-
-})();
-
 angular.module('msm.components.util')
 .directive('scrollLink', ScrollLink);
 

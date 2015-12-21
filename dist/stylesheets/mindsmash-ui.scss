@@ -1,7 +1,10 @@
 
+@import 'mixins/animation.mixin';
 @import 'mixins/filter.mixin';
-@import 'mixins/placeholder-color.mixin';
-@import 'mixins/breakpoints.mixin';
+@import 'mixins/flex.mixin';
+@import 'mixins/gradient.mixin';
+@import 'mixins/media.mixin';
+@import 'mixins/placeholder.mixin';
 
 
 @import '../../../css-spaces/source/spaces';
@@ -20,7 +23,7 @@
 // Note: import statements are order sensitive
 @import 'common/colors';
 @import 'common/util';
-@import 'bootstrap/hr';
+@import 'bootstrap/labels';
 @import 'bootstrap/type';
 @import 'bootstrap/buttons';
 @import 'bootstrap/grid';

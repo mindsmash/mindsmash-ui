@@ -1,4 +1,8 @@
+// Media query helpers
+// ============================================
+
 // breakpoint helpers based on bootstrap's breakpoints
+// --------------------------------------------
 
 @mixin xs {
   @media #{screen} and (max-width: #{$screen-xs-max}) {
@@ -30,7 +34,11 @@
   }
 }
 
+
+
 // inclusive mixins
+// --------------------------------------------
+
 @mixin sm-and-down {
   @media #{screen} and (max-width: #{$screen-sm-max}) {
     @content;
@@ -67,7 +75,11 @@
   }
 }
 
+
+
 // specific
+// --------------------------------------------
+
 @mixin breakpoint-max($w) {
   @media #{$screen} and (max-width: $w) {
     @content;
@@ -77,5 +89,19 @@
 @mixin breakpoint-min($w) {
   @media #{$screen} and (min-width: $w) {
     @content;
+  }
+}
+
+
+
+// retina
+// --------------------------------------------
+
+@mixin media-retina() {
+  @media
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+    @content
   }
 }

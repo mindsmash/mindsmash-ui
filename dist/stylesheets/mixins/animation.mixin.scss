@@ -1,0 +1,7 @@
+@mixin animate-all-easing($period: 1s) {
+  transition: all $period ease-in-out;
+}
+
+@mixin animate-easing($attr: all, $period: 1s) {
+  transition: $attr $period ease-in-out;
+}

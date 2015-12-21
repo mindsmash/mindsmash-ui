@@ -1,3 +1,23 @@
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+
+  small,
+  .small {
+    font-weight: 300;
+  }
+}
+
+blockquote {
+  font-weight: 300;
+}
+
+
+
+
+
+
+
+
 .normal {
   font-weight: normal !important;
   font-size: $font-size-base;
