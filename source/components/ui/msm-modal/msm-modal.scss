@@ -88,6 +88,7 @@
   }
 
   .modal-header {
+    padding: 12px 16px;
     background-color: $msm-blue;
     border: 0;
     color: $msm-white;
@@ -102,6 +103,8 @@
   }
 
   .modal-body {
+    padding: 16px;
+
     .item-selected {
       color: $msm-green;
       margin-right: 10px;
@@ -118,10 +121,11 @@
   }
 
   .modal-footer {
+    padding: 16px;
     flex-direction: column;
 
     .btn {
-      margin-top: 15px;
+      margin-top: 16px;
       padding-bottom: 9px;
       padding-top: 9px;
 
@@ -133,14 +137,14 @@
 
   .modal-mobile-options {
     font-size: 20px;
-    margin: -15px;
+    margin: -16px;
     padding: 0;
     list-style: none;
   }
 
   .modal-mobile-option {
     border-bottom: 1px solid $msm-gray-light;
-    padding: 18px 24px;
+    padding: 12px 16px;
     cursor: pointer;
 
     &:active {
@@ -173,13 +177,18 @@
   }
 
   .modal-body {
-    padding: 28px;
+    padding: $panel-sm-body-padding;
+    
+    hr {
+      margin-left: -24px;
+      margin-right: -24px;
+    }
   }
 
   .modal-footer {
     flex-direction: row-reverse;
     padding: 0;
-    margin-bottom: -2px; // fix rendering glitch
+    //margin-bottom: -2px; // fix rendering glitch
 
     .btn {
       border-radius: 0;
