@@ -134,13 +134,13 @@ $table-condensed-cell-padding:  8px 6px !default;
 //** Default background color used for all tables.
 $table-bg:                      transparent !default;
 //** Background color used for `.table-striped`.
-$table-bg-accent:               transparentize($msm-gray-light, .75) !default;
+$table-bg-accent:               transparentize($msm-gray-light, .9) !default;
 //** Background color used for `.table-hover`.
-$table-bg-hover:                $msm-gray-lighter !default;
-$table-bg-active:               $msm-gray-lighter !default;
+$table-bg-hover:                transparentize($msm-gray-light, .75) !default;
+$table-bg-active:               transparentize($msm-gray-light, .75) !default;
 
 //** Border color for table and cell borders.
-$table-border-color:            $msm-gray-light !default;
+$table-border-color:            $msm-border-light !default;
 
 
 //== Buttons
@@ -188,27 +188,26 @@ $btn-danger-border:              transparent !default;
 //** `<input>` background color
 $input-bg:                       #fff !default;
 //** `<input disabled>` background color
-$input-bg-disabled:              $gray-lighter !default;
+$input-bg-disabled:              transparentize($msm-gray-light, .75) !default;
 
 //** Text color for `<input>`s
 $input-color:                    $msm-black !default;
 //** `<input>` border color
-$input-border:                   #ddd !default;
+$input-border:                   $msm-border !default;
 
-//TODO: Rename `$input-border-radius` to `$input-border-radius-base` in v4
 //** Default `.form-control` border radius
 //This has no effect on `<select>`s in some browsers, due to the limited stylability of `<select>`s in CSS.
-//$input-border-radius:            $border-radius-base !default;
+$input-border-radius:            $border-radius-base !default;
 //** Large `.form-control` border radius
-//$input-border-radius-large:      $border-radius-large !default;
+$input-border-radius-large:      $border-radius-large !default;
 //** Small `.form-control` border radius
-//$input-border-radius-small:      $border-radius-small !default;
+$input-border-radius-small:      $border-radius-small !default;
 
 //** Border color for inputs on hover / focus
-$input-border-focus:             darken($input-border, 20%) !default;
+$input-border-focus:             $msm-border-dark !default;
 
 //** Placeholder text color
-$input-color-placeholder:        $msm-gray !default;
+$input-color-placeholder:        $msm-gray-light !default;
 
 //** Default `.form-control` height
 //$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;
@@ -229,7 +228,7 @@ $input-color-placeholder:        $msm-gray !default;
 //$input-group-addon-border-color: $input-border !default;
 
 //** Disabled cursor for form controls and buttons.
-//$cursor-disabled:                not-allowed !default;
+$cursor-disabled:                not-allowed !default;
 
 
 //== Dropdowns
@@ -237,20 +236,20 @@ $input-color-placeholder:        $msm-gray !default;
 //## Dropdown menu container and contents.
 
 //** Background for the dropdown menu.
-//$dropdown-bg:                    #fff !default;
+$dropdown-bg:                    $msm-white !default;
 //** Dropdown menu `border-color`.
-//$dropdown-border:                rgba(0,0,0,.15) !default;
+$dropdown-border:                $msm-border !default;
 //** Dropdown menu `border-color` **for IE8**.
-//$dropdown-fallback-border:       #ccc !default;
+$dropdown-fallback-border:       $msm-border !default;
 //** Divider color for between dropdown items.
-//$dropdown-divider-bg:            #e5e5e5 !default;
+$dropdown-divider-bg:            $msm-border-light !default;
 
 //** Dropdown link text color.
-//$dropdown-link-color:            $gray-dark !default;
+$dropdown-link-color:            $msm-blue-darker !default;
 //** Hover color for dropdown links.
-//$dropdown-link-hover-color:      darken($gray-dark, 5%) !default;
+$dropdown-link-hover-color:      $msm-blue-darker !default;
 //** Hover background for dropdown links.
-//$dropdown-link-hover-bg:         #f5f5f5 !default;
+$dropdown-link-hover-bg:         transparentize($msm-gray-light, .75) !default;
 
 //** Active dropdown menu item text color.
 //$dropdown-link-active-color:     $component-active-color !default;
@@ -444,45 +443,45 @@ $input-color-placeholder:        $msm-gray !default;
 
 //== Pills
 //$nav-pills-border-radius:                   $border-radius-base !default;
-//$nav-pills-active-link-hover-bg:            $component-active-bg !default;
-//$nav-pills-active-link-hover-color:         $component-active-color !default;
+//$nav-pills-active-link-hover-bg:            $msm-blue !default;
+//$nav-pills-active-link-hover-color:         $msm-blue-darker !default;
 
 
 //== Pagination
 //
 //##
 
-//$pagination-color:                     $link-color !default;
-//$pagination-bg:                        #fff !default;
-//$pagination-border:                    #ddd !default;
+$pagination-color:                     $link-color !default;
+$pagination-bg:                        #fff !default;
+$pagination-border:                    $msm-border !default;
 
-//$pagination-hover-color:               $link-hover-color !default;
-//$pagination-hover-bg:                  $gray-lighter !default;
-//$pagination-hover-border:              #ddd !default;
+$pagination-hover-color:               $link-hover-color !default;
+$pagination-hover-bg:                  transparentize($msm-gray-light, .75) !default;
+$pagination-hover-border:              $msm-border !default;
 
-//$pagination-active-color:              #fff !default;
-//$pagination-active-bg:                 $brand-primary !default;
-//$pagination-active-border:             $brand-primary !default;
+$pagination-active-color:              #fff !default;
+$pagination-active-bg:                 $msm-blue !default;
+$pagination-active-border:             $msm-blue !default;
 
-//$pagination-disabled-color:            $gray-light !default;
-//$pagination-disabled-bg:               #fff !default;
-//$pagination-disabled-border:           #ddd !default;
+$pagination-disabled-color:            $msm-gray-light !default;
+$pagination-disabled-bg:               #fff !default;
+$pagination-hover-border:              $msm-border !default;
 
 
 //== Pager
 //
 //##
 
-//$pager-bg:                             $pagination-bg !default;
-//$pager-border:                         $pagination-border !default;
-//$pager-border-radius:                  15px !default;
+$pager-bg:                             $pagination-bg !default;
+$pager-border:                         $pagination-border !default;
+$pager-border-radius:                  16px !default;
 
-//$pager-hover-bg:                       $pagination-hover-bg !default;
+$pager-hover-bg:                       $pagination-hover-bg !default;
 
-//$pager-active-bg:                      $pagination-active-bg !default;
-//$pager-active-color:                   $pagination-active-color !default;
+$pager-active-bg:                      $pagination-active-bg !default;
+$pager-active-color:                   $pagination-active-color !default;
 
-//$pager-disabled-color:                 $pagination-disabled-color !default;
+$pager-disabled-color:                 $pagination-disabled-color !default;
 
 
 //== Jumbotron
@@ -601,7 +600,7 @@ $label-default-bg:            $msm-gray !default;
 //$modal-title-line-height:     $line-height-base !default;
 
 //** Background color of modal content area
-//$modal-content-bg:                             #fff !default;
+$modal-content-bg:                             $msm-white !default;
 //** Modal content border color
 //$modal-content-border-color:                   rgba(0,0,0,.2) !default;
 //** Modal content border color **for IE8**
@@ -610,15 +609,15 @@ $label-default-bg:            $msm-gray !default;
 //** Modal backdrop background color
 //$modal-backdrop-bg:           #000 !default;
 //** Modal backdrop opacity
-//$modal-backdrop-opacity:      .5 !default;
+$modal-backdrop-opacity:      .4 !default;
 //** Modal header border color
-//$modal-header-border-color:   #e5e5e5 !default;
+$modal-header-border-color:   $msm-border-light !default;
 //** Modal footer border color
-//$modal-footer-border-color:   $modal-header-border-color !default;
+$modal-footer-border-color:   $msm-border-light !default;
 
-//$modal-lg:                    900px !default;
-//$modal-md:                    600px !default;
-//$modal-sm:                    300px !default;
+$modal-lg:                    920px !default;
+$modal-md:                    640px !default;
+$modal-sm:                    320px !default;
 
 
 //== Alerts
@@ -711,17 +710,17 @@ $panel-bg:                    $msm-white !default;
 $panel-body-padding:          24px 36px !default;
 $panel-heading-padding:       36px 36px 24px !default;
 $panel-footer-padding:        18px 36px 24px !default;
-//$panel-border-radius:         $border-radius-base !default;
+$panel-border-radius:         $border-radius-base !default;
 
 //** Border color for elements within panels
-$panel-inner-border:          $msm-gray-light !default;
+$panel-inner-border:          $msm-border !default;
 $panel-footer-bg:             transparent!default;
 
 $panel-default-text:          $msm-black !default;
-$panel-default-border:        $msm-gray-light !default;
+$panel-default-border:        $msm-border !default;
 $panel-default-heading-bg:    transparent !default;
 
-$panel-primary-text:          $msm-white !default;
+//$panel-primary-text:          $brand-primary-text !default;
 //$panel-primary-border:        $brand-primary !default;
 //$panel-primary-heading-bg:    $brand-primary !default;
 
@@ -791,16 +790,16 @@ $badge-font-weight:           600 !default;
 //
 //##
 
-//$breadcrumb-padding-vertical:   8px !default;
-//$breadcrumb-padding-horizontal: 15px !default;
+$breadcrumb-padding-vertical:   8px !default;
+$breadcrumb-padding-horizontal: 16px !default;
 //** Breadcrumb background color
-//$breadcrumb-bg:                 #f5f5f5 !default;
+$breadcrumb-bg:                 transparentize($msm-gray-light, .75) !default;
 //** Breadcrumb text color
-//$breadcrumb-color:              #ccc !default;
+$breadcrumb-color:              $msm-gray !default;
 //** Text color of current page in the breadcrumb
-//$breadcrumb-active-color:       $gray-light !default;
+$breadcrumb-active-color:       $msm-gray !default;
 //** Textual separator for between breadcrumb elements
-//$breadcrumb-separator:          "/" !default;
+$breadcrumb-separator:          "»" !default;
 
 
 //== Carousel
@@ -841,7 +840,7 @@ $kbd-bg:                      $msm-blue-darker !default;
 
 $pre-bg:                      transparentize($msm-gray-light, .75) !default;
 $pre-color:                   $msm-gray-darker !default;
-$pre-border-color:            $table-border-color !default;
+$pre-border-color:            $msm-border !default;
 $pre-scrollable-max-height:   340px !default;
 
 
@@ -868,4 +867,4 @@ $page-header-border-color:    $msm-gray-lighter !default;
 //** Width of horizontal description list titles
 //$dl-horizontal-offset:        $component-offset-horizontal !default;
 //** Horizontal line color.
-$hr-border:                   $msm-gray-light !default;
+$hr-border:                   $msm-border-light !default;

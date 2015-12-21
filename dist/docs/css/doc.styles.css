@@ -7,5 +7,3 @@ body > .container-fluid { max-width: 1280px; }
 code { font-size: 12px; white-space: pre; }
 
 .hljs { background: transparent !important; padding: 0 !important; }
-
-.example { box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5); }
