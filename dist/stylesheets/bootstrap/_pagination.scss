@@ -1,0 +1,62 @@
+.pagination {
+  > li {
+    > a,
+    > span {
+      border: 0;
+      font-size: 16px;
+      line-height: 1;
+      min-width: 24px;
+      padding: 4px;
+      text-align: center;
+    }
+  }
+
+  > .active > a,
+  > .active > span {
+    &,
+    &:hover,
+    &:focus {
+      border-radius: $border-radius-base;
+    }
+  }
+}
+
+.pagination-sm {
+  > li {
+    > a,
+    > span {
+      font-size: 12px;
+      min-width: 16px;
+      padding: 2px;
+    }
+  }
+
+  > .active > a,
+  > .active > span {
+    &,
+    &:hover,
+    &:focus {
+      border-radius: $border-radius-small;
+    }
+  }
+}
+
+.pagination-lg {
+  > li {
+    > a,
+    > span {
+      font-size: 20px;
+      min-width: 32px;
+      padding: 6px;
+    }
+  }
+
+  > .active > a,
+  > .active > span {
+    &,
+    &:hover,
+    &:focus {
+      border-radius: $border-radius-large;
+    }
+  }
+}
