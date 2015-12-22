@@ -3649,15 +3649,15 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus { border-left: 4px solid #317DC1; padding-left: 12px; }
 
-.pagination > li > a, .pagination > li > span { border: 0; font-size: 16px; line-height: 1; min-width: 24px; padding: 4px; text-align: center; }
+.pagination > li > a, .pagination > li > span { border: 0; font-size: 16px; line-height: 1; margin-left: 4px; min-width: 24px; padding: 4px; text-align: center; }
 
 .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus { border-radius: 5px; }
 
-.pagination-sm > li > a, .pagination-sm > li > span { font-size: 12px; min-width: 16px; padding: 2px; }
+.pagination-sm > li > a, .pagination-sm > li > span { font-size: 12px; margin-left: 2px; min-width: 16px; padding: 2px; }
 
 .pagination-sm > .active > a, .pagination-sm > .active > a:hover, .pagination-sm > .active > a:focus, .pagination-sm > .active > span, .pagination-sm > .active > span:hover, .pagination-sm > .active > span:focus { border-radius: 3px; }
 
-.pagination-lg > li > a, .pagination-lg > li > span { font-size: 20px; min-width: 32px; padding: 6px; }
+.pagination-lg > li > a, .pagination-lg > li > span { font-size: 20px; margin-left: 8px; min-width: 32px; padding: 6px; }
 
 .pagination-lg > .active > a, .pagination-lg > .active > a:hover, .pagination-lg > .active > a:focus, .pagination-lg > .active > span, .pagination-lg > .active > span:hover, .pagination-lg > .active > span:focus { border-radius: 6px; }
 
