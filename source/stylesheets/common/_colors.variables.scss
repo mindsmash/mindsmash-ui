@@ -16,11 +16,11 @@ $msm-gray:                 #AAA;
 $msm-gray-lighter:         #F3F3F3;
 $msm-gray-light:           #DADADA;
 $msm-gray-dark:            #999;
-$msm-gray-darker:          #404040;
+$msm-gray-darker:          #666;
 
-$msm-border:               #DADADA;
-$msm-border-light:         #EAEAEA;
-$msm-border-dark:          #AAA;
+$msm-border:               transparentize($msm-black, .85);
+$msm-border-light:         transparentize($msm-black, .95);
+$msm-border-dark:          transparentize($msm-black, .70);
 
 // navbar
 $msm-navbar:               $msm-blue;

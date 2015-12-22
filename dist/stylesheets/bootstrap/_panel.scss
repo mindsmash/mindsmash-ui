@@ -2,7 +2,7 @@
 .panel-sm .panel-heading .btn { margin-left: 8px; }
 .panel-xs .panel-heading .btn { margin-left: 4px; }
 
-.panel-default > .panel-heading { border-color: $msm-border-light; }
+.panel-default > .panel-heading { border-color: $msm-border; }
 
 @include xs {
   .panel {

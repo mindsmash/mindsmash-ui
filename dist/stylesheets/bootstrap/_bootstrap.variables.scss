@@ -207,7 +207,7 @@ $input-border-radius-small:      $border-radius-small !default;
 $input-border-focus:             $msm-border-dark !default;
 
 //** Placeholder text color
-$input-color-placeholder:        $msm-gray-light !default;
+$input-color-placeholder:        $msm-gray !default;
 
 //** Default `.form-control` height
 //$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;
@@ -242,19 +242,19 @@ $dropdown-border:                $msm-border !default;
 //** Dropdown menu `border-color` **for IE8**.
 $dropdown-fallback-border:       $msm-border !default;
 //** Divider color for between dropdown items.
-$dropdown-divider-bg:            $msm-border-light !default;
+$dropdown-divider-bg:            $msm-border !default;
 
 //** Dropdown link text color.
-$dropdown-link-color:            $msm-blue-darker !default;
+$dropdown-link-color:            $msm-gray-darker !default;
 //** Hover color for dropdown links.
-$dropdown-link-hover-color:      $msm-blue-darker !default;
+$dropdown-link-hover-color:      $msm-black !default;
 //** Hover background for dropdown links.
 $dropdown-link-hover-bg:         transparentize($msm-gray-light, .75) !default;
 
 //** Active dropdown menu item text color.
-//$dropdown-link-active-color:     $component-active-color !default;
+$dropdown-link-active-color:     $msm-black !default;
 //** Active dropdown menu item background color.
-//$dropdown-link-active-bg:        $component-active-bg !default;
+$dropdown-link-active-bg:        transparentize($msm-gray-light, .75) !default;
 
 //** Disabled dropdown menu item background color.
 //$dropdown-link-disabled-color:   $gray-light !default;
@@ -452,20 +452,20 @@ $dropdown-link-hover-bg:         transparentize($msm-gray-light, .75) !default;
 //##
 
 $pagination-color:                     $link-color !default;
-$pagination-bg:                        #fff !default;
-$pagination-border:                    $msm-border !default;
+$pagination-bg:                        transparent !default;
+$pagination-border:                    transparent !default;
 
 $pagination-hover-color:               $link-hover-color !default;
-$pagination-hover-bg:                  transparentize($msm-gray-light, .75) !default;
-$pagination-hover-border:              $msm-border !default;
+$pagination-hover-bg:                  transparent !default;
+$pagination-hover-border:              transparent !default;
 
 $pagination-active-color:              #fff !default;
 $pagination-active-bg:                 $msm-blue !default;
-$pagination-active-border:             $msm-blue !default;
+$pagination-active-border:             transparent !default;
 
 $pagination-disabled-color:            $msm-gray-light !default;
-$pagination-disabled-bg:               #fff !default;
-$pagination-hover-border:              $msm-border !default;
+$pagination-disabled-bg:               transparent !default;
+$pagination-hover-border:              transparent !default;
 
 
 //== Pager
@@ -611,9 +611,9 @@ $modal-content-bg:                             $msm-white !default;
 //** Modal backdrop opacity
 $modal-backdrop-opacity:      .4 !default;
 //** Modal header border color
-$modal-header-border-color:   $msm-border-light !default;
+$modal-header-border-color:   $msm-border !default;
 //** Modal footer border color
-$modal-footer-border-color:   $msm-border-light !default;
+$modal-footer-border-color:   $msm-border !default;
 
 $modal-lg:                    920px !default;
 $modal-md:                    640px !default;
@@ -867,4 +867,4 @@ $page-header-border-color:    $msm-gray-lighter !default;
 //** Width of horizontal description list titles
 //$dl-horizontal-offset:        $component-offset-horizontal !default;
 //** Horizontal line color.
-$hr-border:                   $msm-border-light !default;
+$hr-border:                   $msm-border !default;
