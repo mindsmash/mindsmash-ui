@@ -34,9 +34,12 @@
           <li role="menuitem"><a href="#type" target="_self">Typography</a></li>
           <li role="menuitem"><a href="#navs" target="_self">Navs</a></li>
           <li role="menuitem"><a href="#panels" target="_self">Panels</a></li>
+          <li role="menuitem"><a href="#labels" target="_self">Labels</a></li>
+          <li role="menuitem"><a href="#badges" target="_self">Badges</a></li>
           <li role="menuitem"><a href="#tables" target="_self">Tables</a></li>
           <li role="menuitem"><a href="#forms" target="_self">Forms</a></li>
           <li role="menuitem"><a href="#buttons" target="_self">Buttons</a></li>
+          <li role="menuitem"><a href="#spinner" target="_self">Spinner</a></li>
           <li role="menuitem"><a href="#definition-list" target="_self">Definition List</a></li>
           <li role="menuitem"><a href="#notifications" target="_self">Notifications</a></li>
           <li role="menuitem"><a href="#datepicker" target="_self">Datepicker</a></li>
@@ -504,7 +507,7 @@
   </section>
 
   <scroll-link name="labels"></scroll-link>
-  <section class="panel panel-default" ng-controller="TableController">
+  <section class="panel panel-default">
     <div class="panel-heading panel-heading-main">
       <h1 class="panel-title">Labels</h1>
     </div>
@@ -515,6 +518,22 @@
       <span class="label label-info">Info</span>
       <span class="label label-warning">Warning</span>
       <span class="label label-danger">Danger</span>
+    </div>
+  </section>
+
+  <scroll-link name="badges"></scroll-link>
+  <section class="panel panel-default">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Badges</h1>
+    </div>
+    <div class="panel-body">
+      <a href="#" class="mr-l">Inbox <span class="badge">42</span></a>
+
+      <a href="#" class="mr-l">Inbox <span class="badge badge-red">5</span></a>
+
+      <button class="btn btn-primary mr-l" type="button">
+        Messages <span class="badge">4</span>
+      </button>
     </div>
   </section>
 
