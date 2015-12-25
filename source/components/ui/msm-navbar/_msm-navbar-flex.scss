@@ -21,7 +21,12 @@
       .nav-item-icon {
         font-size: 20px;
         font-weight: 600;
-        padding: 20px 25px;
+        padding: 20px 15px;
+
+        @media screen and (min-width: $screen-md-min) {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
       }
     }
   }
@@ -48,7 +53,7 @@
   }
 
   .nav-brand-box {
-    display: none;
+    display: block;
     height: 60px;
     left: calc(50% - 120px);
     overflow: hidden;
@@ -57,10 +62,6 @@
     transition: all ease-in-out .15s;
     width: 240px;
     z-index: 2;
-
-    @media screen and (min-width: $screen-md-min) {
-      display: block !important;
-    }
   }
 
   .nav-brand {
@@ -72,6 +73,8 @@
     text-align: center;
     top: 0;
     transition: all ease-in-out .15s;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .nav-search {
@@ -106,9 +109,14 @@
 
   .search-icon-open {
     height: 60px;
-    padding: 20px 25px;
+    padding: 20px 15px;
     right: 0;
     top: 0;
+
+    @media screen and (min-width: $screen-md-min) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
 
     &:hover {
       background-color: $msm-navbar-hover;
