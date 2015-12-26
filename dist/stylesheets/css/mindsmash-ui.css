@@ -3846,12 +3846,12 @@ dl dd { margin-bottom: 12px; }
 
 .table > thead > tr > th { color: #AAA; border-width: 1px; font-weight: normal; letter-spacing: .025em; text-transform: uppercase; }
 
-.nav.nav-tabs { border: 0; border-bottom: 3px solid #DADADA; }
+.nav.nav-tabs, .nav.nav-tabs.nav-justified { border: 0; border-bottom: 3px solid #DADADA; }
 
-.nav.nav-tabs > li > a { margin: 0 0 -2px 0; border: 0; border-radius: 0; border-bottom: 3px solid transparent; color: #999; }
+.nav.nav-tabs > li > a, .nav.nav-tabs.nav-justified > li > a { margin: 0 0 -2px 0; border: 0; border-radius: 0; border-bottom: 3px solid transparent; color: #999; }
 
-.nav.nav-tabs > li > a:hover, .nav.nav-tabs > li > a:focus, .nav.nav-tabs > li > a:active { background-color: transparent; border-bottom: 3px solid #AAA; }
+.nav.nav-tabs > li > a:hover, .nav.nav-tabs > li > a:focus, .nav.nav-tabs > li > a:active, .nav.nav-tabs.nav-justified > li > a:hover, .nav.nav-tabs.nav-justified > li > a:focus, .nav.nav-tabs.nav-justified > li > a:active { background-color: transparent; border-bottom: 3px solid #AAA; }
 
-.nav.nav-tabs > li.disabled > a { border-color: transparent; color: #DADADA; }
+.nav.nav-tabs > li.disabled > a, .nav.nav-tabs.nav-justified > li.disabled > a { border-color: transparent; color: #DADADA; }
 
-.nav.nav-tabs > li.active > a { border: 0; border-bottom: 3px solid #317DC1; color: #333; }
+.nav.nav-tabs > li.active > a, .nav.nav-tabs.nav-justified > li.active > a { border: 0; border-bottom: 3px solid #317DC1; color: #333; }

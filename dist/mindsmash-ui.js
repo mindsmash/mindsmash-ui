@@ -27,51 +27,6 @@ angular.module('msm.components.ui')
   datepickerPopupConfig.datepickerPopupTemplateUrl = '../components/ui/msm-datepicker/msm-datepicker-popup.html';
 });
 
-(function() {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmButton
-   * @restrict 'E'
-   *
-   * @description Renders a delete button which executes the callback you passed on click
-   *
-   * @param {function} cb the function that should be executed on click
-   */
-  angular
-      .module('msm.components.ui')
-      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
-      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-delete', 'btn-danger'))
-      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-plus-circle', 'btn-primary'))
-  ;
-
-
-  function MsmButtonFactory(iconClass, btnClass) {
-    return function MsmButton($translate) {
-      return {
-        restrict: 'E',
-        scope: {
-          labelText: '@',
-          isMobileMenuItem: '='
-        },
-        templateUrl: 'components/ui/msm-button/msm-button.html',
-        controller: function ($scope) {
-          $translate($scope.labelText)
-              .then(function (translatedValue) {
-                $scope.text = translatedValue;
-              }, function () {
-                $scope.text = $scope.labelText;
-              });
-
-          $scope.iconClass = iconClass || '';
-          $scope.btnClass = btnClass || '';
-        }
-      };
-    }
-  }
-})();
-
 /*
  * Based on: https://github.com/sebastianha/angular-bootstrap-checkbox
  *   commit: 7e531169ab680f5ac9209040ecbb89fd55ac619e
@@ -146,6 +101,51 @@ angular.module('msm.components.ui')
   }
 
 })();
+(function() {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmButton
+   * @restrict 'E'
+   *
+   * @description Renders a delete button which executes the callback you passed on click
+   *
+   * @param {function} cb the function that should be executed on click
+   */
+  angular
+      .module('msm.components.ui')
+      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
+      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-delete', 'btn-danger'))
+      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-plus-circle', 'btn-primary'))
+  ;
+
+
+  function MsmButtonFactory(iconClass, btnClass) {
+    return function MsmButton($translate) {
+      return {
+        restrict: 'E',
+        scope: {
+          labelText: '@',
+          isMobileMenuItem: '='
+        },
+        templateUrl: 'components/ui/msm-button/msm-button.html',
+        controller: function ($scope) {
+          $translate($scope.labelText)
+              .then(function (translatedValue) {
+                $scope.text = translatedValue;
+              }, function () {
+                $scope.text = $scope.labelText;
+              });
+
+          $scope.iconClass = iconClass || '';
+          $scope.btnClass = btnClass || '';
+        }
+      };
+    }
+  }
+})();
+
 /** Based on https://github.com/GabiGrin/angular-editable-text */
 (function () {
   'use strict';
@@ -314,6 +314,58 @@ angular.module('msm.components.ui')
 
   /**
    * @ngdoc directive
+   * @name components.ui.msmEditableText
+   * @restrict 'A'
+   *
+   * @description Adds functionality to conditionally display text only to input elements.
+   *
+   * @param {expression} msmEditableText Shows the edit view if the expression is truthy.
+   * @param {expression} msmEditableDisplay The display value in non-edit view.
+   *                     The value of ngModel will be used in absence of this value.
+   */
+  angular.module('msm.components.ui')
+      .directive('msmEditableText', EditableText);
+
+  function EditableText($compile) {
+    return {
+      restrict: 'A',
+      require: '?ngModel',
+      scope: {
+        edit: '=msmEditableText',
+        value: '=msmEditableDisplay'
+      },
+      compile: function compile(tElem, tAttrs) {
+        var tText = $compile('<p ng-show="!edit" class="form-control-static">{{ value }}</p>');
+        return {
+          post: function postLink(scope, iElem, iAttrs, ctrl) {
+            iElem.after(tText(scope));
+
+            // setup watch on ngModel in absence of msm-editable-display
+            if (angular.isUndefined(iAttrs.msmEditableDisplay) && ctrl) {
+              scope.$watch(function () {
+                return ctrl.$modelValue;
+              }, function(newVal, oldVal) {
+                scope.value = newVal;
+              });
+            }
+
+            // setup watch to show / hide input element
+            scope.$watch('edit', function(newVal, oldVal) {
+              iElem.attr('style', newVal ? '' : 'display: none');
+            });
+          }
+        }
+      }
+    }
+  }
+
+})();
+
+(function () {
+  'use strict';
+
+  /**
+   * @ngdoc directive
    * @name components.ui.msmInfiniteScroll
    * @restrict 'A'
    *
@@ -406,58 +458,6 @@ angular.module('msm.components.ui')
 			}
 		};
 	}
-})();
-
-(function () {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmEditableText
-   * @restrict 'A'
-   *
-   * @description Adds functionality to conditionally display text only to input elements.
-   *
-   * @param {expression} msmEditableText Shows the edit view if the expression is truthy.
-   * @param {expression} msmEditableDisplay The display value in non-edit view.
-   *                     The value of ngModel will be used in absence of this value.
-   */
-  angular.module('msm.components.ui')
-      .directive('msmEditableText', EditableText);
-
-  function EditableText($compile) {
-    return {
-      restrict: 'A',
-      require: '?ngModel',
-      scope: {
-        edit: '=msmEditableText',
-        value: '=msmEditableDisplay'
-      },
-      compile: function compile(tElem, tAttrs) {
-        var tText = $compile('<p ng-show="!edit" class="form-control-static">{{ value }}</p>');
-        return {
-          post: function postLink(scope, iElem, iAttrs, ctrl) {
-            iElem.after(tText(scope));
-
-            // setup watch on ngModel in absence of msm-editable-display
-            if (angular.isUndefined(iAttrs.msmEditableDisplay) && ctrl) {
-              scope.$watch(function () {
-                return ctrl.$modelValue;
-              }, function(newVal, oldVal) {
-                scope.value = newVal;
-              });
-            }
-
-            // setup watch to show / hide input element
-            scope.$watch('edit', function(newVal, oldVal) {
-              iElem.attr('style', newVal ? '' : 'display: none');
-            });
-          }
-        }
-      }
-    }
-  }
-
 })();
 
 (function () {
