@@ -9,7 +9,9 @@
    * @description Applies endless scrolling. Executed once during initialization and then whenever
    *              user scrolls near the end of the element.
    *
-   *              Usage: <div msm-infinite-scroll="loadMore()">...</div>
+   *              Scroll on div:            <div msm-infinite-scroll="loadMore()">...</div>
+   *              Scroll on other element:  <div msm-infinite-scroll="loadMore()" msm-infinite-scroll-element=".selector">...</div>
+   *              Scroll on window:         <div msm-infinite-scroll="loadMore()" msm-infinite-scroll-element="$window">...</div>
    *
    *              This directive only takes care of the scrolling event. Loading more data and stopping when the
    *              last page was reached is up to you.
@@ -32,10 +34,24 @@
           threshold = parseInt(attrs.msmInfiniteScrollThreshold);
         }
 
+        // determine element to watch
+        var bindTo, raw;
+        if(attrs.msmInfiniteScrollElement) {
+          if('$window' === attrs.msmInfiniteScrollElement) {
+            bindTo = angular.element(window);
+            raw = angular.element('body')[0];
+          } else {
+            bindTo = angular.element(attrs.msmInfiniteScrollElement);
+            raw = bindTo[0];
+          }
+        } else {
+          bindTo = element;
+          raw = bindTo[0];
+        }
+
         // watch for scroll events => every 100ms
-        var raw = element[0];
         var blocked = false;
-        element.bind('scroll', function () {
+        bindTo.bind('scroll', function () {
           if (!blocked) {
             blocked = true;
 

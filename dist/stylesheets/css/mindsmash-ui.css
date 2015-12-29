@@ -3490,9 +3490,9 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-navbar .navbar-brand { color: #FDFDFD; font-size: 24px; height: 60px; padding: 18px 20px; }
 
-.msm-navbar .navbar-toggle { border: 1px solid #989898; margin: 13px 20px; transition: border-color linear 0.2s; }
+.msm-navbar .navbar-toggle { border: 1px solid #97bddf; margin: 13px 20px; transition: border-color linear 0.2s; }
 
-.msm-navbar .navbar-toggle .icon-bar { background-color: #989898; transition: background-color linear 0.2s; }
+.msm-navbar .navbar-toggle .icon-bar { background-color: #97bddf; transition: background-color linear 0.2s; }
 
 .msm-navbar .navbar-toggle:hover, .msm-navbar .navbar-toggle:focus { border-color: #FDFDFD; }
 
@@ -3502,7 +3502,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-navbar .nav > li > a:hover, .msm-navbar .nav > li > a:focus { background-color: #3172ac; color: #FDFDFD; }
 
-.msm-navbar .nav > .active > a, .msm-navbar .nav > .dropdown.open > a { background-color: #326b9e; color: #FDFDFD; }
+.msm-navbar .nav > .active > a, .msm-navbar .nav > .active > a:hover, .msm-navbar .nav > .dropdown.open > a { background-color: #326b9e; color: #FDFDFD; }
 
 .msm-navbar .nav .disabled > a, .msm-navbar .nav .disabled > a:hover { color: #abcae5; }
 
@@ -3514,13 +3514,13 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-navbar .navbar-form .form-control:focus { background-color: #32638f; }
 
-.msm-navbar .navbar-form .form-control::-webkit-input-placeholder { color: #989898; }
+.msm-navbar .navbar-form .form-control::-webkit-input-placeholder { color: #97bddf; }
 
-.msm-navbar .navbar-form .form-control:-moz-placeholder { color: #989898; }
+.msm-navbar .navbar-form .form-control:-moz-placeholder { color: #97bddf; }
 
-.msm-navbar .navbar-form .form-control::-moz-placeholder { color: #989898; }
+.msm-navbar .navbar-form .form-control::-moz-placeholder { color: #97bddf; }
 
-.msm-navbar .navbar-form .form-control:-ms-input-placeholder { color: #989898; }
+.msm-navbar .navbar-form .form-control:-ms-input-placeholder { color: #97bddf; }
 
 /** Use with .navbar (bootstrap) and .msm-navbar (mindsmash-ui) */
 .msm-navbar-flex { display: flex; margin: 0 auto; max-width: 1280px; position: relative; }
@@ -3811,6 +3811,8 @@ dl dd { margin-bottom: 12px; }
 
 @media (min-width: 1400px) { .hidden-xl { display: none !important; } }
 
+.panel { border: 0; }
+
 .panel .panel-heading .btn { margin-left: 12px; }
 
 .panel-sm .panel-heading .btn { margin-left: 8px; }
@@ -3846,6 +3848,22 @@ dl dd { margin-bottom: 12px; }
 
 .table > thead > tr > th { color: #AAA; border-width: 1px; font-weight: normal; letter-spacing: .025em; text-transform: uppercase; }
 
+.nav > li > a { color: #666; transition: background-color linear 0.1s; }
+
+.nav > li > a i { margin-right: 8px; }
+
+.nav > li > a .badge { margin-top: 4px; }
+
+.nav > li.active > a, .nav > li.active > a:hover { color: #333; background-color: #F3F3F3; }
+
+.nav > li.disabled > a { color: #DADADA; }
+
+.nav.nav-default > li > a { border-left: 3px solid transparent; }
+
+.nav.nav-default > li > a:hover { border-color: #DADADA; }
+
+.nav.nav-default > li.active > a, .nav.nav-default > li.active > a:hover { border-color: #317DC1; }
+
 .nav.nav-tabs, .nav.nav-tabs.nav-justified { border: 0; border-bottom: 3px solid #DADADA; }
 
 .nav.nav-tabs > li > a, .nav.nav-tabs.nav-justified > li > a { margin: 0 0 -2px 0; border: 0; border-radius: 0; border-bottom: 3px solid transparent; color: #999; }
@@ -3854,4 +3872,6 @@ dl dd { margin-bottom: 12px; }
 
 .nav.nav-tabs > li.disabled > a, .nav.nav-tabs.nav-justified > li.disabled > a { border-color: transparent; color: #DADADA; }
 
-.nav.nav-tabs > li.active > a, .nav.nav-tabs.nav-justified > li.active > a { border: 0; border-bottom: 3px solid #317DC1; color: #333; }
+.nav.nav-tabs > li.active > a, .nav.nav-tabs.nav-justified > li.active > a { border: 0; color: #333; border-bottom: 3px solid #317DC1; background-color: transparent; }
+
+.panel > .nav > li > a { padding-left: 36px; padding-right: 36px; }

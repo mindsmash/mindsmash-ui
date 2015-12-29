@@ -33,6 +33,8 @@
           <li role="menuitem"><a href="#grid" target="_self">Grid system</a></li>
           <li role="menuitem"><a href="#type" target="_self">Typography</a></li>
           <li role="menuitem"><a href="#navs" target="_self">Navs</a></li>
+          <li role="menuitem"><a href="#breadcrumbs" target="_self">Breadcrumbs</a></li>
+          <li role="menuitem"><a href="#pagination" target="_self">Pagination</a></li>
           <li role="menuitem"><a href="#panels" target="_self">Panels</a></li>
           <li role="menuitem"><a href="#labels" target="_self">Labels</a></li>
           <li role="menuitem"><a href="#badges" target="_self">Badges</a></li>
@@ -233,109 +235,147 @@
   </section>
   
   <scroll-link name="navs"></scroll-link>
-  <section class="panel panel-default">
-    <div class="panel-heading panel-heading-main">
-      <h1 class="panel-title">Navs</h1>
-    </div>
-    <div class="panel-body">
+  <div class="row">
+    <div class="col-md-8">
+      <section class="panel panel-default">
+        <div class="panel-heading panel-heading-main">
+          <h1 class="panel-title">Navs</h1>
+        </div>
+        <div class="panel-body">
 
-      <!-- Tabs -->
-      <div class="row">
-        <div class="col-lg-4">
-          <h3>Tabs</h3>
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-            <li><a href="#profile" data-toggle="tab">Profile</a></li>
-            <li class="disabled"><a>Disabled</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                Dropdown <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#dropdown1" data-toggle="tab">Action</a></li>
-                <li class="divider"></li>
-                <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
+          <!-- Tabs -->
+          <div class="row">
+            <div class="col-lg-6">
+              <h3>Tabs</h3>
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                <li><a href="#profile" data-toggle="tab">Profile</a></li>
+                <li class="disabled"><a>Disabled</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    Dropdown <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#dropdown1" data-toggle="tab">Action</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
+                  </ul>
+                </li>
               </ul>
-            </li>
-          </ul>
-          <br>
-          <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade active in" id="home">
-              <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+              <br>
+              <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="home">
+                  <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                </div>
+                <div class="tab-pane fade" id="profile">
+                  <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                </div>
+                <div class="tab-pane fade" id="dropdown1">
+                  <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
+                </div>
+                <div class="tab-pane fade" id="dropdown2">
+                  <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+                </div>
+              </div>
             </div>
-            <div class="tab-pane fade" id="profile">
-              <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
-            </div>
-            <div class="tab-pane fade" id="dropdown1">
-              <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork.</p>
-            </div>
-            <div class="tab-pane fade" id="dropdown2">
-              <p>Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master cleanse gluten-free squid scenester freegan cosby sweater. Fanny pack portland seitan DIY, art party locavore wolf cliche high life echo park Austin. Cred vinyl keffiyeh DIY salvia PBR, banh mi before they sold out farm-to-table VHS viral locavore cosby sweater.</p>
+
+            <!-- Pills -->
+            <div class="col-lg-6">
+              <h3>Pills</h3>
+              <ul class="nav nav-pills">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li class="disabled"><a href="#">Disabled</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    Dropdown <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <br>
+              <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li class="disabled"><a href="#">Disabled</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                    Dropdown <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                  </ul>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Pills -->
-        <div class="col-lg-4">
-          <h3>Pills</h3>
-          <ul class="nav nav-pills">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Profile</a></li>
-            <li class="disabled"><a href="#">Disabled</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Dropdown <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
-            </ul>
-          <br>
-          <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Profile</a></li>
-            <li class="disabled"><a href="#">Disabled</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                Dropdown <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+    </div>
 
-        <!-- Breadcrumbs -->
-        <div class="col-lg-4">
-          <h3>Breadcrumbs</h3>
-          <ul class="breadcrumb">
-            <li class="active">Home</li>
-          </ul>
-          <ul class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li class="active">Library</li>
-          </ul>
-          <ul class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
-          </ul>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="text-muted text-uppercase">Nav in panel</div>
         </div>
+        <ul class="nav nav-default pb-s">
+          <li class="active"><a href="#"><i class="zmdi zmdi-globe"></i> Home</a></li>
+          <li><a href="#"><i class="zmdi zmdi-account"></i> Profile</a></li>
+          <li><a href="#"><i class="zmdi zmdi-search"></i> Search <span class="badge badge-default pull-right">3</span></a></li>
+          <li><a href="#"><i class="zmdi zmdi-settings"></i> Account</a></li>
+          <li class="disabled"><a href="#"><i class="zmdi zmdi-globe"></i> Disabled</a></li>
+        </ul>
       </div>
+    </div>
+  </div>
 
-      <!-- Pagination -->
+
+  <!-- Breadcrumbs -->
+  <scroll-link name="breadcrumbs"></scroll-link>
+  <section class="panel panel-default">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Breadcrumbs</h1>
+    </div>
+    <div class="panel-body">
+
+      <ul class="breadcrumb">
+        <li class="active">Home</li>
+      </ul>
+      <ul class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active">Library</li>
+      </ul>
+      <ul class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+      </ul>
+
+    </div>
+  </section>
+
+  <scroll-link name="pagination"></scroll-link>
+  <section class="panel panel-default">
+    <div class="panel-heading panel-heading-main">
+      <h1 class="panel-title">Pagination</h1>
+    </div>
+    <div class="panel-body">
+
       <div class="row">
-        <div class="col-lg-4">
+
+        <!-- Pagination -->
+        <div class="col-lg-6">
           <h3>Pagination</h3>
           <ul class="pagination">
             <li class="disabled"><a href="#">«</a></li>
@@ -346,6 +386,7 @@
             <li><a href="#">5</a></li>
             <li><a href="#">»</a></li>
           </ul>
+          <br>
           <ul class="pagination pagination-lg">
             <li class="disabled"><a href="#">«</a></li>
             <li class="active"><a href="#">1</a></li>
@@ -353,6 +394,7 @@
             <li><a href="#">3</a></li>
             <li><a href="#">»</a></li>
           </ul>
+          <br>
           <ul class="pagination pagination-sm">
             <li class="disabled"><a href="#">«</a></li>
             <li class="active"><a href="#">1</a></li>
@@ -365,19 +407,18 @@
         </div>
 
         <!-- Pager -->
-        <div class="col-lg-4">
+        <div class="col-lg-6">
           <h2 id="pager">Pager</h2>
           <ul class="pager">
             <li><a href="#">Previous</a></li>
             <li><a href="#">Next</a></li>
           </ul>
+          <hr>
           <ul class="pager">
             <li class="previous disabled"><a href="#">← Older</a></li>
             <li class="next"><a href="#">Newer →</a></li>
           </ul>
         </div>
-
-        <div class="col-lg-4"></div>
       </div>
     </div>
   </section>

@@ -35,8 +35,8 @@ $msm-navbar-input:         $msm-navbar-active;
 $msm-navbar-input-active:  mix($msm-navbar, $msm-black, 65%);
 $msm-navbar-input-text:    $msm-white;
 
-$msm-navbar-placeholder:   mix($msm-navbar-text, $msm-black, 50%);
-$msm-navbar-toggle:        mix($msm-navbar-text, $msm-black, 50%);
+$msm-navbar-placeholder:   mix($msm-navbar-text, $msm-navbar, 50%);
+$msm-navbar-toggle:        mix($msm-navbar-text, $msm-navbar, 50%);
 
 // spinner
 $msm-spinner-color:        $msm-gray-dark;

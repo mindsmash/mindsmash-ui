@@ -1,3 +1,47 @@
+.nav {
+  > li {
+    > a {
+      color: $msm-gray-darker;
+      transition: background-color linear 0.1s;
+
+      i {
+        margin-right: 8px;
+      }
+
+      .badge {
+        margin-top: 4px;
+      }
+    }
+
+    &.active > a, &.active > a:hover {
+      color: $msm-black;
+      background-color: $msm-gray-lighter;
+    }
+
+    &.disabled > a {
+      color: $msm-gray-light;
+    }
+  }
+}
+
+.nav.nav-default {
+  > li {
+    > a {
+      border-left: 3px solid transparent;
+      &:hover {
+        border-color: $msm-gray-light;
+      }
+    }
+
+    &.active > a, &.active > a:hover {
+      border-color: $msm-blue;
+    }
+
+    &.disabled > a {
+    }
+  }
+}
+
 .nav.nav-tabs, .nav.nav-tabs.nav-justified {
   border: 0;
   border-bottom: 3px solid $msm-gray-light;
@@ -22,7 +66,15 @@
 
   > li.active > a {
     border: 0;
-    border-bottom: 3px solid $msm-blue;
     color: $msm-black;
+    border-bottom: 3px solid $msm-blue;
+    background-color: transparent;
+  }
+}
+
+.panel > .nav {
+  > li > a {
+    padding-left: 36px;
+    padding-right: 36px;
   }
 }
