@@ -1,3 +1,7 @@
+body > .ui-select-bootstrap.open {
+  z-index: 2000 !important;
+}
+
 .modal-open.modal-gray, .modal-open .modal-gray {
   @include filter(grayscale, 1);
 }
