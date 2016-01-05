@@ -12,7 +12,7 @@
    * @description
    *     Renders styled modals.
    */
-  function msmModal($window, $document, $modal) {
+  function msmModal($modal) {
     return {
       open: open,
       note: note,
@@ -232,6 +232,10 @@
             values: valueList,
             selected: selectedVaL
           };
+
+          if(angular.isFunction(options.onOpened)) {
+            options.onOpened();
+          }
 
           vm.select = select;
           function select (option) {
