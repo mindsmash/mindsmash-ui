@@ -3597,6 +3597,20 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
   40% { transform: scale(1);
     background-color: #999; } }
 
+.msm-wizard { display: -webkit-display; display: -moz-display; display: -ms-displaybox; display: -ms-display; display: flex; list-style: none; margin: 8px 0; padding: 10px 0 0; }
+
+.msm-wizard .node { margin-top: -12px; }
+
+.msm-wizard .line { -webkit-flex: 1; -moz-flex: 1; -ms-flex: 1; flex: 1; border-top: 1px solid rgba(51, 51, 51, 0.15); }
+
+.msm-wizard .btn-default { background-color: #F3F3F3; }
+
+.msm-wizard .btn-xs, .msm-wizard .btn-group-xs > .btn, .msm-wizard .btn-sm, .msm-wizard .btn-group-sm > .btn { border-radius: 12px; outline: none !important; }
+
+.msm-wizard .btn-sm, .msm-wizard .btn-group-sm > .btn { padding: 2px; width: 24px; }
+
+.msm-wizard .btn-sm .zmdi-hc-fw, .msm-wizard .btn-group-sm > .btn .zmdi-hc-fw { width: 16px; }
+
 .scroll-link { display: block; margin-top: -30px; padding-top: 30px; }
 
 .scroll-link:focus { outline: 0; }
