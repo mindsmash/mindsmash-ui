@@ -229,6 +229,14 @@
       {
         key: 'KeyItem3',
         value: 'Item 3'
+      },
+      {
+        key: 'KeyItem31',
+        value: 'Item 3.1'
+      },
+      {
+        key: 'KeyItem31',
+        value: 'Item 3.2'
       }
     ];
     var selectedSelectModalItem = values[0].key;
