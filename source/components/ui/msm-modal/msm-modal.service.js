@@ -259,7 +259,7 @@
     function formly(options) {
       return open({
         size: options.size,
-        templateUrl: 'components/ui/msm-modal/msm-modal-form.html',
+        templateUrl: 'components/ui/msm-modal/msm-modal-formly-form.html',
         resolve: {
           model: options.formOptions.model,
           formOptions: options.formOptions.options,
@@ -273,22 +273,30 @@
               title: 'Save',
               style: 'btn-primary',
               onClick: onModalSubmit,
-              constraint: 'vm.form.$invalid',
-              showConstraint: '!vm.status.loading'
+              constraint: 'vm.form.$invalid'
             }, options.close), angular.extend({
-              icon: 'zmdi zmdi-refresh zmdi-hc-spin',
-              title: 'Loading',
-              style: 'btn-primary',
-              constraint: 'true',
-              showConstraint: 'vm.status.loading'
-            }, options.loading), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
               style: 'btn-default',
-              onClick: $modalInstance.dismiss,
-              showConstraint: 'true'
+              onClick: $modalInstance.dismiss
             }, options.dismiss)]
           });
+
+          function setLoadingButton() {
+            vm.buttons[0].icon = 'zmdi zmdi-refresh zmdi-hc-spin';
+            vm.buttons[0].title = options.loading.title;
+            vm.buttons[0].style = 'btn-primary disabled';
+            vm.buttons[0].onClick = angular.noop;
+            vm.buttons[0].constraint = 'true';
+          }
+
+          function setSaveButtonButton() {
+            vm.buttons[0].icon = 'check-circle';
+            vm.buttons[0].title = options.close.title;
+            vm.buttons[0].style = 'btn-primary';
+            vm.buttons[0].onClick = onModalSubmit;
+            vm.buttons[0].constraint = 'vm.form.$invalid';
+          }
 
           vm.status = {
             error: false,
@@ -300,6 +308,7 @@
           vm.fields = inputFields;
 
           function onModalSubmit() {
+            setLoadingButton();
             vm.status.error = false;
             vm.status.errorMessage = '';
             vm.status.loading = true;
@@ -319,6 +328,7 @@
                 vm.status.errorMessage = result.errorMessage;
               }).finally(function() {
                 vm.status.loading = false;
+                setSaveButtonButton();
               });
             } else {
               if(!check.error) {
@@ -328,6 +338,7 @@
                 vm.status.errorMessage = check.errorMessage;
               }
               vm.status.loading = false;
+              setSaveButtonButton();
             }
           }
         }
