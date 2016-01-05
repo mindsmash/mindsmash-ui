@@ -13,13 +13,15 @@
 </div>
 <div class="modal-body modal-mobile-hide">
   <form class="form-horizontal">
-    <div class="form-group">
-      <label for="selectItems" class="col-sm-3 control-label">{{ vm.text | translate }}</label>
-      <div class="col-sm-9">
-      <select id="selectItems" class="form-control" id="selectItems"
-              ng-model="vm.options.selected"
-              ng-options="option for option in vm.options.values"></select>
-      </div>
+    <div>
+        <ui-select id="selectItems" ng-model="vm.options.selected" append-to-body="true">
+          <ui-select-match placeholder="{{ vm.text | translate }}" allow-clear="false">
+            {{ vm.options.selected }}
+          </ui-select-match>
+          <ui-select-choices repeat="option in vm.options.values | filter: $select.search">
+            <div ng-bind-html="option | highlight: $select.search"></div>
+          </ui-select-choices>
+        </ui-select>
     </div>
   </form>
 </div>

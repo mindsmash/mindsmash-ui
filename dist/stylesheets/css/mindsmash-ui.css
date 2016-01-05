@@ -3428,6 +3428,8 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 @media screen and (max-width: 991px) { .btn.is-msm-mobile-menu-item { border: 0; border-radius: 0; display: flex; height: 48px; padding-left: 0; padding-right: 0; text-align: left; width: 100%; }
   .btn.is-msm-mobile-menu-item i { font-size: 20px; text-align: center; width: 64px; line-height: 24px; margin: 0; } }
 
+body > .ui-select-bootstrap.open { z-index: 2000 !important; }
+
 .modal-open.modal-gray, .modal-open .modal-gray { -webkit-filter: grayscale(1); -moz-filter: grayscale(1); -ms-filter: grayscale(1); -o-filter: grayscale(1); filter: grayscale(1); }
 
 .modal-open.modal-blur, .modal-open .modal-blur { -webkit-filter: blur(5px); -moz-filter: blur(5px); -ms-filter: blur(5px); -o-filter: blur(5px); filter: blur(5px); }

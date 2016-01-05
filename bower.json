@@ -37,6 +37,8 @@
     "angular-ui-router": "~0.2.15",
     "angular-formly": "~7.3.9",
     "angular-formly-templates-bootstrap": "~6.2.0",
+    "angular-ui-select": "~0.13.2",
+    "angular-sanitize": "~1.5.0",
     "css-spaces": "~0.3.5",
     "material-design-iconic-font": "~2.2.0",
     "simple-line-icons": "~2.2.3"
@@ -52,6 +54,8 @@
         "styles/color-brewer.css"
       ]
     }
+  },
+  "resolutions": {
+    "angular": "~1.4.8"
   }
-  
 }

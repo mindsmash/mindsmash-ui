@@ -4,7 +4,7 @@
 </div>
 <div class="modal-body">
   <div>
-    <div class="alert alert-danger" ng-show="vm.status.error" role="alert">
+    <div class="alert white bg-red" ng-show="vm.status.error" role="alert">
       {{ vm.status.errorMessage | translate }}
     </div>
     <form name="form" id="modal-form" role="form">
@@ -14,7 +14,6 @@
 </div>
 <div class="modal-footer">
   <button ng-repeat="button in vm.buttons" class="btn {{ button.style }}" ng-disabled="{{ button.constraint }}"
-          ng-show="{{ button.showConstraint }}"
           ng-class="{ 'btn-zmdi': !button.title, 'modal-mobile-hide': button.hideMobile }" ng-click="button.onClick()">
     <i ng-if="button.icon" class="zmdi zmdi-hc-fw zmdi-{{ button.icon }}"></i>{{ button.title | translate }}
   </button>
