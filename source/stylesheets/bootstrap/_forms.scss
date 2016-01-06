@@ -1,6 +1,5 @@
 .control-label {
   @extend .msm-label;
-  
   color: $msm-black;
 }
 
@@ -13,5 +12,30 @@
 }
 
 .form-group:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
+}
+
+.input-group-addon {
+  color: $msm-gray-darker;
+
+  .zmdi {
+    width: 32px;
+    margin: -11px;
+  }
+}
+
+.input-group-addon.input-sm, .input-group-sm > .input-group-addon,
+.input-group-sm > .input-group-btn > .input-group-addon.btn {
+  .zmdi {
+    width: 32px;
+    margin: -12px;
+  }
+}
+
+.input-group-addon.input-lg, .input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .input-group-addon.btn {
+  .zmdi {
+    width: 32px;
+    margin: -16px;
+  }
 }

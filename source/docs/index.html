@@ -707,7 +707,10 @@
             <div class="form-group form-group-lg">
               <label class="col-sm-2 control-label" for="formGroupInputLarge">Large label</label>
               <div class="col-sm-9">
-                <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Large input">
+                <div class="input-group input-group-lg">
+                  <span class="input-group-addon"><i class="zmdi zmdi-edit"></i></span>
+                  <input type="text" class="form-control" id="formGroupInputLarge" placeholder="Large input">
+                </div>
               </div>
               <div class="col-sm-1">
                 <msm-checkbox ng-model="boolModel2" id="checkBoolean"></msm-checkbox>
@@ -716,19 +719,25 @@
             <div class="form-group">
               <label class="col-sm-2 control-label" for="formGroupInputNormal">Normal label</label>
               <div class="col-sm-9">
-                <input class="form-control" type="text" id="formGroupInputNormal" placeholder="Normal input">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="zmdi zmdi-edit"></i></span>
+                  <input type="text" class="form-control" id="formGroupInputNormal" placeholder="Normal input">
+                </div>
               </div>
               <div class="col-sm-1">
-                <msm-checkbox ng-model="boolModel3" id="checkBoolean"></msm-checkbox>
+                <msm-checkbox ng-model="boolModel3" id="checkBoolean2"></msm-checkbox>
               </div>
             </div>
             <div class="form-group form-group-sm">
               <label class="col-sm-2 control-label" for="formGroupInputSmall">Small label</label>
               <div class="col-sm-9">
-                <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Small input">
+                <div class="input-group input-group-sm">
+                  <span class="input-group-addon"><i class="zmdi zmdi-edit"></i></span>
+                  <input type="text" class="form-control" id="formGroupInputSmall" placeholder="Small input">
+                </div>
               </div>
               <div class="col-sm-1">
-                <msm-checkbox ng-model="boolModel4" id="checkBoolean"></msm-checkbox>
+                <msm-checkbox ng-model="boolModel4" id="checkBoolean3"></msm-checkbox>
               </div>
             </div>
           </form>
