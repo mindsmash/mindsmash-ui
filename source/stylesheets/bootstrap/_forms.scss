@@ -4,10 +4,10 @@
 }
 
 .form-control {
-  box-shadow: none;
+  box-shadow: none !important;
 
   &:focus {
-    box-shadow: none;
+    box-shadow: none !important;
   }
 }
 
