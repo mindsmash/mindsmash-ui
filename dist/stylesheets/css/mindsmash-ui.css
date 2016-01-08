@@ -3888,6 +3888,8 @@ dl dd { margin-bottom: 12px; }
 
 .nav.nav-default > li.active > a, .nav.nav-default > li.active > a:hover { border-color: #317DC1; }
 
+.nav.nav-default > li.divider { border-bottom: 1px solid #DADADA; padding: 12px 0 0 0; margin: 0 0 12px 0; }
+
 .nav.nav-tabs, .nav.nav-tabs.nav-justified { border: 0; border-bottom: 3px solid #DADADA; }
 
 .nav.nav-tabs > li > a, .nav.nav-tabs.nav-justified > li > a { margin: 0 0 -2px 0; border: 0; border-radius: 0; border-bottom: 3px solid transparent; color: #999; }
