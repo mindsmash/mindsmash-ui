@@ -3,24 +3,6 @@
 
   angular
       .module('msm.components.ui')
-      .directive('ngEnter', function($document) {
-        return {
-          scope: {
-            ngEnter: "&"
-          },
-          link: function(scope) {
-            var onEnterKeyUp = function(event) {
-              if (event.which === 13) {
-                scope.ngEnter();
-                scope.$apply();
-                event.preventDefault();
-                $document.unbind('keyup', onEnterKeyUp);
-              }
-            };
-            $document.bind('keyup', onEnterKeyUp);
-          }
-        }
-      })
       .service('msmModal', msmModal);
 
   /**
@@ -30,7 +12,7 @@
    * @description
    *     Renders styled modals.
    */
-  function msmModal($modal) {
+  function msmModal($modal, $q, $document) {
     return {
       open: open,
       note: note,
@@ -136,10 +118,31 @@
               icon: 'check-circle',
               title: 'Ok',
               style: 'btn-primary',
-              onClick: $modalInstance.close,
-              onEnter: $modalInstance.close
+              onClick: onClick
             }, options.close)]
           });
+
+          function onClick() {
+            unbindKeyUp();
+            $modalInstance.close();
+          }
+
+          function bindKeyUp() {
+            $document.bind('keyup', onEnterKeyUp);
+          }
+
+          function unbindKeyUp() {
+            $document.unbind('keyup', onEnterKeyUp);
+          }
+
+          var onEnterKeyUp = function(event) {
+            if (event.which === 13) {
+              event.preventDefault();
+              unbindKeyUp();
+              $modalInstance.close();
+            }
+          };
+          bindKeyUp();
         }
       });
     }
@@ -176,15 +179,41 @@
               icon: 'check-circle',
               title: 'Ok',
               style: 'btn-primary',
-              onClick: $modalInstance.close,
-              onEnter: $modalInstance.close
+              onClick: onClick
             }, options.close), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
               style: 'btn-default',
-              onClick: $modalInstance.dismiss
+              onClick: onDismiss
             }, options.dismiss)]
-          })
+          });
+
+          function onClick() {
+            unbindKeyUp();
+            $modalInstance.close();
+          }
+
+          function onDismiss() {
+            unbindKeyUp();
+            $modalInstance.dismiss();
+          }
+
+          function bindKeyUp() {
+            $document.bind('keyup', onEnterKeyUp);
+          }
+
+          function unbindKeyUp() {
+            $document.unbind('keyup', onEnterKeyUp);
+          }
+
+          var onEnterKeyUp = function(event) {
+            if (event.which === 13) {
+              event.preventDefault();
+              unbindKeyUp();
+              $modalInstance.close();
+            }
+          };
+          bindKeyUp();
         }
       });
     }
@@ -229,13 +258,12 @@
               title: 'Select',
               style: 'btn-primary',
               onClick: select,
-              onEnter: select,
               hideMobile: true
             }, options.close), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
               style: 'btn-default',
-              onClick: $modalInstance.dismiss
+              onClick: onDismiss
             }, options.dismiss)]
           });
 
@@ -258,18 +286,43 @@
             options.onOpened();
           }
 
+          function onDismiss() {
+            unbindKeyUp();
+            $modalInstance.dismiss();
+          }
+
+          function bindKeyUp() {
+            $document.bind('keyup', onEnterKeyUp);
+          }
+
+          function unbindKeyUp() {
+            $document.unbind('keyup', onEnterKeyUp);
+          }
+
+          var onEnterKeyUp = function(event) {
+            if (event.which === 13) {
+              event.preventDefault();
+              if(select(options.selected)) {
+                onDismiss();
+              }
+            }
+          };
+          bindKeyUp();
+
           vm.select = select;
           function select (option) {
             var found = false;
             var selectedItem = option || vm.options.selected;
             for (var key in values) {
               if (selectedItem === values[key].value) {
+                unbindKeyUp();
                 $modalInstance.close(values[key].key);
                 found = true;
                 break;
               }
             }
             if (!found) {
+              unbindKeyUp();
               $modalInstance.close(selectedItem);
             }
           }
@@ -294,13 +347,12 @@
               title: 'Save',
               style: 'btn-primary',
               onClick: onModalSubmit,
-              onEnter: onModalSubmit,
               constraint: 'vm.form.$invalid'
             }, options.close), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
               style: 'btn-default',
-              onClick: $modalInstance.dismiss
+              onClick: onDismiss
             }, options.dismiss)]
           });
 
@@ -329,39 +381,80 @@
           vm.options = formOptions;
           vm.fields = inputFields;
 
-          function onModalSubmit() {
-            setLoadingButton();
-            vm.status.error = false;
-            vm.status.errorMessage = '';
-            vm.status.loading = true;
-            var check = options.formOptions.onSubmit(vm.model);
+          function bindKeyUp() {
+            $document.bind('keyup', onEnterKeyUp);
+          }
 
-            // check whether the given callback is a promise
-            if(check.then) {
-              check.then(function(result) {
-                if(!result.error) {
-                  $modalInstance.close(vm.model);
+          function unbindKeyUp() {
+            $document.unbind('keyup', onEnterKeyUp);
+          }
+
+          function onDismiss() {
+            unbindKeyUp();
+            $modalInstance.dismiss();
+          }
+
+          var onEnterKeyUp = function(event) {
+            if (event.which === 13) {
+              event.preventDefault();
+              if(vm.formScope.form.$valid) {
+                var enter = onModalSubmit();
+                if(enter.then) {
+                  enter.then(
+                      function() {
+                        unbindKeyUp();
+                      }
+                  );
                 } else {
+                  unbindKeyUp();
+                }
+              }
+            }
+          };
+          bindKeyUp();
+
+          function onModalSubmit() {
+            return $q(function(resolve, reject) {
+              setLoadingButton();
+              vm.status.error = false;
+              vm.status.errorMessage = '';
+              vm.status.loading = true;
+              var check = options.formOptions.onSubmit(vm.model);
+
+              // check whether the given callback is a promise
+              if(check.then) {
+                check.then(function(result) {
+                  if(!result.error) {
+                    resolve(vm.status.error);
+                    $modalInstance.close(vm.model);
+                    unbindKeyUp();
+                  } else {
+                    vm.status.error = true;
+                    vm.status.errorMessage = result.errorMessage;
+                    reject(vm.status.error);
+                  }
+                }).catch(function(result) {
                   vm.status.error = true;
                   vm.status.errorMessage = result.errorMessage;
+                  reject(vm.status.error);
+                }).finally(function() {
+                  vm.status.loading = false;
+                  setSaveButtonButton();
+                });
+              } else {
+                if(!check.error) {
+                  resolve(vm.status.error);
+                  $modalInstance.close(vm.model);
+                  unbindKeyUp();
+                } else {
+                  vm.status.error = true;
+                  vm.status.errorMessage = check.errorMessage;
                 }
-              }).catch(function(result) {
-                vm.status.error = true;
-                vm.status.errorMessage = result.errorMessage;
-              }).finally(function() {
                 vm.status.loading = false;
                 setSaveButtonButton();
-              });
-            } else {
-              if(!check.error) {
-                $modalInstance.close(vm.model);
-              } else {
-                vm.status.error = true;
-                vm.status.errorMessage = check.errorMessage;
+                reject(vm.status.error);
               }
-              vm.status.loading = false;
-              setSaveButtonButton();
-            }
+            });
           }
         }
       });
