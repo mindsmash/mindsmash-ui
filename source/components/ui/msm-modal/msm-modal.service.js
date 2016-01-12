@@ -3,6 +3,24 @@
 
   angular
       .module('msm.components.ui')
+      .directive('ngEnter', function($document) {
+        return {
+          scope: {
+            ngEnter: "&"
+          },
+          link: function(scope) {
+            var onEnterKeyUp = function(event) {
+              if (event.which === 13) {
+                scope.ngEnter();
+                scope.$apply();
+                event.preventDefault();
+                $document.unbind('keyup', onEnterKeyUp);
+              }
+            };
+            $document.bind('keyup', onEnterKeyUp);
+          }
+        }
+      })
       .service('msmModal', msmModal);
 
   /**
@@ -72,7 +90,7 @@
         controllerAs: 'vm',
         size: config.size || '',
         resolve: config.resolve,
-        bindToController: true,
+        bindToController: true
       });
 
 //      modalInstance.opened['finally'](function() {
@@ -118,7 +136,8 @@
               icon: 'check-circle',
               title: 'Ok',
               style: 'btn-primary',
-              onClick: $modalInstance.close
+              onClick: $modalInstance.close,
+              onEnter: $modalInstance.close
             }, options.close)]
           });
         }
@@ -157,7 +176,8 @@
               icon: 'check-circle',
               title: 'Ok',
               style: 'btn-primary',
-              onClick: $modalInstance.close
+              onClick: $modalInstance.close,
+              onEnter: $modalInstance.close
             }, options.close), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
@@ -209,6 +229,7 @@
               title: 'Select',
               style: 'btn-primary',
               onClick: select,
+              onEnter: select,
               hideMobile: true
             }, options.close), angular.extend({
               icon: 'close-circle',
@@ -273,6 +294,7 @@
               title: 'Save',
               style: 'btn-primary',
               onClick: onModalSubmit,
+              onEnter: onModalSubmit,
               constraint: 'vm.form.$invalid'
             }, options.close), angular.extend({
               icon: 'close-circle',
@@ -284,7 +306,7 @@
 
           function setLoadingButton() {
             vm.buttons[0].icon = 'zmdi zmdi-refresh zmdi-hc-spin';
-            vm.buttons[0].title = options.loading.title;
+            vm.buttons[0].title = (options.loading && options.loading.title) ? options.loading.title : "Loading...";
             vm.buttons[0].style = 'btn-primary disabled';
             vm.buttons[0].onClick = angular.noop;
             vm.buttons[0].constraint = 'true';
@@ -292,7 +314,7 @@
 
           function setSaveButtonButton() {
             vm.buttons[0].icon = 'check-circle';
-            vm.buttons[0].title = options.close.title;
+            vm.buttons[0].title = (options.close && options.close.title) ? options.close.title : "Close";
             vm.buttons[0].style = 'btn-primary';
             vm.buttons[0].onClick = onModalSubmit;
             vm.buttons[0].constraint = 'vm.form.$invalid';

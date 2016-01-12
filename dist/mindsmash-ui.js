@@ -483,6 +483,24 @@ angular.module('msm.components.ui')
 
   angular
       .module('msm.components.ui')
+      .directive('ngEnter', function($document) {
+        return {
+          scope: {
+            ngEnter: "&"
+          },
+          link: function(scope) {
+            var onEnterKeyUp = function(event) {
+              if (event.which === 13) {
+                scope.ngEnter();
+                scope.$apply();
+                event.preventDefault();
+                $document.unbind('keyup', onEnterKeyUp);
+              }
+            };
+            $document.bind('keyup', onEnterKeyUp);
+          }
+        }
+      })
       .service('msmModal', msmModal);
 
   /**
@@ -552,7 +570,7 @@ angular.module('msm.components.ui')
         controllerAs: 'vm',
         size: config.size || '',
         resolve: config.resolve,
-        bindToController: true,
+        bindToController: true
       });
 
 //      modalInstance.opened['finally'](function() {
@@ -598,7 +616,8 @@ angular.module('msm.components.ui')
               icon: 'check-circle',
               title: 'Ok',
               style: 'btn-primary',
-              onClick: $modalInstance.close
+              onClick: $modalInstance.close,
+              onEnter: $modalInstance.close
             }, options.close)]
           });
         }
@@ -637,7 +656,8 @@ angular.module('msm.components.ui')
               icon: 'check-circle',
               title: 'Ok',
               style: 'btn-primary',
-              onClick: $modalInstance.close
+              onClick: $modalInstance.close,
+              onEnter: $modalInstance.close
             }, options.close), angular.extend({
               icon: 'close-circle',
               title: 'Cancel',
@@ -689,6 +709,7 @@ angular.module('msm.components.ui')
               title: 'Select',
               style: 'btn-primary',
               onClick: select,
+              onEnter: select,
               hideMobile: true
             }, options.close), angular.extend({
               icon: 'close-circle',
@@ -753,6 +774,7 @@ angular.module('msm.components.ui')
               title: 'Save',
               style: 'btn-primary',
               onClick: onModalSubmit,
+              onEnter: onModalSubmit,
               constraint: 'vm.form.$invalid'
             }, options.close), angular.extend({
               icon: 'close-circle',
@@ -764,7 +786,7 @@ angular.module('msm.components.ui')
 
           function setLoadingButton() {
             vm.buttons[0].icon = 'zmdi zmdi-refresh zmdi-hc-spin';
-            vm.buttons[0].title = options.loading.title;
+            vm.buttons[0].title = (options.loading && options.loading.title) ? options.loading.title : "Loading...";
             vm.buttons[0].style = 'btn-primary disabled';
             vm.buttons[0].onClick = angular.noop;
             vm.buttons[0].constraint = 'true';
@@ -772,7 +794,7 @@ angular.module('msm.components.ui')
 
           function setSaveButtonButton() {
             vm.buttons[0].icon = 'check-circle';
-            vm.buttons[0].title = options.close.title;
+            vm.buttons[0].title = (options.close && options.close.title) ? options.close.title : "Close";
             vm.buttons[0].style = 'btn-primary';
             vm.buttons[0].onClick = onModalSubmit;
             vm.buttons[0].constraint = 'vm.form.$invalid';
@@ -987,7 +1009,7 @@ $templateCache.put("components/ui/msm-datepicker/msm-datepicker-year.html","<tab
 $templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\" data-ng-click=\"open()\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\"></i>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-formly-form.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <div>\n    <div class=\"alert white bg-red\" ng-show=\"vm.status.error\" role=\"alert\">\n      {{ vm.status.errorMessage | translate }}\n    </div>\n    <form name=\"form\" id=\"modal-form\" role=\"form\">\n      <formly-form model=\"vm.model\" fields=\"vm.fields\" options=\"vm.options\" form=\"vm.form\"></formly-form>\n    </form>\n  </div>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\" ng-disabled=\"{{ button.constraint }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\" ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}\n  </button>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body modal-mobile-show\">\n  <ul class=\"modal-mobile-options\">\n    <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n      <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"vm.options.selected === option\"></i>\n      <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"vm.options.selected !== option\"></i>\n      {{ option }}\n    </li>\n  </ul>\n</div>\n<div class=\"modal-body modal-mobile-hide\">\n  <form class=\"form-horizontal\">\n    <div>\n        <ui-select id=\"selectItems\" ng-model=\"vm.options.selected\" append-to-body=\"true\">\n          <ui-select-match placeholder=\"{{ vm.text | translate }}\" allow-clear=\"false\">\n            {{ vm.options.selected }}\n          </ui-select-match>\n          <ui-select-choices repeat=\"option in vm.options.values | filter: $select.search\">\n            <div ng-bind-html=\"option | highlight: $select.search\"></div>\n          </ui-select-choices>\n        </ui-select>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\" ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}</button>\n</div>\n");
-$templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <span>{{ vm.text | translate }}</span>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\" ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}\n  </button>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <span>{{ vm.text | translate }}</span>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\"\n          ng-enter=\"button.onEnter()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}\n  </button>\n</div>\n");
 $templateCache.put("components/ui/msm-spinner/msm-spinner.html","<div class=\"msm-spinner\" ng-class=\"size\"><div class=\"bounce1\"></div><div class=\"bounce2\"></div><div class=\"bounce3\"></div></div>");
 $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-wizard\">\n    <li class=\"node\" ng-repeat-start=\"step in steps\" ng-click=\"activate(step)\">\n        <button class=\"btn btn-zmdi\" ng-class=\"{ \'btn-default\': current !== step, \'btn-primary\': current === step, \'btn-sm\': !labels, \'btn-xs\': labels }\" ng-disabled=\"current < step\">\n            <i ng-if=\"!labels\" class=\"zmdi zmdi-hc-fw\" ng-class=\"{ \'zmdi-edit\': current === step, \'zmdi-check\': current > step, \'zmdi-more\': current < step }\"></i>\n            <span ng-if=\"labels\" translate=\"{{ \'msmWizard.step.\' + step }}\"></span>\n        </button>\n    </li>\n    <li class=\"line\" ng-if=\"!$last\" ng-repeat-end></li>\n</ul>\n");}]);
 angular.module('msm.components.util')

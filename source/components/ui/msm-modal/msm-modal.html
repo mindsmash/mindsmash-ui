@@ -7,7 +7,9 @@
 </div>
 <div class="modal-footer">
   <button ng-repeat="button in vm.buttons" class="btn {{ button.style }}"
-          ng-class="{ 'btn-zmdi': !button.title, 'modal-mobile-hide': button.hideMobile }" ng-click="button.onClick()">
+          ng-class="{ 'btn-zmdi': !button.title, 'modal-mobile-hide': button.hideMobile }"
+          ng-click="button.onClick()"
+          ng-enter="button.onEnter()">
     <i ng-if="button.icon" class="zmdi zmdi-hc-fw zmdi-{{ button.icon }}"></i>{{ button.title | translate }}
   </button>
 </div>
