@@ -17,8 +17,7 @@
       open: open,
       note: note,
       confirm: confirm,
-      select: select,
-      formly: formly
+      select: select
     };
 
     /**
@@ -330,135 +329,6 @@
       });
     }
 
-    function formly(options) {
-      return open({
-        size: options.size,
-        templateUrl: 'components/ui/msm-modal/msm-modal-formly-form.html',
-        resolve: {
-          model: options.formOptions.model,
-          formOptions: options.formOptions.options,
-          inputFields: options.formOptions.inputFields
-        },
-        controller: function ($modalInstance, $timeout, model, formOptions, inputFields) {
-          var vm = angular.extend(this, {
-            title: options.title || '',
-            buttons: [angular.extend({
-              icon: 'check-circle',
-              title: 'Save',
-              style: 'btn-primary',
-              onClick: onModalSubmit,
-              constraint: 'vm.form.$invalid'
-            }, options.close), angular.extend({
-              icon: 'close-circle',
-              title: 'Cancel',
-              style: 'btn-default',
-              onClick: onDismiss
-            }, options.dismiss)]
-          });
-
-          function setLoadingButton() {
-            vm.buttons[0].icon = 'zmdi zmdi-refresh zmdi-hc-spin';
-            vm.buttons[0].title = (options.loading && options.loading.title) ? options.loading.title : "Loading...";
-            vm.buttons[0].style = 'btn-primary disabled';
-            vm.buttons[0].onClick = angular.noop;
-            vm.buttons[0].constraint = 'true';
-          }
-
-          function setSaveButtonButton() {
-            vm.buttons[0].icon = 'check-circle';
-            vm.buttons[0].title = (options.close && options.close.title) ? options.close.title : "Close";
-            vm.buttons[0].style = 'btn-primary';
-            vm.buttons[0].onClick = onModalSubmit;
-            vm.buttons[0].constraint = 'vm.form.$invalid';
-          }
-
-          vm.status = {
-            error: false,
-            errorMessage: '',
-            loading: false
-          };
-          vm.model = model;
-          vm.options = formOptions;
-          vm.fields = inputFields;
-
-          function bindKeyUp() {
-            $document.bind('keyup', onEnterKeyUp);
-          }
-
-          function unbindKeyUp() {
-            $document.unbind('keyup', onEnterKeyUp);
-          }
-
-          function onDismiss() {
-            unbindKeyUp();
-            $modalInstance.dismiss();
-          }
-
-          var onEnterKeyUp = function(event) {
-            if (event.which === 13) {
-              event.preventDefault();
-              if(vm.formScope.form.$valid) {
-                var enter = onModalSubmit();
-                if(enter.then) {
-                  enter.then(
-                      function() {
-                        unbindKeyUp();
-                      }
-                  );
-                } else {
-                  unbindKeyUp();
-                }
-              }
-            }
-          };
-          bindKeyUp();
-
-          function onModalSubmit() {
-            return $q(function(resolve, reject) {
-              setLoadingButton();
-              vm.status.error = false;
-              vm.status.errorMessage = '';
-              vm.status.loading = true;
-              var check = options.formOptions.onSubmit(vm.model);
-
-              // check whether the given callback is a promise
-              if(check.then) {
-                check.then(function(result) {
-                  if(!result.error) {
-                    resolve(vm.status.error);
-                    $modalInstance.close(vm.model);
-                    unbindKeyUp();
-                  } else {
-                    vm.status.error = true;
-                    vm.status.errorMessage = result.errorMessage;
-                    reject(vm.status.error);
-                  }
-                }).catch(function(result) {
-                  vm.status.error = true;
-                  vm.status.errorMessage = result.errorMessage;
-                  reject(vm.status.error);
-                }).finally(function() {
-                  vm.status.loading = false;
-                  setSaveButtonButton();
-                });
-              } else {
-                if(!check.error) {
-                  resolve(vm.status.error);
-                  $modalInstance.close(vm.model);
-                  unbindKeyUp();
-                } else {
-                  vm.status.error = true;
-                  vm.status.errorMessage = check.errorMessage;
-                }
-                vm.status.loading = false;
-                setSaveButtonButton();
-                reject(vm.status.error);
-              }
-            });
-          }
-        }
-      });
-    }
   }
 
 })();
