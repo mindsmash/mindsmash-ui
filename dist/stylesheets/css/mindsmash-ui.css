@@ -3677,6 +3677,12 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .no-overflow { overflow: hidden !important; }
 
+.block { display: block !important; }
+
+.inline { display: inline !important; }
+
+.inline-block { display: inline-block !important; }
+
 .label { font-weight: normal; padding-left: .75em; padding-right: .75em; text-transform: uppercase; }
 
 .badge { margin: 0 2px; }
