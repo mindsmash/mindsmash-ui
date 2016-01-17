@@ -4,3 +4,8 @@
   padding-right: .75em;
   text-transform: uppercase;
 }
+
+.label.label-muted {
+  background-color: $msm-gray-lighter;
+  color: $msm-gray;
+}

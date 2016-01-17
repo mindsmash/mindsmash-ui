@@ -3683,6 +3683,8 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .label { font-weight: normal; padding-left: .75em; padding-right: .75em; text-transform: uppercase; }
 
+.label.label-muted { background-color: #F3F3F3; color: #AAA; }
+
 .badge { margin: 0 2px; }
 
 .badge.badge-red { background-color: #D0021B; color: #FFF; }
