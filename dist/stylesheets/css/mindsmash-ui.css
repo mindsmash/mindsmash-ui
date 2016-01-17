@@ -3687,6 +3687,10 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .badge.badge-red { background-color: #D0021B; color: #FFF; }
 
+.badge.badge-muted { background-color: #F3F3F3; color: #AAA; }
+
+.badge.badge-lg { font-size: 14px; padding: 5px 12px; }
+
 .dropdown-menu { padding: 0; -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
 
 .dropdown-menu > li > a { padding: 8px 16px; }

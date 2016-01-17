@@ -6,3 +6,13 @@
   background-color: $msm-red;
   color: #FFF;
 }
+
+.badge.badge-muted {
+  background-color: $msm-gray-lighter;
+  color: $msm-gray;
+}
+
+.badge.badge-lg {
+  font-size: 14px;
+  padding: 5px 12px;
+}
