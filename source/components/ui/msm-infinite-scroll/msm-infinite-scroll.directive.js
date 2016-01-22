@@ -7,7 +7,8 @@
    * @restrict 'A'
    *
    * @description Applies endless scrolling. Executed once during initialization and then whenever
-   *              user scrolls near the end of the element.
+   *              user scrolls near the end of the element. Execution on initialization can be turned off
+   *              by setting msm-infinite-scroll-no-initial-load. This is "true" by default.
    *
    *              Scroll on div:            <div msm-infinite-scroll="loadMore()">...</div>
    *              Scroll on other element:  <div msm-infinite-scroll="loadMore()" msm-infinite-scroll-element=".selector">...</div>
@@ -19,14 +20,19 @@
   angular.module('msm.components.ui')
     .directive('msmInfiniteScroll', MsmInfiniteScroll);
 
-  function MsmInfiniteScroll($timeout) {
+  function MsmInfiniteScroll($timeout, $log) {
     return {
       restrict: 'A',
       link: function ($scope, element, attrs) {
-        // load first page (inside correct digest)
-        $timeout(function () {
-          $scope.$apply(attrs.msmInfiniteScroll);
-        });
+        var initialLoad = angular.isUndefined(attrs.msmInfiniteScrollNoInitialLoad);
+
+        // load first page if not turned off (inside correct digest)
+        if (initialLoad) {
+          $timeout(function () {
+            $log.debug('[msmInfiniteScroll] Performing initial load.');
+            $scope.$apply(attrs.msmInfiniteScroll);
+          });
+        }
 
         // pixels before end, default=200
         var threshold = 200;
