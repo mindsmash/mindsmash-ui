@@ -28,9 +28,9 @@
       <h1 class="nav-brand">mindsmash UI</h1>
     </div>
     <ul class="nav nav-left">
-      <li dropdown is-open="status4.isopen">
-        <a href="#" dropdown-toggle>Components <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
+      <li uib-dropdown is-open="status4.isopen">
+        <a uib-dropdown-toggle href="#">Components <span class="caret"></span></a>
+        <ul uib-dropdown-menu class="dropdown-menu" role="menu">
           <li role="menuitem"><a href="#grid" target="_self">Grid system</a></li>
           <li role="menuitem"><a href="#type" target="_self">Typography</a></li>
           <li role="menuitem"><a href="#navs" target="_self">Navs</a></li>
@@ -666,13 +666,6 @@
       <h1 class="panel-title">Forms</h1>
     </div>
     <div class="panel-body">
-      <h3>Form wizard</h3>
-      <div class="example panel panel-default">
-        <div class="panel-body">
-          <msm-wizard current="3" total="5"></msm-wizard>
-        </div>
-      </div>
-
       <h3>Basic example</h3>
       <p><b>Note:</b> Use the helper class <code>.form-group-checkbox</code> to fix margin offsets for form groups with checkboxes.</p>
       <div class="example panel panel-default">
@@ -792,15 +785,15 @@
           <div class="panel-body" data-create-code=".js-insert-code">
             <form ng-class="{ 'editable-text-read-only': !vm.model.isEditable }" class="form-horizontal">
               <div class="form-group">
-                <label for="inputText" class="col-sm-2 control-label">Text</label>
+                <label for="inputEditableText" class="col-sm-2 control-label">Text</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="inputText" ng-model="vm.model.text1" msm-editable-text="vm.model.isEditable">
+                  <input type="text" class="form-control" id="inputEditableText" ng-model="vm.model.text1" msm-editable-text="vm.model.isEditable">
                 </div>
               </div>
               <div class="form-group">
-                <label for="inputTextarea" class="col-sm-2 control-label">Textarea</label>
+                <label for="inputEditableTextarea" class="col-sm-2 control-label">Textarea</label>
                 <div class="col-sm-10">
-                  <textarea class="form-control" id="inputTextarea" rows="3" ng-model="vm.model.text2" msm-editable-text="vm.model.isEditable" msm-editable-display="vm.model.text2 | uppercase"></textarea>
+                  <textarea class="form-control" id="inputEditableTextarea" rows="3" ng-model="vm.model.text2" msm-editable-text="vm.model.isEditable" msm-editable-display="vm.model.text2 | uppercase"></textarea>
                 </div>
               </div>
             </form>
@@ -930,7 +923,7 @@
             <div class="form-group">
               <label for="inputDate" class="col-sm-2 control-label">Date</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" datepicker-popup ng-model="date" is-open="opened" ng-click="opened = !opened"/>
+                <input type="text" class="form-control" uib-datepicker-popup ng-model="date" is-open="opened" ng-click="opened = !opened"/>
                 <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None' }}</em></span>
               </div>
             </div>
@@ -1183,8 +1176,8 @@
                 <li class="nav-item hidden-xs">
                   <a class="nav-item-icon icon-bubbles"></a>
                 </li>
-                <li class="nav-item hidden-xs" dropdown is-open="status.isopen">
-                  <a class="nav-item-profile" dropdown-toggle>
+                <li class="nav-item hidden-xs" uib-dropdown is-open="status.isopen">
+                  <a class="nav-item-profile" uib-dropdown-toggle>
                     <span class="profile-thumb"></span>
                     <i class="zmdi zmdi-caret-down"></i>
                   </a>
@@ -1230,8 +1223,8 @@
                 <ul class="nav navbar-nav">
                   <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
                   <li><a href="#">Link</a></li>
-                  <li dropdown is-open="status2.isopen">
-                    <a href="#" dropdown-toggle>Dropdown <span class="caret"></span></a>
+                  <li uib-dropdown is-open="status2.isopen">
+                    <a href="#" uib-dropdown-toggle>Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                       <li role="menuitem"><a href="#">Action</a></li>
                       <li role="menuitem"><a href="#">Another action</a></li>
@@ -1250,8 +1243,8 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                   <li><a href="#">Link</a></li>
-                  <li dropdown is-open="status3.isopen">
-                    <a href="#" dropdown-toggle>Dropdown <span class="caret"></span></a>
+                  <li uib-dropdown is-open="status3.isopen">
+                    <a href="#" uib-dropdown-toggle>Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
                       <li role="menuitem"><a href="#">Action</a></li>
                       <li role="menuitem"><a href="#">Another action</a></li>
@@ -1298,7 +1291,6 @@
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>
 <script src="../components/ui/msm-spinner/msm-spinner.directive.js"></script>
-<script src="../components/ui/msm-wizard/msm-wizard.directive.js"></script>
 
 <script src="../components/util/components.util.module.js"></script>
 <script src="../components/util/scroll-link/scroll-link.directive.js"></script>

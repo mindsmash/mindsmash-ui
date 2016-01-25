@@ -5,8 +5,6 @@
       'msm.components.ui',
       'msm.components.util',
       'ui.bootstrap',
-      'ui.bootstrap.datepicker',
-      'ui.bootstrap.dropdown',
       'ui.router',
       'pascalprecht.translate',
       'formly',
@@ -113,7 +111,7 @@
     vm.model = {
       text1: 'First text',
       text2: 'Second text',
-      isEditable: false,
+      isEditable: false
     };
 
     (function initController() {

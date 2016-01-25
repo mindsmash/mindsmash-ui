@@ -24,7 +24,7 @@
         value: '=msmEditableDisplay'
       },
       compile: function compile(tElem, tAttrs) {
-        var tText = $compile('<p ng-show="!edit" class="form-control-static">{{ value }}</p>');
+        var tText = $compile('<p ng-show="!edit" class="form-control-static">{{ text }}</p>');
         return {
           post: function postLink(scope, iElem, iAttrs, ctrl) {
             iElem.after(tText(scope));
@@ -34,7 +34,11 @@
               scope.$watch(function () {
                 return ctrl.$modelValue;
               }, function(newVal, oldVal) {
-                scope.value = newVal;
+                scope.text = newVal;
+              });
+            } else {
+              scope.$watch('value', function(newVal, oldVal) {
+                scope.text = newVal;
               });
             }
 

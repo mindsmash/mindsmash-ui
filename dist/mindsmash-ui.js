@@ -1,4 +1,11 @@
-angular.module('msm.components.ui', ['ui.router', 'pascalprecht.translate', 'ui-notification', 'ui.bootstrap.datepicker', 'ui.select', 'ngSanitize']);
+angular.module('msm.components.ui', [
+  'ui.router',
+  'pascalprecht.translate',
+  'ui-notification',
+  'ui.bootstrap',
+  'ui.select',
+  'ngSanitize'
+]);
 
 angular.module('msm.components.util', []);
 
@@ -6,25 +13,25 @@ angular.module('msm.components.ui')
 
 .config(function($provide) {
   var replaceTemplate = function(mode) {
-    $provide.decorator(mode + 'pickerDirective', function($delegate) {
-      $delegate[0].templateUrl = '../components/ui/msm-datepicker/msm-datepicker-' + mode + '.html';
+    $provide.decorator('uib' + mode + 'pickerDirective', function($delegate) {
+      $delegate[0].templateUrl = '../components/ui/msm-datepicker/msm-datepicker-' + mode.toLowerCase() + '.html';
       return $delegate;
     });
   };
 
-  replaceTemplate('day');
-  replaceTemplate('month');
-  replaceTemplate('year');
+  replaceTemplate('Day');
+  replaceTemplate('Month');
+  replaceTemplate('Year');
 })
 
-.config(function(datepickerConfig) {
-  datepickerConfig.showWeeks = false;
-  datepickerConfig.startingDay = 1;
+.config(function(uibDatepickerConfig) {
+  uibDatepickerConfig.showWeeks = false;
+  uibDatepickerConfig.startingDay = 1;
 })
 
-.config(function(datepickerPopupConfig) {
-  datepickerPopupConfig.showButtonBar = false;
-  datepickerPopupConfig.datepickerPopupTemplateUrl = '../components/ui/msm-datepicker/msm-datepicker-popup.html';
+.config(function(uibDatepickerPopupConfig) {
+  uibDatepickerPopupConfig.showButtonBar = false;
+  uibDatepickerPopupConfig.datepickerPopupTemplateUrl = '../components/ui/msm-datepicker/msm-datepicker-popup.html';
 });
 
 (function() {
@@ -335,7 +342,7 @@ angular.module('msm.components.ui')
         value: '=msmEditableDisplay'
       },
       compile: function compile(tElem, tAttrs) {
-        var tText = $compile('<p ng-show="!edit" class="form-control-static">{{ value }}</p>');
+        var tText = $compile('<p ng-show="!edit" class="form-control-static">{{ text }}</p>');
         return {
           post: function postLink(scope, iElem, iAttrs, ctrl) {
             iElem.after(tText(scope));
@@ -345,7 +352,11 @@ angular.module('msm.components.ui')
               scope.$watch(function () {
                 return ctrl.$modelValue;
               }, function(newVal, oldVal) {
-                scope.value = newVal;
+                scope.text = newVal;
+              });
+            } else {
+              scope.$watch('value', function(newVal, oldVal) {
+                scope.text = newVal;
               });
             }
 
@@ -498,7 +509,7 @@ angular.module('msm.components.ui')
    * @description
    *     Renders styled modals.
    */
-  function msmModal($modal, $q, $document) {
+  function msmModal($uibModal, $q, $document) {
     return {
       open: open,
       note: note,
@@ -550,7 +561,7 @@ angular.module('msm.components.ui')
         };
       });
 
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: config.templateUrl || 'components/ui/msm-modal/msm-modal.html',
         controller: config.controller,
@@ -595,7 +606,7 @@ angular.module('msm.components.ui')
     function note(options) {
       return open({
         size: options.size,
-        controller: function ($modalInstance) {
+        controller: function($uibModalInstance) {
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
@@ -609,7 +620,7 @@ angular.module('msm.components.ui')
 
           function onClick() {
             unbindKeyUp();
-            $modalInstance.close();
+            $uibModalInstance.close();
           }
 
           function bindKeyUp() {
@@ -624,7 +635,7 @@ angular.module('msm.components.ui')
             if (event.which === 13) {
               event.preventDefault();
               unbindKeyUp();
-              $modalInstance.close();
+              $uibModalInstance.close();
             }
           };
           bindKeyUp();
@@ -656,7 +667,7 @@ angular.module('msm.components.ui')
       // title, text, size, closeTitle, dismissTitle
       return open({
         size: options.size,
-        controller: function ($modalInstance) {
+        controller: function($uibModalInstance) {
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
@@ -675,12 +686,12 @@ angular.module('msm.components.ui')
 
           function onClick() {
             unbindKeyUp();
-            $modalInstance.close();
+            $uibModalInstance.close();
           }
 
           function onDismiss() {
             unbindKeyUp();
-            $modalInstance.dismiss();
+            $uibModalInstance.dismiss();
           }
 
           function bindKeyUp() {
@@ -695,7 +706,7 @@ angular.module('msm.components.ui')
             if (event.which === 13) {
               event.preventDefault();
               unbindKeyUp();
-              $modalInstance.close();
+              $uibModalInstance.close();
             }
           };
           bindKeyUp();
@@ -734,7 +745,7 @@ angular.module('msm.components.ui')
           values: options.options.values,
           selected: options.options.selected
         },
-        controller: function ($modalInstance, values, selected) {
+        controller: function($uibModalInstance, values, selected) {
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
@@ -773,7 +784,7 @@ angular.module('msm.components.ui')
 
           function onDismiss() {
             unbindKeyUp();
-            $modalInstance.dismiss();
+            $uibModalInstance.dismiss();
           }
 
           function bindKeyUp() {
@@ -801,14 +812,14 @@ angular.module('msm.components.ui')
             for (var key in values) {
               if (selectedItem === values[key].value) {
                 unbindKeyUp();
-                $modalInstance.close(values[key].key);
+                $uibModalInstance.close(values[key].key);
                 found = true;
                 break;
               }
             }
             if (!found) {
               unbindKeyUp();
-              $modalInstance.close(selectedItem);
+              $uibModalInstance.close(selectedItem);
             }
           }
         }
@@ -909,8 +920,7 @@ $templateCache.put("components/ui/msm-datepicker/msm-datepicker-year.html","<tab
 $templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\" data-ng-click=\"open()\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\"></i>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body modal-mobile-show\">\n  <ul class=\"modal-mobile-options\">\n    <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n      <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"vm.options.selected === option\"></i>\n      <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"vm.options.selected !== option\"></i>\n      {{ option }}\n    </li>\n  </ul>\n</div>\n<div class=\"modal-body modal-mobile-hide\">\n  <form class=\"form-horizontal\">\n    <div>\n        <ui-select id=\"selectItems\" ng-model=\"vm.options.selected\" append-to-body=\"true\">\n          <ui-select-match placeholder=\"{{ vm.text | translate }}\" allow-clear=\"false\">\n            {{ vm.options.selected }}\n          </ui-select-match>\n          <ui-select-choices repeat=\"option in vm.options.values | filter: $select.search\">\n            <div ng-bind-html=\"option | highlight: $select.search\"></div>\n          </ui-select-choices>\n        </ui-select>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}</button>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <span>{{ vm.text | translate }}</span>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}\n  </button>\n</div>\n");
-$templateCache.put("components/ui/msm-spinner/msm-spinner.html","<div class=\"msm-spinner\" ng-class=\"size\"><div class=\"bounce1\"></div><div class=\"bounce2\"></div><div class=\"bounce3\"></div></div>");
-$templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-wizard\">\n    <li class=\"node\" ng-repeat-start=\"step in steps\" ng-click=\"activate(step)\">\n        <button class=\"btn btn-zmdi\" ng-class=\"{ \'btn-default\': current !== step, \'btn-primary\': current === step, \'btn-sm\': !labels, \'btn-xs\': labels }\" ng-disabled=\"current < step\">\n            <i ng-if=\"!labels\" class=\"zmdi zmdi-hc-fw\" ng-class=\"{ \'zmdi-edit\': current === step, \'zmdi-check\': current > step, \'zmdi-more\': current < step }\"></i>\n            <span ng-if=\"labels\" translate=\"{{ \'msmWizard.step.\' + step }}\"></span>\n        </button>\n    </li>\n    <li class=\"line\" ng-if=\"!$last\" ng-repeat-end></li>\n</ul>\n");}]);
+$templateCache.put("components/ui/msm-spinner/msm-spinner.html","<div class=\"msm-spinner\" ng-class=\"size\"><div class=\"bounce1\"></div><div class=\"bounce2\"></div><div class=\"bounce3\"></div></div>");}]);
 (function () {
   'use strict';
 
@@ -932,50 +942,6 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
         size: '@'
       },
       templateUrl: 'components/ui/msm-spinner/msm-spinner.html'
-    };
-  }
-})();
-
-(function () {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmWizard
-   * @restrict 'E'
-   *
-   * @description Renders a Bootstrap form wizard
-   */
-  angular.module('msm.components.ui')
-    .directive('msmWizard', MsmWizard);
-
-  function MsmWizard() {
-    return {
-      restrict: 'E',
-      replace: true,
-      scope: {
-        current: '=',
-        total: '=',
-        labels: '='
-      },
-      templateUrl: 'components/ui/msm-wizard/msm-wizard.html',
-      link: function (scope, elem, attrs) {
-        scope.current = scope.current || 1;
-        scope.total = scope.total || 1;
-
-        if (angular.isUndefined(scope.current)) {
-          scope.current = 0;
-        }
-
-        scope.steps = [];
-        for (var i = 1; i <= (scope.total || 1); i++) {
-          scope.steps.push(i);
-        }
-
-        scope.activate = function(step) {
-          scope.current = Math.min(step, scope.current, scope.total);
-        }
-      }
     };
   }
 })();

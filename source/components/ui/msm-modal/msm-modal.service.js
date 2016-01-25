@@ -12,7 +12,7 @@
    * @description
    *     Renders styled modals.
    */
-  function msmModal($modal, $q, $document) {
+  function msmModal($uibModal, $q, $document) {
     return {
       open: open,
       note: note,
@@ -64,7 +64,7 @@
         };
       });
 
-      var modalInstance = $modal.open({
+      var modalInstance = $uibModal.open({
         animation: true,
         templateUrl: config.templateUrl || 'components/ui/msm-modal/msm-modal.html',
         controller: config.controller,
@@ -109,7 +109,7 @@
     function note(options) {
       return open({
         size: options.size,
-        controller: function ($modalInstance) {
+        controller: function($uibModalInstance) {
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
@@ -123,7 +123,7 @@
 
           function onClick() {
             unbindKeyUp();
-            $modalInstance.close();
+            $uibModalInstance.close();
           }
 
           function bindKeyUp() {
@@ -138,7 +138,7 @@
             if (event.which === 13) {
               event.preventDefault();
               unbindKeyUp();
-              $modalInstance.close();
+              $uibModalInstance.close();
             }
           };
           bindKeyUp();
@@ -170,7 +170,7 @@
       // title, text, size, closeTitle, dismissTitle
       return open({
         size: options.size,
-        controller: function ($modalInstance) {
+        controller: function($uibModalInstance) {
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
@@ -189,12 +189,12 @@
 
           function onClick() {
             unbindKeyUp();
-            $modalInstance.close();
+            $uibModalInstance.close();
           }
 
           function onDismiss() {
             unbindKeyUp();
-            $modalInstance.dismiss();
+            $uibModalInstance.dismiss();
           }
 
           function bindKeyUp() {
@@ -209,7 +209,7 @@
             if (event.which === 13) {
               event.preventDefault();
               unbindKeyUp();
-              $modalInstance.close();
+              $uibModalInstance.close();
             }
           };
           bindKeyUp();
@@ -248,7 +248,7 @@
           values: options.options.values,
           selected: options.options.selected
         },
-        controller: function ($modalInstance, values, selected) {
+        controller: function($uibModalInstance, values, selected) {
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
@@ -287,7 +287,7 @@
 
           function onDismiss() {
             unbindKeyUp();
-            $modalInstance.dismiss();
+            $uibModalInstance.dismiss();
           }
 
           function bindKeyUp() {
@@ -315,14 +315,14 @@
             for (var key in values) {
               if (selectedItem === values[key].value) {
                 unbindKeyUp();
-                $modalInstance.close(values[key].key);
+                $uibModalInstance.close(values[key].key);
                 found = true;
                 break;
               }
             }
             if (!found) {
               unbindKeyUp();
-              $modalInstance.close(selectedItem);
+              $uibModalInstance.close(selectedItem);
             }
           }
         }

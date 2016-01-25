@@ -2,23 +2,23 @@ angular.module('msm.components.ui')
 
 .config(function($provide) {
   var replaceTemplate = function(mode) {
-    $provide.decorator(mode + 'pickerDirective', function($delegate) {
-      $delegate[0].templateUrl = '../components/ui/msm-datepicker/msm-datepicker-' + mode + '.html';
+    $provide.decorator('uib' + mode + 'pickerDirective', function($delegate) {
+      $delegate[0].templateUrl = '../components/ui/msm-datepicker/msm-datepicker-' + mode.toLowerCase() + '.html';
       return $delegate;
     });
   };
 
-  replaceTemplate('day');
-  replaceTemplate('month');
-  replaceTemplate('year');
+  replaceTemplate('Day');
+  replaceTemplate('Month');
+  replaceTemplate('Year');
 })
 
-.config(function(datepickerConfig) {
-  datepickerConfig.showWeeks = false;
-  datepickerConfig.startingDay = 1;
+.config(function(uibDatepickerConfig) {
+  uibDatepickerConfig.showWeeks = false;
+  uibDatepickerConfig.startingDay = 1;
 })
 
-.config(function(datepickerPopupConfig) {
-  datepickerPopupConfig.showButtonBar = false;
-  datepickerPopupConfig.datepickerPopupTemplateUrl = '../components/ui/msm-datepicker/msm-datepicker-popup.html';
+.config(function(uibDatepickerPopupConfig) {
+  uibDatepickerPopupConfig.showButtonBar = false;
+  uibDatepickerPopupConfig.datepickerPopupTemplateUrl = '../components/ui/msm-datepicker/msm-datepicker-popup.html';
 });

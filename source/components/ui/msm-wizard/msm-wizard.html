@@ -1,9 +1,0 @@
-<ul class="msm-wizard">
-    <li class="node" ng-repeat-start="step in steps" ng-click="activate(step)">
-        <button class="btn btn-zmdi" ng-class="{ 'btn-default': current !== step, 'btn-primary': current === step, 'btn-sm': !labels, 'btn-xs': labels }" ng-disabled="current < step">
-            <i ng-if="!labels" class="zmdi zmdi-hc-fw" ng-class="{ 'zmdi-edit': current === step, 'zmdi-check': current > step, 'zmdi-more': current < step }"></i>
-            <span ng-if="labels" translate="{{ 'msmWizard.step.' + step }}"></span>
-        </button>
-    </li>
-    <li class="line" ng-if="!$last" ng-repeat-end></li>
-</ul>
