@@ -3729,11 +3729,19 @@ dl dd { margin-bottom: 12px; }
 
 .btn i { margin-right: 4px; }
 
+.btn .badge { top: -2px; }
+
 .btn-lg i, .btn-group-lg > .btn i { margin-right: 6px; }
+
+.btn-lg .badge, .btn-group-lg > .btn .badge { top: -2px; }
 
 .btn-sm i, .btn-group-sm > .btn i { margin-right: 3px; }
 
+.btn-sm .badge, .btn-group-sm > .btn .badge { top: -1px; }
+
 .btn-xs i, .btn-group-xs > .btn i { margin-right: 2px; }
+
+.btn-xs .badge, .btn-group-xs > .btn .badge { top: -1px; }
 
 .btn-zmdi i { margin: 0; }
 
