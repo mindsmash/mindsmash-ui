@@ -1,0 +1,29 @@
+.msm-is-editable .msm-editable-display {
+  display: none;
+}
+
+.msm-non-editable {
+
+  .msm-editable-field {
+    display: none;
+  }
+
+  .form-group {
+    margin-bottom: 12px;
+  }
+
+  .form-control-static {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    min-height: 32px;
+  }
+
+  &.form-horizontal .control-label {
+    color: $msm-gray;
+    font-weight: 400;
+
+    @include sm-and-up {
+      padding-top: 4px;
+    }
+  }
+}
