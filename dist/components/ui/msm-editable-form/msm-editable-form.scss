@@ -1,9 +1,14 @@
-.msm-is-editable .msm-editable-display {
-  display: none;
+.msm-is-editable {
+
+  .msm-editable-show,
+  .msm-editable-display {
+    display: none;
+  }
 }
 
 .msm-non-editable {
 
+  .msm-editable-hide,
   .msm-editable-field {
     display: none;
   }

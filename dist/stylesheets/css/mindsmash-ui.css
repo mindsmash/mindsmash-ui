@@ -3411,9 +3411,9 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
   .msm-datepicker table { width: auto; }
   .msm-datepicker table button { padding: 6px 10px; } }
 
-.msm-is-editable .msm-editable-display { display: none; }
+.msm-is-editable .msm-editable-show, .msm-is-editable .msm-editable-display { display: none; }
 
-.msm-non-editable .msm-editable-field { display: none; }
+.msm-non-editable .msm-editable-hide, .msm-non-editable .msm-editable-field { display: none; }
 
 .msm-non-editable .form-group { margin-bottom: 12px; }
 
