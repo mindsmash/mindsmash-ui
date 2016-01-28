@@ -30,14 +30,14 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.9",
+    "angular": "~1.5.0",
     "angular-bootstrap": "~1.1.0",
     "angular-translate": "~2.8.1",
     "angular-ui-notification": "~0.1.0",
     "angular-ui-router": "~0.2.15",
     "angular-formly": "~7.3.9",
     "angular-formly-templates-bootstrap": "~6.2.0",
-    "angular-ui-select": "~0.13.2",
+    "angular-ui-select": "~0.14.1",
     "angular-sanitize": "~1.4.9",
     "css-spaces": "~0.3.5",
     "material-design-iconic-font": "~2.2.0",
@@ -56,6 +56,6 @@
     }
   },
   "resolutions": {
-    "angular": "~1.4.8"
+    "angular": "~1.5.0"
   }
 }
