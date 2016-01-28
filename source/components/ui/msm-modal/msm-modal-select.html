@@ -15,10 +15,10 @@
   <form class="form-horizontal">
     <div>
         <ui-select id="selectItems" ng-model="vm.options.selected" append-to-body="true">
-          <ui-select-match placeholder="{{ vm.text | translate }}" allow-clear="false">
+          <ui-select-match placeholder="{{ vm.text | translate }}" allow-clear="false" class="ui-select-match">
             {{ vm.options.selected }}
           </ui-select-match>
-          <ui-select-choices repeat="option in vm.options.values | filter: $select.search">
+          <ui-select-choices repeat="option in vm.options.values | filter: $select.search" class="ui-select-choices">
             <div ng-bind-html="option | highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
