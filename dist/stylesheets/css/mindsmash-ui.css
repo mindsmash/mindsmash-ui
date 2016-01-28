@@ -3411,9 +3411,17 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
   .msm-datepicker table { width: auto; }
   .msm-datepicker table button { padding: 6px 10px; } }
 
-.editable-text-read-only .form-group { margin-bottom: 0; }
+.msm-is-editable .msm-editable-display { display: none; }
 
-.editable-text-read-only .control-label { color: #AAA; }
+.msm-non-editable .msm-editable-field { display: none; }
+
+.msm-non-editable .form-group { margin-bottom: 12px; }
+
+.msm-non-editable .form-control-static { padding-top: 4px; padding-bottom: 4px; min-height: 32px; }
+
+.msm-non-editable.form-horizontal .control-label { color: #AAA; font-weight: 400; }
+
+@media screen and (min-width: 768px) { .msm-non-editable.form-horizontal .control-label { padding-top: 4px; } }
 
 .msm-mobile-menu-item { align-items: center; background-color: #FDFDFD; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); color: #333; display: flex; height: 48px; margin: 10px 0; }
 

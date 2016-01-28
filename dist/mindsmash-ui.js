@@ -319,53 +319,97 @@ angular.module('msm.components.ui')
 (function () {
   'use strict';
 
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmEditableText
-   * @restrict 'A'
-   *
-   * @description Adds functionality to conditionally display text only to input elements.
-   *
-   * @param {expression} msmEditableText Shows the edit view if the expression is truthy.
-   * @param {expression} msmEditableDisplay The display value in non-edit view.
-   *                     The value of ngModel will be used in absence of this value.
-   */
   angular.module('msm.components.ui')
-      .directive('msmEditableText', EditableText);
+      .directive('msmEditableDisplay', EditableDisplay);
 
-  function EditableText($compile) {
+  function EditableDisplay($compile) {
     return {
       restrict: 'A',
-      require: '?ngModel',
-      scope: {
-        edit: '=msmEditableText',
-        value: '=msmEditableDisplay'
-      },
+      require: '^^msmEditableForm',
       compile: function compile(tElem, tAttrs) {
-        var tText = $compile('<p ng-show="!edit" class="form-control-static">{{ text }}</p>');
+        tElem.addClass('msm-editable-field');
+
+        var tDispl = null;
+        var aModel = tAttrs.ngModel;
+        var aTempl = tAttrs.msmEditableDisplay;
+        if (aTempl && aTempl.match(/'[^']*'/)) {
+          tDispl = $compile('<div class="msm-editable-display" ng-include="' + aTempl + '"></div>');
+        } else if (aTempl) {
+          tDispl = $compile('<p class="form-control-static msm-editable-display">' + aTempl + '</p>');
+        } else if (aModel) {
+          tDispl = $compile('<p class="form-control-static msm-editable-display">{{ ' + aModel + ' }}</p>');
+        } else {
+          throw 'Missing template or ngModel';
+        }
+
         return {
           post: function postLink(scope, iElem, iAttrs, ctrl) {
-            iElem.after(tText(scope));
-
-            // setup watch on ngModel in absence of msm-editable-display
-            if (angular.isUndefined(iAttrs.msmEditableDisplay) && ctrl) {
-              scope.$watch(function () {
-                return ctrl.$modelValue;
-              }, function(newVal, oldVal) {
-                scope.text = newVal;
-              });
-            } else {
-              scope.$watch('value', function(newVal, oldVal) {
-                scope.text = newVal;
-              });
-            }
-
-            // setup watch to show / hide input element
-            scope.$watch('edit', function(newVal, oldVal) {
-              iElem.attr('style', newVal ? '' : 'display: none');
-            });
+            iElem.after(tDispl(scope));
           }
         }
+      }
+    }
+  }
+
+})();
+
+(function () {
+  'use strict';
+
+  angular.module('msm.components.ui')
+      .directive('msmEditableForm', EditableForm)
+      .directive('ngModel', NgModel);
+
+  function EditableForm($parse) {
+    return {
+      restrict: 'A',
+      require: 'form',
+      controller: angular.noop,
+      link: function (scope, elem, attrs, ctrl) {
+        scope.$watch(attrs.msmEditableForm, setEditableClass);
+
+        elem.on('submit', function(event) {
+          scope.$apply(setNonEditable);
+        });
+
+        elem.on('reset', function(event) {
+          event.preventDefault();
+          scope.$apply(setNonEditable);
+          ctrl.$rollbackViewValue();
+        });
+
+        function setNonEditable() {
+          $parse(attrs.msmEditableForm).assign(scope,false);
+        }
+
+        function setEditableClass(isEditable) {
+          if (isEditable) {
+            elem.addClass('msm-is-editable');
+            elem.removeClass('msm-non-editable');
+          } else {
+            elem.addClass('msm-non-editable');
+            elem.removeClass('msm-is-editable');
+          }
+        }
+      }
+    }
+  }
+
+  function NgModel() {
+    return {
+      restrict: 'A',
+      require: ['ngModel', '^?ngModelOptions', '^?msmEditableForm'],
+      compile: function(tElem, tAttrs) {
+        return {
+          pre: function(scope, iElem, iAttrs, ctrls) {
+            if (!ctrls[1] && ctrls[2]) {
+              ctrls[0].$$setOptions({
+                updateOnDefault: false,
+                updateOn: ''
+              });
+            }
+          }
+        };
       }
     }
   }

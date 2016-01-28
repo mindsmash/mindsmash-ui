@@ -111,6 +111,7 @@
     vm.model = {
       text1: 'First text',
       text2: 'Second text',
+      text3: 'Third text',
       isEditable: false
     };
 
