@@ -13,10 +13,6 @@
       link: function (scope, elem, attrs, ctrl) {
         scope.$watch(attrs.msmEditableForm, setEditableClass);
 
-        elem.on('submit', function(event) {
-          scope.$apply(setNonEditable);
-        });
-
         elem.on('reset', function(event) {
           event.preventDefault();
           scope.$apply(setNonEditable);
