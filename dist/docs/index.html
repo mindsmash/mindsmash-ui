@@ -236,13 +236,19 @@
   </section>
   
   <scroll-link name="navs"></scroll-link>
-  <div class="row">
+  <div class="row" ng-controller="NavController as vm">
     <div class="col-md-8">
       <section class="panel panel-default">
         <div class="panel-heading panel-heading-main">
           <h1 class="panel-title">Navs</h1>
         </div>
         <div class="panel-body">
+
+          <!-- Wizard -->
+          <h3>Wizard</h3>
+          <div class="well bg-gray">
+            <msm-wizard ng-model="sdf" states="vm.states" active="vm.active"></msm-wizard>
+          </div>
 
           <!-- Tabs -->
           <div class="row">
@@ -1307,7 +1313,8 @@
 <script src="../components/ui/msm-modal/msm-modal.service.js"></script>
 <script src="../components/ui/msm-mobile-menu-item/msm-mobile-menu-item.directive.js"></script>
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>
-<script src="../components/ui/msm-spinner/msm-spinner.directive.js"></script>
+  <script src="../components/ui/msm-spinner/msm-spinner.directive.js"></script>
+  <script src="../components/ui/msm-wizard/msm-wizard.directive.js"></script>
 
 <script src="../components/util/components.util.module.js"></script>
 <script src="../components/util/scroll-link/scroll-link.directive.js"></script>

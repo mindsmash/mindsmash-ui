@@ -1,0 +1,64 @@
+.msm-wizard {
+  display: flex;
+  padding: 24px 0 0;
+  margin: 0;
+
+  li {
+    position: relative;
+    display: block;
+  }
+
+  .msm-wizard-state {
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    border: 1px solid #fff;
+    color: $msm-blue;
+  }
+
+  .msm-wizard-divider {
+    border-top: 1px solid #fff;
+    flex: 1;
+    top: 11px;
+  }
+
+  .msm-wizard-icon {
+    background: #fff;
+    border-radius: 100%;
+    height: 24px;
+    display: none;
+    width: 24px;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    position: relative;
+    top: -1px;
+    left: -1px;
+  }
+
+  .msm-wizard-label {
+    position: absolute;
+    top: -25px;
+    left: -88px;
+    width: 200px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .passed .msm-wizard-icon {
+    display: block;
+  }
+
+  .active .msm-wizard-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    left: 2px;
+
+    &:before {
+      content: none;
+    }
+  }
+}

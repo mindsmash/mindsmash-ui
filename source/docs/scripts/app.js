@@ -19,6 +19,7 @@
 
       .controller('NotificationController', NotificationController)
       .controller('EditableTextController', EditableTextController)
+      .controller('NavController', NavController)
       .controller('ModalController', ModalController)
       .controller('ClickToEditController', ClickToEditController)
       .controller('TableController', TableController);
@@ -102,6 +103,17 @@
 
     (function initController() {
       $log.debug('[NotificationController] Initializing...');
+    })();
+  }
+
+  function NavController($log) {
+    var vm = this;
+
+    vm.active = 1;
+    vm.states = ['Step 1', 'Step 2', 'Step 3'];
+
+    (function initController() {
+      $log.debug('[NavController] Initializing...');
     })();
   }
 
