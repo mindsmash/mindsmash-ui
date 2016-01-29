@@ -15,13 +15,8 @@
 
         elem.on('reset', function(event) {
           event.preventDefault();
-          scope.$apply(setNonEditable);
           ctrl.$rollbackViewValue();
         });
-
-        function setNonEditable() {
-          $parse(attrs.msmEditableForm).assign(scope,false);
-        }
 
         function setEditableClass(isEditable) {
           if (isEditable) {
