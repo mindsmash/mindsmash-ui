@@ -12,12 +12,7 @@
         active: "=",
         states: "="
       },
-      templateUrl: 'components/ui/msm-wizard/msm-wizard.html',
-      link: function(scope, elem, attrs) {
-        scope.setActive = function($index) {
-          scope.active = $index;
-        };
-      }
+      templateUrl: 'components/ui/msm-wizard/msm-wizard.html'
     }
   }
 })();

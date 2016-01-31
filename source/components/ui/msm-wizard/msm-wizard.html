@@ -1,8 +1,7 @@
 <ul class="msm-wizard">
   <li ng-repeat-start="state in states"
       class="msm-wizard-state"
-      ng-class="{ passed: $index < active, active: $index === active }"
-      ng-click="setActive($index)">
+      ng-class="{ passed: $index < active, active: $index === active }">
     <i class="zmdi zmdi-hc-fw zmdi-check msm-wizard-icon"></i>
     <span class="msm-wizard-label" translate="{{ state }}"></span>
   </li>
