@@ -120,11 +120,19 @@
   function EditableTextController($log) {
     var vm = this;
 
+    vm.isEditable = false;
     vm.model = {
       text1: 'First text',
-      text2: 'Second text',
-      text3: 'Third text',
-      isEditable: false
+      text2: 'Second text'
+    };
+
+    vm.submit = function() {
+      vm.model = angular.extend({}, vm.model); // reset model reference
+      vm.isEditable = false;
+    };
+
+    vm.reset = function() {
+      vm.isEditable = false;
     };
 
     (function initController() {

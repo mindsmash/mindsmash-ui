@@ -79,6 +79,80 @@ angular.module('msm.components.ui')
   }
 })();
 
+/*
+ * Based on: https://github.com/sebastianha/angular-bootstrap-checkbox
+ *   commit: 7e531169ab680f5ac9209040ecbb89fd55ac619e
+ */
+
+(function() {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmCheckbox
+   * @restrict 'E'
+   * @scope
+   *
+   * @description Renders a Bootstrap checkbox.
+   */
+  angular
+    .module('msm.components.ui')
+    .directive('msmCheckbox', msmCheckbox);
+
+  function msmCheckbox() {
+    return {
+      scope: {},
+      require: "ngModel",
+      restrict: "E",
+      replace: "true",
+      template: "<button type=\"button\" class=\"msm-checkbox btn btn-default\" ng-class=\"{'checked': checked===true}\">" +
+        "<i class=\"zmdi zmdi-hc-fw\" ng-class=\"{'zmdi-check': checked===true}\"></i>" +
+        "</button>",
+      link: function(scope, elem, attrs, ctrl) {
+        var trueValue = true;
+        var falseValue = false;
+
+        // If defined set true value
+        if(attrs.ngTrueValue !== undefined) {
+          trueValue = attrs.ngTrueValue;
+        }
+        // If defined set false value
+        if(attrs.ngFalseValue !== undefined) {
+          falseValue = attrs.ngFalseValue;
+        }
+
+        // Check if name attribute is set and if so add it to the DOM element
+        if(scope.name !== undefined) {
+          elem.name = scope.name;
+        }
+
+        // Update element when model changes
+        scope.$watch(function() {
+          if(ctrl.$modelValue === trueValue || ctrl.$modelValue === true) {
+            ctrl.$setViewValue(trueValue);
+          } else {
+            ctrl.$setViewValue(falseValue);
+          }
+          return ctrl.$modelValue;
+        }, function(newVal, oldVal) {
+          scope.checked = ctrl.$modelValue === trueValue;
+        }, true);
+
+        // On click swap value and trigger onChange function
+        elem.bind("click", function() {
+          scope.$apply(function() {
+            if(ctrl.$modelValue === falseValue) {
+              ctrl.$setViewValue(trueValue);
+            } else {
+              ctrl.$setViewValue(falseValue);
+            }
+          });
+        });
+      }
+    }
+  }
+
+})();
 /** Based on https://github.com/GabiGrin/angular-editable-text */
 (function () {
   'use strict';
@@ -242,111 +316,35 @@ angular.module('msm.components.ui')
 
 })();
 
-/*
- * Based on: https://github.com/sebastianha/angular-bootstrap-checkbox
- *   commit: 7e531169ab680f5ac9209040ecbb89fd55ac619e
- */
-
-(function() {
+(function () {
   'use strict';
 
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmCheckbox
-   * @restrict 'E'
-   * @scope
-   *
-   * @description Renders a Bootstrap checkbox.
-   */
-  angular
-    .module('msm.components.ui')
-    .directive('msmCheckbox', msmCheckbox);
+  angular.module('msm.components.ui')
+      .directive('msmDelayForm', MsmDelayForm);
 
-  function msmCheckbox() {
+  function MsmDelayForm($parse) {
     return {
-      scope: {},
-      require: "ngModel",
-      restrict: "E",
-      replace: "true",
-      template: "<button type=\"button\" class=\"msm-checkbox btn btn-default\" ng-class=\"{'checked': checked===true}\">" +
-        "<i class=\"zmdi zmdi-hc-fw\" ng-class=\"{'zmdi-check': checked===true}\"></i>" +
-        "</button>",
-      link: function(scope, elem, attrs, ctrl) {
-        var trueValue = true;
-        var falseValue = false;
+      restrict: 'A',
+      require: 'form',
+      link: function (scope, elem, attrs, ctrl) {
+        var snapshot = null;
 
-        // If defined set true value
-        if(attrs.ngTrueValue !== undefined) {
-          trueValue = attrs.ngTrueValue;
-        }
-        // If defined set false value
-        if(attrs.ngFalseValue !== undefined) {
-          falseValue = attrs.ngFalseValue;
-        }
+        // watch model reference - no deep watch!
+        // to manually trigger copy, use angular.extend({}, model)
+        scope.$watch(attrs.msmDelayForm, function(newVal, oldVal) {
+          snapshot = angular.copy(newVal);
+        });
 
-        // Check if name attribute is set and if so add it to the DOM element
-        if(scope.name !== undefined) {
-          elem.name = scope.name;
-        }
-
-        // Update element when model changes
-        scope.$watch(function() {
-          if(ctrl.$modelValue === trueValue || ctrl.$modelValue === true) {
-            ctrl.$setViewValue(trueValue);
-          } else {
-            ctrl.$setViewValue(falseValue);
-          }
-          return ctrl.$modelValue;
-        }, function(newVal, oldVal) {
-          scope.checked = ctrl.$modelValue === trueValue;
-        }, true);
-
-        // On click swap value and trigger onChange function
-        elem.bind("click", function() {
+        elem.on('reset', function(event) {
+          event.preventDefault();
+          scope.$eval(attrs.ngReset);
           scope.$apply(function() {
-            if(ctrl.$modelValue === falseValue) {
-              ctrl.$setViewValue(trueValue);
-            } else {
-              ctrl.$setViewValue(falseValue);
-            }
+            $parse(attrs.msmDelayForm).assign(scope, snapshot);
           });
         });
       }
     }
   }
-
-})();
-(function () {
-  'use strict';
-
-  angular.module('msm.components.ui')
-      .directive('msmEditableDisplay', EditableDisplay);
-
-  function EditableDisplay($compile) {
-    return {
-      restrict: 'A',
-      require: '^^msmEditableForm',
-      link: function compile(scope, tElem, tAttrs) {
-        tElem.addClass('msm-editable-field');
-
-        var tDispl = null;
-        var aModel = tAttrs.ngModel;
-        var aTempl = tAttrs.msmEditableDisplay;
-        if (aTempl && aTempl.match(/'[^']*'/)) {
-          tDispl = $compile('<div class="msm-editable-display" ng-include="' + aTempl + '"></div>')(scope);
-        } else if (aTempl) {
-          tDispl = $compile('<p class="form-control-static msm-editable-display">' + aTempl + '</p>')(scope);
-        } else if (aModel) {
-          tDispl = $compile('<p class="form-control-static msm-editable-display">{{ ' + aModel + ' }}</p>')(scope);
-        } else {
-          throw 'Missing template or ngModel';
-        }
-
-        tElem.after(tDispl);
-      }
-    }
-  }
-
 })();
 
 (function () {
@@ -425,60 +423,6 @@ angular.module('msm.components.ui')
     };
   }
 })();
-(function () {
-  'use strict';
-
-  angular.module('msm.components.ui')
-      .directive('msmEditableForm', EditableForm)
-      .directive('ngModel', NgModel);
-
-  function EditableForm($parse) {
-    return {
-      restrict: 'A',
-      require: 'form',
-      controller: angular.noop,
-      link: function (scope, elem, attrs, ctrl) {
-        scope.$watch(attrs.msmEditableForm, setEditableClass);
-
-        elem.on('reset', function(event) {
-          event.preventDefault();
-          ctrl.$rollbackViewValue();
-        });
-
-        function setEditableClass(isEditable) {
-          if (isEditable) {
-            elem.addClass('msm-is-editable');
-            elem.removeClass('msm-non-editable');
-          } else {
-            elem.addClass('msm-non-editable');
-            elem.removeClass('msm-is-editable');
-          }
-        }
-      }
-    }
-  }
-
-  function NgModel() {
-    return {
-      restrict: 'A',
-      require: ['ngModel', '^?ngModelOptions', '^?msmEditableForm'],
-      compile: function(tElem, tAttrs) {
-        return {
-          pre: function(scope, iElem, iAttrs, ctrls) {
-            if (!ctrls[1] && ctrls[2]) {
-              ctrls[0].$$setOptions({
-                updateOnDefault: false,
-                updateOn: ''
-              });
-            }
-          }
-        };
-      }
-    }
-  }
-
-})();
-
 (function() {
 	'use strict';
 
@@ -526,17 +470,6 @@ angular.module('msm.components.ui')
 	}
 })();
 
-angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"{{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
-$templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"msm-click-to-edit-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"enableEditingMode()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isBusy\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"enableEditingMode()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
-$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\" data-ng-click=\"open()\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\"></i>\n</div>\n");
-$templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate:vm.translationContext }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body modal-mobile-show\">\n  <ul class=\"modal-mobile-options\">\n    <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n      <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"vm.options.selected === option\"></i>\n      <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"vm.options.selected !== option\"></i>\n      {{ option }}\n    </li>\n  </ul>\n</div>\n<div class=\"modal-body modal-mobile-hide\">\n  <form class=\"form-horizontal\">\n    <div>\n        <ui-select id=\"selectItems\" ng-model=\"vm.options.selected\" append-to-body=\"true\">\n          <ui-select-match placeholder=\"{{ vm.text | translate:vm.translationContext }}\" allow-clear=\"false\" class=\"ui-select-match\">\n            {{ vm.options.selected }}\n          </ui-select-match>\n          <ui-select-choices repeat=\"option in vm.options.values | filter: $select.search\" class=\"ui-select-choices\">\n            <div ng-bind-html=\"option | highlight: $select.search\"></div>\n          </ui-select-choices>\n        </ui-select>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}</button>\n</div>\n");
-$templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate:vm.translationContext }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <span>{{ vm.text | translate:vm.translationContext }}</span>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}\n  </button>\n</div>\n");
-$templateCache.put("components/ui/msm-datepicker/msm-datepicker-day.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th colspan=\"{{::5 + showWeeks}}\"><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong><span class=\"caret\"></span></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n    <tr>\n      <th ng-if=\"showWeeks\" class=\"text-center\"></th>\n      <th ng-repeat=\"label in ::labels track by $index\" class=\"text-center\"><small aria-label=\"{{::label.full}}\">{{::label.abbr}}</small></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-if=\"showWeeks\" class=\"text-center h6\"><em>{{ weekNumbers[$index] }}</em></td>\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\" ng-class=\"::dt.customClass\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default btn-sm\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-muted\': dt.secondary, \'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
-$templateCache.put("components/ui/msm-datepicker/msm-datepicker-month.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong><span class=\"caret\"></span></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\" ng-class=\"::dt.customClass\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
-$templateCache.put("components/ui/msm-datepicker/msm-datepicker-popup.html","<ul class=\"dropdown-menu msm-datepicker\" ng-if=\"isOpen\" style=\"display: block\" ng-style=\"{top: position.top+\'px\', left: position.left+\'px\'}\" ng-keydown=\"keydown($event)\" ng-click=\"$event.stopPropagation()\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <li ng-transclude></li>\n  <li ng-if=\"showButtonBar\" style=\"padding:10px 9px 2px\">\n    <span class=\"btn-group pull-left\">\n      <button type=\"button\" class=\"btn btn-sm btn-info\" ng-click=\"select(\'today\')\" ng-disabled=\"isDisabled(\'today\')\">{{ getText(\'current\') }}</button>\n      <button type=\"button\" class=\"btn btn-sm btn-danger\" ng-click=\"select(null)\">{{ getText(\'clear\') }}</button>\n    </span>\n    <button type=\"button\" class=\"btn btn-sm btn-success pull-right\" ng-click=\"close()\">{{ getText(\'close\') }}</button>\n  </li>\n</ul>\n");
-$templateCache.put("components/ui/msm-datepicker/msm-datepicker-year.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th colspan=\"3\"><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
-$templateCache.put("components/ui/msm-spinner/msm-spinner.html","<div class=\"msm-spinner\" ng-class=\"size\"><div class=\"bounce1\"></div><div class=\"bounce2\"></div><div class=\"bounce3\"></div></div>");
-$templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-wizard {{class}}\">\n  <li ng-repeat-start=\"state in states\"\n      class=\"msm-wizard-state\"\n      ng-class=\"{ passed: $index < active, active: $index === active }\">\n    <i class=\"zmdi zmdi-hc-fw zmdi-check msm-wizard-icon\"></i>\n    <span class=\"msm-wizard-label\" translate=\"{{ state }}\"></span>\n  </li>\n  <li ng-repeat-end ng-if=\"!$last\" class=\"msm-wizard-divider\"></li>\n</ul>\n");}]);
 (function () {
   'use strict';
 
@@ -962,6 +895,17 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
 
 })();
 
+angular.module("msm.components.ui").run(["$templateCache", function($templateCache) {$templateCache.put("components/ui/msm-button/msm-button.html","<button type=\"button\" ng-class=\"{\'is-msm-mobile-menu-item\': isMobileMenuItem}\" class=\"btn {{ btnClass }}\">\n  <i class=\"{{ iconClass }}\"></i>\n  <span>{{ text }}</span>\n</button>\n");
+$templateCache.put("components/ui/msm-click-to-edit/msm-click-to-edit.html","<span class=\"msm-click-to-edit-container\"\n      ng-class=\"{\'is-placeholder\': placeholder && !editingValue}\"\n      ng-click=\"enableEditingMode()\">\n  <input ng-show=\"isEditing\"\n         ng-blur=\"onBlur()\"\n         ng-keyup=\"onKeyPress($event)\"\n         ng-model=\"editingValue\"\n         placeholder=\"{{placeholder}}\"/>\n  <span ng-hide=\"isEditing || isBusy\"\n        class=\"original-text\"\n        tabindex=\"0\"\n        ng-focus=\"enableEditingMode()\">\n    {{placeholder ? (editingValue ? editingValue : placeholder) : editingValue}}\n  </span>\n  <span ng-hide=\"isEditing\"\n        ng-transclude>\n  </span>\n  <i ng-hide=\"isEditing\" class=\"zmdi zmdi-edit\"></i>\n</span>\n");
+$templateCache.put("components/ui/msm-datepicker/msm-datepicker-day.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th colspan=\"{{::5 + showWeeks}}\"><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong><span class=\"caret\"></span></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n    <tr>\n      <th ng-if=\"showWeeks\" class=\"text-center\"></th>\n      <th ng-repeat=\"label in ::labels track by $index\" class=\"text-center\"><small aria-label=\"{{::label.full}}\">{{::label.abbr}}</small></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-if=\"showWeeks\" class=\"text-center h6\"><em>{{ weekNumbers[$index] }}</em></td>\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\" ng-class=\"::dt.customClass\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default btn-sm\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-muted\': dt.secondary, \'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
+$templateCache.put("components/ui/msm-datepicker/msm-datepicker-month.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong><span class=\"caret\"></span></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\" ng-class=\"::dt.customClass\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
+$templateCache.put("components/ui/msm-datepicker/msm-datepicker-popup.html","<ul class=\"dropdown-menu msm-datepicker\" ng-if=\"isOpen\" style=\"display: block\" ng-style=\"{top: position.top+\'px\', left: position.left+\'px\'}\" ng-keydown=\"keydown($event)\" ng-click=\"$event.stopPropagation()\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <li ng-transclude></li>\n  <li ng-if=\"showButtonBar\" style=\"padding:10px 9px 2px\">\n    <span class=\"btn-group pull-left\">\n      <button type=\"button\" class=\"btn btn-sm btn-info\" ng-click=\"select(\'today\')\" ng-disabled=\"isDisabled(\'today\')\">{{ getText(\'current\') }}</button>\n      <button type=\"button\" class=\"btn btn-sm btn-danger\" ng-click=\"select(null)\">{{ getText(\'clear\') }}</button>\n    </span>\n    <button type=\"button\" class=\"btn btn-sm btn-success pull-right\" ng-click=\"close()\">{{ getText(\'close\') }}</button>\n  </li>\n</ul>\n");
+$templateCache.put("components/ui/msm-datepicker/msm-datepicker-year.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th colspan=\"3\"><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
+$templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\" data-ng-click=\"open()\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\"></i>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate:vm.translationContext }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body modal-mobile-show\">\n  <ul class=\"modal-mobile-options\">\n    <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n      <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"vm.options.selected === option\"></i>\n      <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"vm.options.selected !== option\"></i>\n      {{ option }}\n    </li>\n  </ul>\n</div>\n<div class=\"modal-body modal-mobile-hide\">\n  <form class=\"form-horizontal\">\n    <div>\n        <ui-select id=\"selectItems\" ng-model=\"vm.options.selected\" append-to-body=\"true\">\n          <ui-select-match placeholder=\"{{ vm.text | translate:vm.translationContext }}\" allow-clear=\"false\" class=\"ui-select-match\">\n            {{ vm.options.selected }}\n          </ui-select-match>\n          <ui-select-choices repeat=\"option in vm.options.values | filter: $select.search\" class=\"ui-select-choices\">\n            <div ng-bind-html=\"option | highlight: $select.search\"></div>\n          </ui-select-choices>\n        </ui-select>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}</button>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate:vm.translationContext }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <span>{{ vm.text | translate:vm.translationContext }}</span>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}\n  </button>\n</div>\n");
+$templateCache.put("components/ui/msm-spinner/msm-spinner.html","<div class=\"msm-spinner\" ng-class=\"size\"><div class=\"bounce1\"></div><div class=\"bounce2\"></div><div class=\"bounce3\"></div></div>");
+$templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-wizard {{class}}\">\n  <li ng-repeat-start=\"state in states\"\n      class=\"msm-wizard-state\"\n      ng-class=\"{ passed: $index < active, active: $index === active }\">\n    <i class=\"zmdi zmdi-hc-fw zmdi-check msm-wizard-icon\"></i>\n    <span class=\"msm-wizard-label\" translate=\"{{ state }}\"></span>\n  </li>\n  <li ng-repeat-end ng-if=\"!$last\" class=\"msm-wizard-divider\"></li>\n</ul>\n");}]);
 (function () {
   'use strict';
 
@@ -984,6 +928,103 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
       },
       templateUrl: 'components/ui/msm-spinner/msm-spinner.html'
     };
+  }
+})();
+
+(function () {
+  'use strict';
+
+  angular.module('msm.components.ui')
+      .directive('msmToggleField', MsmToggleField);
+
+  function MsmToggleField($compile) {
+    return {
+      restrict: 'A',
+      require: '^^msmToggleForm',
+      link: function(scope, elem, attrs) {
+        elem.addClass('msm-toggle-show');
+        var body = attrs.msmToggleField || attrs.ngModel;
+        var html = $compile('<p class="form-control-static msm-toggle-hide">{{ ' + body + ' }}</p>')(scope);
+        elem.after(html);
+      }
+    }
+  }
+})();
+
+(function () {
+  'use strict';
+
+  angular.module('msm.components.ui')
+      .directive('msmToggleForm', MsmToggleForm);
+
+  function MsmToggleForm() {
+    return {
+      restrict: 'A',
+      require: 'form',
+      controller: angular.noop,
+      link: function (scope, elem, attrs) {
+        scope.$watch(attrs.msmToggleForm, function(isEditable) {
+          if (isEditable) {
+            elem.addClass('msm-toggle-active');
+            elem.removeClass('msm-toggle-inactive');
+          } else {
+            elem.addClass('msm-toggle-inactive');
+            elem.removeClass('msm-toggle-active');
+          }
+        });
+      }
+    }
+  }
+})();
+
+(function() {
+  'use strict';
+
+  angular.module('msm.components.ui')
+      .directive('msmValidateField', MsmValidateField);
+
+  function MsmValidateField($compile) {
+    return {
+      restrict: 'A',
+      require: '^^msmValidateForm',
+      link: function(scope, elem, attrs, ctrl) {
+        var fieldKey = attrs.validatedField;
+        if (!fieldKey) {
+          if (attrs.ngModel) {
+            var ngModelParts = attrs.ngModel.split('.');
+            fieldKey = ngModelParts[ngModelParts.length - 1];
+          } else {
+            throw 'Missing field key or ngModel';
+          }
+        }
+
+        var repeat = 'error in ' + ctrl.key + '.fieldErrors | filter: { key: \'' + fieldKey + '\' }';
+        elem.after($compile('<p class="help-block" ng-repeat="' + repeat + '" translate="{{ error.code }}"></p>')(scope));
+        scope.$watch(ctrl.key, function(newVal, oldVal) {
+          if (newVal !== oldVal) {
+            var hasError = newVal && _.some(newVal.fieldErrors, { key: fieldKey });
+            elem.closest('.form-group')[hasError ? 'addClass' : 'removeClass']('has-error');
+          }
+        });
+      }
+    }
+  }
+})();
+
+(function() {
+  'use strict';
+
+  angular.module('msm.components.ui')
+      .directive('msmValidateForm', validatedForm);
+
+  function validatedForm() {
+    return {
+      restrict: 'A',
+      require: 'form',
+      controller: function($attrs) {
+        this.key = $attrs.msmValidateForm;
+      }
+    }
   }
 })();
 

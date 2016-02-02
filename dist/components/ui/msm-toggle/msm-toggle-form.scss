@@ -1,15 +1,13 @@
-.msm-is-editable {
+.msm-toggle-active {
 
-  .msm-editable-show,
-  .msm-editable-display {
+  .msm-toggle-hide {
     display: none;
   }
 }
 
-.msm-non-editable {
+.msm-toggle-inactive {
 
-  .msm-editable-hide,
-  .msm-editable-field {
+  .msm-toggle-show {
     display: none;
   }
 
