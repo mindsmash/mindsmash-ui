@@ -34,51 +34,6 @@ angular.module('msm.components.ui')
   uibDatepickerPopupConfig.datepickerPopupTemplateUrl = '../components/ui/msm-datepicker/msm-datepicker-popup.html';
 });
 
-(function() {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmButton
-   * @restrict 'E'
-   *
-   * @description Renders a delete button which executes the callback you passed on click
-   *
-   * @param {function} cb the function that should be executed on click
-   */
-  angular
-      .module('msm.components.ui')
-      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
-      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-delete', 'btn-danger'))
-      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-plus-circle', 'btn-primary'))
-  ;
-
-
-  function MsmButtonFactory(iconClass, btnClass) {
-    return function MsmButton($translate) {
-      return {
-        restrict: 'E',
-        scope: {
-          labelText: '@',
-          isMobileMenuItem: '='
-        },
-        templateUrl: 'components/ui/msm-button/msm-button.html',
-        controller: function ($scope) {
-          $translate($scope.labelText)
-              .then(function (translatedValue) {
-                $scope.text = translatedValue;
-              }, function () {
-                $scope.text = $scope.labelText;
-              });
-
-          $scope.iconClass = iconClass || '';
-          $scope.btnClass = btnClass || '';
-        }
-      };
-    }
-  }
-})();
-
 /*
  * Based on: https://github.com/sebastianha/angular-bootstrap-checkbox
  *   commit: 7e531169ab680f5ac9209040ecbb89fd55ac619e
@@ -153,6 +108,51 @@ angular.module('msm.components.ui')
   }
 
 })();
+(function() {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmButton
+   * @restrict 'E'
+   *
+   * @description Renders a delete button which executes the callback you passed on click
+   *
+   * @param {function} cb the function that should be executed on click
+   */
+  angular
+      .module('msm.components.ui')
+      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
+      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-delete', 'btn-danger'))
+      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-plus-circle', 'btn-primary'))
+  ;
+
+
+  function MsmButtonFactory(iconClass, btnClass) {
+    return function MsmButton($translate) {
+      return {
+        restrict: 'E',
+        scope: {
+          labelText: '@',
+          isMobileMenuItem: '='
+        },
+        templateUrl: 'components/ui/msm-button/msm-button.html',
+        controller: function ($scope) {
+          $translate($scope.labelText)
+              .then(function (translatedValue) {
+                $scope.text = translatedValue;
+              }, function () {
+                $scope.text = $scope.labelText;
+              });
+
+          $scope.iconClass = iconClass || '';
+          $scope.btnClass = btnClass || '';
+        }
+      };
+    }
+  }
+})();
+
 /** Based on https://github.com/GabiGrin/angular-editable-text */
 (function () {
   'use strict';
@@ -940,7 +940,8 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
   'use strict';
 
   angular.module('msm.components.ui')
-      .directive('msmToggleField', MsmToggleField);
+      .directive('msmToggleField', MsmToggleField)
+      .directive('msmToggleFieldTemplate', MsmToggleFieldTemplate);
 
   function MsmToggleField($compile) {
     return {
@@ -950,6 +951,19 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
         elem.addClass('msm-toggle-show');
         var body = attrs.msmToggleField || attrs.ngModel;
         var html = $compile('<p class="form-control-static msm-toggle-hide">{{ ' + body + ' }}</p>')(scope);
+        elem.after(html);
+      }
+    }
+  }
+
+  function MsmToggleFieldTemplate($compile) {
+    return {
+      restrict: 'A',
+      require: '^^msmToggleForm',
+      link: function(scope, elem, attrs) {
+        elem.addClass('msm-toggle-show');
+        var body = attrs.msmToggleFieldTemplate;
+        var html = $compile('<p class="form-control-static msm-toggle-hide">' + body + '</p>')(scope);
         elem.after(html);
       }
     }
