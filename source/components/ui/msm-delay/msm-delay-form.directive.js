@@ -14,7 +14,12 @@
         // watch model reference - no deep watch!
         // to manually trigger copy, use angular.extend({}, model)
         scope.$watch(attrs.msmDelayForm, function(newVal, oldVal) {
-          snapshot = angular.copy(newVal);
+          if (newVal.restangularized) {
+            // restangular can't handle angular.copy! :-(
+            snapshot = newVal.clone();
+          } else {
+            snapshot = angular.copy(newVal);
+          }
         });
 
         elem.on('reset', function(event) {
