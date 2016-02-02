@@ -3910,6 +3910,10 @@ dl dd { margin-bottom: 12px; }
 
 .input-group-addon.input-lg .zmdi, .input-group-lg > .input-group-addon .zmdi, .input-group-lg > .input-group-btn > .input-group-addon.btn .zmdi, .input-group-lg > .input-group-addon .zmdi, .input-group-lg > .input-group-btn > .input-group-addon.btn .zmdi { width: 32px; margin: -16px; }
 
+.form-group .radio label { padding-left: 30px; }
+
+.form-group .radio label input[type="radio"] { margin-left: -30px; }
+
 .table > thead > tr > th { color: #AAA; border-width: 1px; font-weight: normal; letter-spacing: .025em; text-transform: uppercase; }
 
 .nav > li > a { color: #666; transition: background-color linear 0.1s; }
