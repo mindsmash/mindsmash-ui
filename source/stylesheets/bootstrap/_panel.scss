@@ -25,6 +25,10 @@
       }
     }
 
+    .panel-title {
+      font-weight: normal;
+    }
+
     .panel-body {
       padding: $panel-xs-body-padding;
     }
@@ -78,7 +82,7 @@
     }
 
     .panel-title {
-      font-size: $font-size-h4;
+      font-size: $font-size-h3;
     }
 
     .panel-body {
