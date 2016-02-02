@@ -105,6 +105,8 @@
      *           The modal's text.
      *       * close:
      *           The close button configuration.
+     *       * translationContext:
+     *           An object containing values to be used for translation interpolation.
      */
     function note(options) {
       return open({
@@ -113,6 +115,7 @@
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
+            translationContext: options.translationContext || {},
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'Ok',
@@ -165,6 +168,8 @@
      *           The close button configuration.
      *       * dismiss:
      *           The dismiss button configuration.
+     *       * translationContext:
+     *           An object containing values to be used for translation interpolation.
      */
     function confirm(options) {
       // title, text, size, closeTitle, dismissTitle
@@ -174,6 +179,7 @@
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
+            translationContext: options.translationContext || {},
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'Ok',
@@ -238,6 +244,8 @@
      *           The close button configuration.
      *       * dismiss:
      *           The dismiss button configuration.
+     *       * translationContext:
+     *           An object containing values to be used for translation interpolation.
      */
     function select(options) {
       // title, text, options, size, closeTitle, dismissTitle
@@ -252,6 +260,7 @@
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
+            translationContext: options.translationContext || {},
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'Select',

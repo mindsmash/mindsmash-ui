@@ -65,5 +65,3 @@ Clone the project, then follow the instructions below.
 ### Contribute
 If you want to contribute to this project, simply fork it on Github, do your changes and create a pull request that
 describes your changes. If it's all nice and clean, it might get merged.
-
-

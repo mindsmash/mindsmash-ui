@@ -8,6 +8,7 @@
   function msmWizard() {
     return {
       restrict: "AE",
+      replace: true,
       scope: {
         active: "=",
         states: "="
