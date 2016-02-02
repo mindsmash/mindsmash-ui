@@ -34,51 +34,6 @@ angular.module('msm.components.ui')
   uibDatepickerPopupConfig.datepickerPopupTemplateUrl = '../components/ui/msm-datepicker/msm-datepicker-popup.html';
 });
 
-(function() {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmButton
-   * @restrict 'E'
-   *
-   * @description Renders a delete button which executes the callback you passed on click
-   *
-   * @param {function} cb the function that should be executed on click
-   */
-  angular
-      .module('msm.components.ui')
-      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
-      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-delete', 'btn-danger'))
-      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-plus-circle', 'btn-primary'))
-  ;
-
-
-  function MsmButtonFactory(iconClass, btnClass) {
-    return function MsmButton($translate) {
-      return {
-        restrict: 'E',
-        scope: {
-          labelText: '@',
-          isMobileMenuItem: '='
-        },
-        templateUrl: 'components/ui/msm-button/msm-button.html',
-        controller: function ($scope) {
-          $translate($scope.labelText)
-              .then(function (translatedValue) {
-                $scope.text = translatedValue;
-              }, function () {
-                $scope.text = $scope.labelText;
-              });
-
-          $scope.iconClass = iconClass || '';
-          $scope.btnClass = btnClass || '';
-        }
-      };
-    }
-  }
-})();
-
 /*
  * Based on: https://github.com/sebastianha/angular-bootstrap-checkbox
  *   commit: 7e531169ab680f5ac9209040ecbb89fd55ac619e
@@ -153,6 +108,51 @@ angular.module('msm.components.ui')
   }
 
 })();
+(function() {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmButton
+   * @restrict 'E'
+   *
+   * @description Renders a delete button which executes the callback you passed on click
+   *
+   * @param {function} cb the function that should be executed on click
+   */
+  angular
+      .module('msm.components.ui')
+      .directive('msmButton', MsmButtonFactory('', 'btn-default'))
+      .directive('msmDeleteButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-delete', 'btn-danger'))
+      .directive('msmCreateButton', MsmButtonFactory('zmdi zmdi-hc-fw zmdi-plus-circle', 'btn-primary'))
+  ;
+
+
+  function MsmButtonFactory(iconClass, btnClass) {
+    return function MsmButton($translate) {
+      return {
+        restrict: 'E',
+        scope: {
+          labelText: '@',
+          isMobileMenuItem: '='
+        },
+        templateUrl: 'components/ui/msm-button/msm-button.html',
+        controller: function ($scope) {
+          $translate($scope.labelText)
+              .then(function (translatedValue) {
+                $scope.text = translatedValue;
+              }, function () {
+                $scope.text = $scope.labelText;
+              });
+
+          $scope.iconClass = iconClass || '';
+          $scope.btnClass = btnClass || '';
+        }
+      };
+    }
+  }
+})();
+
 /** Based on https://github.com/GabiGrin/angular-editable-text */
 (function () {
   'use strict';
@@ -952,7 +952,7 @@ $templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html
 $templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body modal-mobile-show\">\n  <ul class=\"modal-mobile-options\">\n    <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n      <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"vm.options.selected === option\"></i>\n      <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"vm.options.selected !== option\"></i>\n      {{ option }}\n    </li>\n  </ul>\n</div>\n<div class=\"modal-body modal-mobile-hide\">\n  <form class=\"form-horizontal\">\n    <div>\n        <ui-select id=\"selectItems\" ng-model=\"vm.options.selected\" append-to-body=\"true\">\n          <ui-select-match placeholder=\"{{ vm.text | translate }}\" allow-clear=\"false\" class=\"ui-select-match\">\n            {{ vm.options.selected }}\n          </ui-select-match>\n          <ui-select-choices repeat=\"option in vm.options.values | filter: $select.search\" class=\"ui-select-choices\">\n            <div ng-bind-html=\"option | highlight: $select.search\"></div>\n          </ui-select-choices>\n        </ui-select>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}</button>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <span>{{ vm.text | translate }}</span>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate }}\n  </button>\n</div>\n");
 $templateCache.put("components/ui/msm-spinner/msm-spinner.html","<div class=\"msm-spinner\" ng-class=\"size\"><div class=\"bounce1\"></div><div class=\"bounce2\"></div><div class=\"bounce3\"></div></div>");
-$templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-wizard\">\n  <li ng-repeat-start=\"state in states\"\n      class=\"msm-wizard-state\"\n      ng-class=\"{ passed: $index < active, active: $index === active }\">\n    <i class=\"zmdi zmdi-hc-fw zmdi-check msm-wizard-icon\"></i>\n    <span class=\"msm-wizard-label\" translate=\"{{ state }}\"></span>\n  </li>\n  <li ng-repeat-end ng-if=\"!$last\" class=\"msm-wizard-divider\"></li>\n</ul>\n");}]);
+$templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-wizard {{class}}\">\n  <li ng-repeat-start=\"state in states\"\n      class=\"msm-wizard-state\"\n      ng-class=\"{ passed: $index < active, active: $index === active }\">\n    <i class=\"zmdi zmdi-hc-fw zmdi-check msm-wizard-icon\"></i>\n    <span class=\"msm-wizard-label\" translate=\"{{ state }}\"></span>\n  </li>\n  <li ng-repeat-end ng-if=\"!$last\" class=\"msm-wizard-divider\"></li>\n</ul>\n");}]);
 (function () {
   'use strict';
 
@@ -988,6 +988,7 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
   function msmWizard() {
     return {
       restrict: "AE",
+      replace: true,
       scope: {
         active: "=",
         states: "="
