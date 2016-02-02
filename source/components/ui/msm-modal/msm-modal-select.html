@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h3 class="modal-title">{{ vm.title | translate }}</h3>
+  <h3 class="modal-title">{{ vm.title | translate:vm.translationContext }}</h3>
   <span class="modal-close" ng-click="vm.onDismiss ? vm.onDismiss() : $dismiss('cancel')"><i class="zmdi zmdi-close img-close"></i></span>
 </div>
 <div class="modal-body modal-mobile-show">
@@ -15,7 +15,7 @@
   <form class="form-horizontal">
     <div>
         <ui-select id="selectItems" ng-model="vm.options.selected" append-to-body="true">
-          <ui-select-match placeholder="{{ vm.text | translate }}" allow-clear="false" class="ui-select-match">
+          <ui-select-match placeholder="{{ vm.text | translate:vm.translationContext }}" allow-clear="false" class="ui-select-match">
             {{ vm.options.selected }}
           </ui-select-match>
           <ui-select-choices repeat="option in vm.options.values | filter: $select.search" class="ui-select-choices">
@@ -29,5 +29,5 @@
   <button ng-repeat="button in vm.buttons" class="btn {{ button.style }}"
           ng-class="{ 'btn-zmdi': !button.title, 'modal-mobile-hide': button.hideMobile }"
           ng-click="button.onClick()">
-    <i ng-if="button.icon" class="zmdi zmdi-hc-fw zmdi-{{ button.icon }}"></i>{{ button.title | translate }}</button>
+    <i ng-if="button.icon" class="zmdi zmdi-hc-fw zmdi-{{ button.icon }}"></i>{{ button.title | translate:vm.translationContext }}</button>
 </div>
