@@ -1,9 +1,37 @@
-.panel { border: 0; }
-.panel .panel-heading .btn { margin-left: 12px; }
-.panel-sm .panel-heading .btn { margin-left: 8px; }
-.panel-xs .panel-heading .btn { margin-left: 4px; }
+.panel {
+  border: 0;
+}
 
-.panel-default > .panel-heading { border-color: $msm-border; }
+.panel .panel-heading .btn {
+  margin-left: 12px;
+}
+
+.panel-sm .panel-heading .btn {
+  margin-left: 8px;
+}
+
+.panel-xs .panel-heading .btn {
+  margin-left: 4px;
+}
+
+.panel-default > .panel-heading {
+  border-color: $msm-border;
+}
+
+.panel .panel-actions {
+  border-top: 1px solid $msm-gray-lighter;
+
+  @include xs {
+    .btn {
+      display: block;
+      width: 100%;
+
+      &:first-child {
+        margin-bottom: 12px;
+      }
+    }
+  }
+}
 
 @include xs {
   .panel {

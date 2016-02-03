@@ -11,6 +11,10 @@
   }
 }
 
+.form-group {
+  clear: both;
+}
+
 .form-group:last-child {
   margin-bottom: 0;
 }
@@ -48,4 +52,11 @@
       margin-left: -30px;
     }
   }
+}
+
+/*
+ * Special styling for forms in panels
+ * ------------------------------------------------------------------------
+ */
+.panel form {
 }

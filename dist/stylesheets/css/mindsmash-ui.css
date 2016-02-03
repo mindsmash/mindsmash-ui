@@ -3879,6 +3879,11 @@ dl dd { margin-bottom: 12px; }
 
 .panel-default > .panel-heading { border-color: rgba(51, 51, 51, 0.15); }
 
+.panel .panel-actions { border-top: 1px solid #F3F3F3; }
+
+@media screen and (max-width: 767px) { .panel .panel-actions .btn { display: block; width: 100%; }
+  .panel .panel-actions .btn:first-child { margin-bottom: 12px; } }
+
 @media screen and (max-width: 767px) { .panel { border-left: 0; border-right: 0; border-radius: 0; margin-bottom: 12px; }
   .panel .panel-heading { font-size: 18px; margin: 0 16px 0; padding: 16px 0 12px; }
   .panel .panel-heading .btn { padding: 6px 12px; font-size: 12px; line-height: 1.5; border-radius: 3px; margin-left: 8px; position: relative; top: -6px; }
@@ -3903,6 +3908,8 @@ dl dd { margin-bottom: 12px; }
 
 .form-control:focus { box-shadow: none !important; }
 
+.form-group { clear: both; }
+
 .form-group:last-child { margin-bottom: 0; }
 
 .input-group-addon { color: #666; }
@@ -3917,6 +3924,7 @@ dl dd { margin-bottom: 12px; }
 
 .form-group .radio label input[type="radio"] { margin-left: -30px; }
 
+/* Special styling for forms in panels ------------------------------------------------------------------------ */
 .table > thead > tr > th { color: #AAA; border-width: 1px; font-weight: normal; letter-spacing: .025em; text-transform: uppercase; }
 
 .nav > li > a { color: #666; transition: background-color linear 0.1s; }

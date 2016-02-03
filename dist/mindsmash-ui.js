@@ -1,5 +1,3 @@
-angular.module('msm.components.util', []);
-
 angular.module('msm.components.ui', [
   'ui.router',
   'pascalprecht.translate',
@@ -8,6 +6,8 @@ angular.module('msm.components.ui', [
   'ui.select',
   'ngSanitize'
 ]);
+
+angular.module('msm.components.util', []);
 
 angular.module('msm.components.ui')
 
@@ -34,29 +34,80 @@ angular.module('msm.components.ui')
   uibDatepickerPopupConfig.datepickerPopupTemplateUrl = '../components/ui/msm-datepicker/msm-datepicker-popup.html';
 });
 
-angular.module('msm.components.util')
-.directive('scrollLink', ScrollLink);
-
-/**
- * @ngdoc directive
- * @name components.util:ScrollLink
- * @scope
- * @restrict 'E'
- *
- * @description
- *    Directive that renders a link to jump to via #hash in url.
+/*
+ * Based on: https://github.com/sebastianha/angular-bootstrap-checkbox
+ *   commit: 7e531169ab680f5ac9209040ecbb89fd55ac619e
  */
-function ScrollLink() {
-  return {
-    template: '<a href="#{{ name }}" id="{{ name }}" class="scroll-link"></a>',
-    scope      : {
-      name: '@'
+
+(function() {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmCheckbox
+   * @restrict 'E'
+   * @scope
+   *
+   * @description Renders a Bootstrap checkbox.
+   */
+  angular
+    .module('msm.components.ui')
+    .directive('msmCheckbox', msmCheckbox);
+
+  function msmCheckbox() {
+    return {
+      scope: {},
+      require: "ngModel",
+      restrict: "E",
+      replace: "true",
+      template: "<button type=\"button\" class=\"msm-checkbox btn btn-default\" ng-class=\"{'checked': checked===true}\">" +
+        "<i class=\"zmdi zmdi-hc-fw\" ng-class=\"{'zmdi-check': checked===true}\"></i>" +
+        "</button>",
+      link: function(scope, elem, attrs, ctrl) {
+        var trueValue = true;
+        var falseValue = false;
+
+        // If defined set true value
+        if(attrs.ngTrueValue !== undefined) {
+          trueValue = attrs.ngTrueValue;
+        }
+        // If defined set false value
+        if(attrs.ngFalseValue !== undefined) {
+          falseValue = attrs.ngFalseValue;
+        }
+
+        // Check if name attribute is set and if so add it to the DOM element
+        if(scope.name !== undefined) {
+          elem.name = scope.name;
+        }
+
+        // Update element when model changes
+        scope.$watch(function() {
+          if(ctrl.$modelValue === trueValue || ctrl.$modelValue === true) {
+            ctrl.$setViewValue(trueValue);
+          } else {
+            ctrl.$setViewValue(falseValue);
+          }
+          return ctrl.$modelValue;
+        }, function(newVal, oldVal) {
+          scope.checked = ctrl.$modelValue === trueValue;
+        }, true);
+
+        // On click swap value and trigger onChange function
+        elem.bind("click", function() {
+          scope.$apply(function() {
+            if(ctrl.$modelValue === falseValue) {
+              ctrl.$setViewValue(trueValue);
+            } else {
+              ctrl.$setViewValue(falseValue);
+            }
+          });
+        });
+      }
     }
-  };
-}
+  }
 
-;
-
+})();
 (function() {
   'use strict';
 
@@ -265,156 +316,42 @@ function ScrollLink() {
 
 })();
 
-/*
- * Based on: https://github.com/sebastianha/angular-bootstrap-checkbox
- *   commit: 7e531169ab680f5ac9209040ecbb89fd55ac619e
- */
-
-(function() {
+(function () {
   'use strict';
 
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmCheckbox
-   * @restrict 'E'
-   * @scope
-   *
-   * @description Renders a Bootstrap checkbox.
-   */
-  angular
-    .module('msm.components.ui')
-    .directive('msmCheckbox', msmCheckbox);
+  angular.module('msm.components.ui')
+      .directive('msmDelayForm', MsmDelayForm);
 
-  function msmCheckbox() {
+  function MsmDelayForm($parse) {
     return {
-      scope: {},
-      require: "ngModel",
-      restrict: "E",
-      replace: "true",
-      template: "<button type=\"button\" class=\"msm-checkbox btn btn-default\" ng-class=\"{'checked': checked===true}\">" +
-        "<i class=\"zmdi zmdi-hc-fw\" ng-class=\"{'zmdi-check': checked===true}\"></i>" +
-        "</button>",
-      link: function(scope, elem, attrs, ctrl) {
-        var trueValue = true;
-        var falseValue = false;
+      restrict: 'A',
+      require: 'form',
+      link: function (scope, elem, attrs, ctrl) {
+        var snapshot = null;
 
-        // If defined set true value
-        if(attrs.ngTrueValue !== undefined) {
-          trueValue = attrs.ngTrueValue;
-        }
-        // If defined set false value
-        if(attrs.ngFalseValue !== undefined) {
-          falseValue = attrs.ngFalseValue;
-        }
-
-        // Check if name attribute is set and if so add it to the DOM element
-        if(scope.name !== undefined) {
-          elem.name = scope.name;
-        }
-
-        // Update element when model changes
-        scope.$watch(function() {
-          if(ctrl.$modelValue === trueValue || ctrl.$modelValue === true) {
-            ctrl.$setViewValue(trueValue);
+        // watch model reference - no deep watch!
+        // to manually trigger copy, use angular.extend({}, model)
+        scope.$watch(attrs.msmDelayForm, function(newVal, oldVal) {
+          if (newVal && newVal.restangularized === true) {
+            // restangular can't handle angular.copy! :-(
+            snapshot = newVal.clone();
           } else {
-            ctrl.$setViewValue(falseValue);
+            snapshot = angular.copy(newVal);
           }
-          return ctrl.$modelValue;
-        }, function(newVal, oldVal) {
-          scope.checked = ctrl.$modelValue === trueValue;
-        }, true);
+        });
 
-        // On click swap value and trigger onChange function
-        elem.bind("click", function() {
+        elem.on('reset', function(event) {
+          event.preventDefault();
+          scope.$eval(attrs.ngReset);
           scope.$apply(function() {
-            if(ctrl.$modelValue === falseValue) {
-              ctrl.$setViewValue(trueValue);
-            } else {
-              ctrl.$setViewValue(falseValue);
-            }
+            $parse(attrs.msmDelayForm).assign(scope, snapshot);
           });
         });
       }
     }
   }
-
 })();
-(function () {
-  'use strict';
 
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmInfiniteScroll
-   * @restrict 'A'
-   *
-   * @description Applies endless scrolling. Executed once during initialization and then whenever
-   *              user scrolls near the end of the element. Execution on initialization can be turned off
-   *              by setting msm-infinite-scroll-no-initial-load. This is "true" by default.
-   *
-   *              Scroll on div:            <div msm-infinite-scroll="loadMore()">...</div>
-   *              Scroll on other element:  <div msm-infinite-scroll="loadMore()" msm-infinite-scroll-element=".selector">...</div>
-   *              Scroll on window:         <div msm-infinite-scroll="loadMore()" msm-infinite-scroll-element="$window">...</div>
-   *
-   *              This directive only takes care of the scrolling event. Loading more data and stopping when the
-   *              last page was reached is up to you.
-   */
-  angular.module('msm.components.ui')
-    .directive('msmInfiniteScroll', MsmInfiniteScroll);
-
-  function MsmInfiniteScroll($timeout, $log) {
-    return {
-      restrict: 'A',
-      link: function ($scope, element, attrs) {
-        var initialLoad = angular.isUndefined(attrs.msmInfiniteScrollNoInitialLoad);
-
-        // load first page if not turned off (inside correct digest)
-        if (initialLoad) {
-          $timeout(function () {
-            $log.debug('[msmInfiniteScroll] Performing initial load.');
-            $scope.$apply(attrs.msmInfiniteScroll);
-          });
-        }
-
-        // pixels before end, default=200
-        var threshold = 200;
-        if(attrs.msmInfiniteScrollThreshold) {
-          threshold = parseInt(attrs.msmInfiniteScrollThreshold);
-        }
-
-        // determine element to watch
-        var bindTo, raw;
-        if(attrs.msmInfiniteScrollElement) {
-          if('$window' === attrs.msmInfiniteScrollElement) {
-            bindTo = angular.element(window);
-            raw = angular.element('body')[0];
-          } else {
-            bindTo = angular.element(attrs.msmInfiniteScrollElement);
-            raw = bindTo[0];
-          }
-        } else {
-          bindTo = element;
-          raw = bindTo[0];
-        }
-
-        // watch for scroll events => every 100ms
-        var blocked = false;
-        bindTo.bind('scroll', function () {
-          if (!blocked) {
-            blocked = true;
-
-            $timeout(function () {
-              if ((raw.scrollTop + raw.offsetHeight + threshold) >= raw.scrollHeight) {
-                $scope.$apply(attrs.msmInfiniteScroll);
-              }
-
-              blocked = false;
-            }, 100);
-          }
-        });
-      }
-    };
-  }
-})();
 (function() {
 	'use strict';
 
@@ -806,6 +743,158 @@ function ScrollLink() {
 
 })();
 
+(function () {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmInfiniteScroll
+   * @restrict 'A'
+   *
+   * @description Applies endless scrolling. Executed once during initialization and then whenever
+   *              user scrolls near the end of the element. Execution on initialization can be turned off
+   *              by setting msm-infinite-scroll-no-initial-load. This is "true" by default.
+   *
+   *              Scroll on div:            <div msm-infinite-scroll="loadMore()">...</div>
+   *              Scroll on other element:  <div msm-infinite-scroll="loadMore()" msm-infinite-scroll-element=".selector">...</div>
+   *              Scroll on window:         <div msm-infinite-scroll="loadMore()" msm-infinite-scroll-element="$window">...</div>
+   *
+   *              This directive only takes care of the scrolling event. Loading more data and stopping when the
+   *              last page was reached is up to you.
+   */
+  angular.module('msm.components.ui')
+    .directive('msmInfiniteScroll', MsmInfiniteScroll);
+
+  function MsmInfiniteScroll($timeout, $log) {
+    return {
+      restrict: 'A',
+      link: function ($scope, element, attrs) {
+        var initialLoad = angular.isUndefined(attrs.msmInfiniteScrollNoInitialLoad);
+
+        // load first page if not turned off (inside correct digest)
+        if (initialLoad) {
+          $timeout(function () {
+            $log.debug('[msmInfiniteScroll] Performing initial load.');
+            $scope.$apply(attrs.msmInfiniteScroll);
+          });
+        }
+
+        // pixels before end, default=200
+        var threshold = 200;
+        if(attrs.msmInfiniteScrollThreshold) {
+          threshold = parseInt(attrs.msmInfiniteScrollThreshold);
+        }
+
+        // determine element to watch
+        var bindTo, raw;
+        if(attrs.msmInfiniteScrollElement) {
+          if('$window' === attrs.msmInfiniteScrollElement) {
+            bindTo = angular.element(window);
+            raw = angular.element('body')[0];
+          } else {
+            bindTo = angular.element(attrs.msmInfiniteScrollElement);
+            raw = bindTo[0];
+          }
+        } else {
+          bindTo = element;
+          raw = bindTo[0];
+        }
+
+        // watch for scroll events => every 100ms
+        var blocked = false;
+        bindTo.bind('scroll', function () {
+          if (!blocked) {
+            blocked = true;
+
+            $timeout(function () {
+              if ((raw.scrollTop + raw.offsetHeight + threshold) >= raw.scrollHeight) {
+                $scope.$apply(attrs.msmInfiniteScroll);
+              }
+
+              blocked = false;
+            }, 100);
+          }
+        });
+      }
+    };
+  }
+})();
+(function () {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmSpinner
+   * @restrict 'E'
+   *
+   * @description Displays a spinner
+   */
+  angular.module('msm.components.ui')
+    .directive('msmSpinner', MsmSpinner);
+
+  function MsmSpinner() {
+    return {
+      restrict: 'E',
+      replace: true,
+      scope: {
+        size: '@'
+      },
+      templateUrl: 'components/ui/msm-spinner/msm-spinner.html'
+    };
+  }
+})();
+
+(function() {
+  'use strict';
+
+  angular.module('msm.components.ui')
+      .directive('msmValidateField', MsmValidateField);
+
+  function MsmValidateField($compile) {
+    return {
+      restrict: 'A',
+      require: '^^msmValidateForm',
+      link: function(scope, elem, attrs, ctrl) {
+        var fieldKey = attrs.validatedField;
+        if (!fieldKey) {
+          if (attrs.ngModel) {
+            var ngModelParts = attrs.ngModel.split('.');
+            fieldKey = ngModelParts[ngModelParts.length - 1];
+          } else {
+            throw 'Missing field key or ngModel';
+          }
+        }
+
+        var repeat = 'error in ' + ctrl.key + '.fieldErrors | filter: { key: \'' + fieldKey + '\' }';
+        elem.after($compile('<p class="help-block" ng-repeat="' + repeat + '" translate="{{ error.code }}"></p>')(scope));
+        scope.$watch(ctrl.key, function(newVal, oldVal) {
+          if (newVal !== oldVal) {
+            var hasError = newVal && _.some(newVal.fieldErrors, { key: fieldKey });
+            elem.closest('.form-group')[hasError ? 'addClass' : 'removeClass']('has-error');
+          }
+        });
+      }
+    }
+  }
+})();
+
+(function() {
+  'use strict';
+
+  angular.module('msm.components.ui')
+      .directive('msmValidateForm', validatedForm);
+
+  function validatedForm() {
+    return {
+      restrict: 'A',
+      require: 'form',
+      controller: function($attrs) {
+        this.key = $attrs.msmValidateForm;
+      }
+    }
+  }
+})();
+
 (function() {
     'use strict';
 
@@ -901,31 +990,6 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
 (function () {
   'use strict';
 
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmSpinner
-   * @restrict 'E'
-   *
-   * @description Displays a spinner
-   */
-  angular.module('msm.components.ui')
-    .directive('msmSpinner', MsmSpinner);
-
-  function MsmSpinner() {
-    return {
-      restrict: 'E',
-      replace: true,
-      scope: {
-        size: '@'
-      },
-      templateUrl: 'components/ui/msm-spinner/msm-spinner.html'
-    };
-  }
-})();
-
-(function () {
-  'use strict';
-
   angular.module('msm.components.ui')
       .directive('msmToggleField', MsmToggleField)
       .directive('msmToggleFieldTemplate', MsmToggleFieldTemplate);
@@ -986,57 +1050,6 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
 (function() {
   'use strict';
 
-  angular.module('msm.components.ui')
-      .directive('msmValidateField', MsmValidateField);
-
-  function MsmValidateField($compile) {
-    return {
-      restrict: 'A',
-      require: '^^msmValidateForm',
-      link: function(scope, elem, attrs, ctrl) {
-        var fieldKey = attrs.validatedField;
-        if (!fieldKey) {
-          if (attrs.ngModel) {
-            var ngModelParts = attrs.ngModel.split('.');
-            fieldKey = ngModelParts[ngModelParts.length - 1];
-          } else {
-            throw 'Missing field key or ngModel';
-          }
-        }
-
-        var repeat = 'error in ' + ctrl.key + '.fieldErrors | filter: { key: \'' + fieldKey + '\' }';
-        elem.after($compile('<p class="help-block" ng-repeat="' + repeat + '" translate="{{ error.code }}"></p>')(scope));
-        scope.$watch(ctrl.key, function(newVal, oldVal) {
-          if (newVal !== oldVal) {
-            var hasError = newVal && _.some(newVal.fieldErrors, { key: fieldKey });
-            elem.closest('.form-group')[hasError ? 'addClass' : 'removeClass']('has-error');
-          }
-        });
-      }
-    }
-  }
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('msm.components.ui')
-      .directive('msmValidateForm', validatedForm);
-
-  function validatedForm() {
-    return {
-      restrict: 'A',
-      require: 'form',
-      controller: function($attrs) {
-        this.key = $attrs.msmValidateForm;
-      }
-    }
-  }
-})();
-
-(function() {
-  'use strict';
-
   angular
     .module('msm.components.ui')
     .directive('msmWizard', msmWizard);
@@ -1053,38 +1066,25 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
     }
   }
 })();
-(function () {
-  'use strict';
+angular.module('msm.components.util')
+.directive('scrollLink', ScrollLink);
 
-  angular.module('msm.components.ui')
-      .directive('msmDelayForm', MsmDelayForm);
-
-  function MsmDelayForm($parse) {
-    return {
-      restrict: 'A',
-      require: 'form',
-      link: function (scope, elem, attrs, ctrl) {
-        var snapshot = null;
-
-        // watch model reference - no deep watch!
-        // to manually trigger copy, use angular.extend({}, model)
-        scope.$watch(attrs.msmDelayForm, function(newVal, oldVal) {
-          if (newVal && newVal.restangularized === true) {
-            // restangular can't handle angular.copy! :-(
-            snapshot = newVal.clone();
-          } else {
-            snapshot = angular.copy(newVal);
-          }
-        });
-
-        elem.on('reset', function(event) {
-          event.preventDefault();
-          scope.$eval(attrs.ngReset);
-          scope.$apply(function() {
-            $parse(attrs.msmDelayForm).assign(scope, snapshot);
-          });
-        });
-      }
+/**
+ * @ngdoc directive
+ * @name components.util:ScrollLink
+ * @scope
+ * @restrict 'E'
+ *
+ * @description
+ *    Directive that renders a link to jump to via #hash in url.
+ */
+function ScrollLink() {
+  return {
+    template: '<a href="#{{ name }}" id="{{ name }}" class="scroll-link"></a>',
+    scope      : {
+      name: '@'
     }
-  }
-})();
+  };
+}
+
+;
