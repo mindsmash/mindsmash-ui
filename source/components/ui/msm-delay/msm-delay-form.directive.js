@@ -22,6 +22,15 @@
           }
         });
 
+        scope.$on('msm.components.ui:msmDelayForm-refreshModel', function(e, newModel) {
+          if (newModel && newModel.restangularized === true) {
+            // restangular can't handle angular.copy! :-(
+            snapshot = newModel.clone();
+          } else {
+            snapshot = angular.copy(newModel);
+          }
+        });
+
         elem.on('reset', function(event) {
           event.preventDefault();
           scope.$eval(attrs.ngReset);
