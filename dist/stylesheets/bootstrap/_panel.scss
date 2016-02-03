@@ -20,17 +20,8 @@
 
 .panel .panel-actions {
   border-top: 1px solid $msm-gray-lighter;
-
-  @include xs {
-    .btn {
-      display: block;
-      width: 100%;
-
-      &:first-child {
-        margin-bottom: 12px;
-      }
-    }
-  }
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 @include xs {
@@ -63,6 +54,20 @@
 
     .panel-footer {
       padding: $panel-xs-footer-padding;
+    }
+
+    .panel-actions {
+      padding-top: 24px;
+      padding-bottom: 24px;
+
+      .btn {
+        display: block;
+        width: 100%;
+
+        &:first-child {
+          margin-bottom: 12px;
+        }
+      }
     }
   }
 }
