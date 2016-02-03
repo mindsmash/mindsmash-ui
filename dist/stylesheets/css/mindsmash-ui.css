@@ -3621,6 +3621,8 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .msm-wizard .active .msm-wizard-icon:before { content: none; }
 
+.msm-wizard .active .msm-wizard-label { font-weight: bold; }
+
 .msm-wizard.inverse .msm-wizard-state { border-color: #FDFDFD; color: #317DC1; }
 
 .msm-wizard.inverse .msm-wizard-divider { border-color: #FDFDFD; }

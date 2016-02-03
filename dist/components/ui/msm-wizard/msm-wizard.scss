@@ -50,15 +50,21 @@
     display: block;
   }
 
-  .active .msm-wizard-icon {
-    display: block;
-    width: 18px;
-    height: 18px;
-    top: 2px;
-    left: 2px;
+  .active {
+    .msm-wizard-icon {
+      display: block;
+      width: 18px;
+      height: 18px;
+      top: 2px;
+      left: 2px;
 
-    &:before {
-      content: none;
+      &:before {
+        content: none;
+      }
+    }
+
+    .msm-wizard-label {
+      font-weight: bold;
     }
   }
 
