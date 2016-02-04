@@ -1,7 +1,8 @@
 .label {
+  display: inline-block;
+  line-height: $line-height-base;
+  padding: $padding-xs-vertical + 1 $padding-xs-horizontal;
   font-weight: normal;
-  padding-left: .75em;
-  padding-right: .75em;
   text-transform: uppercase;
 }
 
