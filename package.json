@@ -1,6 +1,6 @@
 {
   "name": "mindsmash-ui",
-  "version": "0.9.10",
+  "version": "0.9.11",
   "description": "A ui kit by mindsmash",
   "main": "gulpfile.js",
   "scripts": {
