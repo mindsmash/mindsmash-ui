@@ -54,9 +54,6 @@
   }
 }
 
-/*
- * Special styling for forms in panels
- * ------------------------------------------------------------------------
- */
-.panel form {
+select.form-control {
+  text-indent: 8px;
 }

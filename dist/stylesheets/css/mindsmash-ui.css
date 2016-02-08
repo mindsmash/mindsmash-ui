@@ -3924,7 +3924,8 @@ dl dd { margin-bottom: 12px; }
 
 .form-group .radio label input[type="radio"] { margin-left: -30px; }
 
-/* Special styling for forms in panels ------------------------------------------------------------------------ */
+select.form-control { text-indent: 8px; }
+
 .table > thead > tr > th { color: #AAA; border-width: 1px; font-weight: normal; letter-spacing: .025em; text-transform: uppercase; }
 
 .nav > li > a { color: #666; transition: background-color linear 0.1s; }
