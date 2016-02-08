@@ -46,6 +46,14 @@
 
     .panel-title {
       font-weight: normal;
+
+      small {
+        font-weight: normal;
+        font-size: 75%;
+        color: $msm-gray;
+        text-transform: uppercase;
+        padding-left: 3px;
+      }
     }
 
     .panel-body {
@@ -86,6 +94,14 @@
       font-size: $font-size-h2;
       padding: 0;
       margin: 0;
+
+      small {
+        font-weight: normal;
+        font-size: 50%;
+        color: $msm-gray;
+        text-transform: uppercase;
+        padding-left: 6px;
+      }
     }
   }
 
