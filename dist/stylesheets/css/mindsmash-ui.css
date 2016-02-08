@@ -3912,6 +3912,8 @@ dl dd { margin-bottom: 12px; }
 
 .form-group { clear: both; }
 
+.form-group .help-block { font-size: 14px; }
+
 .form-group:last-child { margin-bottom: 0; }
 
 .input-group-addon { color: #666; }
