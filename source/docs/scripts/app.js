@@ -6,9 +6,7 @@
       'msm.components.util',
       'ui.bootstrap',
       'ui.router',
-      'pascalprecht.translate',
-      'formly',
-      'formlyBootstrap'
+      'pascalprecht.translate'
     ])
 
       .config(configTranslations)
