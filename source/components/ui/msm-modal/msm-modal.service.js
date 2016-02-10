@@ -111,7 +111,7 @@
     function note(options) {
       return open({
         size: options.size,
-        controller: function($uibModalInstance) {
+        controller: /*@ngInject*/ function($uibModalInstance) {
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
@@ -175,7 +175,7 @@
       // title, text, size, closeTitle, dismissTitle
       return open({
         size: options.size,
-        controller: function($uibModalInstance) {
+        controller: /*@ngInject*/ function($uibModalInstance) {
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
@@ -256,7 +256,7 @@
           values: options.options.values,
           selected: options.options.selected
         },
-        controller: function($uibModalInstance, values, selected) {
+        controller: /*@ngInject*/ function($uibModalInstance, values, selected) {
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
