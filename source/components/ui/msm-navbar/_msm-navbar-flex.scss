@@ -28,30 +28,31 @@
           padding-right: 20px;
         }
       }
+
+      .nav-item-profile {
+
+        padding-bottom: 18px;
+        padding-top: 10px;
+
+        .profile-thumb {
+          background: $msm-navbar-text;
+          border-radius: 26px;
+          float: left;
+          height: 40px;
+          width: 40px;
+        }
+
+        > i {
+          display: inline-block;
+          float: left;
+          font-size: 24px;
+          margin-left: 10px;
+          margin-top: 10px;
+        }
+      }
+
     }
   }
-
-  .nav-item-profile {
-    padding-bottom: 18px;
-    padding-top: 18px;
-
-    .profile-thumb {
-      background: $msm-navbar-text;
-      border-radius: 26px;
-      float: left;
-      height: 26px;
-      width: 26px;
-    }
-
-    > i {
-      display: inline-block;
-      float: left;
-      font-size: 24px;
-      margin-left: 10px;
-      margin-top: 3px;
-    }
-  }
-
   .nav-brand-box {
     display: block;
     height: 60px;
