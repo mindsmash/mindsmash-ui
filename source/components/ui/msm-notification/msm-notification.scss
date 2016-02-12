@@ -1,19 +1,27 @@
 .ui-notification {
   background-color: $msm-blue;
-}
 
-.ui-notification.error {
-  background-color: $msm-red;
-}
+  &.error {
+    background-color: $msm-red;
+  }
+  &.success {
+    background-color: $msm-green;
+  }
+  &.info {
+    background-color: $msm-blue-light;
+  }
+  &.warning {
+    background-color: $msm-yellow;
+  }
 
-.ui-notification.success {
-  background-color: $msm-green;
-}
+  a {
+    color: #fff;
+    text-decoration: underline;
 
-.ui-notification.info {
-  background-color: $msm-blue-light;
-}
-
-.ui-notification.warning {
-  background-color: $msm-yellow;
+    &:hover, &:focus {
+      color: #fff;
+      opacity: .75;
+      text-decoration: underline;
+    }
+  }
 }

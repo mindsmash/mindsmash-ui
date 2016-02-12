@@ -3571,6 +3571,10 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .ui-notification.warning { background-color: #f0ad4e; }
 
+.ui-notification a { color: #fff; text-decoration: underline; }
+
+.ui-notification a:hover, .ui-notification a:focus { color: #fff; opacity: .75; text-decoration: underline; }
+
 /** Forked from http://tobiasahlin.com/spinkit/ */
 .msm-spinner { cursor: default; display: inline-block; margin: 10px 20px; text-align: center; width: 70px; }
 
