@@ -4,22 +4,25 @@
 
 .btn {
   i { margin-right: 4px; }
-  .badge { top: -2px; }
+  .badge { margin-top: -2px; }
 }
 
 .btn-lg {
   i { margin-right: 6px; }
-  .badge { top: -2px; }
 }
 
 .btn-sm {
+  line-height: 18px;
+
   i { margin-right: 3px; }
-  .badge { top: -1px; }
+  .badge { margin-top: -6px; top: 1px; }
 }
 
 .btn-xs {
+  line-height: 18px;
+
   i { margin-right: 2px; }
-  .badge { top: -1px; }
+  .badge { margin-top: -6px; top: 1px; }
 }
 
 .btn-zmdi i {

@@ -3,11 +3,11 @@
 }
 
 .panel .panel-heading .btn {
-  margin-left: 12px;
+  margin-left: 8px;
 }
 
 .panel-sm .panel-heading .btn {
-  margin-left: 8px;
+  margin-left: 6px;
 }
 
 .panel-xs .panel-heading .btn {
@@ -22,6 +22,25 @@
   border-top: 1px solid $msm-gray-lighter;
   padding-top: 24px;
   padding-bottom: 24px;
+
+  .btn {
+    margin-right: 8px;
+    &:last-child { margin-right: 0; }
+  }
+}
+
+.panel .panel-title {
+  font-size: $font-size-h3;
+  line-height: floor($font-size-h3 * $headings-line-height);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  small {
+    color: $msm-gray;
+    font-size: percentage(2/3);
+    margin-left: .5em;
+  }
 }
 
 @include xs {
@@ -32,27 +51,13 @@
     margin-bottom: 12px;
 
     .panel-heading {
-      font-size: $font-size-h4;
       margin: $panel-xs-heading-margin;
       padding: $panel-xs-heading-padding;
 
       .btn {
         @include button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+        line-height: 18px;
         margin-left: 8px;
-        position: relative;
-        top: -6px;
-      }
-    }
-
-    .panel-title {
-      font-weight: normal;
-
-      small {
-        font-weight: normal;
-        font-size: 75%;
-        color: $msm-gray;
-        text-transform: uppercase;
-        padding-left: 3px;
       }
     }
 
@@ -91,17 +96,10 @@
     }
 
     .panel-title {
-      font-size: $font-size-h2;
+      font-size: $font-size-h1;
+      line-height: floor($font-size-h2 * $headings-line-height);
       padding: 0;
       margin: 0;
-
-      small {
-        font-weight: normal;
-        font-size: 50%;
-        color: $msm-gray;
-        text-transform: uppercase;
-        padding-left: 6px;
-      }
     }
   }
 
@@ -113,6 +111,7 @@
 
     .panel-title {
       font-size: $font-size-h3;
+      line-height: floor($font-size-h3 * $headings-line-height);
     }
 
     .panel-body {
@@ -131,7 +130,12 @@
     }
 
     .panel-title {
-      font-size: $font-size-h3;
+      font-size: $font-size-h4;
+      line-height: floor($font-size-h4 * $headings-line-height);
+
+      small {
+        font-size: percentage(14/18);
+      }
     }
 
     .panel-body {
