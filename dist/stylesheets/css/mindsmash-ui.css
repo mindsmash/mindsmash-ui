@@ -2226,7 +2226,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 .panel-body:after { clear: both; }
 
-.panel-heading { padding: 36px 36px 24px; border-bottom: 1px solid transparent; border-top-right-radius: 4px; border-top-left-radius: 4px; }
+.panel-heading { padding: 32px 36px 18px; border-bottom: 1px solid transparent; border-top-right-radius: 4px; border-top-left-radius: 4px; }
 
 .panel-heading > .dropdown .dropdown-toggle { color: inherit; }
 
@@ -3473,7 +3473,7 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
   .modal { display: flex !important; }
   .modal-content { border-radius: 5px; }
   .modal-dialog { align-self: center; margin: 0 auto; }
-  .modal-header { margin: 0 24px 0; padding: 24px 0 16px; }
+  .modal-header { margin: 0 24px 0; padding: 18px 0 12px; }
   .modal-body { padding: 16px 24px; }
   .modal-body hr { margin-left: -24px; margin-right: -24px; }
   .modal-footer { flex-direction: row-reverse; padding: 0; }
@@ -3731,7 +3731,7 @@ a.label.label-muted:hover { color: #AAA; }
 
 .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus { border-radius: 5px; }
 
-.pagination-sm > li > a, .pagination-sm > li > span { font-size: 12px; margin-left: 2px; min-width: 16px; padding: 2px; }
+.pagination-sm > li > a, .pagination-sm > li > span { font-size: 14px; margin-left: 2px; min-width: 18px; padding: 2px; }
 
 .pagination-sm > .active > a, .pagination-sm > .active > a:hover, .pagination-sm > .active > a:focus, .pagination-sm > .active > span, .pagination-sm > .active > span:hover, .pagination-sm > .active > span:focus { border-radius: 3px; }
 
@@ -3739,17 +3739,35 @@ a.label.label-muted:hover { color: #AAA; }
 
 .pagination-lg > .active > a, .pagination-lg > .active > a:hover, .pagination-lg > .active > a:focus, .pagination-lg > .active > span, .pagination-lg > .active > span:hover, .pagination-lg > .active > span:focus { border-radius: 6px; }
 
+h1, .h1 { line-height: 48px; }
+
+h2, .h2 { line-height: 42px; }
+
+h3, .h3 { line-height: 32px; }
+
+h4, .h4 { line-height: 24px; }
+
+h5, .h5 { line-height: 21px; }
+
+h6, .h6 { line-height: 18px; }
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 { margin-top: 0.66667em; margin-bottom: 0.33333em; }
+
 h1 small, h1 .small, h2 small, h2 .small, h3 small, h3 .small, h4 small, h4 .small, h5 small, h5 .small, h6 small, h6 .small, .h1 small, .h1 .small, .h2 small, .h2 .small, .h3 small, .h3 .small, .h4 small, .h4 .small, .h5 small, .h5 .small, .h6 small, .h6 .small { font-weight: 300; }
+
+small, .small { font-size: 87.5%; }
 
 blockquote { font-weight: 300; }
 
-.normal { font-weight: normal !important; font-size: 16px; }
-
 .light { font-weight: 300 !important; }
 
-.size-normal, .msm-label, .control-label, dt { font-size: 16px; }
+.normal { font-weight: 400 !important; }
 
-.msm-label, .control-label, dt { color: #AAA; font-weight: 400; }
+.bold { font-weight: 700 !important; }
+
+.size-normal, dt, .msm-label, .control-label { font-size: 16px; }
+
+dt, .msm-label, .control-label { color: #AAA; font-weight: 400; }
 
 dl dt, dl dd { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
@@ -3765,19 +3783,21 @@ dl dd { margin-bottom: 12px; }
 
 .btn i { margin-right: 4px; }
 
-.btn .badge { top: -2px; }
+.btn .badge { margin-top: -2px; }
 
 .btn-lg i, .btn-group-lg > .btn i { margin-right: 6px; }
 
-.btn-lg .badge, .btn-group-lg > .btn .badge { top: -2px; }
+.btn-sm, .btn-group-sm > .btn { line-height: 18px; }
 
 .btn-sm i, .btn-group-sm > .btn i { margin-right: 3px; }
 
-.btn-sm .badge, .btn-group-sm > .btn .badge { top: -1px; }
+.btn-sm .badge, .btn-group-sm > .btn .badge { margin-top: -6px; top: 1px; }
+
+.btn-xs, .btn-group-xs > .btn { line-height: 18px; }
 
 .btn-xs i, .btn-group-xs > .btn i { margin-right: 2px; }
 
-.btn-xs .badge, .btn-group-xs > .btn .badge { top: -1px; }
+.btn-xs .badge, .btn-group-xs > .btn .badge { margin-top: -6px; top: 1px; }
 
 .btn-zmdi i { margin: 0; }
 
@@ -3871,9 +3891,9 @@ dl dd { margin-bottom: 12px; }
 
 .panel { border: 0; }
 
-.panel .panel-heading .btn { margin-left: 12px; }
+.panel .panel-heading .btn { margin-left: 8px; }
 
-.panel-sm .panel-heading .btn { margin-left: 8px; }
+.panel-sm .panel-heading .btn { margin-left: 6px; }
 
 .panel-xs .panel-heading .btn { margin-left: 4px; }
 
@@ -3881,28 +3901,34 @@ dl dd { margin-bottom: 12px; }
 
 .panel .panel-actions { border-top: 1px solid #F3F3F3; padding-top: 24px; padding-bottom: 24px; }
 
+.panel .panel-actions .btn { margin-right: 8px; }
+
+.panel .panel-actions .btn:last-child { margin-right: 0; }
+
+.panel .panel-title { font-size: 24px; line-height: 32px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+
+.panel .panel-title small { color: #AAA; font-size: 66.66667%; margin-left: .5em; }
+
 @media screen and (max-width: 767px) { .panel { border-left: 0; border-right: 0; border-radius: 0; margin-bottom: 12px; }
-  .panel .panel-heading { font-size: 18px; margin: 0 16px 0; padding: 16px 0 12px; }
-  .panel .panel-heading .btn { padding: 6px 12px; font-size: 14px; line-height: 1.5; border-radius: 3px; margin-left: 8px; position: relative; top: -6px; }
-  .panel .panel-title { font-weight: normal; }
-  .panel .panel-title small { font-weight: normal; font-size: 75%; color: #AAA; text-transform: uppercase; padding-left: 3px; }
-  .panel .panel-body { padding: 12px 16px; }
-  .panel .panel-footer { padding: 8px 16px 12px; }
+  .panel .panel-heading { margin: 0 18px 0; padding: 12px 0 8px; }
+  .panel .panel-heading .btn { padding: 6px 12px; font-size: 14px; line-height: 1.5; border-radius: 3px; line-height: 18px; margin-left: 8px; }
+  .panel .panel-body { padding: 10px 18px; }
+  .panel .panel-footer { padding: 8px 18px 10px; }
   .panel .panel-actions { padding-top: 24px; padding-bottom: 24px; }
   .panel .panel-actions .btn { display: block; width: 100%; }
   .panel .panel-actions .btn:first-child { margin-bottom: 12px; } }
 
-@media screen and (min-width: 768px) { .panel .panel-heading { margin: 36px 36px 24px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; }
-  .panel .panel-title { font-size: 32px; padding: 0; margin: 0; }
-  .panel .panel-title small { font-weight: normal; font-size: 50%; color: #AAA; text-transform: uppercase; padding-left: 6px; }
-  .panel-sm .panel-heading { margin: 0 24px 0; padding: 24px 0 16px; }
-  .panel-sm .panel-title { font-size: 24px; }
+@media screen and (min-width: 768px) { .panel .panel-heading { margin: 32px 36px 18px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; }
+  .panel .panel-title { font-size: 36px; line-height: 42px; padding: 0; margin: 0; }
+  .panel-sm .panel-heading { margin: 0 24px 0; padding: 18px 0 12px; }
+  .panel-sm .panel-title { font-size: 24px; line-height: 32px; }
   .panel-sm .panel-body { padding: 16px 24px; }
   .panel-sm .panel-footer { padding: 12px 24px 16px; }
-  .panel-xs .panel-heading { margin: 0 16px 0; padding: 16px 0 12px; }
-  .panel-xs .panel-title { font-size: 24px; }
-  .panel-xs .panel-body { padding: 12px 16px; }
-  .panel-xs .panel-footer { padding: 8px 16px 12px; } }
+  .panel-xs .panel-heading { margin: 0 18px 0; padding: 12px 0 8px; }
+  .panel-xs .panel-title { font-size: 18px; line-height: 24px; }
+  .panel-xs .panel-title small { font-size: 77.77778%; }
+  .panel-xs .panel-body { padding: 10px 18px; }
+  .panel-xs .panel-footer { padding: 8px 18px 10px; } }
 
 .control-label { color: #333; }
 

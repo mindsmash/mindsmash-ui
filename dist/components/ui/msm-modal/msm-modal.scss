@@ -26,7 +26,7 @@ body > .ui-select-bootstrap.open {
 
   h3 {
     font-size: $font-size-h3;
-    line-height: 32px;
+    line-height: floor($font-size-h3 * $headings-line-height);
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
