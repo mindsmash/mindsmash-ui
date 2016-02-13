@@ -25,7 +25,9 @@
 
   .btn {
     margin-right: 8px;
-    &:last-child { margin-right: 0; }
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
@@ -38,8 +40,14 @@
 
   small {
     color: $msm-gray;
-    font-size: percentage(2/3);
-    margin-left: .5em;
+    font-size: percentage(1/2);
+    text-transform: uppercase;
+    font-weight: normal;
+    margin-left: 0.75rem;
+  }
+
+  .zmdi {
+    margin-right: 0.75rem;
   }
 }
 
@@ -55,9 +63,19 @@
       padding: $panel-xs-heading-padding;
 
       .btn {
-        @include button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+        @include button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
         line-height: 18px;
         margin-left: 8px;
+      }
+    }
+
+    .panel-title {
+      font-size: $font-size-h4;
+      font-weight: normal;
+      line-height: floor($font-size-h4 * $headings-line-height);
+
+      small {
+        font-size: percentage(3/4);
       }
     }
 
@@ -131,10 +149,11 @@
 
     .panel-title {
       font-size: $font-size-h4;
+      font-weight: normal;
       line-height: floor($font-size-h4 * $headings-line-height);
 
       small {
-        font-size: percentage(14/18);
+        font-size: percentage(3/4);
       }
     }
 

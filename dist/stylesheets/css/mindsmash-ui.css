@@ -3911,11 +3911,15 @@ dl dd { margin-bottom: 12px; }
 
 .panel .panel-title { font-size: 24px; line-height: 32px; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 
-.panel .panel-title small { color: #AAA; font-size: 66.66667%; margin-left: .5em; }
+.panel .panel-title small { color: #AAA; font-size: 50%; text-transform: uppercase; font-weight: normal; margin-left: 0.75rem; }
+
+.panel .panel-title .zmdi { margin-right: 0.75rem; }
 
 @media screen and (max-width: 767px) { .panel { border-left: 0; border-right: 0; border-radius: 0; margin-bottom: 12px; }
   .panel .panel-heading { margin: 0 18px 0; padding: 12px 0 8px; }
-  .panel .panel-heading .btn { padding: 6px 12px; font-size: 14px; line-height: 1.5; border-radius: 3px; line-height: 18px; margin-left: 8px; }
+  .panel .panel-heading .btn { padding: 2px 8px; font-size: 14px; line-height: 1.5; border-radius: 3px; line-height: 18px; margin-left: 8px; }
+  .panel .panel-title { font-size: 18px; font-weight: normal; line-height: 24px; }
+  .panel .panel-title small { font-size: 75%; }
   .panel .panel-body { padding: 10px 18px; }
   .panel .panel-footer { padding: 8px 18px 10px; }
   .panel .panel-actions { padding-top: 24px; padding-bottom: 24px; }
@@ -3929,8 +3933,8 @@ dl dd { margin-bottom: 12px; }
   .panel-sm .panel-body { padding: 16px 24px; }
   .panel-sm .panel-footer { padding: 12px 24px 16px; }
   .panel-xs .panel-heading { margin: 0 18px 0; padding: 12px 0 8px; }
-  .panel-xs .panel-title { font-size: 18px; line-height: 24px; }
-  .panel-xs .panel-title small { font-size: 77.77778%; }
+  .panel-xs .panel-title { font-size: 18px; font-weight: normal; line-height: 24px; }
+  .panel-xs .panel-title small { font-size: 75%; }
   .panel-xs .panel-body { padding: 10px 18px; }
   .panel-xs .panel-footer { padding: 8px 18px 10px; } }
 
