@@ -3982,12 +3982,18 @@ select.form-control { text-indent: 8px; }
 
 .nav.nav-tabs, .nav.nav-tabs.nav-justified { border: 0; border-bottom: 3px solid #DADADA; }
 
-.nav.nav-tabs > li > a, .nav.nav-tabs.nav-justified > li > a { margin: 0 0 -2px 0; border: 0; border-radius: 0; border-bottom: 3px solid transparent; color: #999; }
+.nav.nav-tabs > li, .nav.nav-tabs.nav-justified > li { overflow: hidden; margin: 0 0 -3px 0; padding: 0; }
+
+.nav.nav-tabs > li > a, .nav.nav-tabs.nav-justified > li > a { margin: 0; border: 0; border-radius: 0; border-bottom: 3px solid transparent; color: #999; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 
 .nav.nav-tabs > li > a:hover, .nav.nav-tabs > li > a:focus, .nav.nav-tabs > li > a:active, .nav.nav-tabs.nav-justified > li > a:hover, .nav.nav-tabs.nav-justified > li > a:focus, .nav.nav-tabs.nav-justified > li > a:active { background-color: transparent; border-bottom: 3px solid #AAA; }
 
 .nav.nav-tabs > li.disabled > a, .nav.nav-tabs.nav-justified > li.disabled > a { border-color: transparent; color: #DADADA; }
 
 .nav.nav-tabs > li.active > a, .nav.nav-tabs.nav-justified > li.active > a { border: 0; color: #333; border-bottom: 3px solid #317DC1; background-color: transparent; }
+
+.nav.nav-tabs.nav-justified { display: flex; }
+
+.nav.nav-tabs.nav-justified > li { display: block; width: auto; flex: 1; }
 
 .panel > .nav > li > a { padding-left: 36px; padding-right: 36px; }
