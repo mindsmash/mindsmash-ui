@@ -1,0 +1,46 @@
+/* Selects
+------------------------------------------------------------ */
+
+.ui-select-bootstrap .ui-select-choices-row > a {
+  padding: 8px 16px;
+}
+
+.ui-select-multiple.ui-select-bootstrap {
+  min-height: 42px;
+  padding-top: 1px;
+
+  input.ui-select-search {
+    line-height: 36px;
+    height: 36px;
+    padding-left: 16px;
+    margin: 0;
+  }
+
+  .ui-select-match:not(:empty) + input.ui-select-search {
+    padding-left: 8px;
+  }
+
+  .ui-select-match .close {
+    font-size: 18px;
+    line-height: 24px;
+    margin-left: 2px;
+  }
+
+  .ui-select-match-item {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 4px 8px;
+  }
+}
+
+.ui-select-bootstrap .ui-select-choices-row {
+
+  small {
+    line-height: 20px;
+    display: block;
+  }
+
+  &.active small {
+    color: #fff;
+  }
+}
