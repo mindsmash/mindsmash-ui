@@ -3438,7 +3438,7 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .modal-header h3 { font-size: 24px; line-height: 32px; flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-.modal-header .modal-close { color: #AAA; font-size: 20px; line-height: 32px; padding: 0 12px; position: relative; right: -12px; cursor: pointer; }
+.modal-header .modal-close { position: absolute; color: #AAA; font-size: 20px; line-height: 32px; padding: 0; position: relative; right: 0; cursor: pointer; }
 
 .modal-body { flex: 1; overflow: scroll; }
 

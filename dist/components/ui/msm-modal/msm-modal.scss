@@ -34,12 +34,13 @@ body > .ui-select-bootstrap.open {
   }
 
   .modal-close {
+    position: absolute;
     color: $msm-gray;
     font-size: 20px;
     line-height: 32px;
-    padding: 0 12px;
+    padding: 0;
     position: relative;
-    right: -12px;
+    right: 0;
     cursor: pointer;
   }
 }
