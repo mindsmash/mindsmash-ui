@@ -1,13 +1,13 @@
-(function(angular) {
+(function (angular) {
   'use strict';
 
   angular.module('app', [
-      'msm.components.ui',
-      'msm.components.util',
-      'ui.bootstrap',
-      'ui.router',
-      'pascalprecht.translate'
-    ])
+        'msm.components.ui',
+        'msm.components.util',
+        'ui.bootstrap',
+        'ui.router',
+        'pascalprecht.translate'
+      ])
 
       .config(configTranslations)
       .config(configRoutes)
@@ -18,6 +18,7 @@
       .controller('NotificationController', NotificationController)
       .controller('EditableTextController', EditableTextController)
       .controller('NavController', NavController)
+      .controller('FormsController', FormsController)
       .controller('ModalController', ModalController)
       .controller('ClickToEditController', ClickToEditController)
       .controller('TableController', TableController);
@@ -75,27 +76,27 @@
   function NotificationController($log, msmNotification) {
     var vm = this;
 
-    vm.primary = function() {
+    vm.primary = function () {
       msmNotification.primary('Primary', false);
     };
 
-    vm.error = function() {
+    vm.error = function () {
       msmNotification.error('Error', false);
     };
 
-    vm.success = function() {
+    vm.success = function () {
       msmNotification.success('Success', false);
     };
 
-    vm.info = function() {
+    vm.info = function () {
       msmNotification.info('Info', false);
     };
 
-    vm.warning = function() {
+    vm.warning = function () {
       msmNotification.warning('Warning', false);
     };
 
-    vm.clearAll = function() {
+    vm.clearAll = function () {
       msmNotification.clearAll();
     };
 
@@ -115,6 +116,26 @@
     })();
   }
 
+  function FormsController($log, $q, $timeout) {
+    var vm = this;
+
+    vm.submit = function () {
+      $log.debug('[FormsController] Submit called');
+
+      var deferred = $q.defer();
+
+      $timeout(function () {
+        deferred.resolve('Success');
+      }, 1000);
+
+      return deferred.promise;
+    };
+
+    (function initController() {
+      $log.debug('[FormsController] Initializing...');
+    })();
+  }
+
   function EditableTextController($log) {
     var vm = this;
 
@@ -124,12 +145,12 @@
       text2: 'Second text'
     };
 
-    vm.submit = function() {
+    vm.submit = function () {
       vm.model = angular.extend({}, vm.model); // reset model reference
       vm.isEditable = false;
     };
 
-    vm.reset = function() {
+    vm.reset = function () {
       vm.isEditable = false;
     };
 
@@ -147,7 +168,7 @@
       isEditing: false
     };
 
-    vm.changed = function(value) {
+    vm.changed = function (value) {
       msmNotification.success('Successfully changed the value to \'' + value + '\'', false);
     };
 
@@ -175,8 +196,8 @@
     var vm = this;
 
     function valueAsync() {
-      return $q(function(resolve) {
-        setTimeout(function() {
+      return $q(function (resolve) {
+        setTimeout(function () {
           resolve('Some async value...');
         }, 1000);
       });
@@ -186,7 +207,7 @@
       return 'Some return value...';
     }
 
-    vm.openCustom = function(size) {
+    vm.openCustom = function (size) {
       return msmModal.open({
         size: size,
         resolve: {
@@ -194,42 +215,42 @@
           valueAsync: valueAsync(),
           valueFunction: valueFunction
         },
-        controller: function(value, valueAsync, valueFunction) {
+        controller: function (value, valueAsync, valueFunction) {
           var vm = this;
           vm.title = 'Customization';
           vm.text = valueAsync;
         }
-      }).result.then(function(selectedItem) {
+      }).result.then(function (selectedItem) {
         $log.info('Modal (custom): Clicked OK.');
-      }, function() {
+      }, function () {
         $log.info('Modal (custom): Cancelled.');
       });
     };
 
-    vm.openNote = function(size) {
+    vm.openNote = function (size) {
       return msmModal.note({
         size: size,
         title: 'Note',
         text: 'This is some very important information.',
-      }).result.then(function(selectedItem) {
+      }).result.then(function (selectedItem) {
         $log.info('Modal (note): Clicked OK.');
         msmNotification.success('Closed', false);
-      }, function() {
+      }, function () {
         $log.info('Modal (note): Cancelled.');
       });
     };
 
-    vm.openConfirm = function(size) {
+    vm.openConfirm = function (size) {
       return msmModal.confirm({
         size: size,
         title: 'Confirmation',
         text: 'Are you sure you want to continue?',
-        close: { title: 'Yes' },
-        dismiss: { title: 'No', style: 'btn-primary btn-condensed' }
-      }).result.then(function() {
+        close: {title: 'Yes'},
+        dismiss: {title: 'No', style: 'btn-primary btn-condensed'}
+      }).result.then(function () {
         $log.info('Modal (confirm): Confirmed.');
         msmNotification.success('Confirmed', false);
-      }, function() {
+      }, function () {
         $log.info('Modal (confirm): Cancelled.');
       });
     };
@@ -257,7 +278,7 @@
       }
     ];
     var selectedSelectModalItem = values[0].key;
-    vm.openSelect = function(size) {
+    vm.openSelect = function (size) {
       return msmModal.select({
         size: size,
         title: 'Selection',
@@ -266,11 +287,11 @@
           values: values,
           selected: selectedSelectModalItem
         }
-      }).result.then(function(selectedItem) {
+      }).result.then(function (selectedItem) {
         $log.info('Modal (select): Clicked OK.');
         selectedSelectModalItem = selectedItem;
         msmNotification.success('Selected item: \'' + selectedItem + '\'', false);
-      }, function() {
+      }, function () {
         $log.info('Modal (select): Cancelled.');
       });
     };

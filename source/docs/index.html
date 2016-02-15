@@ -680,8 +680,8 @@
     <div class="panel-body">
       <h3>Basic example</h3>
       <p><b>Note:</b> Use the helper class <code>.form-group-checkbox</code> to fix margin offsets for form groups with checkboxes.</p>
-      <div class="example p-m bg-gray-lighter">
-        <form class="form-horizontal">
+      <div class="example p-m bg-gray-lighter" ng-controller="FormsController as vm">
+        <form class="form-horizontal" name="msmSampleForm" msm-form-submit="vm.submit()">
           <div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Form title</h3>
@@ -741,7 +741,7 @@
             <div class="panel-footer panel-actions">
               <div class="row">
                 <div class="col-sm-10 col-sm-push-2">
-                  <button type="button" class="btn btn-primary"><i class="zmdi zmdi-check"></i> Save</button>
+                  <msm-form-submit-button label="Save now" form-ctrl="msmSampleForm"></msm-form-submit-button>
                   <button type="button" class="btn btn-default"><i class="zmdi zmdi-close"></i> Cancel</button>
                 </div>
               </div>
@@ -1345,6 +1345,8 @@
 <script src="../components/ui/msm-notification/msm-notification.service.js"></script>
 <script src="../components/ui/msm-spinner/msm-spinner.directive.js"></script>
 <script src="../components/ui/msm-wizard/msm-wizard.directive.js"></script>
+<script src="../components/ui/msm-form-submit/msm-form-submit.directive.js"></script>
+<script src="../components/ui/msm-form-submit-button/msm-form-submit-button.directive.js"></script>
 
 <script src="../components/util/components.util.module.js"></script>
 <script src="../components/util/scroll-link/scroll-link.directive.js"></script>
