@@ -66,6 +66,7 @@
 
       var modalInstance = $uibModal.open({
         animation: true,
+        backdrop: config.backdrop || true,
         templateUrl: config.templateUrl || 'components/ui/msm-modal/msm-modal.html',
         controller: config.controller,
         controllerAs: 'vm',
