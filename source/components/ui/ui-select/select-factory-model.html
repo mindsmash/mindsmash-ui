@@ -1,12 +1,12 @@
 <div class="ui-select">
   <ui-select ng-model="data.ngModel" ng-required="isRequired" ng-disabled="isDisabled">
-    <ui-select-match class="ui-select-match" placeholder="{{ placeholder | translate }}" allow-clear="{{ !isRequired }}">
-      <span translate="{{ $select.selected.displayName }}"></span>
+    <ui-select-match class="ui-select-match" placeholder="{{:: placeholder | translate }}" allow-clear="{{ !isRequired }}">
+      <span>{{ $select.selected.displayName }}</span>
     </ui-select-match>
     <ui-select-choices class="ui-select-choices" repeat="transform(option) as option in options" refresh="refresh($select.search, true)" refresh-delay="250"
                        msm-infinite-scroll="refresh($select.search, false)" msm-infinite-scroll-threshold="50" msm-infinite-scroll-no-initial-load="true">
-      <span ng-bind-html="option.displayName | highlight: $select.search"></span>
-      <small class="text-muted" ng-repeat="subline in sublines">{{:: isString(subline) ? option[subline] : subline(option) }}</small>
+      <span ng-bind-html="::option.displayName | highlight: $select.search"></span>
+      <small class="text-muted" ng-repeat="subline in ::sublines">{{:: isString(subline) ? option[subline] : subline(option) }}</small>
     </ui-select-choices>
   </ui-select>
 </div>

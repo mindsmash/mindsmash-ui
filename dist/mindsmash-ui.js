@@ -319,126 +319,6 @@ angular.module('msm.components.ui')
 (function () {
   'use strict';
 
-  angular.module('msm.components.ui')
-      .directive('msmDelayForm', MsmDelayForm);
-
-  function MsmDelayForm($parse) {
-    return {
-      restrict: 'A',
-      require: 'form',
-      link: function (scope, elem, attrs, ctrl) {
-        var snapshot = null;
-
-        // watch model reference - no deep watch!
-        // to manually trigger copy, use angular.extend({}, model)
-        scope.$watch(attrs.msmDelayForm, function(newVal, oldVal) {
-          if (newVal && newVal.restangularized === true) {
-            // restangular can't handle angular.copy! :-(
-            snapshot = newVal.clone();
-          } else {
-            snapshot = angular.copy(newVal);
-          }
-        });
-
-        scope.$on('msm.components.ui:msmDelayForm-refreshModel', function(e, newModel) {
-          if (newModel && newModel.restangularized === true) {
-            // restangular can't handle angular.copy! :-(
-            snapshot = newModel.clone();
-          } else {
-            snapshot = angular.copy(newModel);
-          }
-        });
-
-        elem.on('reset', function(event) {
-          event.preventDefault();
-          scope.$eval(attrs.ngReset);
-          scope.$apply(function() {
-            $parse(attrs.msmDelayForm).assign(scope, snapshot);
-          });
-        });
-      }
-    }
-  }
-})();
-
-(function () {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmFormSubmit
-   * @scope
-   * @restrict 'A'
-   *
-   * @description Directive for setting a 'loading' true/false flag on a form controller. You need to make sure that
-   * your submit function returns a promise for this to work. Use this as a replacement for angular's 'ngSubmit' directive.
-   *
-   * @example <form msm-form-submit="submitMyFormMethod">...</form>
-   */
-  angular
-      .module('msm.components.ui')
-      .directive('msmFormSubmit', MsmFormSubmit);
-
-  function MsmFormSubmit() {
-    return {
-      restrict: 'A',
-      require: '^form',
-      transclude: true,
-      template: '<fieldset ng-disabled="_form.loading"><ng-transclude></ng-transclude></fieldset>',
-      scope: {
-        msmFormSubmit: '&'
-      },
-      link: function (scope, element, attrs, formCtrl) {
-        scope._form = formCtrl;
-
-        element.on('submit', function () {
-          formCtrl.loading = true;
-          scope.$apply();
-
-          scope.msmFormSubmit().finally(function () {
-            formCtrl.loading = false;
-          });
-        });
-      }
-    };
-  }
-})();
-
-(function () {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmFormSubmitButton
-   * @scope
-   * @restrict 'E'
-   * @element ANY
-   *
-   * @description Directive for a form submit button. When used in combination with the msmFormSubmit directive,
-   * the button will automatically toggle a loading state when the form is submitted and when processing is done.
-   *
-   * @example <msm-form-submit-button label="LABEL" form-ctrl="formControllerName"></msm-form-submit-button>
-   */
-  angular
-      .module('msm.components.ui')
-      .directive('msmFormSubmitButton', MsmFormSubmitButton);
-
-  function MsmFormSubmitButton() {
-    return {
-      restrict: 'E',
-      replace: true,
-      templateUrl: 'components/ui/msm-form-submit-button/msm-form-submit-button.html',
-      scope: {
-        formCtrl: '=',
-        label: '@'
-      }
-    };
-  }
-})();
-
-(function () {
-  'use strict';
-
   /**
    * @ngdoc directive
    * @name components.ui.msmInfiniteScroll
@@ -512,6 +392,51 @@ angular.module('msm.components.ui')
     };
   }
 })();
+(function () {
+  'use strict';
+
+  angular.module('msm.components.ui')
+      .directive('msmDelayForm', MsmDelayForm);
+
+  function MsmDelayForm($parse) {
+    return {
+      restrict: 'A',
+      require: 'form',
+      link: function (scope, elem, attrs, ctrl) {
+        var snapshot = null;
+
+        // watch model reference - no deep watch!
+        // to manually trigger copy, use angular.extend({}, model)
+        scope.$watch(attrs.msmDelayForm, function(newVal, oldVal) {
+          if (newVal && newVal.restangularized === true) {
+            // restangular can't handle angular.copy! :-(
+            snapshot = newVal.clone();
+          } else {
+            snapshot = angular.copy(newVal);
+          }
+        });
+
+        scope.$on('msm.components.ui:msmDelayForm-refreshModel', function(e, newModel) {
+          if (newModel && newModel.restangularized === true) {
+            // restangular can't handle angular.copy! :-(
+            snapshot = newModel.clone();
+          } else {
+            snapshot = angular.copy(newModel);
+          }
+        });
+
+        elem.on('reset', function(event) {
+          event.preventDefault();
+          scope.$eval(attrs.ngReset);
+          scope.$apply(function() {
+            $parse(attrs.msmDelayForm).assign(scope, snapshot);
+          });
+        });
+      }
+    }
+  }
+})();
+
 (function() {
 	'use strict';
 
@@ -904,6 +829,81 @@ angular.module('msm.components.ui')
 
 })();
 
+(function () {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmFormSubmitButton
+   * @scope
+   * @restrict 'E'
+   * @element ANY
+   *
+   * @description Directive for a form submit button. When used in combination with the msmFormSubmit directive,
+   * the button will automatically toggle a loading state when the form is submitted and when processing is done.
+   *
+   * @example <msm-form-submit-button label="LABEL" form-ctrl="formControllerName"></msm-form-submit-button>
+   */
+  angular
+      .module('msm.components.ui')
+      .directive('msmFormSubmitButton', MsmFormSubmitButton);
+
+  function MsmFormSubmitButton() {
+    return {
+      restrict: 'E',
+      replace: true,
+      templateUrl: 'components/ui/msm-form-submit-button/msm-form-submit-button.html',
+      scope: {
+        formCtrl: '=',
+        label: '@'
+      }
+    };
+  }
+})();
+
+(function () {
+  'use strict';
+
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmFormSubmit
+   * @scope
+   * @restrict 'A'
+   *
+   * @description Directive for setting a 'loading' true/false flag on a form controller. You need to make sure that
+   * your submit function returns a promise for this to work. Use this as a replacement for angular's 'ngSubmit' directive.
+   *
+   * @example <form msm-form-submit="submitMyFormMethod">...</form>
+   */
+  angular
+      .module('msm.components.ui')
+      .directive('msmFormSubmit', MsmFormSubmit);
+
+  function MsmFormSubmit() {
+    return {
+      restrict: 'A',
+      require: '^form',
+      transclude: true,
+      template: '<fieldset ng-disabled="_form.loading"><ng-transclude></ng-transclude></fieldset>',
+      scope: {
+        msmFormSubmit: '&'
+      },
+      link: function (scope, element, attrs, formCtrl) {
+        scope._form = formCtrl;
+
+        element.on('submit', function () {
+          formCtrl.loading = true;
+          scope.$apply();
+
+          scope.msmFormSubmit().finally(function () {
+            formCtrl.loading = false;
+          });
+        });
+      }
+    };
+  }
+})();
+
 (function() {
     'use strict';
 
@@ -1016,13 +1016,13 @@ $templateCache.put("components/ui/msm-datepicker/msm-datepicker-day.html","<tabl
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-month.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong><span class=\"caret\"></span></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\" ng-class=\"::dt.customClass\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-popup.html","<ul class=\"dropdown-menu msm-datepicker\" ng-if=\"isOpen\" style=\"display: block\" ng-style=\"{top: position.top+\'px\', left: position.left+\'px\'}\" ng-keydown=\"keydown($event)\" ng-click=\"$event.stopPropagation()\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <li ng-transclude></li>\n  <li ng-if=\"showButtonBar\" style=\"padding:10px 9px 2px\">\n    <span class=\"btn-group pull-left\">\n      <button type=\"button\" class=\"btn btn-sm btn-info\" ng-click=\"select(\'today\')\" ng-disabled=\"isDisabled(\'today\')\">{{ getText(\'current\') }}</button>\n      <button type=\"button\" class=\"btn btn-sm btn-danger\" ng-click=\"select(null)\">{{ getText(\'clear\') }}</button>\n    </span>\n    <button type=\"button\" class=\"btn btn-sm btn-success pull-right\" ng-click=\"close()\">{{ getText(\'close\') }}</button>\n  </li>\n</ul>\n");
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-year.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th colspan=\"3\"><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
-$templateCache.put("components/ui/msm-form-submit-button/msm-form-submit-button.html","<button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"formCtrl.loading || formCtrl.$invalid\">\n  <span ng-hide=\"formCtrl.loading\"><i class=\"zmdi zmdi-check\"></i> {{::label | translate}}</span>\n  <span ng-show=\"formCtrl.loading\"><i class=\"zmdi zmdi-spinner zmdi-hc-spin\"></i> {{::\'LOADING\' | translate}}</span>\n</button>");
 $templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\" data-ng-click=\"open()\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\"></i>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate:vm.translationContext }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body modal-mobile-show\">\n  <ul class=\"modal-mobile-options\">\n    <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n      <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"vm.options.selected === option\"></i>\n      <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"vm.options.selected !== option\"></i>\n      {{ option }}\n    </li>\n  </ul>\n</div>\n<div class=\"modal-body modal-mobile-hide\">\n  <form class=\"form-horizontal\">\n    <div>\n        <ui-select id=\"selectItems\" ng-model=\"vm.options.selected\" append-to-body=\"true\">\n          <ui-select-match placeholder=\"{{ vm.text | translate:vm.translationContext }}\" allow-clear=\"false\" class=\"ui-select-match\">\n            {{ vm.options.selected }}\n          </ui-select-match>\n          <ui-select-choices repeat=\"option in vm.options.values | filter: $select.search\" class=\"ui-select-choices\">\n            <div ng-bind-html=\"option | highlight: $select.search\"></div>\n          </ui-select-choices>\n        </ui-select>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}</button>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate:vm.translationContext }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <span>{{ vm.text | translate:vm.translationContext }}</span>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}\n  </button>\n</div>\n");
+$templateCache.put("components/ui/msm-form-submit-button/msm-form-submit-button.html","<button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"formCtrl.loading || formCtrl.$invalid\">\n  <span ng-hide=\"formCtrl.loading\"><i class=\"zmdi zmdi-check\"></i> {{::label | translate}}</span>\n  <span ng-show=\"formCtrl.loading\"><i class=\"zmdi zmdi-spinner zmdi-hc-spin\"></i> {{::\'LOADING\' | translate}}</span>\n</button>");
 $templateCache.put("components/ui/msm-spinner/msm-spinner.html","<div class=\"msm-spinner\" ng-class=\"size\"><div class=\"bounce1\"></div><div class=\"bounce2\"></div><div class=\"bounce3\"></div></div>");
 $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-wizard {{class}}\">\n  <li ng-repeat-start=\"state in states\"\n      class=\"msm-wizard-state\"\n      ng-class=\"{ passed: $index < active, active: $index === active }\">\n    <i class=\"zmdi zmdi-hc-fw zmdi-check msm-wizard-icon\"></i>\n    <span class=\"msm-wizard-label\" translate=\"{{ state }}\"></span>\n  </li>\n  <li ng-repeat-end ng-if=\"!$last\" class=\"msm-wizard-divider\"></li>\n</ul>\n");
-$templateCache.put("components/ui/ui-select/select-factory-model.html","<div class=\"ui-select\">\n  <ui-select ng-model=\"data.ngModel\" ng-required=\"isRequired\" ng-disabled=\"isDisabled\">\n    <ui-select-match class=\"ui-select-match\" placeholder=\"{{ placeholder | translate }}\" allow-clear=\"{{ !isRequired }}\">\n      <span translate=\"{{ $select.selected.displayName }}\"></span>\n    </ui-select-match>\n    <ui-select-choices class=\"ui-select-choices\" repeat=\"transform(option) as option in options\" refresh=\"refresh($select.search, true)\" refresh-delay=\"250\"\n                       msm-infinite-scroll=\"refresh($select.search, false)\" msm-infinite-scroll-threshold=\"50\" msm-infinite-scroll-no-initial-load=\"true\">\n      <span ng-bind-html=\"option.displayName | highlight: $select.search\"></span>\n      <small class=\"text-muted\" ng-repeat=\"subline in sublines\">{{:: isString(subline) ? option[subline] : subline(option) }}</small>\n    </ui-select-choices>\n  </ui-select>\n</div>\n");
+$templateCache.put("components/ui/ui-select/select-factory-model.html","<div class=\"ui-select\">\n  <ui-select ng-model=\"data.ngModel\" ng-required=\"isRequired\" ng-disabled=\"isDisabled\">\n    <ui-select-match class=\"ui-select-match\" placeholder=\"{{:: placeholder | translate }}\" allow-clear=\"{{ !isRequired }}\">\n      <span>{{ $select.selected.displayName }}</span>\n    </ui-select-match>\n    <ui-select-choices class=\"ui-select-choices\" repeat=\"transform(option) as option in options\" refresh=\"refresh($select.search, true)\" refresh-delay=\"250\"\n                       msm-infinite-scroll=\"refresh($select.search, false)\" msm-infinite-scroll-threshold=\"50\" msm-infinite-scroll-no-initial-load=\"true\">\n      <span ng-bind-html=\"::option.displayName | highlight: $select.search\"></span>\n      <small class=\"text-muted\" ng-repeat=\"subline in ::sublines\">{{:: isString(subline) ? option[subline] : subline(option) }}</small>\n    </ui-select-choices>\n  </ui-select>\n</div>\n");
 $templateCache.put("components/ui/ui-select/select-factory-model.multiple.html","<div class=\"ui-select\">\n  <ui-select ng-model=\"data.ngModel\" ng-required=\"isRequired\" ng-disabled=\"isDisabled\" multiple on-select=\"onSelectCallback()\">\n    <ui-select-match class=\"ui-select-match\" placeholder=\"{{:: placeholder | translate }}\" allow-clear=\"{{ !isRequired }}\">\n      <span>{{:: $item.displayName }}</span>\n    </ui-select-match>\n    <ui-select-choices class=\"ui-select-choices\" repeat=\"transform(option) as option in options | filter:{} track by option.id\" refresh=\"refresh($select.search, true)\" refresh-delay=\"250\"\n                       msm-infinite-scroll=\"refresh($select.search, false)\" msm-infinite-scroll-threshold=\"50\" msm-infinite-scroll-no-initial-load=\"true\">\n      <span ng-bind-html=\"::option.displayName | highlight: $select.search\"></span>\n      <small class=\"text-muted\" ng-repeat=\"subline in ::sublines\">{{:: isString(subline) ? option[subline] : subline(option) }}</small>\n    </ui-select-choices>\n  </ui-select>\n</div>\n");}]);
 (function () {
   'use strict';
@@ -1245,6 +1245,29 @@ $templateCache.put("components/ui/ui-select/select-factory-model.multiple.html",
 
 })();
 
+angular.module('msm.components.util')
+.directive('scrollLink', ScrollLink);
+
+/**
+ * @ngdoc directive
+ * @name components.util:ScrollLink
+ * @scope
+ * @restrict 'E'
+ *
+ * @description
+ *    Directive that renders a link to jump to via #hash in url.
+ */
+function ScrollLink() {
+  return {
+    template: '<a href="#{{ name }}" id="{{ name }}" class="scroll-link"></a>',
+    scope      : {
+      name: '@'
+    }
+  };
+}
+
+;
+
 (function () {
   'use strict';
 
@@ -1298,26 +1321,3 @@ $templateCache.put("components/ui/ui-select/select-factory-model.multiple.html",
     };
   }
 })();
-
-angular.module('msm.components.util')
-.directive('scrollLink', ScrollLink);
-
-/**
- * @ngdoc directive
- * @name components.util:ScrollLink
- * @scope
- * @restrict 'E'
- *
- * @description
- *    Directive that renders a link to jump to via #hash in url.
- */
-function ScrollLink() {
-  return {
-    template: '<a href="#{{ name }}" id="{{ name }}" class="scroll-link"></a>',
-    scope      : {
-      name: '@'
-    }
-  };
-}
-
-;
