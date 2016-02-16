@@ -82,7 +82,6 @@
             };
 
             scope.onSelectCallback = function () {
-              console.log(arguments);
               if (config.minSelectableItems &&
                   scope.options.length - scope.data.ngModel.length <= config.minSelectableItems) {
                 scope.refresh(undefined, false);
