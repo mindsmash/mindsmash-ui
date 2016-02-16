@@ -299,13 +299,14 @@
           }
           processValueList(values);
 
-          var page = 0;
           vm.addPage = function () {
-            if (angular.isFunction(options.loadAdditionalPage)) {
-              page++;
-              options.loadAdditionalPage(page).then(function (items) {
+            vm.loading = true;
+            if (angular.isFunction(options.nextPage)) {
+              options.nextPage().then(function (items) {
                 values = values.concat(items);
                 processValueList(values);
+              }).finally(function () {
+                vm.loading = false;
               });
             }
           };
