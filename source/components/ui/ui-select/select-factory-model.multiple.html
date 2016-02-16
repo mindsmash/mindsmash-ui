@@ -1,4 +1,5 @@
-<div class="ui-select">
+<div>
+  <div class="ui-select" ng-class="{'hidden-xs': mobile}">
   <ui-select ng-model="data.ngModel" ng-required="isRequired" ng-disabled="isDisabled" multiple on-select="onSelectCallback()">
     <ui-select-match class="ui-select-match" placeholder="{{:: placeholder | translate }}" allow-clear="{{ !isRequired }}">
       <span>{{:: $item.displayName }}</span>
@@ -9,4 +10,17 @@
       <small class="text-muted" ng-repeat="subline in ::sublines">{{:: isString(subline) ? option[subline] : subline(option) }}</small>
     </ui-select-choices>
   </ui-select>
+</div>
+  <ul class="ui-select-mobile-list list-unstyled visible-xs" ng-if="mobile">
+    <li ng-repeat="item in data.ngModel" class="text-muted">
+      <i ng-if="mobileIcon" class="zmdi {{mobileIcon}}"></i> {{::item.displayName}} <span class="pull-right"><i class="zmdi zmdi-close pointer" ng-click="removeItem(item)"></i></span>
+    </li>
+    <li>
+      <a href ng-click="addItem()" class="btn btn-block btn-default"><i class="zmdi zmdi-plus" ng-class="{
+        'zmdi-plus': !modalLoading,
+        'zmdi-spinner': modalLoading,
+        'zmdi-hc-spin': modalLoading
+      }"></i> {{::mobileAddText | translate}}</a>
+    </li>
+  </ul>
 </div>

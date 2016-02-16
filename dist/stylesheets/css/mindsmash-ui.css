@@ -3653,6 +3653,12 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .ui-select-bootstrap .ui-select-choices-row.active small { color: #fff; }
 
+.ui-select-mobile-list { color: #666; }
+
+.ui-select-mobile-list li { display: block; padding: 10px 3px; }
+
+.ui-select-mobile-list li i:first-child { margin-right: 10px; }
+
 .scroll-link { display: block; margin-top: -30px; padding-top: 30px; }
 
 .scroll-link:focus { outline: 0; }

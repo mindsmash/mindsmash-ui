@@ -44,3 +44,14 @@
     color: #fff;
   }
 }
+
+.ui-select-mobile-list {
+  color: $msm-gray-darker;
+  li {
+    i:first-child {
+      margin-right: 10px;
+    }
+    display: block;
+    padding: 10px 3px;
+  }
+}
