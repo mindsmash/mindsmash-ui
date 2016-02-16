@@ -247,6 +247,10 @@
      *           The dismiss button configuration.
      *       * translationContext:
      *           An object containing values to be used for translation interpolation.
+     *       * loadAdditionalPage:
+     *           A function to be called for loading more data in infinite scrolling mode
+     *           (takes page number as argument, starting with 1 for second page - first page is always
+     *           provided via resolve of options.values)
      */
     function select(options) {
       // title, text, options, size, closeTitle, dismissTitle
@@ -276,19 +280,34 @@
             }, options.dismiss)]
           });
 
-          var valueList = [];
-          var selectedVaL = null;
-          for (var key in values) {
-            var val = values[key].value;
+          var valueList;
+          var selectedVaL;
+          function processValueList(list) {
+            valueList = [];
+            selectedVaL = null;
+            for (var key in list) {
+              var val = list[key].value;
             valueList.push(val);
-            if (selected === values[key].key) {
+              if (selected === list[key].key) {
               selectedVaL = val;
             }
           }
-
           vm.options = {
             values: valueList,
             selected: selectedVaL
+          };
+          }
+          processValueList(values);
+
+          var page = 0;
+          vm.addPage = function () {
+            if (angular.isFunction(options.loadAdditionalPage)) {
+              page++;
+              options.loadAdditionalPage(page).then(function (items) {
+                values = values.concat(items);
+                processValueList(values);
+              });
+            }
           };
 
           if(angular.isFunction(options.onOpened)) {
