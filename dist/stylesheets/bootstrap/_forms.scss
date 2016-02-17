@@ -24,9 +24,10 @@
 }
 
 .input-group-addon {
-  color: $msm-gray-darker;
+  color: $msm-gray-dark;
 
   .zmdi {
+    color: $msm-gray-darker;
     width: 32px;
     margin: -11px;
   }

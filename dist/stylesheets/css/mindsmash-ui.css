@@ -3974,9 +3974,9 @@ dl dd { margin-bottom: 12px; }
 
 .form-group:last-child { margin-bottom: 0; }
 
-.input-group-addon { color: #666; }
+.input-group-addon { color: #999; }
 
-.input-group-addon .zmdi { width: 32px; margin: -11px; }
+.input-group-addon .zmdi { color: #666; width: 32px; margin: -11px; }
 
 .input-group-addon.input-sm .zmdi, .input-group-sm > .input-group-addon .zmdi, .input-group-sm > .input-group-btn > .input-group-addon.btn .zmdi, .input-group-sm > .input-group-addon .zmdi, .input-group-sm > .input-group-btn > .input-group-addon.btn .zmdi { width: 32px; margin: -12px; }
 
