@@ -287,21 +287,21 @@
             selectedVaL = null;
             for (var key in list) {
               var val = list[key].value;
-            valueList.push(val);
+              valueList.push(val);
               if (selected === list[key].key) {
-              selectedVaL = val;
+                selectedVaL = val;
+              }
             }
-          }
-          vm.options = {
-            values: valueList,
-            selected: selectedVaL
-          };
+            vm.options = {
+              values: valueList,
+              selected: selectedVaL
+            };
           }
           processValueList(values);
 
           vm.addPage = function () {
-            vm.loading = true;
             if (angular.isFunction(options.nextPage)) {
+              vm.loading = true;
               options.nextPage().then(function (items) {
                 values = values.concat(items);
                 processValueList(values);

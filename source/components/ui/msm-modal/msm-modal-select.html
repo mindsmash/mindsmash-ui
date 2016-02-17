@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h3 class="modal-title">{{ vm.title | translate:vm.translationContext }}</h3>
+  <h3 class="modal-title">{{:: vm.title | translate:vm.translationContext }}</h3>
   <span class="modal-close" ng-click="vm.onDismiss ? vm.onDismiss() : $dismiss('cancel')"><i class="zmdi zmdi-close img-close"></i></span>
 </div>
 <div class="modal-body modal-mobile-show"
@@ -8,9 +8,9 @@
      msm-infinite-scroll-no-initial-load="true">
   <ul class="modal-mobile-options">
     <li ng-repeat="option in vm.options.values" class="modal-mobile-option" ng-click="vm.select(option)">
-      <i class="zmdi zmdi-check-circle item-selected" ng-if="vm.options.selected === option"></i>
-      <i class="zmdi zmdi-circle-o item-not-selected" ng-if="vm.options.selected !== option"></i>
-      {{ option }}
+      <i class="zmdi zmdi-check-circle item-selected" ng-if="::vm.options.selected === option"></i>
+      <i class="zmdi zmdi-circle-o item-not-selected" ng-if="::vm.options.selected !== option"></i>
+      {{ ::option }}
     </li>
   </ul>
   <div class="text-center m-m" data-ng-show="vm.loading">
@@ -28,7 +28,7 @@
                              msm-infinite-scroll="vm.addPage()"
                              msm-infinite-scroll-threshold="50"
                              msm-infinite-scroll-no-initial-load="true">
-            <div ng-bind-html="option | highlight: $select.search"></div>
+            <div ng-bind-html="::option | highlight: $select.search"></div>
           </ui-select-choices>
         </ui-select>
     </div>
