@@ -3434,7 +3434,7 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .modal-content { border: 0; box-shadow: none; display: flex; flex-direction: column; }
 
-.modal-header { display: flex; flex-direction: row; padding: 12px 24px; }
+.modal-header { position: relative; display: flex; flex-direction: row; padding: 12px 24px; }
 
 .modal-header h3 { font-size: 24px; line-height: 32px; flex-grow: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
