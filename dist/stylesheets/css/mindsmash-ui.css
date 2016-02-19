@@ -3457,7 +3457,7 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
   .modal-content { border-radius: 0; height: 100%; width: 100%; }
   .modal-header { padding: 12px 16px; background-color: #317DC1; border: 0; color: #FDFDFD; }
   .modal-header h3 { text-align: center; }
-  .modal-header .modal-close { color: #FDFDFD; }
+  .modal-header .modal-close { color: #FDFDFD; right: 16px; }
   .modal-body { padding: 16px; }
   .modal-body .item-selected { color: #9BBF29; margin-right: 10px; }
   .modal-body .item-not-selected { color: #fdfdfd; margin-right: 10px; }
