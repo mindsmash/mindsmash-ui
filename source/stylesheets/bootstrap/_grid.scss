@@ -128,3 +128,50 @@ $container-xl:                  $container-extra-large-desktop !default;
   @include responsive-invisibility('.hidden-xl');
 }
 
+
+
+/* Gutter adjustments
+------------------------------------------------------------ */
+
+@include sm-and-down {
+  .container,
+  .container-fluid {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .row {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  [class*='col-'] {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+
+
+/* No Gutter
+------------------------------------------------------------ */
+
+.no-gutter > [class*='col-'],
+.no-gutter-xl > [class*='col-'] {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+$gutter-sizes: (
+  xs: $screen-xs-max,
+  sm: $screen-sm-max,
+  md: $screen-md-max,
+  lg: $screen-lg-max
+);
+
+@each $gutter-size, $gutter-max-width in $gutter-sizes {
+  .no-gutter-#{$gutter-size} > [class*='col-'] {
+    @media #{screen} and (max-width: #{$gutter-max-width}) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
