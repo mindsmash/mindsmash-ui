@@ -3803,9 +3803,11 @@ dl dd { margin-bottom: 12px; }
 
 .dl-horizontal dt, .dl-horizontal dd { line-height: 32px; display: inline-block; }
 
-.dl-horizontal dt { clear: left; float: left; margin-right: 24px; text-align: right; width: calc(35% - 12px); }
+.dl-horizontal dt { clear: left; float: left; margin-right: 24px; text-align: right; width: calc(35% - 12px); text-transform: uppercase; }
 
 .dl-horizontal dd { margin-left: 0; width: calc(65% - 12px); }
+
+@media screen and (max-width: 767px) { .dl-horizontal dt, .dl-horizontal dd { display: block; width: 100%; text-align: left; } }
 
 .btn { transition: background-color 0.2s ease-in-out; }
 

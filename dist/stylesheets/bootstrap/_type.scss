@@ -76,9 +76,18 @@ dl {
     margin-right: 24px;
     text-align: right;
     width: calc(35% - 12px);
+    text-transform: uppercase;
   }
   dd {
     margin-left: 0;
     width: calc(65% - 12px);
+  }
+
+  @include xs {
+    dt, dd {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
   }
 }
