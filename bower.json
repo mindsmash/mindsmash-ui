@@ -42,7 +42,8 @@
     "simple-line-icons": "~2.2.3",
     "mindsmash-source-sans-pro": "~1.0.5",
     "highlightjs": "~8.9.1",
-    "holderjs": "~2.9.0"
+    "holderjs": "~2.9.0",
+    "angular-highlightjs": "~0.5.1"
   },
   "overrides": {
     "highlightjs": {

@@ -33,7 +33,7 @@ gulp.task('styles:dev:kit', function () {
  * Compiles the SCSS of the docs into a single CSS file at '.tmp/css/docs.css'.
  */
 gulp.task('styles:dev:docs', function () {
-  return gulp.src('source/docs/**/*.scss')
+  return gulp.src('source/docs/app/docs.scss')
       .pipe(sass({outputStyle: 'compact'}).on('warning', gutil.log))
       .pipe(gulp.dest('.tmp/css'));
 });

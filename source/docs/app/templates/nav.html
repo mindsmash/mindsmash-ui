@@ -1,0 +1,52 @@
+<nav class="navbar msm-navbar navbar-fixed-top modal-blur">
+  <div class="msm-navbar-flex" ng-class="{'nav-search-open' : searchVisible}">
+    <div class="nav-brand-box">
+      <h1 class="nav-brand">mindsmash UI</h1>
+    </div>
+    <ul class="nav nav-left">
+      <li class="nav-item" uib-dropdown is-open="general.isopen">
+        <a uib-dropdown-toggle href="">General <span class="caret"></span></a>
+        <ul uib-dropdown-menu class="dropdown-menu" role="menu">
+          <li role="menuitem"><a ui-sref="colors">Colors</a></li>
+          <li role="menuitem"><a ui-sref="type">Type & Headings</a></li>
+          <li role="menuitem"><a ui-sref="grid">Grid system</a></li>
+          <li role="menuitem"><a ui-sref="panels">Panels</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item" uib-dropdown is-open="small.isopen">
+        <a uib-dropdown-toggle href="">Small Stuff <span class="caret"></span></a>
+        <ul uib-dropdown-menu class="dropdown-menu" role="menu">
+          <li role="menuitem"><a ui-sref="breadcrumbs">Breadcrumbs</a></li>
+          <li role="menuitem"><a ui-sref="pagination">Pagination</a></li>
+          <li role="menuitem"><a ui-sref="labels">Labels</a></li>
+          <li role="menuitem"><a ui-sref="badges">Badges</a></li>
+          <li role="menuitem"><a ui-sref="buttons">Buttons</a></li>
+          <li role="menuitem"><a ui-sref="spinner">Spinner</a></li>
+          <li role="menuitem"><a ui-sref="definition-list">Definition List</a></li>
+        </ul>
+      </li>
+
+      <li class="nav-item" uib-dropdown is-open="big.isopen">
+        <a uib-dropdown-toggle href="">Big Stuff <span class="caret"></span></a>
+        <ul uib-dropdown-menu class="dropdown-menu" role="menu">
+          <li role="menuitem"><a ui-sref="forms">Forms</a></li>
+          <li role="menuitem"><a ui-sref="tables">Tables</a></li>
+          <li role="menuitem"><a ui-sref="navs">Navs</a></li>
+          <li role="menuitem"><a ui-sref="notifications">Notifications</a></li>
+          <li role="menuitem"><a ui-sref="modals">Modals</a></li>
+          <li role="menuitem"><a ui-sref="navbar">Navbar</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="nav-search">
+      <a ng-hide="searchVisible" class="search-icon search-icon-open" ng-click="searchVisible = !searchVisible"><i class="icon-magnifier"></i></a>
+      <a ng-show="searchVisible" class="search-icon search-icon-close" ng-click="searchVisible = false"><i class="icon-close"></i></a>
+      <input type="text" class="form-control" ng-class="{'open' : searchVisible}">
+    </div>
+
+    <ul class="nav nav-right">
+    </ul>
+  </div>
+</nav>

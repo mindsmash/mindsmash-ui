@@ -13,12 +13,14 @@ body > .container-fluid {
     text-decoration: none;
 }
 
-code {
-    font-size: 12px;
-    white-space: pre;
+pre {
+    border: 0;
+    background: transparent;
+    margin: 0;
+    padding: 0;
 }
 
 .hljs {
-    background: transparent !important;
-    padding: 0 !important;
+    background: transparent;
+    padding: 24px 0 0 0;
 }

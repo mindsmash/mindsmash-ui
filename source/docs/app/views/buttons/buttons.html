@@ -1,0 +1,63 @@
+<div class="panel panel-default" data-ng-init="exampleValue='look at this'">
+  <div class="panel-heading panel-heading-main">
+    <h1 class="panel-title">Buttons</h1>
+  </div>
+  <div class="panel-body">
+    <h2>Options</h2>
+
+    <div class="mb-l">
+      <button class="btn btn-default mr-s">Default</button>
+      <button class="btn btn-primary mr-s">Primary</button>
+      <button class="btn btn-success mr-s">Success</button>
+      <button class="btn btn-info mr-s">Info</button>
+      <button class="btn btn-warning mr-s">Warning</button>
+      <button class="btn btn-danger mr-s">Danger</button>
+      <button class="btn btn-link mr-s">Link</button>
+    </div>
+
+    <h2>Sizes</h2>
+
+    <div class="mb-l">
+      <div class="mb-s">
+        <button class="btn btn-primary btn-lg mr-s"><i class="zmdi zmdi-hc-fw zmdi-star"></i>Large button</button>
+        <button class="btn btn-default btn-lg mr-s">Large button</button>
+        <button class="btn btn-default btn-lg mr-s">Badge <span class="badge badge-red">42</span></button>
+        <button class="btn btn-default btn-lg btn-zmdi"><i class="zmdi zmdi-hc-fw zmdi-star"></i></button>
+      </div>
+      <div class="mb-s">
+        <button class="btn btn-primary mr-s"><i class="zmdi zmdi-hc-fw zmdi-star"></i>Default button</button>
+        <button class="btn btn-default mr-s">Default button</button>
+        <button class="btn btn-default mr-s">Badge <span class="badge badge-red">42</span></button>
+        <button class="btn btn-default btn-zmdi"><i class="zmdi zmdi-hc-fw zmdi-star"></i></button>
+      </div>
+      <div class="mb-s">
+        <button class="btn btn-primary btn-sm mr-s"><i class="zmdi zmdi-hc-fw zmdi-star"></i>Small button</button>
+        <button class="btn btn-default btn-sm mr-s">Small button</button>
+        <button class="btn btn-default btn-sm mr-s">Badge <span class="badge badge-red">42</span></button>
+        <button class="btn btn-default btn-sm btn-zmdi"><i class="zmdi zmdi-hc-fw zmdi-star"></i></button>
+      </div>
+      <div class="mb-s">
+        <button class="btn btn-primary btn-xs mr-s"><i class="zmdi zmdi-hc-fw zmdi-star"></i>Extra small button</button>
+        <button class="btn btn-default btn-xs mr-s">Extra small button</button>
+        <button class="btn btn-default btn-xs mr-s">Badge <span class="badge badge-red">42</span></button>
+        <button class="btn btn-default btn-xs btn-zmdi"><i class="zmdi zmdi-hc-fw zmdi-star"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default" data-ng-init="exampleValue='look at this'">
+  <div class="panel-heading panel-heading-main">
+    <h1 class="panel-title">Button directive</h1>
+  </div>
+  <div class="panel-body">
+    <msm-delete-button label-text="BUTTON_DELETE" is-mobile-menu-item="true" button-type="delete"></msm-delete-button>
+    <msm-create-button label-text="Create" is-mobile-menu-item="true" button-type="delete"></msm-create-button>
+    <hr>
+    <div class="p-s bg-gray-lighter">
+      <msm-mobile-menu-item target-state="'test'" label-text="'Foo'" preview-value="exampleValue" icon="'icon-close'"></msm-mobile-menu-item>
+      <span ui-view="mobile-menu-test"></span>
+      <msm-mobile-menu-item target-state="'test'" label-text="'Hallo Welt'" preview-value="exampleValue" icon="'zmdi zmdi-globe'"></msm-mobile-menu-item>
+    </div>
+  </div>
+</div>
