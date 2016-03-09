@@ -29,7 +29,8 @@ gulp.task('serve:dev', function () {
       baseDir: '.tmp',
       routes: {
         '/bower_components': 'bower_components',
-        '/source': 'source'
+        '/source': 'source',
+        '/components': 'source/kit/components'
       }
     }
   });
