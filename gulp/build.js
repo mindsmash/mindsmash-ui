@@ -11,5 +11,6 @@ gulp.task('default', ['build']); // default task
 gulp.task('build', gulpSequence(
   'styles:build',
   'scripts:build',
-  'inject:build'
+  'inject:build',
+  'copy:fonts'
 ));

@@ -1,9 +1,0 @@
-body { background-color: #F3F3F3; padding-top: 100px; }
-
-body > .container-fluid { max-width: 1280px; }
-
-.anchorjs-link, .anchorjs-link:hover { color: #DDD; text-decoration: none; }
-
-code { font-size: 12px; white-space: pre; }
-
-.hljs { background: transparent !important; padding: 0 !important; }

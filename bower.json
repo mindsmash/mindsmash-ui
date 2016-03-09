@@ -1,13 +1,13 @@
 {
   "name": "mindsmash-ui",
-  "description": "A ui kit by mindsmash",
+  "description": "A UI kit by mindsmash",
   "main": [
     "dist/mindsmash-ui.js",
     "dist/stylesheets/mindsmash-ui.scss",
     "dist/stylesheets/_variables.scss"
   ],
   "authors": [
-    "Jeremias Erbs, mindsmash GmbH, <jerry.erbs@mindsmash.com>"
+    "mindsmash GmbH, <mail@mindsmash.com>"
   ],
   "license": "MIT",
   "keywords": [
@@ -40,9 +40,7 @@
     "css-spaces": "~0.3.5",
     "material-design-iconic-font": "~2.2.0",
     "simple-line-icons": "~2.2.3",
-    "mindsmash-source-sans-pro": "~1.0.5"
-  },
-  "devDependencies": {
+    "mindsmash-source-sans-pro": "~1.0.5",
     "highlightjs": "~8.9.1",
     "holderjs": "~2.9.0"
   },
