@@ -1,4 +1,4 @@
-@import 'variables'; // @@gulp-remove-line
+
 @import 'mixins/animation.mixin';
 @import 'mixins/filter.mixin';
 @import 'mixins/flex.mixin';
@@ -6,8 +6,8 @@
 @import 'mixins/media.mixin';
 @import 'mixins/placeholder.mixin';
 
-@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap'; // @@gulp-remove-line
-@import '../../bower_components/css-spaces/source/spaces';
+
+@import '../../../../css-spaces/source/spaces';
 
 @import '../components/ui/msm-click-to-edit/msm-click-to-edit';
 @import '../components/ui/msm-checkbox/msm-checkbox';

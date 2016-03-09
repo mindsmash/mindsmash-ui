@@ -1,7 +1,7 @@
 (function (angular) {
   'use strict';
 
-  angular.module('app', [
+  angular.module('msm.docs', [
         'msm.components.ui',
         'msm.components.util',
         'ui.bootstrap',
