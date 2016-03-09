@@ -48,21 +48,21 @@ gulp.task('styles:build', ['styles:build:kit', 'styles:build:docs']);
 // ----------------------------------------------------------------------------------------------------
 
 /**
- * Compiles the SCSS of the mindsmash-ui kit to 'dist/kit/stylesheets/css/...'. Also puts the same file
- * to 'dist/docs/...' so that the docs can be started standalone.
+ * Compiles the SCSS of the mindsmash-ui kit to 'dist/stylesheets/css/...'. Also puts the same file
+ * to 'docs/...' so that the docs can be started standalone.
  */
 gulp.task('styles:build:kit', ['copy:styles'], function () {
   return gulp.src('source/kit/stylesheets/mindsmash-ui.scss')
       .pipe(scsslint())
       .pipe(sass({outputStyle: 'compact'}).on('error', gutil.log))
-      .pipe(gulp.dest('dist/kit/stylesheets/css'))
-      .pipe(gulp.dest('dist/docs'))
+      .pipe(gulp.dest('dist/stylesheets/css'))
+      .pipe(gulp.dest('docs/stylesheets'))
       .pipe(sass({outputStyle: 'compressed'}).on('error', gutil.log))
       .pipe(rename(function (path) {
         path.basename += ".min";
         return path;
       }))
-      .pipe(gulp.dest('dist/kit/stylesheets/css'));
+      .pipe(gulp.dest('dist/stylesheets/css'));
 });
 
 // ----------------------------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ gulp.task('styles:build:docs', ['styles:build:docs:app', 'styles:build:docs:vend
 gulp.task('styles:build:docs:app', function () {
   return gulp.src('source/docs/docs.scss')
       .pipe(sass({outputStyle: 'compact'}).on('error', gutil.log))
-      .pipe(gulp.dest('dist/docs'));
+      .pipe(gulp.dest('docs/stylesheets'));
 });
 
 // ----------------------------------------------------------------------------------------------------
@@ -93,5 +93,5 @@ gulp.task('styles:build:docs:vendor', function () {
       .pipe(mainBowerFiles())
       .pipe(filter('**/*.css'))
       .pipe(concat('vendor.css'))
-      .pipe(gulp.dest('dist/docs'));
+      .pipe(gulp.dest('docs/stylesheets'));
 });

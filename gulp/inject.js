@@ -50,7 +50,7 @@ gulp.task('inject:dev', function () {
 // ----------------------------------------------------------------------------------------------------
 
 /**
- * Copies the docs/index.html to 'dist/docs' and injects the following dependencies:
+ * Copies the docs/index.html to 'docs' and injects the following dependencies:
  *
  * 1. mindsmash-ui kit
  * 2. Vendor CSS and JS
@@ -58,9 +58,9 @@ gulp.task('inject:dev', function () {
  */
 gulp.task('inject:build', function () {
   return gulp.src('source/docs/index.html')
-      .pipe(gulp.dest('dist/docs'))
-      .pipe(inject(gulp.src('dist/docs/mindsmash-ui.*', {read: false}), {name: 'kit', relative: true}))
-      .pipe(inject(gulp.src('dist/docs/vendor.*', {read: false}), {name: 'vendor', relative: true}))
-      .pipe(inject(gulp.src('dist/docs/docs.*', {read: false}), {name: 'docs', relative: true}))
-      .pipe(gulp.dest('dist/docs'));
+      .pipe(gulp.dest('docs'))
+      .pipe(inject(gulp.src('docs/**/mindsmash-ui.*', {read: false}), {name: 'kit', relative: true}))
+      .pipe(inject(gulp.src('docs/**/vendor.*', {read: false}), {name: 'vendor', relative: true}))
+      .pipe(inject(gulp.src('docs/**/docs.*', {read: false}), {name: 'docs', relative: true}))
+      .pipe(gulp.dest('docs'));
 });

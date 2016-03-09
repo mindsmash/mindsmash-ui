@@ -18,19 +18,22 @@ var REMOVE_LINE_TOKEN = /.*@@gulp-remove-line.*/g;
 gulp.task('copy:styles', function () {
   gulp.src('source/kit/stylesheets/**/*')
       .pipe(replace(REMOVE_LINE_TOKEN, ''))
-      .pipe(replace('../../../bower_components', '../../../..'))
-      .pipe(gulp.dest('dist/kit/stylesheets/'));
+      .pipe(replace('../../bower_components', '../../..'))
+      .pipe(gulp.dest('dist/stylesheets/'));
 
   return gulp.src('source/kit/components/**/*.scss')
-      .pipe(gulp.dest('dist/kit/components/'));
+      .pipe(gulp.dest('dist/components/'));
 });
 
 // ----------------------------------------------------------------------------------------------------
 
+/**
+ * Copies and flattens fonts to docs/fonts
+ */
 gulp.task('copy:fonts', function(){
   return gulp.src('bower.json')
       .pipe(mainBowerFiles())
       .pipe(filter('**/*.{eot,svg,ttf,woff,woff2}'))
       .pipe(flatten())
-      .pipe(gulp.dest('dist/docs/fonts'));
+      .pipe(gulp.dest('docs/fonts'));
 });

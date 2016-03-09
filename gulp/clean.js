@@ -4,8 +4,8 @@ var del = require('del');
 // ----------------------------------------------------------------------------------------------------
 
 /**
- * Cleans up 'dist' and '.tmp'.
+ * Cleans up 'dist', 'docs' and '.tmp'.
  */
 gulp.task('clean', function() {
-  return del.sync(['dist/**', '.tmp/**']);
+  return del.sync(['dist/**', 'docs/**', '.tmp/**']);
 });
