@@ -78,7 +78,7 @@ gulp.task('styles:build:docs', ['styles:build:docs:app', 'styles:build:docs:vend
  * Compiles the SCSS of the docs
  */
 gulp.task('styles:build:docs:app', function () {
-  return gulp.src('source/docs/docs.scss')
+  return gulp.src('source/docs/app/docs.scss')
       .pipe(sass({outputStyle: 'compact'}).on('error', gutil.log))
       .pipe(gulp.dest('docs/stylesheets'));
 });
