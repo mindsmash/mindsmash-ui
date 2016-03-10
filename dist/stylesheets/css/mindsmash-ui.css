@@ -3787,11 +3787,13 @@ small, .small { font-size: 87.5%; }
 
 blockquote { font-weight: 300; }
 
+strong { font-weight: 600 !important; }
+
 .light { font-weight: 300 !important; }
 
 .normal { font-weight: 400 !important; }
 
-.bold { font-weight: 700 !important; }
+.bold { font-weight: 600 !important; }
 
 .size-normal, dt, .msm-label, .control-label { font-size: 16px; }
 
