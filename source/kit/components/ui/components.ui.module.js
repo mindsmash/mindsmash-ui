@@ -4,5 +4,6 @@ angular.module('msm.components.ui', [
   'ui-notification',
   'ui.bootstrap',
   'ui.select',
-  'ngSanitize'
+  'ngSanitize',
+  'ui.bootstrap.datetimepicker'
 ]);

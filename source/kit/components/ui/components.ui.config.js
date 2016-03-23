@@ -21,4 +21,25 @@ angular.module('msm.components.ui')
 .config(function(uibDatepickerPopupConfig) {
   uibDatepickerPopupConfig.showButtonBar = false;
   uibDatepickerPopupConfig.datepickerPopupTemplateUrl = 'components/ui/msm-datepicker/msm-datepicker-popup.html';
+})
+
+.constant('uiDatetimePickerConfig', {
+  dateFormat: 'yyyy-MM-dd HH:mm:ss',
+  defaultTime: '00:00:00',
+  html5Types: {
+    date: 'yyyy-MM-dd',
+    'datetime-local': 'yyyy-MM-ddTHH:mm:ss.sss',
+    'month': 'yyyy-MM'
+  },
+  initialPicker: 'date',
+  reOpenDefault: false,
+  enableDate: true,
+  enableTime: true,
+  buttonBar: {
+    show: false
+  },
+  closeOnDateSelection: true,
+  appendToBody: true,
+  altInputFormats: [],
+  ngModelOptions: {}
 });
