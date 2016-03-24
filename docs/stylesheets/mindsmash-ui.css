@@ -3417,7 +3417,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .datetime-picker-dropdown .uib-decrement .glyphicon-chevron-down:before { content: "\25BC"; }
 
-.datetime-picker-dropdown .uib-time input { width: 55px !important; }
+.datetime-picker-dropdown .uib-time input { margin-left: 10px; width: 55px !important; }
 
 .datetime-picker-dropdown table { margin: 0; outline: none; width: 100%; }
 
