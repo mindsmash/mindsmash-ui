@@ -182,19 +182,19 @@
           </form>
         </div>
         <div class="panel-footer" hljs>
-          <form class="form-horizontal" msm-toggle-form="vm.isEditable" msm-delay-form="vm.model">
-            <div class="form-group">
-              <label for="input" class="col-sm-2 control-label">Text</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="input" ng-model="vm.model.text1" msm-toggle-field>
-              </div>
-            </div>
-            <div class="form-group" ng-if="vm.isEditable">
-              <div class="col-sm-10 col-sm-offset-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </div>
-          </form>
+<form class="form-horizontal" msm-toggle-form="vm.isEditable" msm-delay-form="vm.model">
+  <div class="form-group">
+    <label for="input" class="col-sm-2 control-label">Text</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="input" ng-model="vm.model.text1" msm-toggle-field>
+    </div>
+  </div>
+  <div class="form-group" ng-if="vm.isEditable">
+    <div class="col-sm-10 col-sm-offset-2">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
         </div>
       </div>
     </div>
@@ -221,15 +221,15 @@
         </form>
       </div>
       <div class="panel-footer" hljs>
-        <div class="form-group">
-          <label for="inputDate" class="col-sm-2 control-label">Date</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" uib-datepicker-popup ng-model="date" is-open="opened"
-                   ng-click="opened = !opened"/>
-            <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None'
-              }}</em></span>
-          </div>
-        </div>
+<div class="form-group">
+  <label for="inputDate" class="col-sm-2 control-label">Date</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" uib-datepicker-popup ng-model="date" is-open="opened"
+           ng-click="opened = !opened"/>
+    <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None'
+      }}</em></span>
+  </div>
+</div>
       </div>
     </div>
   </div>
@@ -263,25 +263,25 @@
         </form>
       </div>
        <div class="panel-footer" hljs>
-         <div class="form-group">
-           <label for="datetime" class="col-sm-2 control-label">Date & time</label>
-           <div class="col-sm-10">
-             <div class="input-group">
-               <input id="publishDate" type="text" class="form-control" name="datetime"
-                      datetime-picker="dd MMM yyyy HH:mm"
-                      ng-model="dtc.datetime"
-                      is-open="isOpen"
-                      timepicker-options="{'showMeridian': false}"/>
-                <span class="input-group-addon">
-                  <a ng-click="isOpen = !isOpen"><i class="zmdi zmdi-calendar"></i></a>
-                </span>
-             </div>
-              <span class="help-block pull-right">Selected date & time is: <em>{{ (dtc.datetime | date:'MMM dd, yyyy HH:mm:ss')
-                || 'None' }}</em></span>
-           </div>
-           </div>
-         </div>
+<div class="form-group">
+ <label for="datetime" class="col-sm-2 control-label">Date & time</label>
+ <div class="col-sm-10">
+   <div class="input-group">
+     <input id="publishDate" type="text" class="form-control" name="datetime"
+            datetime-picker="dd MMM yyyy HH:mm"
+            ng-model="dtc.datetime"
+            is-open="isOpen"
+            timepicker-options="{'showMeridian': false}"/>
+      <span class="input-group-addon">
+        <a ng-click="isOpen = !isOpen"><i class="zmdi zmdi-calendar"></i></a>
+      </span>
+   </div>
+    <span class="help-block pull-right">Selected date & time is: <em>{{ (dtc.datetime | date:'MMM dd, yyyy HH:mm:ss')
+      || 'None' }}</em></span>
+ </div>
+</div>
        </div>
+     </div>
     </div>
   </div>
 </section>
