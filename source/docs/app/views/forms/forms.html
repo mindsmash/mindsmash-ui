@@ -212,8 +212,10 @@
           <div class="form-group">
             <label for="inputDate" class="col-sm-2 control-label">Date</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" uib-datepicker-popup ng-model="date" is-open="opened" ng-click="opened = !opened"/>
-              <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None' }}</em></span>
+              <input type="text" class="form-control" uib-datepicker-popup ng-model="date" is-open="opened"
+                     ng-click="opened = !opened"/>
+              <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None'
+                }}</em></span>
             </div>
           </div>
         </form>
@@ -222,8 +224,10 @@
 <div class="form-group">
   <label for="inputDate" class="col-sm-2 control-label">Date</label>
   <div class="col-sm-10">
-    <input type="text" class="form-control" uib-datepicker-popup ng-model="date" is-open="opened" ng-click="opened = !opened"/>
-    <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None' }}</em></span>
+    <input type="text" class="form-control" uib-datepicker-popup ng-model="date" is-open="opened"
+           ng-click="opened = !opened"/>
+    <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None'
+      }}</em></span>
   </div>
 </div>
       </div>
@@ -231,6 +235,56 @@
   </div>
 </section>
 
+<section class="panel panel-default" ng-controller="FormsController as dtc">
+  <div class="panel-heading">
+    <h1 class="panel-title">Datetimepicker</h1>
+  </div>
+  <div class="panel-body">
+    <div class="example panel panel-default">
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="datetime" class="col-sm-2 control-label">Date & time</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <input id="publishDate" type="text" class="form-control" name="datetime"
+                       datetime-picker="dd MMM yyyy HH:mm"
+                       ng-model="dtc.datetime"
+                       is-open="isOpen"
+                       timepicker-options="{'showMeridian': false}"/>
+                <span class="input-group-addon">
+                  <a ng-click="isOpen = !isOpen"><i class="zmdi zmdi-calendar"></i></a>
+                </span>
+              </div>
+              <span class="help-block pull-right">Selected date & time is: <em>{{ (dtc.datetime | date:'MMM dd, yyyy HH:mm:ss')
+                || 'None' }}</em></span>
+            </div>
+          </div>
+        </form>
+      </div>
+       <div class="panel-footer" hljs>
+<div class="form-group">
+ <label for="datetime" class="col-sm-2 control-label">Date & time</label>
+ <div class="col-sm-10">
+   <div class="input-group">
+     <input id="publishDate" type="text" class="form-control" name="datetime"
+            datetime-picker="dd MMM yyyy HH:mm"
+            ng-model="dtc.datetime"
+            is-open="isOpen"
+            timepicker-options="{'showMeridian': false}"/>
+      <span class="input-group-addon">
+        <a ng-click="isOpen = !isOpen"><i class="zmdi zmdi-calendar"></i></a>
+      </span>
+   </div>
+    <span class="help-block pull-right">Selected date & time is: <em>{{ (dtc.datetime | date:'MMM dd, yyyy HH:mm:ss')
+      || 'None' }}</em></span>
+ </div>
+</div>
+       </div>
+     </div>
+    </div>
+  </div>
+</section>
 
 <section class="panel panel-default">
   <div class="panel-heading">

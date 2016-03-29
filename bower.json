@@ -43,7 +43,8 @@
     "mindsmash-source-sans-pro": "~1.0.5",
     "highlightjs": "~8.9.1",
     "holderjs": "~2.9.0",
-    "angular-highlightjs": "~0.5.1"
+    "angular-highlightjs": "~0.5.1",
+    "bootstrap-ui-datetime-picker": "^2.2.3"
   },
   "overrides": {
     "highlightjs": {
