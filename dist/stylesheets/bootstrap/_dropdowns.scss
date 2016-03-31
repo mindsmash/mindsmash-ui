@@ -1,0 +1,27 @@
+.dropdown-menu {
+  padding: 0;
+  @include box-shadow(0 1px 1px rgba(0,0,0,.05));
+
+  > li > a {
+    padding: 8px 16px;
+  }
+
+  .divider {
+    margin: 0;
+  }
+
+  i {
+    margin-left: -4px;
+    margin-right: 4px;
+  }
+}
+
+// Active state
+.dropdown-menu > .active > a {
+  &,
+  &:hover,
+  &:focus {
+    border-left: 4px solid $msm-blue;
+    padding-left: 12px;
+  }
+}

@@ -1,0 +1,152 @@
+/**
+* Use with .navbar (bootstrap) and .msm-navbar (mindsmash-ui)
+*/
+.msm-navbar-flex {
+  display: flex;
+  margin: 0 auto;
+  max-width: $msm-layout-max-width;
+  position: relative;
+
+  &.nav-search-open {
+    .nav-brand {
+      top: -60px;
+    }
+  }
+
+  .nav > {
+    .nav-item {
+      cursor: pointer;
+      float: left;
+
+      .nav-item-icon {
+        font-size: 20px;
+        font-weight: 600;
+        padding: 20px 15px;
+
+        @media screen and (min-width: $screen-md-min) {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+      .nav-item-profile {
+        padding-top: 16px;
+        padding-bottom: 14px;
+
+        .profile-thumb {
+          background: $msm-navbar-text;
+          border-radius: 26px;
+          float: left;
+          height: 30px;
+          width: 30px;
+        }
+
+        > i {
+          display: inline-block;
+          float: left;
+          font-size: 24px;
+          margin-left: 10px;
+          margin-top: 4px;
+        }
+      }
+
+    }
+  }
+  .nav-brand-box {
+    display: block;
+    height: 60px;
+    left: calc(50% - 120px);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    transition: all ease-in-out .15s;
+    width: 240px;
+    z-index: 2;
+  }
+
+  .nav-brand {
+    font-size: 24px;
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    top: 0;
+    transition: all ease-in-out .15s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-search {
+    flex: auto;
+    height: 60px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .search-icon {
+    color: $msm-navbar-text;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    text-decoration: none;
+    z-index: 3;
+
+    > i {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+  }
+
+  .search-icon-close {
+    height: 36px;
+    padding: 8px;
+    right: 16px;
+    top: 12px;
+    width: 36px;
+  }
+
+  .search-icon-open {
+    height: 60px;
+    padding: 20px 15px;
+    right: 0;
+    top: 0;
+
+    @media screen and (min-width: $screen-md-min) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    &:hover {
+      background-color: $msm-navbar-hover;
+    }
+  }
+
+  .form-control {
+    background-color: $msm-navbar-active;
+    border-radius: 36px;
+    border: 0;
+    box-shadow: none;
+    color: $msm-navbar-text;
+    height: 36px;
+    line-height: 18px;
+    opacity: 0;
+    outline: none;
+    padding: 0 20px;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    transition: all ease-in-out .3s;
+    width: 0;
+
+    &:focus {
+      background-color: $msm-navbar-input-active;
+    }
+
+    &.open {
+      opacity: 1;
+      width: calc(100% - 25px);
+    }
+  }
+}

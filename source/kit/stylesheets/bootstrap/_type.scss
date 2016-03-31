@@ -1,0 +1,96 @@
+h1, .h1 { line-height: floor($font-size-h1 * $headings-line-height); }
+h2, .h2 { line-height: floor($font-size-h2 * $headings-line-height); }
+h3, .h3 { line-height: floor($font-size-h3 * $headings-line-height); }
+h4, .h4 { line-height: floor($font-size-h4 * $headings-line-height); }
+h5, .h5 { line-height: floor($font-size-h5 * $headings-line-height); }
+h6, .h6 { line-height: floor($font-size-h6 * $headings-line-height); }
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  margin-top: #{(2/3)}em;
+  margin-bottom: #{(1/3)}em;
+
+  small,
+  .small {
+    font-weight: 300;
+  }
+}
+
+
+small, .small {
+  font-size: (100% * $font-size-small / $font-size-base);
+}
+
+
+blockquote {
+  font-weight: 300;
+}
+
+
+strong {
+  font-weight: 600 !important;
+}
+
+.light {
+  font-weight: 300 !important;
+}
+.normal {
+  font-weight: 400 !important;
+}
+.bold {
+  font-weight: 600 !important;
+}
+
+.size-normal {
+  font-size: $font-size-base;
+}
+
+
+
+dt, .msm-label {
+  @extend .size-normal;
+
+  color: $msm-gray;
+  font-weight: 400;
+}
+
+
+
+dl {
+  dt, dd {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  dd {
+    margin-bottom: 12px;
+  }
+}
+
+.dl-horizontal {
+  dt, dd {
+    line-height: 32px;
+    display: inline-block;
+  }
+  dt {
+    clear: left;
+    float: left;
+    margin-right: 24px;
+    text-align: right;
+    width: calc(35% - 12px);
+    text-transform: uppercase;
+  }
+  dd {
+    margin-left: 0;
+    width: calc(65% - 12px);
+  }
+
+  @include xs {
+    dt, dd {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+}

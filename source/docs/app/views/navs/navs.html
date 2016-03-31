@@ -1,0 +1,134 @@
+<div class="row">
+  <div class="col-md-8">
+    <section class="panel panel-default">
+      <div class="panel-heading panel-heading-main">
+        <h1 class="panel-title">Navs</h1>
+      </div>
+      <div class="panel-body">
+
+        <!-- Wizard -->
+        <h3>Wizard</h3>
+        <msm-wizard ng-model="sdf" states="vm.states" active="vm.active" class="m-s"></msm-wizard>
+        <br>
+        <div class="well bg-gray">
+          <msm-wizard ng-model="sdf" states="vm.states" active="vm.active" class="m-s inverse"></msm-wizard>
+        </div>
+
+        <!-- Tabs -->
+        <div class="row">
+          <div class="col-lg-6">
+            <h3>Tabs</h3>
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+              <li class="disabled"><a>Disabled</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                  Dropdown <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#dropdown1" data-toggle="tab">Action</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
+                </ul>
+              </li>
+            </ul>
+
+            <h3 class="mt-s">Tabs (justified)</h3>
+            <ul class="nav nav-tabs nav-justified">
+              <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+              <li class="disabled"><a>Disabled with long text may overflow</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                  Dropdown <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#dropdown1" data-toggle="tab">Action</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pills -->
+          <div class="col-lg-6">
+            <h3>Pills</h3>
+            <ul class="nav nav-pills">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Profile</a></li>
+              <li class="disabled"><a href="#">Disabled</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  Dropdown <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+            <br>
+            <ul class="nav nav-pills nav-stacked">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Profile</a></li>
+              <li class="disabled"><a href="#">Disabled</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                  Dropdown <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="text-muted text-uppercase">Nav in panel</div>
+      </div>
+      <ul class="nav nav-default nav-panel pb-s">
+        <li class="active"><a href="#"><i class="zmdi zmdi-globe"></i> Home</a></li>
+        <li><a href="#"><i class="zmdi zmdi-account"></i> Profile</a></li>
+        <li><a href="#"><i class="zmdi zmdi-search"></i> Search <span class="badge badge-default pull-right">3</span></a></li>
+        <li class="divider"></li>
+        <li><a href="#"><i class="zmdi zmdi-settings"></i> Account</a></li>
+        <li class="disabled"><a href="#"><i class="zmdi zmdi-globe"></i> Disabled</a></li>
+      </ul>
+    </div>
+
+    <div class="panel panel-default panel-sm">
+      <div class="panel-body">
+        <div class="text-muted text-uppercase">Nav in panel-sm</div>
+      </div>
+      <ul class="nav nav-default nav-panel pb-xs">
+        <li class="active"><a href="#"><i class="zmdi zmdi-globe"></i> Home</a></li>
+        <li><a href="#"><i class="zmdi zmdi-account"></i> Profile</a></li>
+        <li><a href="#"><i class="zmdi zmdi-search"></i> Search <span class="badge badge-default pull-right">3</span></a></li>
+      </ul>
+    </div>
+
+    <div class="panel panel-default panel-xs">
+      <div class="panel-body">
+        <div class="text-muted text-uppercase">Nav in panel-sm</div>
+      </div>
+      <ul class="nav nav-default nav-panel">
+        <li class="active"><a href="#"><i class="zmdi zmdi-globe"></i> Home</a></li>
+        <li><a href="#"><i class="zmdi zmdi-account"></i> Profile</a></li>
+        <li><a href="#"><i class="zmdi zmdi-search"></i> Search <span class="badge badge-default pull-right">3</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>

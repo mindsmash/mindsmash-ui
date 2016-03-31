@@ -1,0 +1,16 @@
+.label {
+  display: inline-block;
+  line-height: $line-height-base;
+  padding: $padding-xs-vertical + 1 $padding-xs-horizontal;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.label.label-muted {
+  background-color: $msm-gray-lighter;
+  color: $msm-gray;
+}
+
+a.label.label-muted:hover {
+  color: $msm-gray;
+}

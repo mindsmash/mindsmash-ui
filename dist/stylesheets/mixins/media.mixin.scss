@@ -1,0 +1,107 @@
+// Media query helpers
+// ============================================
+
+// breakpoint helpers based on bootstrap's breakpoints
+// --------------------------------------------
+
+@mixin xs {
+  @media #{screen} and (max-width: #{$screen-xs-max}) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media #{screen} and (min-width: #{$screen-sm-min}) and (max-width: #{$screen-sm-max}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media #{screen} and (min-width: #{$screen-md-min}) and (max-width: #{$screen-md-max}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media #{screen} and (min-width: #{$screen-lg-min}) and (max-width: #{$screen-lg-max}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media #{screen} and (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+
+
+// inclusive mixins
+// --------------------------------------------
+
+@mixin sm-and-down {
+  @media #{screen} and (max-width: #{$screen-sm-max}) {
+    @content;
+  }
+}
+
+@mixin sm-and-up {
+  @media #{screen} and (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+
+@mixin md-and-down {
+  @media #{screen} and (max-width: #{$screen-md-max}) {
+    @content;
+  }
+}
+
+@mixin md-and-up {
+  @media #{screen} and (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+
+@mixin lg-and-down {
+  @media #{screen} and (max-width: #{$screen-lg-max}) {
+    @content;
+  }
+}
+
+@mixin lg-and-up {
+  @media #{screen} and (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+
+
+
+// specific
+// --------------------------------------------
+
+@mixin breakpoint-max($w) {
+  @media #{$screen} and (max-width: $w) {
+    @content;
+  }
+}
+
+@mixin breakpoint-min($w) {
+  @media #{$screen} and (min-width: $w) {
+    @content;
+  }
+}
+
+
+
+// retina
+// --------------------------------------------
+
+@mixin media-retina() {
+  @media
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+    @content
+  }
+}

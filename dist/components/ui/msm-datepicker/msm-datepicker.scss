@@ -1,0 +1,110 @@
+.msm-datepicker {
+  border-radius: 0;
+  border: 0;
+  bottom: 0 !important;
+  box-shadow: none;
+  left: 0 !important;
+  margin: 0;
+  padding: 8px;
+  position: fixed;
+  right: 0 !important;
+  top: 0 !important;
+  z-index: 1050;
+
+  table {
+    margin: 0;
+    outline: none;
+    width: 100%;
+
+    .btn-sm {
+      font-size: 16px;
+    }
+
+    .caret {
+      margin-left: .4em;
+    }
+
+    th button {
+      width: 100%;
+    }
+
+    button {
+      background-color: transparent;
+      border-color: transparent;
+      color: $msm-black;
+      display: block;
+      padding: 10px;
+
+      i {
+        font-weight: 600;
+        padding: 0;
+      }
+
+      &:active,
+      &:focus,
+      &:active:focus,
+      &:hover,
+      &:active:hover,
+      &.btn-default[disabled]:hover,
+      &.btn-default[disabled]:focus {
+        background-color: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        color: inherit;
+        outline: none;
+      }
+
+      &.current {
+        background-color: $gray-lighter;
+
+        &:hover, &:focus {
+          background-color: $gray-lighter;
+          border-color: transparent;
+          outline: none;
+        }
+
+        * {
+          color: $btn-default-color;
+        }
+      }
+
+      &.active {
+        background-color: $btn-primary-bg;
+        border-color: transparent;
+        box-shadow: none;
+
+        &:hover,
+        &:focus {
+          background-color: $btn-primary-bg;
+          border-color: transparent;
+          outline: none;
+        }
+
+        * {
+          color: $btn-primary-color;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .msm-datepicker {
+    margin-top: 1px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    bottom: inherit !important;
+    left: inherit !important;
+    position: absolute;
+    right: inherit !important;
+    top: inherit !important;
+
+    table {
+      width: auto;
+
+      button {
+        padding: 6px 10px;
+      }
+    }
+  }
+}

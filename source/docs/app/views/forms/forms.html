@@ -1,0 +1,305 @@
+<form class="form-horizontal" name="msmSampleForm" msm-form-submit="vm.submit()">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Basic Form</h3>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="inputText" class="col-sm-2 control-label">Text</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputText" placeholder="Text">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputText2" class="col-sm-2 control-label">Text with Addon</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon">Prefix</span>
+            <input type="text" class="form-control" id="inputText2" placeholder="Text">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="selectText" class="col-sm-2 control-label">Select</label>
+        <div class="col-sm-10">
+          <select class="form-control" id="selectText" placeholder="Select something">
+            <option>Option 1</option>
+            <option>Option 2</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputText" class="col-sm-2 control-label">Text (disabled)</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputText" placeholder="Text (disabled)" disabled>
+        </div>
+      </div>
+      <div class="form-group form-group-checkbox">
+        <label for="checkBoolean" class="col-sm-2 control-label">Checkbox</label>
+        <div class="col-sm-10">
+          <msm-checkbox ng-model="boolModel" id="checkBoolean"></msm-checkbox>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="radioExample" class="col-sm-2 control-label">Radio</label>
+        <div class="col-sm-10">
+          <div class="radio">
+            <label>
+              <input type="radio" id="radioExample">
+              <i class="zmdi zmdi-globe"></i> Activate to be cool
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputTextarea" class="col-sm-2 control-label">Textarea</label>
+        <div class="col-sm-10">
+          <textarea class="form-control" id="inputTextarea" placeholder="Textarea" rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer panel-actions">
+      <div class="row">
+        <div class="col-sm-10 col-sm-push-2">
+          <msm-form-submit-button label="Save now" form-ctrl="msmSampleForm"></msm-form-submit-button>
+          <button type="button" class="btn btn-default"><i class="zmdi zmdi-close"></i> Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div class="panel-footer pt-m">
+      <p><b>Note:</b> Use the helper class <code>.form-group-checkbox</code> to fix margin offsets for form groups with checkboxes.</p>
+    </div>
+  </div>
+</form>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">More Form Styles</h3>
+  </div>
+  <div class="panel-body">
+    <h3>Validation States</h3>
+    <div class="example mt-s mb-l">
+      <form class="form-horizontal">
+        <div class="form-group has-success">
+          <label class="col-sm-2 control-label" for="inputSuccess">Input with success</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputSuccess">
+            <p class="help-block">This is some help text.</p>
+          </div>
+        </div>
+        <div class="form-group has-warning">
+          <label class="col-sm-2 control-label" for="inputWarning">Input with warning</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputWarning">
+            <p class="help-block">This is some help text.</p>
+          </div>
+        </div>
+        <div class="form-group has-error">
+          <label class="col-sm-2 control-label" for="inputError">Input with error</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="zmdi zmdi-edit"></i></span>
+              <input type="text" class="form-control" id="formGroupInputNormal" placeholder="Normal input">
+            </div>
+            <p class="help-block">This is some help text.</p>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <h3>Control Sizing</h3>
+    <div class="example mt-s mb-l">
+      <form class="form-horizontal">
+        <div class="form-group form-group-lg">
+          <label class="col-sm-2 control-label" for="formGroupInputLarge">Large label</label>
+          <div class="col-sm-9">
+            <div class="input-group input-group-lg">
+              <span class="input-group-addon"><i class="zmdi zmdi-edit"></i></span>
+              <input type="text" class="form-control" id="formGroupInputLarge" placeholder="Large input">
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <msm-checkbox ng-model="boolModel2" id="checkBoolean"></msm-checkbox>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="formGroupInputNormal">Normal label</label>
+          <div class="col-sm-9">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="zmdi zmdi-edit"></i></span>
+              <input type="text" class="form-control" id="formGroupInputNormal" placeholder="Normal input">
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <msm-checkbox ng-model="boolModel3" id="checkBoolean2"></msm-checkbox>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <label class="col-sm-2 control-label" for="formGroupInputSmall">Small label</label>
+          <div class="col-sm-9">
+            <div class="input-group input-group-sm">
+              <span class="input-group-addon"><i class="zmdi zmdi-edit"></i></span>
+              <input type="text" class="form-control" id="formGroupInputSmall" placeholder="Small input">
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <msm-checkbox ng-model="boolModel4" id="checkBoolean3"></msm-checkbox>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div ng-controller="EditableTextController as etc">
+      <button class="btn btn-sm btn-default mt-xxs pull-right" ng-click="etc.isEditable = !etc.isEditable">Toggle</button>
+      <h3>Toggle State</h3>
+      <div class="example">
+        <div class="mt-s mb-l">
+          <form class="form-horizontal" ng-submit="etc.submit()" ng-reset="etc.reset()" msm-toggle-form="etc.isEditable" msm-delay-form="etc.model">
+            <div class="form-group">
+              <label for="inputEditableText" class="col-sm-2 control-label">Text</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEditableText" ng-model="etc.model.text1" msm-toggle-field>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEditableText2" class="col-sm-2 control-label">Text 2</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEditableText2" ng-model="etc.model.text2" msm-toggle-field="etc.model.text2 | uppercase">
+              </div>
+            </div>
+            <div class="form-group" ng-if="etc.isEditable">
+              <div class="col-sm-10 col-sm-offset-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-default">Reset</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="panel-footer" hljs>
+<form class="form-horizontal" msm-toggle-form="vm.isEditable" msm-delay-form="vm.model">
+  <div class="form-group">
+    <label for="input" class="col-sm-2 control-label">Text</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="input" ng-model="vm.model.text1" msm-toggle-field>
+    </div>
+  </div>
+  <div class="form-group" ng-if="vm.isEditable">
+    <div class="col-sm-10 col-sm-offset-2">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">Datepicker</h1>
+  </div>
+  <div class="panel-body">
+    <div class="example panel panel-default">
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="inputDate" class="col-sm-2 control-label">Date</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" uib-datepicker-popup ng-model="date" is-open="opened"
+                     ng-click="opened = !opened"/>
+              <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None'
+                }}</em></span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer" hljs>
+<div class="form-group">
+  <label for="inputDate" class="col-sm-2 control-label">Date</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" uib-datepicker-popup ng-model="date" is-open="opened"
+           ng-click="opened = !opened"/>
+    <span class="help-block pull-right">Selected date is: <em>{{ (date | date:'fullDate') || 'None'
+      }}</em></span>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel panel-default" ng-controller="FormsController as dtc">
+  <div class="panel-heading">
+    <h1 class="panel-title">Datetimepicker</h1>
+  </div>
+  <div class="panel-body">
+    <div class="example panel panel-default">
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="datetime" class="col-sm-2 control-label">Date & time</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <input id="publishDate" type="text" class="form-control" name="datetime"
+                       datetime-picker="dd MMM yyyy HH:mm"
+                       ng-model="dtc.datetime"
+                       is-open="isOpen"
+                       timepicker-options="{'showMeridian': false}"/>
+                <span class="input-group-addon">
+                  <a ng-click="isOpen = !isOpen"><i class="zmdi zmdi-calendar"></i></a>
+                </span>
+              </div>
+              <span class="help-block pull-right">Selected date & time is: <em>{{ (dtc.datetime | date:'MMM dd, yyyy HH:mm:ss')
+                || 'None' }}</em></span>
+            </div>
+          </div>
+        </form>
+      </div>
+       <div class="panel-footer" hljs>
+<div class="form-group">
+ <label for="datetime" class="col-sm-2 control-label">Date & time</label>
+ <div class="col-sm-10">
+   <div class="input-group">
+     <input id="publishDate" type="text" class="form-control" name="datetime"
+            datetime-picker="dd MMM yyyy HH:mm"
+            ng-model="dtc.datetime"
+            is-open="isOpen"
+            timepicker-options="{'showMeridian': false}"/>
+      <span class="input-group-addon">
+        <a ng-click="isOpen = !isOpen"><i class="zmdi zmdi-calendar"></i></a>
+      </span>
+   </div>
+    <span class="help-block pull-right">Selected date & time is: <em>{{ (dtc.datetime | date:'MMM dd, yyyy HH:mm:ss')
+      || 'None' }}</em></span>
+ </div>
+</div>
+       </div>
+     </div>
+    </div>
+  </div>
+</section>
+
+<section class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">In-place editing</h1>
+  </div>
+  <div class="panel-body">
+    <div ng-controller="ClickToEditController as cte">
+      <div msm-click-to-edit="cte.model.text1" on-change="cte.changed(value)"
+           placeholder="Text 1 placeholder"></div>
+      <div msm-click-to-edit="cte.model.text2" on-change="cte.changed(value)"
+           style="text-decoration: underline" edit-mode="cte.model.isEditing"></div>
+      <div>
+        <span ng-show="cte.model.isEditing">You are editing the second text.</span>
+        <span ng-show="!cte.model.isEditing">You are not editing the second text.</span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,64 @@
+.control-label {
+  @extend .msm-label;
+  color: $msm-black;
+}
+
+.form-control {
+  box-shadow: none !important;
+
+  &:focus {
+    box-shadow: none !important;
+  }
+}
+
+.form-group {
+  clear: both;
+
+  .help-block {
+    font-size: 14px;
+  }
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.input-group-addon {
+  color: $msm-gray-dark;
+
+  .zmdi {
+    color: $msm-gray-darker;
+    width: 32px;
+    margin: -11px;
+  }
+}
+
+.input-group-addon.input-sm, .input-group-sm > .input-group-addon,
+.input-group-sm > .input-group-btn > .input-group-addon.btn {
+  .zmdi {
+    width: 32px;
+    margin: -12px;
+  }
+}
+
+.input-group-addon.input-lg, .input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .input-group-addon.btn {
+  .zmdi {
+    width: 32px;
+    margin: -16px;
+  }
+}
+
+.form-group .radio {
+  label {
+    padding-left: 30px;
+
+    input[type="radio"] {
+      margin-left: -30px;
+    }
+  }
+}
+
+select.form-control {
+  text-indent: 8px;
+}

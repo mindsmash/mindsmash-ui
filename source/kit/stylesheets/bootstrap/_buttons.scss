@@ -1,0 +1,31 @@
+.btn {
+  @include animate-easing(background-color, 0.2s);
+}
+
+.btn {
+  i { margin-right: 4px; }
+  .badge { margin-top: -2px; }
+}
+
+.btn-lg {
+  i { margin-right: 6px; }
+}
+
+.btn-sm {
+  line-height: 18px;
+
+  i { margin-right: 3px; }
+  .badge { margin-top: -6px; top: 1px; }
+}
+
+.btn-xs {
+  line-height: 18px;
+
+  i { margin-right: 2px; }
+  .badge { margin-top: -6px; top: 1px; }
+}
+
+.btn-zmdi i {
+  margin: 0;
+}
+

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" ng-app="msm.docs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+  <base href="/" />
+
+  <title>mindsmash-UI | Pattern Library</title>
+
+  <!-- bower:css -->
+  <!-- endbower -->
+
+  <!-- vendor:css -->
+  <link rel="stylesheet" href="stylesheets/vendor.css">
+  <!-- endinject -->
+
+  <!-- kit:css -->
+  <link rel="stylesheet" href="stylesheets/mindsmash-ui.css">
+  <!-- endinject -->
+
+  <!-- docs:css -->
+  <link rel="stylesheet" href="stylesheets/docs.css">
+  <!-- endinject -->
+</head>
+
+<body>
+  <ng-include src="'app/templates/nav.html'"></ng-include>
+
+  <div class="container-fluid modal-blur">
+    <div data-ui-view></div>
+  </div>
+
+  <!-- bower:js -->
+  <!-- endbower -->
+
+  <!-- vendor:js -->
+  <script src="scripts/vendor.js"></script>
+  <!-- endinject -->
+
+  <!-- kit:js -->
+  <script src="scripts/mindsmash-ui.js"></script>
+  <!-- endinject -->
+
+  <!-- docs:js -->
+  <script src="scripts/docs.js"></script>
+  <!-- endinject -->
+</body>
+</html>

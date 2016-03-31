@@ -1,0 +1,65 @@
+<div class="panel panel-default">
+  <div class="panel-heading panel-heading-main">
+    <h1 class="panel-title">Tables</h1>
+  </div>
+  <div class="panel-body">
+    <h3>Basic example</h3>
+    <form class="form-inline mb-xxs">
+      <div class="form-group mr-xs">
+        <label><input type="checkbox" ng-model="vm.model.isStriped"> <code>.table-striped</code>: {{vm.model.isStriped ? "Yes" : "No"}}</label>
+      </div>
+      <div class="form-group mr-xs">
+        <label><input type="checkbox" ng-model="vm.model.isBordered"> <code>.table-bordered</code>: {{vm.model.isBordered ? "Yes" : "No"}}</label>
+      </div>
+      <div class="form-group mr-xs">
+        <label><input type="checkbox" ng-model="vm.model.isHover"> <code>.table-hover</code>: {{vm.model.isHover ? "Yes" : "No"}}</label>
+      </div>
+      <div class="form-group">
+        <label><input type="checkbox" ng-model="vm.model.isCondensed"> <code>.table-condensed</code>: {{vm.model.isCondensed ? "Yes" : "No"}}</label>
+      </div>
+    </form>
+    <div class="example panel panel-default">
+      <div class="panel-body" style="overflow: hidden">
+        <table class="table m-0" ng-class="{'table-striped': vm.model.isStriped, 'table-bordered': vm.model.isBordered, 'table-hover': vm.model.isHover, 'table-condensed': vm.model.isCondensed}">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-footer" hljs>
+<table class="table">
+  <!-- Use Bootstrap's table classes for further styling options: -->
+  <!-- .table-striped -->
+  <!-- .table-bordered -->
+  <!-- .table-hover -->
+  <!-- .table-condensed -->
+</table>
+      </div>
+    </div>
+  </div>
+</div>

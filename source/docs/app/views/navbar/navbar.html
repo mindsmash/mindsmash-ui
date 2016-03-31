@@ -1,0 +1,129 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">Mindsmash Navbar</h1>
+  </div>
+  <div class="panel-body">
+    <p>There is a special version of Bootstrap's navbar for mindsmash applications. It is based on flex-box and can be activated with the following classes and sub-elements:</p>
+
+    <nav class="navbar msm-navbar">
+      <div class="msm-navbar-flex" ng-class="{'nav-search-open' : searchVisible}">
+        <div class="nav-brand-box">
+          <h1 class="nav-brand">Title</h1>
+        </div>
+        <ul class="nav nav-left">
+          <li class="nav-item visible-xs">
+            <a class="nav-item-icon icon-menu"></a>
+          </li>
+          <li class="nav-item hidden-xs">
+            <a class="nav-item-icon icon-globe"></a>
+          </li>
+          <li class="nav-item active hidden-xs">
+            <a class="nav-item-icon icon-book-open"></a>
+          </li>
+          <li class="nav-item hidden-xs">
+            <a class="nav-item-icon icon-grid"></a>
+          </li>
+          <li class="nav-item hidden-xs">
+            <a class="nav-item-icon icon-calendar"></a>
+          </li>
+        </ul>
+        <div class="nav-search">
+          <a ng-hide="searchVisible" class="search-icon search-icon-open" ng-click="searchVisible = !searchVisible"><i class="icon-magnifier"></i></a>
+          <a ng-show="searchVisible" class="search-icon search-icon-close" ng-click="searchVisible = false"><i class="icon-close"></i></a>
+          <input type="text" class="form-control" ng-class="{'open' : searchVisible}">
+        </div>
+        <ul class="nav nav-right">
+          <li class="nav-item hidden-xs">
+            <a class="nav-item-icon icon-bell"></a>
+          </li>
+          <li class="nav-item hidden-xs">
+            <a class="nav-item-icon icon-people"></a>
+          </li>
+          <li class="nav-item hidden-xs">
+            <a class="nav-item-icon icon-bubbles"></a>
+          </li>
+          <li class="nav-item hidden-xs" uib-dropdown is-open="status.isopen">
+            <a class="nav-item-profile" uib-dropdown-toggle>
+              <span class="profile-thumb"></span>
+              <i class="zmdi zmdi-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              <li role="menuitem"><a href="#"><i class="zmdi zmdi-hc-fw zmdi-star"></i>Action</a></li>
+              <li role="menuitem"><a href="#"><i class="zmdi zmdi-hc-fw zmdi-star"></i>Another action</a></li>
+              <li role="menuitem"><a href="#"><i class="zmdi zmdi-hc-fw zmdi-star"></i>Something else here</a></li>
+              <li class="divider"></li>
+              <li role="menuitem"><a href="#"><i class="zmdi zmdi-hc-fw zmdi-star"></i>Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="panel-footer" hljs>
+.msm-navbar {} /* Apply mindsmash style and colors to classic boostrap navbar */
+.msm-navbar-flex {} /* Applied to the direct child of .navbar for flex organization */
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">Default Navbar</h1>
+  </div>
+  <div class="panel-body">
+    <p>For navbar use the default navbar classes from Bootstrap. These are additional classes for mindsmash-ui:</p>
+
+    <nav class="navbar msm-navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Link</a></li>
+            <li uib-dropdown is-open="status2.isopen">
+              <a href="#" uib-dropdown-toggle>Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                <li role="menuitem"><a href="#">Action</a></li>
+                <li role="menuitem"><a href="#">Another action</a></li>
+                <li role="menuitem"><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#">Separated link</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Link</a></li>
+            <li uib-dropdown is-open="status3.isopen">
+              <a href="#" uib-dropdown-toggle>Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                <li role="menuitem"><a href="#">Action</a></li>
+                <li role="menuitem"><a href="#">Another action</a></li>
+                <li role="menuitem"><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="panel-footer" hljs>
+.msm-navbar {} /* Apply mindsmash style and colors to navbar */
+  </div>
+</div>

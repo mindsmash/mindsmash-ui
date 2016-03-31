@@ -1,0 +1,119 @@
+.nav {
+  > li {
+    > a {
+      color: $msm-gray-darker;
+      transition: background-color linear 0.1s;
+
+      i {
+        margin-right: 8px;
+      }
+
+      .badge {
+        margin-top: 4px;
+      }
+    }
+
+    &.active > a, &.active > a:hover {
+      color: $msm-black;
+      background-color: $msm-gray-lighter;
+    }
+
+    &.disabled > a {
+      color: $msm-gray-light;
+    }
+  }
+}
+
+.nav.nav-default {
+  > li {
+    > a {
+      border-left: 3px solid transparent;
+      &:hover {
+        border-color: $msm-gray-light;
+      }
+    }
+
+    &.active > a, &.active > a:hover {
+      border-color: $msm-blue;
+    }
+
+    &.disabled > a {
+    }
+
+    &.divider {
+      border-bottom: 1px solid $msm-gray-light;
+      padding: 12px 0 0 0;
+      margin: 0 0 12px 0;
+    }
+  }
+}
+
+.nav.nav-tabs, .nav.nav-tabs.nav-justified {
+  border: 0;
+  border-bottom: 3px solid $msm-gray-light;
+
+  > li {
+    overflow: hidden;
+    margin: 0 0 -3px 0;
+    padding: 0;
+  }
+
+  > li > a {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 3px solid transparent;
+    color: $msm-gray-dark;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &:hover, &:focus, &:active {
+      background-color: transparent;
+      border-bottom: 3px solid $msm-gray;
+    }
+  }
+
+  > li.disabled > a {
+    border-color: transparent;
+    color: $msm-gray-light;
+  }
+
+  > li.active > a {
+    border: 0;
+    color: $msm-black;
+    border-bottom: 3px solid $msm-blue;
+    background-color: transparent;
+  }
+}
+
+.nav.nav-tabs.nav-justified {
+  display: flex;
+
+  > li {
+    display: block;
+    width: auto;
+    flex: 1;
+  }
+}
+
+.panel {
+  > .nav > li > a,
+  .nav.nav-panel > li > a {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+
+  &.panel-sm > .nav > li > a,
+  &.panel-sm .nav.nav-panel > li > a {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  &.panel-xs > .nav > li > a,
+  &.panel-xs .nav.nav-panel > li > a {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+

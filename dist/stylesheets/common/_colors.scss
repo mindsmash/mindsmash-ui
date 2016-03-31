@@ -1,0 +1,31 @@
+$msm-colors: (
+  "white": $msm-white,
+  "black": $msm-black,
+
+  "blue-light": $msm-blue-light,
+  "blue": $msm-blue,
+  "blue-dark": $msm-blue-dark,
+
+  "green": $msm-green,
+  "yellow": $msm-yellow,
+  "red": $msm-red,
+
+  "gray-lighter": $msm-gray-lighter,
+  "gray-light": $msm-gray-light,
+  "gray": $msm-gray,
+  "gray-dark": $msm-gray-dark,
+  "gray-darker": $msm-gray-darker
+);
+
+@each $name, $value in $msm-colors {
+  %bg-#{$name},
+  .bg-#{$name} {
+    background-color: $value !important;
+  }
+
+  %#{$name},
+  .#{$name} {
+    color: $value !important;
+  }
+
+}
