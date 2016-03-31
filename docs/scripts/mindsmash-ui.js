@@ -4,7 +4,8 @@ angular.module('msm.components.ui', [
   'ui-notification',
   'ui.bootstrap',
   'ui.select',
-  'ngSanitize'
+  'ngSanitize',
+  'ui.bootstrap.datetimepicker'
 ]);
 
 angular.module('msm.components.util', []);
@@ -32,6 +33,27 @@ angular.module('msm.components.ui')
 .config(function(uibDatepickerPopupConfig) {
   uibDatepickerPopupConfig.showButtonBar = false;
   uibDatepickerPopupConfig.datepickerPopupTemplateUrl = 'components/ui/msm-datepicker/msm-datepicker-popup.html';
+})
+
+.constant('uiDatetimePickerConfig', {
+  dateFormat: 'yyyy-MM-dd HH:mm:ss',
+  defaultTime: '00:00:00',
+  html5Types: {
+    date: 'yyyy-MM-dd',
+    'datetime-local': 'yyyy-MM-ddTHH:mm:ss.sss',
+    'month': 'yyyy-MM'
+  },
+  initialPicker: 'date',
+  reOpenDefault: false,
+  enableDate: true,
+  enableTime: true,
+  buttonBar: {
+    show: false
+  },
+  closeOnDateSelection: true,
+  appendToBody: true,
+  altInputFormats: [],
+  ngModelOptions: {}
 });
 
 (function() {
@@ -593,9 +615,8 @@ angular.module('msm.components.ui')
      *       * size:
      *           The modal's size.
      *       * resolve:
-     *           The modal's scope parameters. All parameters will automatically
-     *           converted to resolvable functions and bound to the default controller
-     *           using the object's key name.
+     *           The modal's scope parameters. All parameters will automatically be
+     *           bound to the default controller using the object's key name.
      *       * controller:
      *           The modal's controller. A default controller will be provided
      *           with all parameter bindings.
@@ -617,13 +638,6 @@ angular.module('msm.components.ui')
           }).join('');
         eval('config.controller = function (' + args + ') {' + assign + '};');
       }
-
-      // convert parameters to functions
-      angular.forEach(config.resolve, function (value, key) {
-        config.resolve[key] = angular.isFunction(value) ? value : function () {
-          return value;
-        };
-      });
 
       var modalInstance = $uibModal.open({
         animation: true,
@@ -819,8 +833,8 @@ angular.module('msm.components.ui')
         size: options.size,
         templateUrl: 'components/ui/msm-modal/msm-modal-select.html',
         resolve: {
-          values: options.options.values,
-          selected: options.options.selected
+          values: function() { return options.options.values },
+          selected: function() { options.options.selected }
         },
         controller: /*@ngInject*/ function($uibModalInstance, values, selected) {
           var vm = angular.extend(this, {
@@ -1038,8 +1052,8 @@ $templateCache.put("components/ui/msm-datepicker/msm-datepicker-popup.html","<ul
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-year.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n    <tr>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n      <th colspan=\"3\"><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\" style=\"width:100%;\"><strong>{{title}}</strong></button></th>\n      <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat=\"row in rows track by $index\">\n      <td ng-repeat=\"dt in row track by dt.date\" class=\"text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\">\n        <button type=\"button\" style=\"min-width:100%;\" class=\"btn btn-default\" ng-class=\"{\'btn-info\': dt.selected, active: isActive(dt), current: dt.current}\" ng-click=\"select(dt.date)\" ng-disabled=\"dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n");
 $templateCache.put("components/ui/msm-form-submit-button/msm-form-submit-button.html","<button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"formCtrl.loading || formCtrl.$invalid\">\n  <span ng-hide=\"formCtrl.loading\"><i class=\"zmdi zmdi-check\"></i> {{::label | translate}}</span>\n  <span ng-show=\"formCtrl.loading\"><i class=\"zmdi zmdi-spinner zmdi-hc-spin\"></i> {{::\'LOADING\' | translate}}</span>\n</button>");
 $templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\" data-ng-click=\"open()\">\n  <i ng-class=\"icon\" class=\"left-icon\"></i>\n	<div class=\"menu-label\">{{ labelText }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"icon-arrow-right\"></i>\n</div>\n");
-$templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{:: vm.title | translate:vm.translationContext }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body modal-mobile-show\"\n     msm-infinite-scroll=\"vm.addPage()\"\n     msm-infinite-scroll-threshold=\"50\"\n     msm-infinite-scroll-no-initial-load=\"true\">\n  <ul class=\"modal-mobile-options\">\n    <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n      <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"::vm.options.selected === option\"></i>\n      <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"::vm.options.selected !== option\"></i>\n      {{ ::option }}\n    </li>\n  </ul>\n  <div class=\"text-center m-m\" data-ng-show=\"vm.loading\">\n    <msm-spinner></msm-spinner>\n  </div>\n</div>\n<div class=\"modal-body modal-mobile-hide\">\n  <form class=\"form-horizontal\">\n    <div>\n        <ui-select id=\"selectItems\" ng-model=\"vm.options.selected\" append-to-body=\"true\">\n          <ui-select-match placeholder=\"{{ vm.text | translate:vm.translationContext }}\" allow-clear=\"false\" class=\"ui-select-match\">\n            {{ vm.options.selected }}\n          </ui-select-match>\n          <ui-select-choices repeat=\"option in vm.options.values | filter: $select.search\" class=\"ui-select-choices\"\n                             msm-infinite-scroll=\"vm.addPage()\"\n                             msm-infinite-scroll-threshold=\"50\"\n                             msm-infinite-scroll-no-initial-load=\"true\">\n            <div ng-bind-html=\"::option | highlight: $select.search\"></div>\n          </ui-select-choices>\n        </ui-select>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}</button>\n</div>\n");
-$templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-header\">\n  <h3 class=\"modal-title\">{{ vm.title | translate:vm.translationContext }}</h3>\n  <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n</div>\n<div class=\"modal-body\">\n  <span>{{ vm.text | translate:vm.translationContext }}</span>\n</div>\n<div class=\"modal-footer\">\n  <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n          ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n          ng-click=\"button.onClick()\">\n    <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}\n  </button>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-content-wrapper\">\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\">{{:: vm.title | translate:vm.translationContext }}</h3>\n    <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n  </div>\n  <div class=\"modal-body modal-mobile-show\"\n       msm-infinite-scroll=\"vm.addPage()\"\n       msm-infinite-scroll-threshold=\"50\"\n       msm-infinite-scroll-no-initial-load=\"true\">\n    <ul class=\"modal-mobile-options\">\n      <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n        <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"::vm.options.selected === option\"></i>\n        <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"::vm.options.selected !== option\"></i>\n        {{ ::option }}\n      </li>\n    </ul>\n    <div class=\"text-center m-m\" data-ng-show=\"vm.loading\">\n      <msm-spinner></msm-spinner>\n    </div>\n  </div>\n  <div class=\"modal-body modal-mobile-hide\">\n    <form class=\"form-horizontal mt-xxs mb-xs\">\n          <ui-select id=\"selectItems\" ng-model=\"vm.options.selected\" append-to-body=\"true\">\n            <ui-select-match placeholder=\"{{ vm.text | translate:vm.translationContext }}\" allow-clear=\"false\" class=\"ui-select-match\">\n              {{ vm.options.selected }}\n            </ui-select-match>\n            <ui-select-choices repeat=\"option in ::vm.options.values | filter: $select.search\" class=\"ui-select-choices\"\n                               msm-infinite-scroll=\"vm.addPage()\"\n                               msm-infinite-scroll-threshold=\"50\"\n                               msm-infinite-scroll-no-initial-load=\"true\">\n              <div ng-bind-html=\"::option | highlight: $select.search\"></div>\n            </ui-select-choices>\n          </ui-select>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n            ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n            ng-click=\"button.onClick()\">\n      <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}</button>\n  </div>\n</div>\n");
+$templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-content-wrapper\">\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\">{{ vm.title | translate:vm.translationContext }}</h3>\n    <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n  </div>\n  <div class=\"modal-body\">\n    <span>{{ vm.text | translate:vm.translationContext }}</span>\n  </div>\n  <div class=\"modal-footer\">\n    <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n            ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n            ng-click=\"button.onClick()\">\n      <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}\n    </button>\n  </div>\n</div>");
 $templateCache.put("components/ui/msm-spinner/msm-spinner.html","<div class=\"msm-spinner\" ng-class=\"size\"><div class=\"bounce1\"></div><div class=\"bounce2\"></div><div class=\"bounce3\"></div></div>");
 $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-wizard {{class}}\">\n  <li ng-repeat-start=\"state in states\"\n      class=\"msm-wizard-state\"\n      ng-class=\"{ passed: $index < active, active: $index === active }\">\n    <i class=\"zmdi zmdi-hc-fw zmdi-check msm-wizard-icon\"></i>\n    <span class=\"msm-wizard-label\" translate=\"{{ state }}\"></span>\n  </li>\n  <li ng-repeat-end ng-if=\"!$last\" class=\"msm-wizard-divider\"></li>\n</ul>\n");
 $templateCache.put("components/ui/ui-select/select-factory-model.html","<div class=\"ui-select\">\n  <ui-select ng-model=\"data.ngModel\" ng-required=\"isRequired\" ng-disabled=\"isDisabled\">\n    <ui-select-match class=\"ui-select-match\" placeholder=\"{{:: placeholder | translate }}\" allow-clear=\"{{ !isRequired }}\">\n      <span>{{ $select.selected.displayName }}</span>\n    </ui-select-match>\n    <ui-select-choices class=\"ui-select-choices\" repeat=\"transform(option) as option in options\" refresh=\"refresh($select.search, true)\" refresh-delay=\"250\"\n                       msm-infinite-scroll=\"refresh($select.search, false)\" msm-infinite-scroll-threshold=\"50\" msm-infinite-scroll-no-initial-load=\"true\">\n      <span ng-bind-html=\"::option.displayName | highlight: $select.search\"></span>\n      <small class=\"text-muted\" ng-repeat=\"subline in ::sublines\">{{:: isString(subline) ? option[subline] : subline(option) }}</small>\n    </ui-select-choices>\n  </ui-select>\n</div>\n");

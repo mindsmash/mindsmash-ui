@@ -15,6 +15,9 @@ body > .ui-select-bootstrap.open {
 .modal-content {
   border: 0;
   box-shadow: none;
+}
+
+.modal-content-wrapper {
   display: flex;
   flex-direction: column;
 }
@@ -32,6 +35,7 @@ body > .ui-select-bootstrap.open {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    margin-right: 24px;
   }
 
   .modal-close {
@@ -61,22 +65,23 @@ body > .ui-select-bootstrap.open {
     
     &.btn-default {
       background-color: $msm-gray-lighter;
+
       &:active, &:focus, &:hover {
         background-color: $msm-gray-light;
       }
     }
-  }
 
-  .btn + .btn {
-    margin-left: 0;
+    + .btn {
+      margin-left: 0;
+    }
   }
 }
-
 
 
 @include xs {
   .modal-mobile-hide { display: none !important; }
 
+  .modal-content-wrapper,
   .modal-dialog {
     bottom: 0;
     left: 0;
@@ -89,7 +94,10 @@ body > .ui-select-bootstrap.open {
   .modal-content {
     border-radius: 0;
     height: 100%;
-    width: 100%;
+  }
+
+  .modal-content-wrapper {
+    height: 100%;
   }
 
   .modal-header {
@@ -97,6 +105,7 @@ body > .ui-select-bootstrap.open {
     background-color: $msm-blue;
     border: 0;
     color: $msm-white;
+    min-height: 56px;
 
     h3 {
       text-align: center;
@@ -131,12 +140,12 @@ body > .ui-select-bootstrap.open {
     flex-direction: column;
 
     .btn {
-      margin-top: 16px;
+      margin-bottom: 16px;
       padding-bottom: 9px;
       padding-top: 9px;
 
-      &:first-child {
-        margin-top: 0;
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }
@@ -152,6 +161,9 @@ body > .ui-select-bootstrap.open {
     border-bottom: 1px solid $msm-gray-light;
     padding: 12px 16px;
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:active {
       background-color: $msm-gray-light;
@@ -172,6 +184,10 @@ body > .ui-select-bootstrap.open {
     border-radius: $border-radius-base;
   }
 
+  .modal-content-wrapper {
+    max-height: 80vh;
+  }
+
   .modal-dialog {
     align-self: center;
     margin: 0 auto;
@@ -180,6 +196,7 @@ body > .ui-select-bootstrap.open {
   .modal-header {
     margin: $panel-sm-heading-margin;
     padding: $panel-sm-heading-padding;
+    min-height: 63px;
   }
 
   .modal-body {
@@ -193,29 +210,27 @@ body > .ui-select-bootstrap.open {
 
   .modal-footer {
     flex-direction: row-reverse;
+    min-height: 48px;
     padding: 0;
-    //margin-bottom: -2px; // fix rendering glitch
 
     .btn {
       border-radius: 0;
       margin: 0;
       padding-bottom: 12px;
       padding-top: 12px;
-    }
 
-    .btn + .btn {
-      border-right: 1px solid rgba(255,255,255,0.25);
-    }
+      + .btn {
+        border-right: 1px solid rgba(255,255,255,0.25);
+      }
 
-    .btn.btn-condensed {
-      flex: none;
-      padding-left: 50px;
-      padding-right: 50px;
-    }
-  }
+      &.btn-condensed {
+        flex: none;
+        padding-left: 50px;
+        padding-right: 50px;
+      }
 
-  .modal-footer {
-    .btn:first-child { border-bottom-right-radius: $border-radius-base; }
-    .btn:last-child { border-bottom-left-radius: $border-radius-base; }
+      &:first-child { border-bottom-right-radius: $border-radius-base; }
+      &:last-child { border-bottom-left-radius: $border-radius-base; }
+    }
   }
 }

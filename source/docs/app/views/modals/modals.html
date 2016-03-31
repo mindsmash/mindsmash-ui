@@ -21,11 +21,10 @@
     return msmModal.open({
       size: size,
       resolve: {
-        value: 'Some value...',      // primitive value
-        valueAsync: valueAsync(),    // $q promise (1sec. delay)
-        valueFunction: valueFunction // function
+        value: valueFunction,    // resolve function
+        valueAsync: valueAsync() // $q promise (1sec. delay)
       },
-      controller: function(value, valueAsync, valueFunction) {
+      controller: function(value, valueAsync) {
         var vm = this;
         vm.title = 'Customization';
         vm.text = valueAsync;

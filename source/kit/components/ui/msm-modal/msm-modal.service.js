@@ -32,9 +32,8 @@
      *       * size:
      *           The modal's size.
      *       * resolve:
-     *           The modal's scope parameters. All parameters will automatically
-     *           converted to resolvable functions and bound to the default controller
-     *           using the object's key name.
+     *           The modal's scope parameters. All parameters will automatically be
+     *           bound to the default controller using the object's key name.
      *       * controller:
      *           The modal's controller. A default controller will be provided
      *           with all parameter bindings.
@@ -56,13 +55,6 @@
           }).join('');
         eval('config.controller = function (' + args + ') {' + assign + '};');
       }
-
-      // convert parameters to functions
-      angular.forEach(config.resolve, function (value, key) {
-        config.resolve[key] = angular.isFunction(value) ? value : function () {
-          return value;
-        };
-      });
 
       var modalInstance = $uibModal.open({
         animation: true,
@@ -258,8 +250,8 @@
         size: options.size,
         templateUrl: 'components/ui/msm-modal/msm-modal-select.html',
         resolve: {
-          values: options.options.values,
-          selected: options.options.selected
+          values: function() { return options.options.values },
+          selected: function() { options.options.selected }
         },
         controller: /*@ngInject*/ function($uibModalInstance, values, selected) {
           var vm = angular.extend(this, {
