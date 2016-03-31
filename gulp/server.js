@@ -42,10 +42,20 @@ gulp.task('docs:dev', function () {
     }
   });
 
-  gulp.watch('source/**/*.js', ['inject:dev']).on('change', browserSync.reload);
-  gulp.watch('source/**/*.html', ['inject:dev']).on('change', browserSync.reload);
-  gulp.watch('source/**/*.scss', ['styles:dev']).on('change', browserSync.reload);
-  gulp.watch('source/docs/index.html', ['inject:dev']).on('change', browserSync.reload);
+  gulp.watch('source/**/*.js', ['docs:dev:reload']);
+  gulp.watch('source/**/*.html', ['docs:dev:reload']);
+  gulp.watch('source/**/*.scss', ['docs:dev:restyle']);
+  gulp.watch('source/docs/index.html', ['docs:dev:reload']);
+});
+
+// ----------------------------------------------------------------------------------------------------
+
+gulp.task('docs:dev:reload', ['inject:dev'], function(){
+  browserSync.reload();
+});
+
+gulp.task('docs:dev:restyle', ['styles:dev'], function(){
+  browserSync.reload();
 });
 
 // ----------------------------------------------------------------------------------------------------

@@ -97,9 +97,23 @@
   }
 }
 
-.panel > .nav {
-  > li > a {
+.panel {
+  > .nav > li > a,
+  .nav.nav-panel > li > a {
     padding-left: 36px;
     padding-right: 36px;
   }
+
+  &.panel-sm > .nav > li > a,
+  &.panel-sm .nav.nav-panel > li > a {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  &.panel-xs > .nav > li > a,
+  &.panel-xs .nav.nav-panel > li > a {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
 }
+
