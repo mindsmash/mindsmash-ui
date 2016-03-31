@@ -22,11 +22,10 @@
       return msmModal.open({
         size: size,
         resolve: {
-          value: 'Some value...',
-          valueAsync: valueAsync(),
-          valueFunction: valueFunction
+          value: valueFunction,
+          valueAsync: valueAsync()
         },
-        controller: function (value, valueAsync, valueFunction) {
+        controller: function (value, valueAsync) {
           var vm = this;
           vm.title = 'Customization';
           vm.text = valueAsync;
