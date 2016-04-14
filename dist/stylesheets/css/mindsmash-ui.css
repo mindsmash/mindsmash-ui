@@ -4068,7 +4068,7 @@ select.form-control { text-indent: 8px; }
 
 .nav.nav-icons > li > a { padding-left: 43px; }
 
-.nav.nav-icons > li > a i { float: left; margin-left: -28px; text-align: center; line-height: 24px; width: 20px; }
+.nav.nav-icons > li > a > i { float: left; margin-left: -28px; text-align: center; line-height: 24px; width: 20px; }
 
 .nav.nav-tabs, .nav.nav-tabs.nav-justified { border: 0; border-bottom: 3px solid #DADADA; }
 
