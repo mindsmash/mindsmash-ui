@@ -117,7 +117,7 @@
   .search-icon-close {
     height: 36px;
     padding: 8px;
-    right: 16px;
+    right: 10px;
     top: 12px;
     width: 36px;
 
@@ -160,18 +160,21 @@
     outline: none;
     padding: 0 20px;
     position: absolute;
-    right: 12px;
+    right: 8px;
     top: 12px;
     transition: all ease-in-out .3s;
+    transition-property: opacity, width;
     width: 0;
 
     &:focus {
       background-color: $msm-navbar-input-active;
     }
 
+    @include placeholder-color($msm-navbar-placeholder);
+
     &.open {
       opacity: 1;
-      width: calc(100% - 10px);
+      width: calc(100% - 20px);
     }
 
     @media screen and (max-width: $screen-xs-max) {

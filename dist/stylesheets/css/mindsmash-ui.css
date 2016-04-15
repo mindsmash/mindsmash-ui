@@ -3526,7 +3526,7 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 /** Use with bootstrap's .navbar */
 .msm-navbar { background-color: #317DC1; border: 0; border-radius: 0; color: #FDFDFD; height: 60px; margin-bottom: 0; }
 
-@media screen and (max-width: 767px) { .msm-navbar { height: 40px; } }
+@media screen and (max-width: 767px) { .msm-navbar { height: 50px; } }
 
 .msm-navbar .navbar-brand { color: #FDFDFD; font-size: 24px; height: 100%; padding: 18px 20px; }
 
@@ -3601,7 +3601,7 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 @media screen and (max-width: 767px) { .msm-navbar-flex .search-icon > i { font-size: 18px; } }
 
-.msm-navbar-flex .search-icon-close { height: 36px; padding: 8px; right: 16px; top: 12px; width: 36px; }
+.msm-navbar-flex .search-icon-close { height: 36px; padding: 8px; right: 10px; top: 12px; width: 36px; }
 
 @media screen and (max-width: 767px) { .msm-navbar-flex .search-icon-close { top: 7px; right: 8px; } }
 
@@ -3613,11 +3613,19 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .msm-navbar-flex .search-icon-open:hover { background-color: #3172ac; }
 
-.msm-navbar-flex .form-control { background-color: #326b9e; border-radius: 36px; border: 0; box-shadow: none; color: #FDFDFD; height: 36px; line-height: 18px; opacity: 0; outline: none; padding: 0 20px; position: absolute; right: 12px; top: 12px; transition: all ease-in-out .3s; width: 0; }
+.msm-navbar-flex .form-control { background-color: #326b9e; border-radius: 36px; border: 0; box-shadow: none; color: #FDFDFD; height: 36px; line-height: 18px; opacity: 0; outline: none; padding: 0 20px; position: absolute; right: 8px; top: 12px; transition: all ease-in-out .3s; transition-property: opacity, width; width: 0; }
 
 .msm-navbar-flex .form-control:focus { background-color: #32638f; }
 
-.msm-navbar-flex .form-control.open { opacity: 1; width: calc(100% - 10px); }
+.msm-navbar-flex .form-control::-webkit-input-placeholder { color: #97bddf; }
+
+.msm-navbar-flex .form-control:-moz-placeholder { color: #97bddf; }
+
+.msm-navbar-flex .form-control::-moz-placeholder { color: #97bddf; }
+
+.msm-navbar-flex .form-control:-ms-input-placeholder { color: #97bddf; }
+
+.msm-navbar-flex .form-control.open { opacity: 1; width: calc(100% - 20px); }
 
 @media screen and (max-width: 767px) { .msm-navbar-flex .form-control { top: 7px; right: 8px; } }
 
