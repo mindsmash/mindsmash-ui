@@ -3447,7 +3447,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .datetime-picker-dropdown table button.active * { color: #fff; }
 
-.msm-mobile-menu-item { align-items: center; background-color: #FDFDFD; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); color: #333; display: flex; height: 48px; margin: 10px 0; }
+.msm-mobile-menu-item { align-items: center; background-color: #FDFDFD; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); color: #333; display: flex; height: 48px; margin: 0 0 12px 0; }
 
 .msm-mobile-menu-item .left-icon { font-size: 20px; text-align: center; width: 64px; }
 
@@ -4063,6 +4063,8 @@ dl dd { margin-bottom: 12px; }
 .form-group .help-block { font-size: 14px; }
 
 .form-group:last-child { margin-bottom: 0; }
+
+@media screen and (max-width: 991px) { .form-horizontal .form-group { margin-left: -8px; margin-right: -8px; } }
 
 .input-group-addon { color: #999; }
 
