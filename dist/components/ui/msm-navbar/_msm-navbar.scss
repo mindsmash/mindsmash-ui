@@ -9,17 +9,31 @@
   height: 60px;
   margin-bottom: 0;
 
+  @media screen and (max-width: $screen-xs-max) {
+    height: 40px;
+  }
+
   .navbar-brand {
     color: $msm-navbar-text;
     font-size: 24px;
-    height: 60px;
+    height: 100%;
     padding: 18px 20px;
+
+    @media screen and (max-width: $screen-xs-max) {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
   }
 
   .navbar-toggle {
     border: 1px solid $msm-navbar-toggle;
     margin: 13px 20px;
     transition: border-color linear 0.2s;
+
+    @media screen and (max-width: $screen-xs-max) {
+      margin-top: 8px;
+      margin-bottom: 8px;
+    }
 
     .icon-bar {
       background-color: $msm-navbar-toggle;
@@ -38,9 +52,14 @@
   .nav {
     > li > a {
       color: $msm-navbar-text;
-      height: 60px;
+      height: 100%;
       padding: 18px 20px;
       transition: background-color linear 0.1s;
+
+      @media screen and (max-width: $screen-xs-max) {
+        padding-top: 13px;
+        padding-bottom: 13px;
+      }
 
       &:hover,
       &:focus {
