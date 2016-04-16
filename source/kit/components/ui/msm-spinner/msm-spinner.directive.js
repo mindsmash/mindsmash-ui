@@ -16,7 +16,8 @@
       restrict: 'E',
       replace: true,
       scope: {
-        size: '@'
+        size: '@',
+        inverted: '<'
       },
       templateUrl: 'components/ui/msm-spinner/msm-spinner.html'
     };

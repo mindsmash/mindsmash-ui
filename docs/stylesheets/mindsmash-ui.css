@@ -3667,6 +3667,8 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .msm-spinner.large, .msm-spinner.lg { font-size: 6px; }
 
+.msm-spinner.inverted { border-top-color: rgba(255, 255, 255, 0.25); border-right-color: rgba(255, 255, 255, 0.25); border-bottom-color: rgba(255, 255, 255, 0.25); border-left-color: white; }
+
 .msm-spinner, .msm-spinner:after { border-radius: 50%; width: 10em; height: 10em; }
 
 @-webkit-keyframes load8 { 0% { -webkit-transform: rotate(0deg);

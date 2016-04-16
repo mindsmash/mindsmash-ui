@@ -8,10 +8,10 @@
   font-size: 4px;
   position: relative;
   text-indent: -9999em;
-  border-top: 1.1em solid rgba(0,0,0, 0.1);
-  border-right: 1.1em solid rgba(0,0,0, 0.1);
-  border-bottom: 1.1em solid rgba(0,0,0, 0.1);
-  border-left: 1.1em solid rgba(0,0,0,0.5);
+  border-top: 1.1em solid rgba(0, 0, 0, 0.1);
+  border-right: 1.1em solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1.1em solid rgba(0, 0, 0, 0.1);
+  border-left: 1.1em solid rgba(0, 0, 0, 0.5);
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
@@ -25,7 +25,15 @@
   &.large, &.lg {
     font-size: 6px;
   }
+
+  &.inverted {
+    border-top-color: rgba(255, 255, 255, 0.25);
+    border-right-color: rgba(255, 255, 255, 0.25);
+    border-bottom-color: rgba(255, 255, 255, 0.25);
+    border-left-color: rgba(255, 255, 255, 1);
+  }
 }
+
 .msm-spinner,
 .msm-spinner:after {
   border-radius: 50%;
