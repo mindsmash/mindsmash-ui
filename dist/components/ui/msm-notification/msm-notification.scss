@@ -1,17 +1,63 @@
 .ui-notification {
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.3);
+  padding: 16px 24px;
+
+  width: 400px;
+
+  &:hover {
+    opacity: 1;
+    box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.3), inset 0px -3px 0px 0px rgba(0,0,0,0.2);
+  }
+
+  h3, .message {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    font-size: $font-size-base;
+    line-height: 1;
+  }
+
+  h3 {
+    margin-right: 8px;
+    text-transform: uppercase;
+  }
+
+  h3:after {
+    content: ':';
+  }
+
   background-color: $msm-blue;
+  &:before {
+    font-family: 'Material-Design-Iconic-Font';
+    content: '\f1f7';
+    margin-right: 8px;
+  }
 
   &.error {
     background-color: $msm-red;
+    &:before {
+      content: '\f1f4';
+    }
   }
   &.success {
     background-color: $msm-green;
+    &:before {
+      content: '\f26b';
+    }
   }
   &.info {
     background-color: $msm-blue-light;
+    &:before {
+      content: '\f1f7';
+    }
   }
   &.warning {
     background-color: $msm-yellow;
+    &:before {
+      content: '\f1f0';
+    }
   }
 
   a {

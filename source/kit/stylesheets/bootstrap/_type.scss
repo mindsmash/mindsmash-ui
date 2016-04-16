@@ -16,19 +16,8 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
-
 small, .small {
   font-size: (100% * $font-size-small / $font-size-base);
-}
-
-
-blockquote {
-  font-weight: 300;
-}
-
-
-strong {
-  font-weight: 600 !important;
 }
 
 .light {
@@ -38,14 +27,12 @@ strong {
   font-weight: 400 !important;
 }
 .bold {
-  font-weight: 600 !important;
+  font-weight: bold !important;
 }
 
 .size-normal {
   font-size: $font-size-base;
 }
-
-
 
 dt, .msm-label {
   @extend .size-normal;
@@ -53,8 +40,6 @@ dt, .msm-label {
   color: $msm-gray;
   font-weight: 400;
 }
-
-
 
 dl {
   dt, dd {

@@ -1,54 +1,130 @@
-.panel {
+@mixin panel() {
   border: 0;
-}
 
-.panel .panel-heading .btn {
-  margin-left: 8px;
-}
+  .panel-heading {
+    border-color: $msm-border;
 
-.panel-sm .panel-heading .btn {
-  margin-left: 6px;
-}
+    margin: $panel-heading-padding;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
 
-.panel-xs .panel-heading .btn {
-  margin-left: 4px;
-}
+    .btn {
+      margin-left: 8px;
+    }
+  }
 
-.panel-default > .panel-heading {
-  border-color: $msm-border;
-}
+  .panel-actions {
+    border-top: 1px solid $msm-gray-lighter;
+    padding-top: 24px;
+    padding-bottom: 24px;
 
-.panel .panel-actions {
-  border-top: 1px solid $msm-gray-lighter;
-  padding-top: 24px;
-  padding-bottom: 24px;
+    .btn {
+      margin-right: 8px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
 
-  .btn {
-    margin-right: 8px;
-    &:last-child {
-      margin-right: 0;
+  .panel-title {
+    font-size: $font-size-h2;
+    line-height: floor($font-size-h2 * $headings-line-height);
+
+    padding: 0;
+    margin: 0;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    small {
+      color: $msm-gray;
+      font-size: percentage(1/2);
+      text-transform: uppercase;
+      font-weight: normal;
+      margin-left: 0.75rem;
+    }
+
+    .zmdi {
+      font-size: 90%;
+      margin-right: 0.6rem;
+      margin-left: 1px; // fix browser UI bug
     }
   }
 }
 
-.panel .panel-title {
-  font-size: $font-size-h3;
-  line-height: floor($font-size-h3 * $headings-line-height);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+@mixin panel-xs() {
+  .panel-heading {
+    margin: $panel-xs-heading-margin;
+    padding: $panel-xs-heading-padding;
 
-  small {
-    color: $msm-gray;
-    font-size: percentage(1/2);
-    text-transform: uppercase;
-    font-weight: normal;
-    margin-left: 0.75rem;
+    .btn {
+      @include button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
+      line-height: 18px;
+      margin-left: 4px;
+    }
   }
 
-  .zmdi {
-    margin-right: 0.75rem;
+  .panel-title {
+    font-size: $font-size-h4;
+    font-weight: bold;
+    line-height: floor($font-size-h4 * $headings-line-height);
+
+    small {
+      font-size: percentage(3/4);
+    }
+
+    .zmdi {
+      font-size: 100%;
+    }
   }
+
+  .panel-body {
+    padding: $panel-xs-body-padding;
+  }
+
+  .panel-footer {
+    padding: $panel-xs-footer-padding;
+  }
+}
+
+@mixin panel-sm() {
+  .panel-heading {
+    margin: $panel-sm-heading-margin;
+    padding: $panel-sm-heading-padding;
+
+    .btn {
+      margin-left: 6px;
+    }
+  }
+
+  .panel-title {
+    font-size: $font-size-h3;
+    line-height: floor($font-size-h3 * $headings-line-height);
+  }
+
+  .panel-body {
+    padding: $panel-sm-body-padding;
+  }
+
+  .panel-footer {
+    padding: $panel-sm-footer-padding;
+  }
+}
+
+// Actual panel styles
+.panel {
+  @include panel();
+}
+
+&.panel-sm {
+  @include panel-sm();
+}
+
+&.panel-xs {
+  @include panel-xs();
 }
 
 @include xs {
@@ -58,38 +134,11 @@
     border-radius: 0;
     margin-bottom: 12px;
 
-    .panel-heading {
-      margin: $panel-xs-heading-margin;
-      padding: $panel-xs-heading-padding;
-
-      .btn {
-        @include button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
-        line-height: 18px;
-        margin-left: 8px;
-      }
-    }
-
-    .panel-title {
-      font-size: $font-size-h4;
-      font-weight: normal;
-      line-height: floor($font-size-h4 * $headings-line-height);
-
-      small {
-        font-size: percentage(3/4);
-      }
-    }
-
-    .panel-body {
-      padding: $panel-xs-body-padding;
-    }
-
-    .panel-footer {
-      padding: $panel-xs-footer-padding;
-    }
+    @include panel-xs();
 
     .panel-actions {
-      padding-top: 24px;
-      padding-bottom: 24px;
+      padding-top: 16px;
+      padding-bottom: 16px;
 
       .btn {
         display: block;
@@ -99,70 +148,6 @@
           margin-bottom: 12px;
         }
       }
-    }
-  }
-}
-
-@include sm-and-up {
-  .panel {
-    .panel-heading {
-      margin: $panel-heading-padding;
-      margin-top: 0;
-      margin-bottom: 0;
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .panel-title {
-      font-size: $font-size-h1;
-      line-height: floor($font-size-h2 * $headings-line-height);
-      padding: 0;
-      margin: 0;
-    }
-  }
-
-  .panel-sm {
-    .panel-heading {
-      margin: $panel-sm-heading-margin;
-      padding: $panel-sm-heading-padding;
-    }
-
-    .panel-title {
-      font-size: $font-size-h3;
-      line-height: floor($font-size-h3 * $headings-line-height);
-    }
-
-    .panel-body {
-      padding: $panel-sm-body-padding;
-    }
-
-    .panel-footer {
-      padding: $panel-sm-footer-padding;
-    }
-  }
-
-  .panel-xs {
-    .panel-heading {
-      margin: $panel-xs-heading-margin;
-      padding: $panel-xs-heading-padding;
-    }
-
-    .panel-title {
-      font-size: $font-size-h4;
-      font-weight: normal;
-      line-height: floor($font-size-h4 * $headings-line-height);
-
-      small {
-        font-size: percentage(3/4);
-      }
-    }
-
-    .panel-body {
-      padding: $panel-xs-body-padding;
-    }
-
-    .panel-footer {
-      padding: $panel-xs-footer-padding;
     }
   }
 }

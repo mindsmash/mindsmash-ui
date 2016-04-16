@@ -23,6 +23,7 @@
 	function MobileMenuItem($state, $translate, $timeout) {
 		return {
 			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
+			replace: true,
 			scope: {
 				previewValue: '=',
 				targetState: '=',
