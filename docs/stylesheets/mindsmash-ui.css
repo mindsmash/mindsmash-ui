@@ -3661,7 +3661,7 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 .ui-notification a:hover, .ui-notification a:focus { color: #fff; opacity: .75; text-decoration: underline; }
 
 /** Forked from http://projects.lukehaas.me/css-loaders/ */
-.msm-spinner { display: inline-block; margin: 8px auto; font-size: 4px; position: relative; text-indent: -9999em; border-top: 1.1em solid rgba(0, 0, 0, 0.1); border-right: 1.1em solid rgba(0, 0, 0, 0.1); border-bottom: 1.1em solid rgba(0, 0, 0, 0.1); border-left: 1.1em solid #8f8f8f; -webkit-transform: translateZ(0); -ms-transform: translateZ(0); transform: translateZ(0); -webkit-animation: load8 1.2s infinite linear; animation: load8 1.2s infinite linear; }
+.msm-spinner { display: inline-block; margin: 8px auto; font-size: 4px; position: relative; text-indent: -9999em; border-top: 1.1em solid rgba(0, 0, 0, 0.1); border-right: 1.1em solid rgba(0, 0, 0, 0.1); border-bottom: 1.1em solid rgba(0, 0, 0, 0.1); border-left: 1.1em solid rgba(0, 0, 0, 0.5); -webkit-transform: translateZ(0); -ms-transform: translateZ(0); transform: translateZ(0); -webkit-animation: load8 1.2s infinite linear; animation: load8 1.2s infinite linear; }
 
 .msm-spinner.small, .msm-spinner.sm { font-size: 3px; }
 
