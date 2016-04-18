@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var wiredep = require('wiredep');
 var gutil = require('gulp-util');
 var inject = require('gulp-inject');
+var injectString = require('gulp-inject-string');
 var series = require('stream-series');
 
 // ----------------------------------------------------------------------------------------------------
@@ -44,6 +45,7 @@ gulp.task('inject:dev', function () {
       }))
       .pipe(inject(kitSources, {name: 'kit', relative: true}))
       .pipe(inject(docsSources, {name: 'docs', relative: true}))
+      .pipe(injectString.after('<head>', '\n  <base href="/" />\n'))
       .pipe(gulp.dest('.tmp'));
 });
 
@@ -62,5 +64,6 @@ gulp.task('inject:build', function () {
       .pipe(inject(gulp.src('docs/**/mindsmash-ui.*', {read: false}), {name: 'kit', relative: true}))
       .pipe(inject(gulp.src('docs/**/vendor.*', {read: false}), {name: 'vendor', relative: true}))
       .pipe(inject(gulp.src('docs/**/docs.*', {read: false}), {name: 'docs', relative: true}))
+      .pipe(injectString.after('<head>', '\n  <base href="/mindsmash-ui/docs" />\n'))
       .pipe(gulp.dest('docs'));
 });
