@@ -14,10 +14,13 @@
     }
   }
 
-  .nav > {
+  .nav {
+    display: flex;
+    height: 100%;
+
     .nav-item {
       cursor: pointer;
-      float: left;
+      height: 100%;
 
       .nav-item-icon {
         font-size: 20px;
@@ -39,7 +42,6 @@
       .nav-item-profile {
         padding-top: 16px;
         padding-bottom: 14px;
-        height: 60px;
 
         .profile-thumb {
           background: $msm-navbar-text;
