@@ -64,6 +64,6 @@ gulp.task('inject:build', function () {
       .pipe(inject(gulp.src('docs/**/mindsmash-ui.*', {read: false}), {name: 'kit', relative: true}))
       .pipe(inject(gulp.src('docs/**/vendor.*', {read: false}), {name: 'vendor', relative: true}))
       .pipe(inject(gulp.src('docs/**/docs.*', {read: false}), {name: 'docs', relative: true}))
-      .pipe(injectString.after('<head>', '\n  <base href="/mindsmash-ui/docs" />\n'))
+      .pipe(injectString.after('<head>', '\n  <base href="/mindsmash-ui/docs/" />\n'))
       .pipe(gulp.dest('docs'));
 });
