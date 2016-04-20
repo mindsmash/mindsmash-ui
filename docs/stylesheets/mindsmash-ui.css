@@ -4117,8 +4117,9 @@ dl dd { margin-bottom: 12px; }
 
 .panel-xs .panel-footer { padding: 14px 18px 16px; }
 
-@media screen and (max-width: 767px) { .panel { border-left: 0; border-right: 0; border-radius: 0; margin-bottom: 12px; }
-  .panel .panel-heading { margin: 0 18px 0; padding: 12px 0 8px; }
+@media screen and (max-width: 991px) { .panel { border-radius: 0; margin-bottom: 12px; } }
+
+@media screen and (max-width: 767px) { .panel .panel-heading { margin: 0 18px 0; padding: 12px 0 8px; }
   .panel .panel-heading .btn { padding: 2px 8px; font-size: 14px; line-height: 1.5; border-radius: 3px; line-height: 18px; margin-left: 4px; }
   .panel .panel-title { font-size: 18px; font-weight: bold; line-height: 24px; }
   .panel .panel-title small { font-size: 75%; }
