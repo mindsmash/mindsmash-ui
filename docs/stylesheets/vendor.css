@@ -84,7 +84,7 @@
 /*!
  * ui-select
  * http://github.com/angular-ui/ui-select
- * Version: 0.16.0 - 2016-03-23T20:51:56.678Z
+ * Version: 0.14.8 - 2016-02-18T22:01:43.880Z
  * License: MIT
  */
 
@@ -1788,13 +1788,13 @@ body > .ui-select-bootstrap.open {
 
 @font-face { font-family: 'Source Sans Pro'; font-weight: 400; font-style: italic; font-stretch: normal; src: local("SourceSansPro-It"), local("Source Sans Pro"), url("../fonts/SourceSansPro-It.eot") format("embedded-opentype"), url("../fonts/SourceSansPro-It.woff") format("woff"), url("../fonts/SourceSansPro-It.otf") format("opentype"), url("../fonts/SourceSansPro-It.ttf") format("truetype"); }
 
-@font-face { font-family: 'Source Sans Pro'; font-weight: 600; font-style: normal; font-stretch: normal; src: local("SourceSansPro-Semibold"), local("Source Sans Pro Semibold"), url("../fonts/SourceSansPro-Semibold.eot") format("embedded-opentype"), url("../fonts/SourceSansPro-Semibold.woff") format("woff"), url("../fonts/SourceSansPro-Semibold.otf") format("opentype"), url("../fonts/SourceSansPro-Semibold.ttf") format("truetype"); }
+@font-face { font-family: 'Source Sans Pro'; font-weight: 700; font-style: normal; font-stretch: normal; src: local("SourceSansPro-Semibold"), local("Source Sans Pro Semibold"), url("../fonts/SourceSansPro-Semibold.eot") format("embedded-opentype"), url("../fonts/SourceSansPro-Semibold.woff") format("woff"), url("../fonts/SourceSansPro-Semibold.otf") format("opentype"), url("../fonts/SourceSansPro-Semibold.ttf") format("truetype"); }
 
-@font-face { font-family: 'Source Sans Pro'; font-weight: 600; font-style: italic; font-stretch: normal; src: local("SourceSansPro-SemiboldIt"), local("Source Sans Pro"), url("../fonts/SourceSansPro-SemiboldIt.eot") format("embedded-opentype"), url("../fonts/SourceSansPro-SemiboldIt.woff") format("woff"), url("../fonts/SourceSansPro-SemiboldIt.otf") format("opentype"), url("../fonts/SourceSansPro-SemiboldIt.ttf") format("truetype"); }
+@font-face { font-family: 'Source Sans Pro'; font-weight: 700; font-style: italic; font-stretch: normal; src: local("SourceSansPro-SemiboldIt"), local("Source Sans Pro"), url("../fonts/SourceSansPro-SemiboldIt.eot") format("embedded-opentype"), url("../fonts/SourceSansPro-SemiboldIt.woff") format("woff"), url("../fonts/SourceSansPro-SemiboldIt.otf") format("opentype"), url("../fonts/SourceSansPro-SemiboldIt.ttf") format("truetype"); }
 
-@font-face { font-family: 'Source Sans Pro'; font-weight: 700; font-style: normal; font-stretch: normal; src: local("SourceSansPro-Bold"), local("Source Sans Pro Bold"), url("../fonts/SourceSansPro-Bold.eot") format("embedded-opentype"), url("../fonts/SourceSansPro-Bold.woff") format("woff"), url("../fonts/SourceSansPro-Bold.otf") format("opentype"), url("../fonts/SourceSansPro-Bold.ttf") format("truetype"); }
+@font-face { font-family: 'Source Sans Pro'; font-weight: 800; font-style: normal; font-stretch: normal; src: local("SourceSansPro-Bold"), local("Source Sans Pro Bold"), url("../fonts/SourceSansPro-Bold.eot") format("embedded-opentype"), url("../fonts/SourceSansPro-Bold.woff") format("woff"), url("../fonts/SourceSansPro-Bold.otf") format("opentype"), url("../fonts/SourceSansPro-Bold.ttf") format("truetype"); }
 
-@font-face { font-family: 'Source Sans Pro'; font-weight: 700; font-style: italic; font-stretch: normal; src: local("SourceSansPro-BoldIt"), local("Source Sans Pro"), url("../fonts/SourceSansPro-BoldIt.eot") format("embedded-opentype"), url("../fonts/SourceSansPro-BoldIt.woff") format("woff"), url("../fonts/SourceSansPro-BoldIt.otf") format("opentype"), url("../fonts/SourceSansPro-BoldIt.ttf") format("truetype"); }
+@font-face { font-family: 'Source Sans Pro'; font-weight: 800; font-style: italic; font-stretch: normal; src: local("SourceSansPro-BoldIt"), local("Source Sans Pro"), url("../fonts/SourceSansPro-BoldIt.eot") format("embedded-opentype"), url("../fonts/SourceSansPro-BoldIt.woff") format("woff"), url("../fonts/SourceSansPro-BoldIt.otf") format("opentype"), url("../fonts/SourceSansPro-BoldIt.ttf") format("truetype"); }
 
 @font-face { font-family: 'Source Sans Pro'; font-weight: 900; font-style: normal; font-stretch: normal; src: local("SourceSansPro-Black"), local("Source Sans Pro Black"), url("../fonts/SourceSansPro-Black.eot") format("embedded-opentype"), url("../fonts/SourceSansPro-Black.woff") format("woff"), url("../fonts/SourceSansPro-Black.otf") format("opentype"), url("../fonts/SourceSansPro-Black.ttf") format("truetype"); }
 

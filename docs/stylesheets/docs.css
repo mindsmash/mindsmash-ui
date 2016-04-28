@@ -1,4 +1,6 @@
-body { background-color: #F3F3F3; padding-top: 100px; }
+body { background-color: #F0F0F0; padding-top: 60px; }
+
+@media screen and (min-width: 992px) { body { padding-top: 100px; } }
 
 body > .container-fluid { max-width: 1280px; }
 

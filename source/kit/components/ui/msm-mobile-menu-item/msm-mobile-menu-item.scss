@@ -5,12 +5,13 @@
   color: $msm-black;
   display: flex;
   height: $mobile-menu-item-height;
-  margin: 10px 0;
+  margin: 0 0 12px 0;
 
   .left-icon {
     font-size: 20px;
     text-align: center;
-    width: 64px;
+    width: 50px;
+    flex: none;
   }
 
   .icon-arrow-right {
@@ -26,13 +27,15 @@
     text-align: right;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: calc((100% - 40px - 64px) * .6);
+    flex: 0.75;
   }
 
   .menu-label {
     text-align: left;
     white-space: nowrap;
-    width: calc((100% - 40px - 64px) * .4);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
   }
 }
 

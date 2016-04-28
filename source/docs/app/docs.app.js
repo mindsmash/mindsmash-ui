@@ -84,11 +84,13 @@
   function configTranslations($translateProvider) {
     $translateProvider.translations('en', {
       BUTTON_DELETE: 'Delete',
-      WELCOME: 'Welcome to the Mindsmash UI kit!'
+      WELCOME: 'Welcome To The Mindsmash UI Kit!',
+      WELCOME_TEXT: 'The kit is based on Twitter Bootstrap and also comes with custom components. Check them out!'
     });
     $translateProvider.translations('de', {
       BUTTON_DELETE: 'Löschen',
-      WELCOME: 'Willkommen zum Mindsmash UI-Kit!'
+      WELCOME: 'Willkommen zum Mindsmash UI-Kit!',
+      WELCOME_TEXT: 'Das Kit basiert auf Twitter Bootstrap, beinhaltet jedoch auf eigene Komponenten. Probier sie aus!'
     });
 
     $translateProvider.preferredLanguage('en');
@@ -104,6 +106,11 @@
 
   function Main(msmNotification) {
     // use an i18n key here
+    msmNotification.primary({
+      title: 'WELCOME',
+      message: 'WELCOME_TEXT'
+    });
+
     msmNotification.primary('WELCOME');
   }
 

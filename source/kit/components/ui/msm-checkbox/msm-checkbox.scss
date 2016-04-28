@@ -1,6 +1,7 @@
 .msm-checkbox.btn {
   margin: 8px 0px;
   padding: 0;
+  box-shadow: none;
 
   &:active, &:hover, &:focus {
     background: $input-bg;
@@ -11,6 +12,7 @@
 
   &:focus {
     border-color: $input-border-focus;
+    box-shadow: 0px 0px 0px 1px $input-border-focus;
   }
 
   &:active:focus {

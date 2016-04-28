@@ -6,6 +6,7 @@
   margin: 0 auto;
   max-width: $msm-layout-max-width;
   position: relative;
+  height: 100%;
 
   &.nav-search-open {
     .nav-brand {
@@ -13,15 +14,24 @@
     }
   }
 
-  .nav > {
+  .nav {
+    display: flex;
+    height: 100%;
+
     .nav-item {
       cursor: pointer;
-      float: left;
+      height: 100%;
 
       .nav-item-icon {
         font-size: 20px;
         font-weight: 600;
         padding: 20px 15px;
+
+        @media screen and (max-width: $screen-xs-max) {
+          padding-top: 16px;
+          padding-bottom: 16px;
+          font-size: 18px;
+        }
 
         @media screen and (min-width: $screen-md-min) {
           padding-left: 20px;
@@ -54,7 +64,7 @@
   }
   .nav-brand-box {
     display: block;
-    height: 60px;
+    height: 100%;
     left: calc(50% - 120px);
     overflow: hidden;
     position: absolute;
@@ -66,20 +76,24 @@
 
   .nav-brand {
     font-size: 24px;
-    line-height: 60px;
     margin: 0;
+    margin-top: -24px;
     padding: 0;
     position: relative;
     text-align: center;
-    top: 0;
+    top: 50%;
     transition: all ease-in-out .15s;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    @media screen and (max-width: $screen-xs-max) {
+      font-size: 20px;
+    }
   }
 
   .nav-search {
     flex: auto;
-    height: 60px;
+    height: 100%;
     position: relative;
     z-index: 3;
   }
@@ -95,6 +109,10 @@
     > i {
       font-size: 20px;
       font-weight: 600;
+
+      @media screen and (max-width: $screen-xs-max) {
+        font-size: 18px;
+      }
     }
 
   }
@@ -102,16 +120,26 @@
   .search-icon-close {
     height: 36px;
     padding: 8px;
-    right: 16px;
+    right: 10px;
     top: 12px;
     width: 36px;
+
+    @media screen and (max-width: $screen-xs-max) {
+      top: 7px;
+      right: 8px;
+    }
   }
 
   .search-icon-open {
-    height: 60px;
+    height: 100%;
     padding: 20px 15px;
     right: 0;
     top: 0;
+
+    @media screen and (max-width: $screen-xs-max) {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
 
     @media screen and (min-width: $screen-md-min) {
       padding-left: 20px;
@@ -135,18 +163,26 @@
     outline: none;
     padding: 0 20px;
     position: absolute;
-    right: 12px;
+    right: 8px;
     top: 12px;
     transition: all ease-in-out .3s;
+    transition-property: opacity, width;
     width: 0;
 
     &:focus {
       background-color: $msm-navbar-input-active;
     }
 
+    @include placeholder-color($msm-navbar-placeholder);
+
     &.open {
       opacity: 1;
-      width: calc(100% - 25px);
+      width: calc(100% - 20px);
+    }
+
+    @media screen and (max-width: $screen-xs-max) {
+      top: 7px;
+      right: 8px;
     }
   }
 }

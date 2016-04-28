@@ -24,6 +24,7 @@
 	function MobileMenuItem($state) {
 		return {
 			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
+			replace: true,
 			scope: {
 				onClick: '&',
 				previewValue: '<',

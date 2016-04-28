@@ -7,23 +7,38 @@
     var vm = this;
 
     vm.primary = function () {
-      msmNotification.primary('Primary', false);
+      msmNotification.primary({
+        title: 'Title',
+        message: 'Primary'
+      }, false);
     };
 
     vm.error = function () {
-      msmNotification.error('Error', false);
+      msmNotification.error({
+        title: 'Title',
+        message: 'Error'
+      }, false);
     };
 
     vm.success = function () {
-      msmNotification.success('Success', false);
+      msmNotification.success({
+        title: 'Title',
+        message: 'Success'
+      }, false);
     };
 
     vm.info = function () {
-      msmNotification.info('Info', false);
+      msmNotification.info({
+        title: 'Title',
+        message: 'Info'
+      }, false);
     };
 
     vm.warning = function () {
-      msmNotification.warning('Warning', false);
+      msmNotification.warning({
+        title: 'Title',
+        message: 'Warning'
+      }, false);
     };
 
     vm.clearAll = function () {

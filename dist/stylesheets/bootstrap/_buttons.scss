@@ -1,7 +1,10 @@
+// Animations
 .btn {
-  @include animate-easing(background-color, 0.2s);
+  @include animate-all-easing(0.15s);
+  transition-property: border-color, background-color, color, box-shadow;
 }
 
+// Size
 .btn {
   i { margin-right: 4px; }
   .badge { margin-top: -2px; }
@@ -25,7 +28,79 @@
   .badge { margin-top: -6px; top: 1px; }
 }
 
+// Icons
 .btn-zmdi i {
   margin: 0;
 }
 
+// Colors
+.btn-default {
+  &:hover {
+    background-color: $btn-default-bg;
+  }
+}
+
+.btn-default, .btn-primary, .btn-success, .btn-warning, .btn-danger, .btn-info, .btn-dark {
+  box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.1);
+  &.btn-sm, &.btn-xs {
+    box-shadow: inset 0px -2px 0px 0px rgba(0,0,0,0.1);
+  }
+
+  &:hover {
+    box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2);
+    &.btn-sm, &.btn-xs {
+      box-shadow: inset 0px -2px 0px 0px rgba(0,0,0,0.2);
+    }
+  }
+}
+
+.btn-dark {
+  color: $msm-white;
+  background-color: #555;
+
+  &:hover {
+    color: $msm-white;
+    background-color: #333;
+  }
+}
+
+.btn.btn-inverse {
+  background-color: transparent;
+  box-shadow: none;
+
+  &.btn-default {
+    @include button-inverse($msm-white);
+
+    &:hover {
+      color: $msm-gray-darker;
+    }
+  }
+
+  &.btn-primary {
+    @include button-inverse($btn-primary-bg);
+  }
+
+  &.btn-success {
+    @include button-inverse($btn-success-bg);
+  }
+
+  &.btn-warning {
+    @include button-inverse($btn-warning-bg);
+  }
+
+  &.btn-danger {
+    @include button-inverse($btn-danger-bg);
+  }
+
+  &.btn-info {
+    @include button-inverse($btn-info-bg);
+  }
+
+  &.btn-dark {
+    @include button-inverse(#555);
+  }
+
+  &:hover {
+    color: $msm-white;
+  }
+}

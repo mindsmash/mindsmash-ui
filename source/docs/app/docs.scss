@@ -1,20 +1,25 @@
 body {
-    background-color: #F3F3F3;
+  background-color: #F0F0F0;
+
+  padding-top: 60px;
+
+  @media screen and (min-width: 992px) {
     padding-top: 100px;
+  }
 }
 
 body > .container-fluid {
-    max-width: 1280px;
+  max-width: 1280px;
 }
 
 pre {
-    border: 0;
-    background: transparent;
-    margin: 0;
-    padding: 0;
+  border: 0;
+  background: transparent;
+  margin: 0;
+  padding: 0;
 }
 
 .hljs {
-    background: transparent;
-    padding: 24px 0 0 0;
+  background: transparent;
+  padding: 24px 0 0 0;
 }

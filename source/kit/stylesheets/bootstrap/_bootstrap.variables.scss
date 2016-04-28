@@ -67,7 +67,7 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)) !default;
 
 //** By default, this inherits from the `<body>`.
 $headings-font-family:    inherit !default;
-$headings-font-weight:    300 !default;
+$headings-font-weight:    normal !default;
 $headings-line-height:    1 + 1/3 !default;
 $headings-color:          inherit !default;
 
@@ -151,7 +151,7 @@ $table-border-color:            $msm-border-light !default;
 
 //$btn-default-color:              #333 !default;
 //$btn-default-bg:                 #fff !default;
-$btn-default-border:               #ddd!default;
+$btn-default-border:               #E6E6E6!default;
 
 //$btn-primary-color:              #fff !default;
 //$btn-primary-bg:                 $brand-primary !default;
@@ -204,7 +204,7 @@ $input-border-radius-large:      $border-radius-large !default;
 $input-border-radius-small:      $border-radius-small !default;
 
 //** Border color for inputs on hover / focus
-$input-border-focus:             $msm-border-dark !default;
+$input-border-focus:             $msm-blue !default;
 
 //** Placeholder text color
 $input-color-placeholder:        $msm-gray !default;
@@ -708,7 +708,7 @@ $alert-link-font-weight:      600 !default;
 
 $panel-bg:                    $msm-white !default;
 $panel-body-padding:          24px 36px !default;
-$panel-heading-padding:       32px 36px 18px !default;
+$panel-heading-padding:       32px 36px 12px !default;
 $panel-footer-padding:        18px 36px 24px !default;
 $panel-border-radius:         $border-radius-base !default;
 
