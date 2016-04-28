@@ -4,10 +4,6 @@ body > .ui-select-bootstrap.open {
 
 .modal-backdrop {
   background: radial-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.75));
-
-  &.in {
-    opacity: 1;
-  }
 }
 
 .modal-content {
