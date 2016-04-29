@@ -3933,6 +3933,8 @@ dl dd { margin-bottom: 12px; }
 
 .btn-dark:hover { color: #FDFDFD; background-color: #333; }
 
+.btn-dark:focus { color: #FDFDFD; }
+
 .btn.btn-inverse { background-color: transparent; box-shadow: none; }
 
 .btn.btn-inverse.btn-default { border: 1px solid #FDFDFD; color: #FDFDFD; }
