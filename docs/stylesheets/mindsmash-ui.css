@@ -3383,7 +3383,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-datepicker table { margin: 0; outline: none; width: 100%; }
 
-.msm-datepicker table .btn-sm, .msm-datepicker table .btn-group-sm > .btn { font-size: 16px; }
+.msm-datepicker table .btn-sm, .msm-datepicker table .btn-group-sm > .btn { box-shadow: none; font-size: 16px; }
 
 .msm-datepicker table .caret { margin-left: .4em; }
 
@@ -3421,7 +3421,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .datetime-picker-dropdown table { margin: 0; outline: none; width: 100%; }
 
-.datetime-picker-dropdown table .btn-sm, .datetime-picker-dropdown table .btn-group-sm > .btn { font-size: 16px; }
+.datetime-picker-dropdown table .btn-sm, .datetime-picker-dropdown table .btn-group-sm > .btn { box-shadow: none; font-size: 16px; }
 
 .datetime-picker-dropdown table .caret { margin-left: .4em; }
 
@@ -3545,7 +3545,7 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 @media screen and (max-width: 767px) { .msm-navbar .nav > li > a { padding-top: 13px; padding-bottom: 13px; } }
 
-.msm-navbar .nav > li > a:hover, .msm-navbar .nav > li > a:focus { background-color: #3172ac; color: #FDFDFD; }
+.msm-navbar .nav > li > a:hover, .msm-navbar .nav > li > a:focus { background-color: #3172ac; color: #FDFDFD; outline: none; }
 
 .msm-navbar .nav > .active > a, .msm-navbar .nav > .active > a:hover, .msm-navbar .nav > .dropdown.open > a { background-color: #326b9e; color: #FDFDFD; }
 
