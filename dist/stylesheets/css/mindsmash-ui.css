@@ -3385,6 +3385,8 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-datepicker table .btn-sm, .msm-datepicker table .btn-group-sm > .btn { box-shadow: none; font-size: 16px; }
 
+.msm-datepicker table .btn-sm:hover, .msm-datepicker table .btn-group-sm > .btn:hover { box-shadow: none; }
+
 .msm-datepicker table .caret { margin-left: .4em; }
 
 .msm-datepicker table th button { width: 100%; }
@@ -3422,6 +3424,8 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 .datetime-picker-dropdown table { margin: 0; outline: none; width: 100%; }
 
 .datetime-picker-dropdown table .btn-sm, .datetime-picker-dropdown table .btn-group-sm > .btn { box-shadow: none; font-size: 16px; }
+
+.datetime-picker-dropdown table .btn-sm:hover, .datetime-picker-dropdown table .btn-group-sm > .btn:hover { box-shadow: none; }
 
 .datetime-picker-dropdown table .caret { margin-left: .4em; }
 
