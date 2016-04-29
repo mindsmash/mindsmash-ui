@@ -62,6 +62,10 @@
     color: $msm-white;
     background-color: #333;
   }
+
+  &:focus {
+    color: $msm-white;
+  }
 }
 
 .btn.btn-inverse {
