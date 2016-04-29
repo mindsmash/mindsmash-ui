@@ -65,6 +65,7 @@
       &:focus {
         background-color: $msm-navbar-hover;
         color: $msm-navbar-text;
+        outline: none;
       }
     }
 
