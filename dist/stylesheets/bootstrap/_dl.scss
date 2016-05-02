@@ -1,0 +1,45 @@
+dl {
+  font-size: $font-size-base;
+
+  dt, dd {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 24px;
+  }
+
+  dt {
+    color: $msm-gray;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  dd {
+    margin-bottom: 12px;
+  }
+}
+
+.dl-horizontal {
+  dt, dd {
+    display: inline-block;
+  }
+  dt {
+    clear: left;
+    float: left;
+    margin-right: 24px;
+    text-align: right;
+    width: calc(35% - 12px);
+  }
+  dd {
+    margin-left: 0;
+    width: calc(65% - 12px);
+  }
+
+  @include xs {
+    dt, dd {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+}
