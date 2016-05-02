@@ -3840,6 +3840,22 @@ a.label.label-muted:hover { color: #AAA; }
 
 .badge.badge-lg { font-size: 14px; padding: 5px 12px; }
 
+dl { font-size: 16px; }
+
+dl dt, dl dd { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 24px; }
+
+dl dt { color: #AAA; font-weight: normal; text-transform: uppercase; }
+
+dl dd { margin-bottom: 12px; }
+
+.dl-horizontal dt, .dl-horizontal dd { display: inline-block; }
+
+.dl-horizontal dt { clear: left; float: left; margin-right: 24px; text-align: right; width: calc(35% - 12px); }
+
+.dl-horizontal dd { margin-left: 0; width: calc(65% - 12px); }
+
+@media screen and (max-width: 767px) { .dl-horizontal dt, .dl-horizontal dd { display: block; width: 100%; text-align: left; } }
+
 .dropdown-menu { padding: 0; -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); }
 
 .dropdown-menu > li > a { padding: 8px 16px; }
@@ -3885,22 +3901,6 @@ small, .small { font-size: 87.5%; }
 .normal { font-weight: 400 !important; }
 
 .bold { font-weight: bold !important; }
-
-.size-normal, dt, .msm-label, .control-label { font-size: 16px; }
-
-dt, .msm-label, .control-label { color: #AAA; font-weight: 400; }
-
-dl dt, dl dd { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-dl dd { margin-bottom: 12px; }
-
-.dl-horizontal dt, .dl-horizontal dd { line-height: 32px; display: inline-block; }
-
-.dl-horizontal dt { clear: left; float: left; margin-right: 24px; text-align: right; width: calc(35% - 12px); text-transform: uppercase; }
-
-.dl-horizontal dd { margin-left: 0; width: calc(65% - 12px); }
-
-@media screen and (max-width: 767px) { .dl-horizontal dt, .dl-horizontal dd { display: block; width: 100%; text-align: left; } }
 
 .btn { transition: all 0.15s ease-in-out; transition-property: border-color, background-color, color, box-shadow; }
 
@@ -4135,7 +4135,7 @@ dl dd { margin-bottom: 12px; }
   .panel .panel-actions .btn { display: block; width: 100%; }
   .panel .panel-actions .btn:first-child { margin-bottom: 12px; } }
 
-.control-label { color: #333; }
+.control-label { font-weight: normal; color: #333; }
 
 .form-control { box-shadow: none !important; }
 
