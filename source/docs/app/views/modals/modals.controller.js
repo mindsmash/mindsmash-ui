@@ -77,14 +77,6 @@
       {
         key: 'KeyItem3',
         value: 'Item 3'
-      },
-      {
-        key: 'KeyItem31',
-        value: 'Item 3.1'
-      },
-      {
-        key: 'KeyItem31',
-        value: 'Item 3.2'
       }
     ];
     var selectedSelectModalItem = values[0].key;
@@ -94,8 +86,8 @@
         title: 'Selection',
         text: 'Please select:',
         options: {
-          values: values,
-          selected: selectedSelectModalItem
+          values: function () { return values; },
+          selected: function () { return selectedSelectModalItem; }
         }
       }).result.then(function (selectedItem) {
         $log.info('Modal (select): Clicked OK.');

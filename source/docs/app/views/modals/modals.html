@@ -107,8 +107,12 @@
       title: 'Selection',
       text: 'Please select:',
       options: {
-        values: [{ key: 'key1', value: 'Item 1' }, { key: 'key2', value: 'Item 2' }, { key: 'key3', value: 'Item 3' }],
-        selected: 'key1'
+        values: function () { return [
+          { key: 'key1', value: 'Item 1' },
+          { key: 'key2', value: 'Item 2' },
+          { key: 'key3', value: 'Item 3' }];
+        },
+        selected: function () { return 'key1' }
       }
     }).result.then(function(selectedItem) { /* ... */ });
   };

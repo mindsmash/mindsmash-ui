@@ -8,7 +8,6 @@ body > .ui-select-bootstrap.open {
 
 .modal-content {
   border: 0;
-  box-shadow: none;
 }
 
 .modal-content-wrapper {
@@ -181,7 +180,21 @@ body > .ui-select-bootstrap.open {
   .modal-mobile-show { display: none !important; }
 
   .modal {
-    display: flex !important;
+    text-align: center;
+    //padding: 0 !important;
+  }
+
+  .modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+
+  .modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
   }
 
   .modal-content {
@@ -191,11 +204,6 @@ body > .ui-select-bootstrap.open {
 
   .modal-content-wrapper {
     max-height: 80vh;
-  }
-
-  .modal-dialog {
-    align-self: center;
-    margin: 0 auto;
   }
 
   .modal-header {
