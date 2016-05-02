@@ -3391,7 +3391,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .msm-datepicker table th button { width: 100%; }
 
-.msm-datepicker table button { background-color: transparent; border-color: transparent; color: #333; display: block; padding: 10px; }
+.msm-datepicker table button { background-color: transparent; border-color: transparent; color: #333; display: block; padding: 10px; box-shadow: none; }
 
 .msm-datepicker table button i { font-weight: 600; padding: 0; }
 
@@ -3433,7 +3433,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .datetime-picker-dropdown table a:active, .datetime-picker-dropdown table a:focus, .datetime-picker-dropdown table a:active:focus, .datetime-picker-dropdown table a:hover, .datetime-picker-dropdown table a:active:hover, .datetime-picker-dropdown table a.btn-default[disabled]:hover, .datetime-picker-dropdown table a.btn-default[disabled]:focus { outline: none; }
 
-.datetime-picker-dropdown table button { background-color: transparent; border-color: transparent; color: #333; display: block; padding: 10px; }
+.datetime-picker-dropdown table button { background-color: transparent; border-color: transparent; color: #333; display: block; padding: 10px; box-shadow: none; }
 
 .datetime-picker-dropdown table button i { font-weight: 600; padding: 0; }
 
