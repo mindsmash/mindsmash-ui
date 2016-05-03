@@ -1,6 +1,16 @@
 /* Selects
 ------------------------------------------------------------ */
 
+.ui-select-bootstrap .ui-select-no-choice > li {
+  display: block;
+  padding: 8px 16px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: #dadada;
+  white-space: nowrap;
+}
+
 .ui-select-bootstrap .ui-select-choices-row > a {
   padding: 8px 16px;
 }

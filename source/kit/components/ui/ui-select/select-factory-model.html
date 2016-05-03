@@ -8,5 +8,8 @@
       <span ng-bind-html="::option.displayName | highlight: $select.search"></span>
       <small class="text-muted" ng-repeat="subline in ::sublines">{{:: isString(subline) ? option[subline] : subline(option) }}</small>
     </ui-select-choices>
+    <ui-select-no-choice class="ui-select-no-choice">
+      <span ng-if="emptyText">{{:: emptyText | translate }}</span>
+    </ui-select-no-choice>
   </ui-select>
 </div>
