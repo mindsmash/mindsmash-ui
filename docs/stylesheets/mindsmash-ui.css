@@ -3480,11 +3480,11 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 .modal-header .modal-close:hover { color: #999; }
 
-.modal-body { flex: 1; overflow: scroll; }
+.modal-body { flex: 1; overflow: auto; }
 
 .modal-footer { border: 0; display: flex; overflow: hidden; }
 
-.modal-footer .btn { border: 0; flex: 1; }
+.modal-footer .btn { border: 0; flex: 1 0 auto; }
 
 .modal-footer .btn.btn-default { background-color: #F3F3F3; }
 
@@ -3516,16 +3516,16 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
   .modal:before { content: ''; display: inline-block; height: 100%; vertical-align: middle; }
   .modal-dialog { display: inline-block; text-align: left; vertical-align: middle; }
   .modal-content { border-radius: 6px; box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2); }
-  .modal-content-wrapper { max-height: 80vh; }
   .modal-header { margin: 0 24px 0; padding: 18px 0 12px; min-height: 63px; }
-  .modal-body { padding: 16px 24px; }
+  .modal-body { flex: 1 0 auto; padding: 16px 24px; }
   .modal-body hr { margin-left: -24px; margin-right: -24px; }
   .modal-footer { flex-direction: row-reverse; min-height: 48px; padding: 0; }
   .modal-footer .btn { border-radius: 0; margin: 0; padding-bottom: 12px; padding-top: 12px; }
   .modal-footer .btn + .btn { border-right: 1px solid rgba(255, 255, 255, 0.25); }
   .modal-footer .btn.btn-condensed { flex: none; padding-left: 50px; padding-right: 50px; }
   .modal-footer .btn:first-child { border-bottom-right-radius: 5px; }
-  .modal-footer .btn:last-child { border-bottom-left-radius: 5px; } }
+  .modal-footer .btn:last-child { border-bottom-left-radius: 5px; }
+  .modal-footer:before, .modal-footer:after { display: none; } }
 
 /** Use with bootstrap's .navbar */
 .msm-navbar { background-color: #317DC1; border: 0; border-radius: 0; color: #FDFDFD; height: 60px; margin-bottom: 0; }

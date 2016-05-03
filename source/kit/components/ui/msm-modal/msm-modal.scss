@@ -48,7 +48,7 @@ body > .ui-select-bootstrap.open {
 
 .modal-body {
   flex: 1;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .modal-footer {
@@ -58,7 +58,7 @@ body > .ui-select-bootstrap.open {
 
   .btn {
     border: 0;
-    flex: 1;
+    flex: 1 0 auto;
     
     &.btn-default {
       background-color: $msm-gray-lighter;
@@ -181,7 +181,6 @@ body > .ui-select-bootstrap.open {
 
   .modal {
     text-align: center;
-    //padding: 0 !important;
   }
 
   .modal:before {
@@ -202,10 +201,6 @@ body > .ui-select-bootstrap.open {
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
   }
 
-  .modal-content-wrapper {
-    max-height: 80vh;
-  }
-
   .modal-header {
     margin: $panel-sm-heading-margin;
     padding: $panel-sm-heading-padding;
@@ -213,6 +208,7 @@ body > .ui-select-bootstrap.open {
   }
 
   .modal-body {
+    flex: 1 0 auto;
     padding: $panel-sm-body-padding;
     
     hr {
@@ -245,5 +241,11 @@ body > .ui-select-bootstrap.open {
       &:first-child { border-bottom-right-radius: $border-radius-base; }
       &:last-child { border-bottom-left-radius: $border-radius-base; }
     }
+
+    &:before,
+    &:after {
+      display: none;
+    }
+
   }
 }
