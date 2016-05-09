@@ -23,14 +23,18 @@
       height: 100%;
 
       .nav-item-icon {
-        font-size: 20px;
-        font-weight: 600;
-        padding: 20px 15px;
+        font-size: 26px;
+        font-weight: 100;
+        padding: 17px 15px;
+
+        &.zmdi-apps {
+          font-size: 28px;
+        }
 
         @media screen and (max-width: $screen-xs-max) {
           padding-top: 16px;
           padding-bottom: 16px;
-          font-size: 18px;
+          font-size: 20px;
         }
 
         @media screen and (min-width: $screen-md-min) {
@@ -107,8 +111,8 @@
     z-index: 3;
 
     > i {
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 28px;
+      font-weight: 100;
 
       @media screen and (max-width: $screen-xs-max) {
         font-size: 18px;
@@ -121,7 +125,7 @@
     height: 36px;
     padding: 8px;
     right: 10px;
-    top: 12px;
+    top: 8px;
     width: 36px;
 
     @media screen and (max-width: $screen-xs-max) {
@@ -132,7 +136,7 @@
 
   .search-icon-open {
     height: 100%;
-    padding: 20px 15px;
+    padding: 17px 15px;
     right: 0;
     top: 0;
 

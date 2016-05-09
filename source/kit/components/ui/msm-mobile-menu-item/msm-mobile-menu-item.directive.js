@@ -27,7 +27,7 @@
 			replace: true,
 			scope: {
 				onClick: '&',
-				previewValue: '<',
+				previewValue: '@',
 				targetState: '@',
 				labelText: '@',
 				icon: '<'
