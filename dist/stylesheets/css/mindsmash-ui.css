@@ -3609,7 +3609,7 @@ body > .ui-select-bootstrap.open { z-index: 2000 !important; }
 
 @media screen and (max-width: 767px) { .msm-navbar-flex .search-icon > i { font-size: 18px; } }
 
-.msm-navbar-flex .search-icon-close { height: 36px; padding: 8px; right: 10px; top: 8px; width: 36px; }
+.msm-navbar-flex .search-icon-close { height: 36px; padding: 8px; right: 12px; top: 8px; width: 36px; }
 
 @media screen and (max-width: 767px) { .msm-navbar-flex .search-icon-close { top: 7px; right: 8px; } }
 
