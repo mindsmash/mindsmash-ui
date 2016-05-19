@@ -35,7 +35,7 @@
     "angular-translate": "~2.9.0",
     "angular-ui-notification": "~0.1.0",
     "angular-ui-router": "~0.2.18",
-    "angular-ui-select": "mindsmash/ui-select#58e603f8c73a769f052724e94b0a215fe5e379a3",
+    "angular-ui-select": "~0.17.1",
     "angular-sanitize": "~1.5.0",
     "css-spaces": "~0.3.5",
     "material-design-iconic-font": "~2.2.0",
