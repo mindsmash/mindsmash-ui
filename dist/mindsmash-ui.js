@@ -459,51 +459,6 @@ angular.module('msm.components.ui')
   }
 })();
 
-(function() {
-	'use strict';
-
-	/**
-	 * @ngdoc directive
-	 * @name commons.ui.msmMobileMenuItem:msmMobileMenuItem
-	 * @scope
-	 * @restrict 'E'
-	 * @element ANY
-	 *
-	 * @description Directive that renders a menu point for the mobile view with an icon, name, preview and link. You can
-	 * apply your own ng-click directive to it or use the targetState param to handle click actions.
-	 *
-	 * @param {string} onClick (optional) the callback to be executed on click
-	 * @param {string} targetState (optional) the string that identifies the state to go to
-	 * @param {string} labelText the string that represents the message key for the target
-	 * @param {string} previewValue the value to be previewed
-	 * @param {string} icon the classes for the icon
-	 */
-	angular
-		.module('msm.components.ui')
-		.directive('msmMobileMenuItem', MobileMenuItem);
-
-	function MobileMenuItem($state) {
-		return {
-			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
-			replace: true,
-			scope: {
-				onClick: '&',
-				previewValue: '@',
-				targetState: '@',
-				labelText: '@',
-				icon: '<'
-			},
-			controller: function($scope, $element) {
-				$scope.open = angular.isDefined($element.attr('on-click')) ? $scope.onClick : function() {
-					if($scope.targetState) {
-						$state.go($scope.targetState);
-					}
-				};
-			}
-		};
-	}
-})();
-
 (function () {
   'use strict';
 
@@ -586,6 +541,51 @@ angular.module('msm.components.ui')
     };
   }
 })();
+(function() {
+	'use strict';
+
+	/**
+	 * @ngdoc directive
+	 * @name commons.ui.msmMobileMenuItem:msmMobileMenuItem
+	 * @scope
+	 * @restrict 'E'
+	 * @element ANY
+	 *
+	 * @description Directive that renders a menu point for the mobile view with an icon, name, preview and link. You can
+	 * apply your own ng-click directive to it or use the targetState param to handle click actions.
+	 *
+	 * @param {string} onClick (optional) the callback to be executed on click
+	 * @param {string} targetState (optional) the string that identifies the state to go to
+	 * @param {string} labelText the string that represents the message key for the target
+	 * @param {string} previewValue the value to be previewed
+	 * @param {string} icon the classes for the icon
+	 */
+	angular
+		.module('msm.components.ui')
+		.directive('msmMobileMenuItem', MobileMenuItem);
+
+	function MobileMenuItem($state) {
+		return {
+			templateUrl: 'components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html',
+			replace: true,
+			scope: {
+				onClick: '&',
+				previewValue: '@',
+				targetState: '@',
+				labelText: '@',
+				icon: '<'
+			},
+			controller: function($scope, $element) {
+				$scope.open = angular.isDefined($element.attr('on-click')) ? $scope.onClick : function() {
+					if($scope.targetState) {
+						$state.go($scope.targetState);
+					}
+				};
+			}
+		};
+	}
+})();
+
 (function () {
   'use strict';
 
@@ -1095,9 +1095,9 @@ $templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html
 $templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-content-wrapper\">\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\">{{:: vm.title | translate:vm.translationContext }}</h3>\n    <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n  </div>\n  <div class=\"modal-body modal-mobile-show\"\n       msm-infinite-scroll=\"vm.addPage()\"\n       msm-infinite-scroll-threshold=\"50\"\n       msm-infinite-scroll-no-initial-load=\"true\">\n    <ul class=\"modal-mobile-options\">\n      <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n        <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"::vm.options.selected === option\"></i>\n        <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"::vm.options.selected !== option\"></i>\n        {{ ::option }}\n      </li>\n    </ul>\n    <div class=\"text-center m-m\" data-ng-show=\"vm.loading\">\n      <msm-spinner></msm-spinner>\n    </div>\n  </div>\n  <div class=\"modal-body modal-mobile-hide\">\n    <form class=\"form-horizontal mt-xxs mb-xs\">\n          <ui-select id=\"selectItems\" ng-model=\"vm.options.selected\" append-to-body=\"true\">\n            <ui-select-match placeholder=\"{{ vm.text | translate:vm.translationContext }}\" allow-clear=\"false\" class=\"ui-select-match\">\n              {{ vm.options.selected }}\n            </ui-select-match>\n            <ui-select-choices repeat=\"option in ::vm.options.values | filter: $select.search\" class=\"ui-select-choices\"\n                               msm-infinite-scroll=\"vm.addPage()\"\n                               msm-infinite-scroll-threshold=\"50\"\n                               msm-infinite-scroll-no-initial-load=\"true\">\n              <div ng-bind-html=\"::option | highlight: $select.search\"></div>\n            </ui-select-choices>\n          </ui-select>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n            ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n            ng-click=\"button.onClick()\">\n      <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}</button>\n  </div>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-content-wrapper\">\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\">{{ vm.title | translate:vm.translationContext }}</h3>\n    <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n  </div>\n  <div class=\"modal-body\">\n    <span>{{ vm.text | translate:vm.translationContext }}</span>\n  </div>\n  <div class=\"modal-footer\">\n    <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n            ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n            ng-click=\"button.onClick()\">\n      <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}\n    </button>\n  </div>\n</div>");
 $templateCache.put("components/ui/msm-spinner/msm-spinner.html","<div class=\"msm-spinner {{size}}\" ng-class=\"{ inverted: inverted }\">...</div>");
+$templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-wizard {{class}}\">\n  <li ng-repeat-start=\"state in states\"\n      class=\"msm-wizard-state\"\n      ng-class=\"{ passed: $index < active, active: $index === active }\">\n    <i class=\"zmdi zmdi-hc-fw zmdi-check msm-wizard-icon\"></i>\n    <span class=\"msm-wizard-label\" translate=\"{{ state }}\"></span>\n  </li>\n  <li ng-repeat-end ng-if=\"!$last\" class=\"msm-wizard-divider\"></li>\n</ul>\n");
 $templateCache.put("components/ui/ui-select/select-factory-model.html","<div class=\"ui-select\">\n  <ui-select ng-model=\"data.ngModel\" ng-required=\"isRequired\" ng-disabled=\"isDisabled\">\n    <ui-select-match class=\"ui-select-match\" placeholder=\"{{:: placeholder | translate }}\" allow-clear=\"{{ !isRequired }}\">\n      <span>{{ $select.selected.displayName }}</span>\n    </ui-select-match>\n    <ui-select-choices class=\"ui-select-choices\" repeat=\"transform(option) as option in options\" refresh=\"refresh($select.search, true)\" refresh-delay=\"250\"\n                       msm-infinite-scroll=\"refresh($select.search, false)\" msm-infinite-scroll-threshold=\"50\" msm-infinite-scroll-no-initial-load=\"true\">\n      <span ng-bind-html=\"::option.displayName | highlight: $select.search\"></span>\n      <small class=\"text-muted\" ng-repeat=\"subline in ::sublines\">{{:: isString(subline) ? option[subline] : subline(option) }}</small>\n    </ui-select-choices>\n    <ui-select-no-choice class=\"ui-select-no-choice\">\n      <span ng-if=\"emptyText\">{{:: emptyText | translate }}</span>\n    </ui-select-no-choice>\n  </ui-select>\n</div>\n");
-$templateCache.put("components/ui/ui-select/select-factory-model.multiple.html","<div>\n  <div class=\"ui-select\" ng-class=\"{\'hidden-xs\': mobile}\">\n  <ui-select ng-model=\"data.ngModel\" ng-required=\"isRequired\" ng-disabled=\"isDisabled\" multiple on-select=\"onSelectCallback()\">\n    <ui-select-match class=\"ui-select-match\" placeholder=\"{{:: placeholder | translate }}\" allow-clear=\"{{ !isRequired }}\">\n      <span>{{:: $item.displayName }}</span>\n    </ui-select-match>\n    <ui-select-choices class=\"ui-select-choices\" repeat=\"transform(option) as option in options | filter:{} track by option.id\" refresh=\"refresh($select.search, true)\" refresh-delay=\"250\"\n                       msm-infinite-scroll=\"refresh($select.search, false)\" msm-infinite-scroll-threshold=\"50\" msm-infinite-scroll-no-initial-load=\"true\">\n      <span ng-bind-html=\"::option.displayName | highlight: $select.search\"></span>\n      <small class=\"text-muted\" ng-repeat=\"subline in ::sublines\">{{:: isString(subline) ? option[subline] : subline(option) }}</small>\n    </ui-select-choices>\n    <ui-select-no-choice class=\"ui-select-no-choice\">\n      <span ng-if=\"emptyText\">{{:: emptyText | translate }}</span>\n    </ui-select-no-choice>\n  </ui-select>\n</div>\n  <ul class=\"ui-select-mobile-list list-unstyled visible-xs\" ng-if=\"mobile\">\n    <li ng-repeat=\"item in data.ngModel\" class=\"text-muted\">\n      <i ng-if=\"mobileIcon\" class=\"zmdi {{mobileIcon}}\"></i> {{::item.displayName}} <span class=\"pull-right\"><i class=\"zmdi zmdi-close pointer\" ng-click=\"removeItem(item)\"></i></span>\n    </li>\n    <li>\n      <a href ng-click=\"addItem()\" class=\"btn btn-block btn-default\"><i class=\"zmdi zmdi-plus\" ng-class=\"{\n        \'zmdi-plus\': !modalLoading,\n        \'zmdi-spinner zmdi-hc-spin\': modalLoading\n      }\"></i> {{::mobileAddText | translate}}</a>\n    </li>\n  </ul>\n</div>");
-$templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-wizard {{class}}\">\n  <li ng-repeat-start=\"state in states\"\n      class=\"msm-wizard-state\"\n      ng-class=\"{ passed: $index < active, active: $index === active }\">\n    <i class=\"zmdi zmdi-hc-fw zmdi-check msm-wizard-icon\"></i>\n    <span class=\"msm-wizard-label\" translate=\"{{ state }}\"></span>\n  </li>\n  <li ng-repeat-end ng-if=\"!$last\" class=\"msm-wizard-divider\"></li>\n</ul>\n");}]);
+$templateCache.put("components/ui/ui-select/select-factory-model.multiple.html","<div>\n  <div class=\"ui-select\" ng-class=\"{\'hidden-xs\': mobile}\">\n  <ui-select ng-model=\"data.ngModel\" ng-required=\"isRequired\" ng-disabled=\"isDisabled\" multiple on-select=\"onSelectCallback()\">\n    <ui-select-match class=\"ui-select-match\" placeholder=\"{{:: placeholder | translate }}\" allow-clear=\"{{ !isRequired }}\">\n      <span>{{:: $item.displayName }}</span>\n    </ui-select-match>\n    <ui-select-choices class=\"ui-select-choices\" repeat=\"transform(option) as option in options | filter:{} track by option.id\" refresh=\"refresh($select.search, true)\" refresh-delay=\"250\"\n                       msm-infinite-scroll=\"refresh($select.search, false)\" msm-infinite-scroll-threshold=\"50\" msm-infinite-scroll-no-initial-load=\"true\">\n      <span ng-bind-html=\"::option.displayName | highlight: $select.search\"></span>\n      <small class=\"text-muted\" ng-repeat=\"subline in ::sublines\">{{:: isString(subline) ? option[subline] : subline(option) }}</small>\n    </ui-select-choices>\n    <ui-select-no-choice class=\"ui-select-no-choice\">\n      <span ng-if=\"emptyText\">{{:: emptyText | translate }}</span>\n    </ui-select-no-choice>\n  </ui-select>\n</div>\n  <ul class=\"ui-select-mobile-list list-unstyled visible-xs\" ng-if=\"mobile\">\n    <li ng-repeat=\"item in data.ngModel\" class=\"text-muted\">\n      <i ng-if=\"mobileIcon\" class=\"zmdi {{mobileIcon}}\"></i> {{::item.displayName}} <span class=\"pull-right\"><i class=\"zmdi zmdi-close pointer\" ng-click=\"removeItem(item)\"></i></span>\n    </li>\n    <li>\n      <a href ng-click=\"addItem()\" class=\"btn btn-block btn-default\"><i class=\"zmdi zmdi-plus\" ng-class=\"{\n        \'zmdi-plus\': !modalLoading,\n        \'zmdi-spinner zmdi-hc-spin\': modalLoading\n      }\"></i> {{::mobileAddText | translate}}</a>\n    </li>\n  </ul>\n</div>");}]);
 (function () {
   'use strict';
 
@@ -1175,6 +1175,25 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
   }
 })();
 
+(function() {
+  'use strict';
+
+  angular
+    .module('msm.components.ui')
+    .directive('msmWizard', msmWizard);
+
+  function msmWizard() {
+    return {
+      restrict: "AE",
+      replace: true,
+      scope: {
+        active: "=",
+        states: "="
+      },
+      templateUrl: 'components/ui/msm-wizard/msm-wizard.html'
+    }
+  }
+})();
 (function() {
   'use strict';
 
@@ -1345,25 +1364,6 @@ $templateCache.put("components/ui/msm-wizard/msm-wizard.html","<ul class=\"msm-w
 
 })();
 
-(function() {
-  'use strict';
-
-  angular
-    .module('msm.components.ui')
-    .directive('msmWizard', msmWizard);
-
-  function msmWizard() {
-    return {
-      restrict: "AE",
-      replace: true,
-      scope: {
-        active: "=",
-        states: "="
-      },
-      templateUrl: 'components/ui/msm-wizard/msm-wizard.html'
-    }
-  }
-})();
 (function () {
   'use strict';
 

@@ -1,51 +1,24 @@
 /**
 * Use with bootstrap's .navbar
 */
-.msm-navbar {
+.navbar.msm-navbar {
   background-color: $msm-navbar;
   border: 0;
   border-radius: 0;
   color: $msm-navbar-text;
-  height: 60px;
+  height: $navbar-height;
   margin-bottom: 0;
-
-  @media screen and (max-width: $screen-xs-max) {
-    height: 50px;
-  }
 
   .navbar-brand {
     color: $msm-navbar-text;
-    font-size: 24px;
+    font-size: 20px;
     height: 100%;
-    padding: 18px 20px;
-
-    @media screen and (max-width: $screen-xs-max) {
-      padding-top: 14px;
-      padding-bottom: 14px;
-    }
+    padding: 14px 20px;
   }
 
   .navbar-toggle {
-    border: 1px solid $msm-navbar-toggle;
-    margin: 13px 20px;
-    transition: border-color linear 0.2s;
-
-    @media screen and (max-width: $screen-xs-max) {
-      margin-top: 8px;
-      margin-bottom: 8px;
-    }
-
     .icon-bar {
-      background-color: $msm-navbar-toggle;
-      transition: background-color linear 0.2s;
-    }
-
-    &:hover, &:focus {
-      border-color: $msm-navbar-text;
-
-      .icon-bar {
-        background-color: white;
-      }
+      background-color: $msm-white;
     }
   }
 
@@ -53,13 +26,8 @@
     > li > a {
       color: $msm-navbar-text;
       height: 100%;
-      padding: 18px 20px;
+      padding: 13px 18px;
       transition: background-color linear 0.1s;
-
-      @media screen and (max-width: $screen-xs-max) {
-        padding-top: 13px;
-        padding-bottom: 13px;
-      }
 
       &:hover,
       &:focus {
@@ -88,7 +56,7 @@
 
   .navbar-form {
     margin: 0;
-    padding: 13px 20px;
+    padding: 9px 18px;
 
     .form-control {
       background-color: $msm-navbar-input;
@@ -96,9 +64,7 @@
       border: 0;
       box-shadow: none;
       color: $msm-navbar-input-text;
-      height: 36px;
-      line-height: 18px;
-      padding: 0 20px;
+      height: 33px;
       transition: background-color linear 0.25s;
 
       &:focus {

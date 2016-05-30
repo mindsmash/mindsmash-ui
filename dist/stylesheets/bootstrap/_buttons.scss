@@ -6,26 +6,42 @@
 
 // Size
 .btn {
-  i { margin-right: 4px; }
-  .badge { margin-top: -2px; }
+  i {
+    margin-right: 4px;
+  }
+  .badge {
+    margin-top: -1px;
+  }
 }
 
 .btn-lg {
-  i { margin-right: 6px; }
+  i {
+    margin-right: 6px;
+  }
 }
 
 .btn-sm {
   line-height: 18px;
 
-  i { margin-right: 3px; }
-  .badge { margin-top: -6px; top: 1px; }
+  i {
+    margin-right: 3px;
+  }
+  .badge {
+    margin-top: -6px;
+    top: 2px;
+  }
 }
 
 .btn-xs {
   line-height: 18px;
 
-  i { margin-right: 2px; }
-  .badge { margin-top: -6px; top: 1px; }
+  i {
+    margin-right: 2px;
+  }
+  .badge {
+    margin-top: -6px;
+    top: 2px;
+  }
 }
 
 // Icons
@@ -41,15 +57,15 @@
 }
 
 .btn-default, .btn-primary, .btn-success, .btn-warning, .btn-danger, .btn-info, .btn-dark {
-  box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.1);
+  box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.1);
   &.btn-sm, &.btn-xs {
-    box-shadow: inset 0px -2px 0px 0px rgba(0,0,0,0.1);
+    box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.1);
   }
 
   &:hover {
-    box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.2);
+    box-shadow: inset 0px -3px 0px 0px rgba(0, 0, 0, 0.2);
     &.btn-sm, &.btn-xs {
-      box-shadow: inset 0px -2px 0px 0px rgba(0,0,0,0.2);
+      box-shadow: inset 0px -2px 0px 0px rgba(0, 0, 0, 0.2);
     }
   }
 }
@@ -74,10 +90,6 @@
 
   &.btn-default {
     @include button-inverse($msm-white);
-
-    &:hover {
-      color: $msm-gray-darker;
-    }
   }
 
   &.btn-primary {

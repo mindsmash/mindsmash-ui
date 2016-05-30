@@ -10,7 +10,7 @@
       return $q(function (resolve) {
         setTimeout(function () {
           resolve('Some async value...');
-        }, 1000);
+        }, 100);
       });
     }
 
