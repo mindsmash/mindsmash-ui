@@ -1,7 +1,9 @@
 .msm-checkbox.btn {
-  margin: 8px 0px;
-  padding: 0;
   box-shadow: none;
+  height: 28px;
+  line-height: 1;
+  margin: 6px 0;
+  padding: 1px;
 
   &:active, &:hover, &:focus {
     background: $input-bg;
@@ -12,7 +14,7 @@
 
   &:focus {
     border-color: $input-border-focus;
-    box-shadow: 0px 0px 0px 1px $input-border-focus;
+    box-shadow: 0 0 0 1px $input-border-focus;
   }
 
   &:active:focus {
@@ -20,8 +22,9 @@
   }
 
   i {
-    margin: 0;
+    font-size: 16px;
     line-height: 24px;
+    margin: 0;
     width: 24px;
   }
 }
@@ -29,24 +32,26 @@
 .msm-checkbox-sm.btn,
 .form-group-sm .msm-checkbox.btn {
   border-radius: $btn-border-radius-small;
-  font-size: 12px;
-  margin: 6px 0px;
+  height: 23px;
+  margin: 5px 0;
 
   i {
-    color: $input-color;
-    line-height: 18px;
-    width: 18px;
+    font-size: 14px;
+    line-height: 19px;
+    width: 19px;
   }
 }
 
 .msm-checkbox-lg.btn,
 .form-group-lg .msm-checkbox.btn {
   border-radius: $btn-border-radius-large;
-  font-size: 20px;
+  height: 31px;
+  margin: 7px 0;
 
   i {
-    line-height: 30px;
-    width: 30px;
+    font-size: 20px;
+    line-height: 27px;
+    width: 27px;
   }
 }
 
@@ -56,10 +61,11 @@
 }
 
 .form-group-checkbox {
-  margin-bottom: 7px;
+  margin-bottom: 6px;
 }
+
 .form-group + .form-group-checkbox,
 .form-group-sm + .form-group-checkbox,
 .form-group-lg + .form-group-checkbox {
-  margin-top: -8px;
+  margin-top: -6px;
 }
