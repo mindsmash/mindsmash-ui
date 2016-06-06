@@ -4177,7 +4177,7 @@ select.form-control { text-indent: 8px; }
 
 .nav.nav-tabs.nav-justified > li { display: block; width: auto; flex: 1; }
 
-.panel .nav > li > a, .panel .nav.nav-panel > li > a { padding-left: 26px; padding-right: 30px; }
+.panel .nav > li > a, .panel .nav.nav-panel > li > a { padding: 6px 30px 6px 26px; }
 
 .panel .nav.nav-icons > li > a, .panel .nav.nav-icons.nav-panel > li > a { padding-left: 52px; }
 
