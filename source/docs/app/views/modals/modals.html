@@ -1,6 +1,7 @@
 <div class="mb-l">
   <h1>Modals</h1>
-  <p><b>Note:</b> When a modal window is opened, a CSS blur filter is applied to all DOM elements having the <code>.modal-blur</code> class
+  <p><b>Note:</b> When a modal window is opened, a CSS blur filter is applied to all DOM elements having the <code>.modal-blur</code>
+    class
     and a CSS grayscale filter is applied to all DOM elements having the <code>.modal-gray</code> class.</p>
 </div>
 
@@ -9,29 +10,27 @@
     <h3 class="panel-title">Custom modals</h3>
   </div>
   <div class="panel-body">
-    <div class="container-fluid">
-      <button class="btn btn-primary mr-s" ng-click="vm.openCustom()">Default</button>
-      <button class="btn btn-primary mr-s" ng-click="vm.openCustom('sm')">Small</button>
-      <button class="btn btn-primary mr-s" ng-click="vm.openCustom('lg')">Large</button>
-    </div>
+    <button class="btn btn-primary mr-s" ng-click="vm.openCustom()">Default</button>
+    <button class="btn btn-primary mr-s" ng-click="vm.openCustom('sm')">Small</button>
+    <button class="btn btn-primary mr-s" ng-click="vm.openCustom('lg')">Large</button>
   </div>
   <div class="panel-footer" hljs>
-<script>
-  showCustom = function(size) {
-    return msmModal.open({
-      size: size,
-      resolve: {
-        value: valueFunction,    // resolve function
-        valueAsync: valueAsync() // $q promise (1sec. delay)
-      },
-      controller: function(value, valueAsync) {
-        var vm = this;
-        vm.title = 'Customization';
-        vm.text = valueAsync;
-      }
-    });
-  };
-</script>
+    <script>
+      showCustom = function (size) {
+        return msmModal.open({
+          size: size,
+          resolve: {
+            value: valueFunction,    // resolve function
+            valueAsync: valueAsync() // $q promise (1sec. delay)
+          },
+          controller: function (value, valueAsync) {
+            var vm = this;
+            vm.title = 'Customization';
+            vm.text = valueAsync;
+          }
+        });
+      };
+    </script>
   </div>
 </div>
 
@@ -41,22 +40,20 @@
     <h3 class="panel-title">Notification modals</h3>
   </div>
   <div class="panel-body">
-    <div class="container-fluid">
-      <button class="btn btn-primary mr-s" ng-click="vm.openNote()">Default</button>
-      <button class="btn btn-primary mr-s" ng-click="vm.openNote('sm')">Small</button>
-      <button class="btn btn-primary mr-s" ng-click="vm.openNote('lg')">Large</button>
-    </div>
+    <button class="btn btn-primary mr-s" ng-click="vm.openNote()">Default</button>
+    <button class="btn btn-primary mr-s" ng-click="vm.openNote('sm')">Small</button>
+    <button class="btn btn-primary mr-s" ng-click="vm.openNote('lg')">Large</button>
   </div>
   <div class="panel-footer" hljs>
-<script>
-  showNotification = function(size) {
-    return msmModal.note({
-      size: size,
-      title: 'Note',
-      text: 'This is some very important information.'
-    });
-  };
-</script>
+    <script>
+      showNotification = function (size) {
+        return msmModal.note({
+          size: size,
+          title: 'Note',
+          text: 'This is some very important information.'
+        });
+      };
+    </script>
   </div>
 </div>
 
@@ -66,24 +63,23 @@
     <h3 class="panel-title">Confirmation modals</h3>
   </div>
   <div class="panel-body">
-    <div class="container-fluid">
-      <button class="btn btn-primary mr-s" ng-click="vm.openConfirm()">Default</button>
-      <button class="btn btn-primary mr-s" ng-click="vm.openConfirm('sm')">Small</button>
-      <button class="btn btn-primary mr-s" ng-click="vm.openConfirm('lg')">Large</button>
-    </div>
+    <button class="btn btn-primary mr-s" ng-click="vm.openConfirm()">Default</button>
+    <button class="btn btn-primary mr-s" ng-click="vm.openConfirm('sm')">Small</button>
+    <button class="btn btn-primary mr-s" ng-click="vm.openConfirm('lg')">Large</button>
   </div>
   <div class="panel-footer" hljs>
-<script>
-  showConfirmation = function(size) {
-    return msmModal.confirm({
-      size: size,
-      title: 'Confirmation',
-      text: 'Are you sure you want to continue?',
-      close: { title: 'Yes' },
-      dismiss: { title: 'No', style: 'btn-primary btn-condensed' }
-    }).result.then(function() { /* ... */ });
-  };
-</script>
+    <script>
+      showConfirmation = function (size) {
+        return msmModal.confirm({
+          size: size,
+          title: 'Confirmation',
+          text: 'Are you sure you want to continue?',
+          close: {title: 'Yes'},
+          dismiss: {title: 'No', style: 'btn-primary btn-condensed'}
+        }).result.then(function () { /* ... */
+        });
+      };
+    </script>
   </div>
 </div>
 
@@ -93,25 +89,31 @@
     <h3 class="panel-title">Selection modals</h3>
   </div>
   <div class="panel-body">
-    <div class="container-fluid">
-      <button class="btn btn-primary mr-s" ng-click="vm.openSelect()">Default</button>
-      <button class="btn btn-primary mr-s" ng-click="vm.openSelect('sm')">Small</button>
-      <button class="btn btn-primary mr-s" ng-click="vm.openSelect('lg')">Large</button>
-    </div>
+    <button class="btn btn-primary mr-s" ng-click="vm.openSelect()">Default</button>
+    <button class="btn btn-primary mr-s" ng-click="vm.openSelect('sm')">Small</button>
+    <button class="btn btn-primary mr-s" ng-click="vm.openSelect('lg')">Large</button>
   </div>
   <div class="panel-footer" hljs>
-<script>
-  showSelection = function(size) {
-    return msmModal.select({
-      size: size,
-      title: 'Selection',
-      text: 'Please select:',
-      options: {
-        values: [{ key: 'key1', value: 'Item 1' }, { key: 'key2', value: 'Item 2' }, { key: 'key3', value: 'Item 3' }],
-        selected: 'key1'
-      }
-    }).result.then(function(selectedItem) { /* ... */ });
-  };
-</script>
+    <script>
+      showSelection = function (size) {
+        return msmModal.select({
+          size: size,
+          title: 'Selection',
+          text: 'Please select:',
+          options: {
+            values: function () {
+              return [
+                {key: 'key1', value: 'Item 1'},
+                {key: 'key2', value: 'Item 2'},
+                {key: 'key3', value: 'Item 3'}];
+            },
+            selected: function () {
+              return 'key1'
+            }
+          }
+        }).result.then(function (selectedItem) { /* ... */
+        });
+      };
+    </script>
   </div>
 </div>

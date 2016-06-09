@@ -250,8 +250,8 @@
         size: options.size,
         templateUrl: 'components/ui/msm-modal/msm-modal-select.html',
         resolve: {
-          values: options.options.values,
-          selected: options.options.selected
+          values: options.options.values || function () {},
+          selected: options.options.selected || function () {}
         },
         controller: /*@ngInject*/ function($uibModalInstance, values, selected) {
           var vm = angular.extend(this, {

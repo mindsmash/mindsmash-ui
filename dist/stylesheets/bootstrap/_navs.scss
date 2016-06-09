@@ -4,12 +4,8 @@
       color: $msm-gray-darker;
       transition: background-color linear 0.1s;
 
-      i {
-        margin-right: 8px;
-      }
-
-      .badge {
-        margin-top: 4px;
+      .badge.pull-right {
+        margin-top: 2px;
       }
     }
 
@@ -28,6 +24,7 @@
   > li {
     > a {
       border-left: 3px solid transparent;
+
       &:hover {
         border-color: $msm-gray-light;
       }
@@ -37,13 +34,26 @@
       border-color: $msm-blue;
     }
 
-    &.disabled > a {
-    }
-
     &.divider {
       border-bottom: 1px solid $msm-gray-light;
       padding: 12px 0 0 0;
       margin: 0 0 12px 0;
+    }
+  }
+}
+
+.nav.nav-icons {
+  > li {
+    > a {
+      padding-left: 43px;
+
+      > i {
+        float: left;
+        margin-left: -28px;
+        text-align: center;
+        line-height: 24px;
+        width: 20px;
+      }
     }
   }
 }
@@ -98,22 +108,39 @@
 }
 
 .panel {
-  > .nav > li > a,
-  .nav.nav-panel > li > a {
-    padding-left: 36px;
-    padding-right: 36px;
+  .nav {
+    > li > a,
+    &.nav-panel > li > a {
+      padding: 6px 30px 6px 26px;
+    }
+    &.nav-icons > li > a, &.nav-icons.nav-panel > li > a {
+      padding-left: 52px;
+    }
   }
 
-  &.panel-sm > .nav > li > a,
-  &.panel-sm .nav.nav-panel > li > a {
-    padding-left: 24px;
-    padding-right: 24px;
+  &.panel-sm {
+    .nav {
+      > li > a,
+      &.nav-panel > li > a {
+        padding-left: 22px;
+        padding-right: 24px;
+      }
+      &.nav-icons > li > a, &.nav-icons.nav-panel > li > a {
+        padding-left: 46px;
+      }
+    }
   }
 
-  &.panel-xs > .nav > li > a,
-  &.panel-xs .nav.nav-panel > li > a {
-    padding-left: 18px;
-    padding-right: 18px;
+  &.panel-xs {
+    .nav {
+      > li > a,
+      &.nav-panel > li > a {
+        padding-left: 18px;
+        padding-right: 15px;
+      }
+      &.nav-icons > li > a, &.nav-icons.nav-panel > li > a {
+        padding-left: 40px;
+      }
+    }
   }
 }
-

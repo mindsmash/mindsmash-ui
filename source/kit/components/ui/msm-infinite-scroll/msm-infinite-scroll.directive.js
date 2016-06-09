@@ -57,7 +57,8 @@
 
         // watch for scroll events => every 100ms
         var blocked = false;
-        bindTo.bind('scroll', function () {
+
+        function scrollHandler () {
           if (!blocked) {
             blocked = true;
 
@@ -69,6 +70,11 @@
               blocked = false;
             }, 100);
           }
+        }
+        
+        bindTo.bind('scroll', scrollHandler);
+        $scope.$on('$destroy', function () {
+          bindTo.unbind('scroll', scrollHandler);
         });
       }
     };

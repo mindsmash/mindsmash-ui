@@ -24,6 +24,7 @@
       templateUrl: 'components/ui/msm-form-submit-button/msm-form-submit-button.html',
       scope: {
         formCtrl: '=',
+        icon: '@',
         label: '@'
       }
     };

@@ -27,14 +27,14 @@
       },
       link: function (scope, element, attrs, formCtrl) {
         scope._form = formCtrl;
-
         element.on('submit', function () {
-          formCtrl.loading = true;
-          scope.$apply();
-
-          scope.msmFormSubmit().finally(function () {
-            formCtrl.loading = false;
-          });
+          var submitPromise = scope.msmFormSubmit();
+          if (submitPromise && angular.isFunction(submitPromise.finally)) {
+            formCtrl.loading = true;
+            submitPromise.finally(function () {
+              formCtrl.loading = false;
+            });
+          }
         });
       }
     };

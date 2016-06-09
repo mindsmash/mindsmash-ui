@@ -10,7 +10,7 @@
 
   &.nav-search-open {
     .nav-brand {
-      top: -60px;
+      top: $navbar-height * -1;
     }
   }
 
@@ -23,15 +23,9 @@
       height: 100%;
 
       .nav-item-icon {
-        font-size: 20px;
-        font-weight: 600;
-        padding: 20px 15px;
-
-        @media screen and (max-width: $screen-xs-max) {
-          padding-top: 16px;
-          padding-bottom: 16px;
-          font-size: 18px;
-        }
+        font-size: 22px;
+        font-weight: 100;
+        padding: 15px;
 
         @media screen and (min-width: $screen-md-min) {
           padding-left: 20px;
@@ -40,15 +34,15 @@
       }
 
       .nav-item-profile {
-        padding-top: 16px;
+        padding-top: 15px;
         padding-bottom: 14px;
 
         .profile-thumb {
           background: $msm-navbar-text;
           border-radius: 26px;
           float: left;
-          height: 30px;
-          width: 30px;
+          height: 22px;
+          width: 22px;
         }
 
         > i {
@@ -56,12 +50,12 @@
           float: left;
           font-size: 24px;
           margin-left: 10px;
-          margin-top: 4px;
         }
       }
 
     }
   }
+
   .nav-brand-box {
     display: block;
     height: 100%;
@@ -75,9 +69,10 @@
   }
 
   .nav-brand {
-    font-size: 24px;
-    margin: 0;
-    margin-top: -24px;
+    font-size: 20px;
+    margin: -25px 0 0 0;
+    height: 100%;
+    line-height: $navbar-height;
     padding: 0;
     position: relative;
     text-align: center;
@@ -107,12 +102,9 @@
     z-index: 3;
 
     > i {
-      font-size: 20px;
-      font-weight: 600;
-
-      @media screen and (max-width: $screen-xs-max) {
-        font-size: 18px;
-      }
+      margin-top: -1px;
+      font-size: 22px;
+      font-weight: 100;
     }
 
   }
@@ -120,26 +112,16 @@
   .search-icon-close {
     height: 36px;
     padding: 8px;
-    right: 10px;
-    top: 12px;
+    top: 7px;
+    right: 8px;
     width: 36px;
-
-    @media screen and (max-width: $screen-xs-max) {
-      top: 7px;
-      right: 8px;
-    }
   }
 
   .search-icon-open {
     height: 100%;
-    padding: 20px 15px;
+    padding: 16px 15px;
     right: 0;
     top: 0;
-
-    @media screen and (max-width: $screen-xs-max) {
-      padding-top: 16px;
-      padding-bottom: 16px;
-    }
 
     @media screen and (min-width: $screen-md-min) {
       padding-left: 20px;
@@ -157,14 +139,12 @@
     border: 0;
     box-shadow: none;
     color: $msm-navbar-text;
-    height: 36px;
-    line-height: 18px;
+    height: 33px;
     opacity: 0;
     outline: none;
-    padding: 0 20px;
     position: absolute;
+    top: 9px;
     right: 8px;
-    top: 12px;
     transition: all ease-in-out .3s;
     transition-property: opacity, width;
     width: 0;
@@ -178,11 +158,6 @@
     &.open {
       opacity: 1;
       width: calc(100% - 20px);
-    }
-
-    @media screen and (max-width: $screen-xs-max) {
-      top: 7px;
-      right: 8px;
     }
   }
 }

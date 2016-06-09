@@ -35,11 +35,10 @@
     "angular-translate": "~2.9.0",
     "angular-ui-notification": "~0.1.0",
     "angular-ui-router": "~0.2.18",
-    "angular-ui-select": "~0.14.2",
+    "angular-ui-select": "~0.17.1",
     "angular-sanitize": "~1.5.0",
     "css-spaces": "~0.3.5",
     "material-design-iconic-font": "~2.2.0",
-    "simple-line-icons": "~2.2.3",
     "mindsmash-source-sans-pro": "~1.2.0",
     "highlightjs": "~8.9.1",
     "holderjs": "~2.9.0",
@@ -56,6 +55,7 @@
     }
   },
   "resolutions": {
-    "angular": "~1.5.0"
+    "angular": "~1.5.0",
+    "angular-bootstrap": "~1.2.0"
   }
 }

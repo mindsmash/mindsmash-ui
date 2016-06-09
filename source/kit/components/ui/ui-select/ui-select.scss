@@ -1,6 +1,16 @@
 /* Selects
 ------------------------------------------------------------ */
 
+.ui-select-bootstrap .ui-select-no-choice > li {
+  clear: both;
+  color: #dadada;
+  display: block;
+  font-weight: 400;
+  line-height: 1.42857143;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
 .ui-select-bootstrap .ui-select-choices-row > a {
   padding: 8px 16px;
 }
@@ -10,10 +20,10 @@
   padding-top: 1px;
 
   input.ui-select-search {
-    line-height: 36px;
     height: 36px;
-    padding-left: 13px;
+    line-height: 36px;
     margin: 0;
+    padding-left: 13px;
   }
 
   .ui-select-match:not(:empty) + input.ui-select-search {
@@ -36,8 +46,8 @@
 .ui-select-bootstrap .ui-select-choices-row {
 
   small {
-    line-height: 20px;
     display: block;
+    line-height: 20px;
   }
 
   &.active small {
@@ -47,11 +57,13 @@
 
 .ui-select-mobile-list {
   color: $msm-gray-darker;
+
   li {
+    display: block;
+    padding: 10px 3px;
+
     i:first-child {
       margin-right: 10px;
     }
-    display: block;
-    padding: 10px 3px;
   }
 }

@@ -10,7 +10,7 @@
       return $q(function (resolve) {
         setTimeout(function () {
           resolve('Some async value...');
-        }, 1000);
+        }, 100);
       });
     }
 
@@ -41,7 +41,7 @@
       return msmModal.note({
         size: size,
         title: 'Note',
-        text: 'This is some very important information.',
+        text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. ',
       }).result.then(function (selectedItem) {
         $log.info('Modal (note): Clicked OK.');
         msmNotification.success('Closed', false);
@@ -77,14 +77,6 @@
       {
         key: 'KeyItem3',
         value: 'Item 3'
-      },
-      {
-        key: 'KeyItem31',
-        value: 'Item 3.1'
-      },
-      {
-        key: 'KeyItem31',
-        value: 'Item 3.2'
       }
     ];
     var selectedSelectModalItem = values[0].key;
@@ -94,8 +86,8 @@
         title: 'Selection',
         text: 'Please select:',
         options: {
-          values: values,
-          selected: selectedSelectModalItem
+          values: function () { return values; },
+          selected: function () { return selectedSelectModalItem; }
         }
       }).result.then(function (selectedItem) {
         $log.info('Modal (select): Clicked OK.');

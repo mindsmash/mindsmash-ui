@@ -7,8 +7,9 @@
    *
    * @param config configuration options:
    *        - refresh: (required) function to be called to retrieve (paged) data. Must return array of items with additional 'meta' property for paging information.
-   *        - transform: (optional) function to be called for each item (if not the entire item should be stored in ng-model)
    *        - sublines: (optional) array of property names to display as sublines
+   *        - transform: (optional) function to be called for each item (if not the entire item should be stored in ng-model)
+   *        - emptyText: (optional) a i18n key to be translated and shown if no choices could be found
    *        - minSelectableItems: (optional) threshold of items required in the list (options minus selected items) before the next page is automatically fetched
    *        - pageSize: (optional) number of results per page (defaults to 100)
    *        - mobile: (optional): if true will replace ui-select with list + modal on small screens (xs)
@@ -40,6 +41,7 @@
             scope.sublines = config.sublines || [];
             scope.isString = angular.isString;
             scope.transform = config.transform || angular.identity;
+            scope.emptyText = config.emptyText;
             scope.mobile = config.mobile || false;
             scope.mobileIcon = config.mobileIcon;
             scope.mobileAddText = config.mobileAddText;

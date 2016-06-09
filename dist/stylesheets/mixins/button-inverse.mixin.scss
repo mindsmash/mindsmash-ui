@@ -1,5 +1,5 @@
 @mixin button-inverse($color) {
-  border: 1px solid $color;
+  border: 2px solid $color;
   color: $color;
 
   &:hover {
