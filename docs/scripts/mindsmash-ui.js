@@ -1,3 +1,5 @@
+angular.module('msm.components.util', []);
+
 angular.module('msm.components.ui', [
   'ui.router',
   'pascalprecht.translate',
@@ -7,8 +9,6 @@ angular.module('msm.components.ui', [
   'ngSanitize',
   'ui.bootstrap.datetimepicker'
 ]);
-
-angular.module('msm.components.util', []);
 
 angular.module('msm.components.ui')
 
@@ -55,6 +55,83 @@ angular.module('msm.components.ui')
   altInputFormats: [],
   ngModelOptions: {}
 });
+
+(function () {
+  'use strict';
+
+  angular
+      .module('msm.components.util')
+      .factory('msmUtil', Util);
+
+  function Util() {
+    return {
+      /**
+       * @ngdoc method
+       * @name msm.components.util.Util#hash
+       * @methodOf msm.components.util.Util
+       *
+       * @description
+       *     A simple string hashing function using the {@link http://www.cse.yorku.ca/~oz/hash.html djb2}.
+       * @param {string} str
+       *     The input string.
+       * @returns {number}
+       *     The absolute numeric hash of the input string.
+       */
+      hash: function (str) {
+        if(!str) {
+          return -1;
+        }
+
+        var h = 5381;
+        for (var i = 0; i < str.length; i++) {
+          h = ((h << 5) + h) + str.charCodeAt(i);
+        }
+        return Math.abs(h);
+      },
+
+      /**
+       * @ngdoc method
+       * @name msm.components.util.Util#uuid
+       * @methodOf msm.components.util.Util
+       *
+       * @description
+       *     Generates a new UUID.
+       * @returns {string}
+       *     A UUID string, e.g. *4f87322d-f337-996f-8a9b-1ad08b82853c*.
+       */
+      uuid: function () {
+        function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+        }
+
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+      }
+    };
+  }
+})();
+
+angular.module('msm.components.util')
+.directive('scrollLink', ScrollLink);
+
+/**
+ * @ngdoc directive
+ * @name components.util:ScrollLink
+ * @scope
+ * @restrict 'E'
+ *
+ * @description
+ *    Directive that renders a link to jump to via #hash in url.
+ */
+function ScrollLink() {
+  return {
+    template: '<a href="#{{ name }}" id="{{ name }}" class="scroll-link"></a>',
+    scope      : {
+      name: '@'
+    }
+  };
+}
+
+;
 
 (function() {
   'use strict';
@@ -123,29 +200,29 @@ angular.module('msm.components.ui')
 
   function msmCheckbox() {
     return {
-      scope: {},
+      scope: {
+        label: '@'
+      },
       require: "ngModel",
       restrict: "E",
       replace: "true",
-      template: "<button type=\"button\" class=\"msm-checkbox btn btn-default\" ng-class=\"{'checked': checked===true}\">" +
-        "<i class=\"zmdi zmdi-hc-fw\" ng-class=\"{'zmdi-check': checked===true}\"></i>" +
-        "</button>",
+      template: "<span class=\"msm-checkbox\">" +
+          "<button type=\"button\" ng-click=\"click()\" class=\"btn btn-default\" ng-class=\"{'checked': checked===true}\">" +
+            "<i class=\"zmdi zmdi-hc-fw\" ng-class=\"{'zmdi-check': checked===true}\"></i>" +
+          "</button>" +
+          "<span ng-if=\"label\" ng-click=\"click()\">{{:: label }}</span>" +
+        "</span>",
       link: function(scope, elem, attrs, ctrl) {
         var trueValue = true;
         var falseValue = false;
 
         // If defined set true value
-        if(attrs.ngTrueValue !== undefined) {
-          trueValue = attrs.ngTrueValue;
+        if(attrs.trueValue !== undefined) {
+          trueValue = attrs.trueValue;
         }
         // If defined set false value
-        if(attrs.ngFalseValue !== undefined) {
-          falseValue = attrs.ngFalseValue;
-        }
-
-        // Check if name attribute is set and if so add it to the DOM element
-        if(scope.name !== undefined) {
-          elem.name = scope.name;
+        if(attrs.falseValue !== undefined) {
+          falseValue = attrs.falseValue;
         }
 
         // Update element when model changes
@@ -161,15 +238,13 @@ angular.module('msm.components.ui')
         }, true);
 
         // On click swap value and trigger onChange function
-        elem.bind("click", function() {
-          scope.$apply(function() {
-            if(ctrl.$modelValue === falseValue) {
-              ctrl.$setViewValue(trueValue);
-            } else {
-              ctrl.$setViewValue(falseValue);
-            }
-          });
-        });
+        scope.click = function() {
+          if(ctrl.$modelValue === falseValue) {
+            ctrl.$setViewValue(trueValue);
+          } else {
+            ctrl.$setViewValue(falseValue);
+          }
+        };
       }
     }
   }
@@ -1363,80 +1438,3 @@ $templateCache.put("components/ui/ui-select/select-factory-model.multiple.html",
     });
 
 })();
-
-(function () {
-  'use strict';
-
-  angular
-      .module('msm.components.util')
-      .factory('msmUtil', Util);
-
-  function Util() {
-    return {
-      /**
-       * @ngdoc method
-       * @name msm.components.util.Util#hash
-       * @methodOf msm.components.util.Util
-       *
-       * @description
-       *     A simple string hashing function using the {@link http://www.cse.yorku.ca/~oz/hash.html djb2}.
-       * @param {string} str
-       *     The input string.
-       * @returns {number}
-       *     The absolute numeric hash of the input string.
-       */
-      hash: function (str) {
-        if(!str) {
-          return -1;
-        }
-
-        var h = 5381;
-        for (var i = 0; i < str.length; i++) {
-          h = ((h << 5) + h) + str.charCodeAt(i);
-        }
-        return Math.abs(h);
-      },
-
-      /**
-       * @ngdoc method
-       * @name msm.components.util.Util#uuid
-       * @methodOf msm.components.util.Util
-       *
-       * @description
-       *     Generates a new UUID.
-       * @returns {string}
-       *     A UUID string, e.g. *4f87322d-f337-996f-8a9b-1ad08b82853c*.
-       */
-      uuid: function () {
-        function s4() {
-          return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-        }
-
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-      }
-    };
-  }
-})();
-
-angular.module('msm.components.util')
-.directive('scrollLink', ScrollLink);
-
-/**
- * @ngdoc directive
- * @name components.util:ScrollLink
- * @scope
- * @restrict 'E'
- *
- * @description
- *    Directive that renders a link to jump to via #hash in url.
- */
-function ScrollLink() {
-  return {
-    template: '<a href="#{{ name }}" id="{{ name }}" class="scroll-link"></a>',
-    scope      : {
-      name: '@'
-    }
-  };
-}
-
-;

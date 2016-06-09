@@ -1,61 +1,86 @@
-.msm-checkbox.btn {
-  box-shadow: none;
-  height: 28px;
-  line-height: 1;
-  margin: 6px 0;
-  padding: 1px;
-
-  &:active, &:hover, &:focus {
-    background: $input-bg;
-    border-color: $input-border;
+.msm-checkbox {
+  .btn {
     box-shadow: none;
-    outline: none;
+    height: 28px;
+    line-height: 1;
+    margin: 6px 0;
+    padding: 1px;
+
+    &:active, &:hover, &:focus {
+      background: $input-bg;
+      border-color: $input-border;
+      box-shadow: none;
+      outline: none;
+    }
+
+    &:focus {
+      border-color: $input-border-focus;
+      box-shadow: 0 0 0 1px $input-border-focus;
+    }
+
+    &:active:focus {
+      outline: none;
+    }
+
+    i {
+      font-size: 16px;
+      line-height: 24px;
+      margin: 0;
+      width: 24px;
+    }
   }
 
-  &:focus {
-    border-color: $input-border-focus;
-    box-shadow: 0 0 0 1px $input-border-focus;
-  }
-
-  &:active:focus {
-    outline: none;
-  }
-
-  i {
-    font-size: 16px;
-    line-height: 24px;
-    margin: 0;
-    width: 24px;
-  }
-}
-
-.msm-checkbox-sm.btn,
-.form-group-sm .msm-checkbox.btn {
-  border-radius: $btn-border-radius-small;
-  height: 23px;
-  margin: 5px 0;
-
-  i {
-    font-size: 14px;
-    line-height: 19px;
-    width: 19px;
-  }
-}
-
-.msm-checkbox-lg.btn,
-.form-group-lg .msm-checkbox.btn {
-  border-radius: $btn-border-radius-large;
-  height: 31px;
-  margin: 7px 0;
-
-  i {
-    font-size: 20px;
-    line-height: 27px;
-    width: 27px;
+  span {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 16px;
+    vertical-align: middle;
   }
 }
 
-.msm-checkbox.btn[disabled] {
+.msm-checkbox-sm .btn,
+.form-group-sm .msm-checkbox {
+  .btn {
+    border-radius: $btn-border-radius-small;
+    height: 24px;
+    margin: 5px 0;
+
+    i {
+      font-size: 14px;
+      line-height: 20px;
+      width: 20px;
+    }
+  }
+
+  span {
+    font-size: $font-size-small;
+    line-height: $line-height-small;
+    margin-left: 12px;
+  }
+}
+
+.msm-checkbox-lg .btn,
+.form-group-lg .msm-checkbox {
+  .btn {
+    border-radius: $btn-border-radius-large;
+    height: 30px;
+    margin: 7px 0;
+
+    i {
+      font-size: 20px;
+      line-height: 26px;
+      width: 26px;
+    }
+  }
+
+  span {
+    font-size: $font-size-large;
+    line-height: $line-height-large;
+    margin-left: 18px;
+  }
+}
+
+.msm-checkbox .btn[disabled] {
   background-color: $input-bg-disabled;
   opacity: 1;
 }

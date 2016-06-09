@@ -104,8 +104,8 @@ $padding-small-horizontal:  12px !default;
 $padding-xs-vertical:       2px !default;
 $padding-xs-horizontal:     8px !default;
 
-$line-height-large:         1.5 !default; //extra decimals for Win 8.1 Chrome
-$line-height-small:         1.5 !default;
+$line-height-large:         1.55555556 !default; //extra decimals for Win 8.1 Chrome
+$line-height-small:         1.53846154 !default;
 
 $border-radius-base:        5px !default;
 $border-radius-large:       6px !default;
@@ -210,11 +210,11 @@ $input-border-focus:             $msm-blue !default;
 $input-color-placeholder:        $msm-gray !default;
 
 //** Default `.form-control` height
-//$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;
+$input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;
 //** Large `.form-control` height
-//$input-height-large:             (ceil($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2) !default;
+$input-height-large:             (floor($font-size-large * $line-height-large) + ($padding-large-vertical * 2) + 2) !default;
 //** Small `.form-control` height
-//$input-height-small:             (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
+$input-height-small:             (floor($font-size-small * $line-height-small) + ($padding-small-vertical * 2) + 2) !default;
 
 //** `.form-group` margin
 $form-group-margin-bottom:       16px !default;
