@@ -20,29 +20,29 @@
 
   function msmCheckbox() {
     return {
-      scope: {
-        label: '@'
-      },
+      scope: {},
       require: "ngModel",
       restrict: "E",
       replace: "true",
-      template: "<span class=\"msm-checkbox\">" +
-          "<button type=\"button\" ng-click=\"click()\" class=\"btn btn-default\" ng-class=\"{'checked': checked===true}\">" +
-            "<i class=\"zmdi zmdi-hc-fw\" ng-class=\"{'zmdi-check': checked===true}\"></i>" +
-          "</button>" +
-          "<span ng-if=\"label\" ng-click=\"click()\">{{:: label }}</span>" +
-        "</span>",
+      template: "<button type=\"button\" class=\"msm-checkbox btn btn-default\" ng-class=\"{'checked': checked===true}\">" +
+        "<i class=\"zmdi zmdi-hc-fw\" ng-class=\"{'zmdi-check': checked===true}\"></i>" +
+        "</button>",
       link: function(scope, elem, attrs, ctrl) {
         var trueValue = true;
         var falseValue = false;
 
         // If defined set true value
-        if(attrs.trueValue !== undefined) {
-          trueValue = attrs.trueValue;
+        if(attrs.ngTrueValue !== undefined) {
+          trueValue = attrs.ngTrueValue;
         }
         // If defined set false value
-        if(attrs.falseValue !== undefined) {
-          falseValue = attrs.falseValue;
+        if(attrs.ngFalseValue !== undefined) {
+          falseValue = attrs.ngFalseValue;
+        }
+
+        // Check if name attribute is set and if so add it to the DOM element
+        if(scope.name !== undefined) {
+          elem.name = scope.name;
         }
 
         // Update element when model changes
@@ -58,13 +58,15 @@
         }, true);
 
         // On click swap value and trigger onChange function
-        scope.click = function() {
-          if(ctrl.$modelValue === falseValue) {
-            ctrl.$setViewValue(trueValue);
-          } else {
-            ctrl.$setViewValue(falseValue);
-          }
-        };
+        elem.bind("click", function() {
+          scope.$apply(function() {
+            if(ctrl.$modelValue === falseValue) {
+              ctrl.$setViewValue(trueValue);
+            } else {
+              ctrl.$setViewValue(falseValue);
+            }
+          });
+        });
       }
     }
   }

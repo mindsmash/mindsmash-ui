@@ -38,7 +38,11 @@
       <div class="form-group form-group-checkbox">
         <label for="checkBoolean" class="col-sm-2 control-label">Checkbox</label>
         <div class="col-sm-10">
-          <msm-checkbox ng-model="boolModel" id="checkBoolean" label="Click me!"></msm-checkbox>
+          <div class="checkbox">
+            <label>
+              <msm-checkbox ng-model="boolModel" id="checkBoolean" label="Click me!" ng-disabled="true"></msm-checkbox> Check me out
+            </label>
+          </div>
         </div>
       </div>
       <div class="form-group">
@@ -46,8 +50,7 @@
         <div class="col-sm-10">
           <div class="radio">
             <label>
-              <input type="radio" id="radioExample">
-              <i class="zmdi zmdi-globe"></i> Activate to be cool
+              <input type="radio" id="radioExample"> Activate to be cool
             </label>
           </div>
         </div>
