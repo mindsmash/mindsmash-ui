@@ -8,12 +8,6 @@
   position: relative;
   height: 100%;
 
-  &.nav-search-open {
-    .nav-brand {
-      top: $navbar-height * -1;
-    }
-  }
-
   .nav {
     display: flex;
     height: 100%;
@@ -21,6 +15,17 @@
     .nav-item {
       cursor: pointer;
       height: 100%;
+
+      .nav-item-combined {
+        padding-left: 12px;
+        padding-right: 12px;
+
+        .zmdi {
+          font-size: 17px;
+          width: 1.3em;
+          vertical-align: -4%;
+        }
+      }
 
       .nav-item-icon {
         font-size: 22px;
@@ -53,36 +58,31 @@
         }
       }
 
+      .nav-item-brand {
+        font-size: 20px;
+        line-height: $navbar-height;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
     }
   }
 
   .nav-brand-box {
-    display: block;
+    display: none;
     height: 100%;
-    left: calc(50% - 120px);
+    padding: 0 20px;
     overflow: hidden;
-    position: absolute;
-    top: 0;
-    transition: all ease-in-out .15s;
-    width: 240px;
-    z-index: 2;
-  }
+    cursor: pointer;
 
-  .nav-brand {
-    font-size: 20px;
-    margin: -25px 0 0 0;
-    height: 100%;
-    line-height: $navbar-height;
-    padding: 0;
-    position: relative;
-    text-align: center;
-    top: 50%;
-    transition: all ease-in-out .15s;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    &:hover,
+    &:focus {
+      background-color: $msm-navbar-hover;
+      color: $msm-navbar-text;
+      outline: none;
+    }
 
-    @media screen and (max-width: $screen-xs-max) {
-      font-size: 20px;
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
     }
   }
 
@@ -110,20 +110,27 @@
   }
 
   .search-icon-close {
+    display: none;
     height: 36px;
     padding: 8px;
     top: 7px;
     right: 8px;
     width: 36px;
+
+    @media screen and (min-width: $screen-md-min) {
+      display: block;
+    }
   }
 
   .search-icon-open {
+    display: none;
     height: 100%;
     padding: 16px 15px;
     right: 0;
     top: 0;
 
     @media screen and (min-width: $screen-md-min) {
+      display: block;
       padding-left: 20px;
       padding-right: 20px;
     }
@@ -140,14 +147,13 @@
     box-shadow: none;
     color: $msm-navbar-text;
     height: 33px;
-    opacity: 0;
     outline: none;
     position: absolute;
     top: 9px;
     right: 8px;
-    transition: all ease-in-out .3s;
-    transition-property: opacity, width;
-    width: 0;
+
+    opacity: 1;
+    width: calc(100% - 16px);
 
     &:focus {
       background-color: $msm-navbar-input-active;
@@ -155,9 +161,17 @@
 
     @include placeholder-color($msm-navbar-placeholder);
 
-    &.open {
-      opacity: 1;
-      width: calc(100% - 20px);
+    @media screen and (min-width: $screen-md-min) {
+      opacity: 0;
+      width: 0;
+
+      transition: all ease-in-out .3s;
+      transition-property: opacity, width;
+
+      &.open {
+        opacity: 1;
+        width: calc(100% - 20px);
+      }
     }
   }
 }

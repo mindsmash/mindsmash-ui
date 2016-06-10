@@ -24,19 +24,21 @@ $msm-border-dark:          transparentize($msm-black, .70);
 
 // navbar
 $msm-navbar:               $msm-blue;
-$msm-navbar-hover:         mix($msm-navbar, $msm-black, 85%);
-$msm-navbar-active:        mix($msm-navbar, $msm-black, 75%);
+$msm-navbar-hover:         rgba(0, 0, 0, 0.1);
+$msm-navbar-active:        rgba(0, 0, 0, 0.2);
 
 $msm-navbar-text:          $msm-white;
 $msm-navbar-text-active:   $msm-white;
-$msm-navbar-text-disabled: mix($msm-navbar, $msm-white, 40%);
+$msm-navbar-text-disabled: rgba($msm-white, 0.5);
 
 $msm-navbar-input:         $msm-navbar-active;
-$msm-navbar-input-active:  mix($msm-navbar, $msm-black, 65%);
+$msm-navbar-input-active:  rgba(0, 0, 0, 0.3);
 $msm-navbar-input-text:    $msm-white;
 
-$msm-navbar-placeholder:   mix($msm-navbar-text, $msm-navbar, 50%);
-$msm-navbar-toggle:        mix($msm-navbar-text, $msm-navbar, 50%);
+$msm-navbar-placeholder:   rgba($msm-white, 0.5);
 
 // spinner
 $msm-spinner-color:        $msm-gray;
+
+// wizard
+$msm-wizard-color:         $msm-blue;

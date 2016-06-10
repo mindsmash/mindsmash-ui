@@ -37,7 +37,7 @@
       }
     }
 
-    > .active > a, > .active > a:hover,
+    > .active > a, > .active > a:focus, > .active > a:hover,
     > .dropdown.open > a {
       background-color: $msm-navbar-active;
       color: $msm-navbar-text;

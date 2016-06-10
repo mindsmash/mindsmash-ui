@@ -12,18 +12,18 @@
     width: 24px;
     height: 24px;
     border-radius: 100%;
-    border: 2px solid $msm-blue;
+    border: 2px solid $msm-wizard-color;
     color: $msm-white;
   }
 
   .msm-wizard-divider {
-    border-top: 2px solid $msm-blue;
+    border-top: 2px solid $msm-wizard-color;
     flex: 1;
     top: 11px;
   }
 
   .msm-wizard-icon {
-    background: $msm-blue;
+    background: $msm-wizard-color;
     border-radius: 100%;
     height: 24px;
     display: none;
@@ -71,7 +71,7 @@
   &.inverse {
     .msm-wizard-state {
       border-color: $msm-white;
-      color: $msm-blue;
+      color: $msm-wizard-color;
     }
 
     .msm-wizard-divider {

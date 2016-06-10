@@ -1,9 +1,8 @@
 <nav class="navbar msm-navbar navbar-fixed-top modal-blur">
   <div class="msm-navbar-flex" ng-class="{'nav-search-open' : searchVisible}">
-    <div class="nav-brand-box">
-      <h1 class="nav-brand">mindsmash UI</h1>
-    </div>
     <ul class="nav nav-left">
+      <li class="nav-item hidden-xs hidden-sm"><a href="#" class="nav-item-brand">mindsmash UI</a></li>
+
       <li class="nav-item" uib-dropdown is-open="general.isopen">
         <a uib-dropdown-toggle href="">General <span class="caret"></span></a>
         <ul uib-dropdown-menu class="dropdown-menu" role="menu">
@@ -42,7 +41,7 @@
 
     <div class="nav-search">
       <a ng-hide="searchVisible" class="search-icon search-icon-open" ng-click="searchVisible = !searchVisible"><i class="zmdi zmdi-search"></i></a>
-      <a ng-show="searchVisible" class="search-icon search-icon-close" ng-click="searchVisible = false"><i class="zmdi zmdi-close"></i></a>
+      <a ng-show="searchVisible" class="search-icon search-icon-close" ng-click="searchVisible = false"><i class="zmdi zmdi-close-circle-o"></i></a>
       <input type="text" class="form-control" ng-class="{'open' : searchVisible}">
     </div>
 
