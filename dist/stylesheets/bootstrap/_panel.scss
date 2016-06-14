@@ -145,9 +145,10 @@
       .btn {
         display: block;
         width: 100%;
+        margin-bottom: 12px;
 
-        &:first-child {
-          margin-bottom: 12px;
+        &:last-child {
+          margin-bottom: 0;
         }
       }
     }

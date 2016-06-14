@@ -4121,8 +4121,8 @@ small, .small { font-size: 86.66667%; }
   .panel .panel-body { padding: 10px 18px; }
   .panel .panel-footer { padding: 14px 18px 16px; }
   .panel .panel-actions { padding-top: 16px; padding-bottom: 16px; }
-  .panel .panel-actions .btn { display: block; width: 100%; }
-  .panel .panel-actions .btn:first-child { margin-bottom: 12px; } }
+  .panel .panel-actions .btn { display: block; width: 100%; margin-bottom: 12px; }
+  .panel .panel-actions .btn:last-child { margin-bottom: 0; } }
 
 .control-label { font-weight: normal; color: #333; }
 
