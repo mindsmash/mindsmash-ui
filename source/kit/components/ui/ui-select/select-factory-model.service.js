@@ -29,7 +29,8 @@
           require : 'ngModel',
           scope: {
             autoFill: '=?',
-            placeholder: '@?'
+            placeholder: '@?',
+            parameters: '<?'
           },
           templateUrl: 'components/ui/ui-select/select-factory-model' + (config.multiple ? '.multiple' : '') + '.html',
           link: function(scope, elem, attrs, ctrl) {
@@ -103,7 +104,7 @@
               }
 
               isLoading = true;
-              return config.refresh(pageable, search);
+              return config.refresh(pageable, search, scope.parameters);
             }
 
             function afterRefresh(response) {
