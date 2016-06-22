@@ -5,6 +5,7 @@
         'msm.components.ui',
         'msm.components.util',
         'ui.bootstrap',
+        'ui.bootstrap.datetimepicker',
         'ui.router',
         'pascalprecht.translate',
         'hljs'

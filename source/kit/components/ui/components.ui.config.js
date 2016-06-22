@@ -1,16 +1,17 @@
 angular.module('msm.components.ui')
 
 .config(function($provide) {
-  var replaceTemplate = function(mode) {
-    $provide.decorator('uib' + mode + 'pickerDirective', function($delegate) {
-      $delegate[0].templateUrl = 'components/ui/msm-datepicker/msm-datepicker-' + mode.toLowerCase() + '.html';
+  var replaceTemplate = function(directive, templateUrl) {
+    $provide.decorator(directive, function($delegate) {
+      $delegate[0].templateUrl = templateUrl;
       return $delegate;
     });
   };
 
-  replaceTemplate('Day');
-  replaceTemplate('Month');
-  replaceTemplate('Year');
+  replaceTemplate('uibDaypickerDirective', 'components/ui/msm-datepicker/msm-datepicker-day.html');
+  replaceTemplate('uibMonthpickerDirective', 'components/ui/msm-datepicker/msm-datepicker-month.html');
+  replaceTemplate('uibYearpickerDirective', 'components/ui/msm-datepicker/msm-datepicker-year.html');
+  replaceTemplate('uibTimepickerDirective', 'components/ui/msm-timepicker/msm-timepicker.html');
 })
 
 .config(function(uibDatepickerConfig) {
@@ -18,14 +19,14 @@ angular.module('msm.components.ui')
   uibDatepickerConfig.startingDay = 1;
 })
 
-.config(function(uibDatepickerPopupConfig) {
-  uibDatepickerPopupConfig.showButtonBar = false;
-  uibDatepickerPopupConfig.datepickerPopupTemplateUrl = 'components/ui/msm-datepicker/msm-datepicker-popup.html';
+.config(function(uibTimepickerConfig) {
+  uibTimepickerConfig.showMeridian = false;
+  uibTimepickerConfig.showSeconds = false;
 })
 
 .constant('uiDatetimePickerConfig', {
-  dateFormat: 'yyyy-MM-dd HH:mm:ss',
-  defaultTime: '00:00:00',
+  dateFormat: 'yyyy-MM-dd HH:mm',
+  defaultTime: '09:00:00',
   html5Types: {
     date: 'yyyy-MM-dd',
     'datetime-local': 'yyyy-MM-ddTHH:mm:ss.sss',
@@ -39,7 +40,10 @@ angular.module('msm.components.ui')
     show: false
   },
   closeOnDateSelection: true,
+  closeOnTimeNow: true,
   appendToBody: true,
   altInputFormats: [],
-  ngModelOptions: {}
+  ngModelOptions: {},
+  saveAs: false,
+  readAs: false
 });
