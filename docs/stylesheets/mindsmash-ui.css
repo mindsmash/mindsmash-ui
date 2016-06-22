@@ -3385,61 +3385,19 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .checkbox label { padding-left: 0; }
 
-.msm-datepicker { border-radius: 0; border: 0; bottom: 0 !important; box-shadow: none; left: 0 !important; margin: 0; padding: 8px; position: fixed; right: 0 !important; top: 0 !important; z-index: 1050; }
-
-.msm-datepicker table { margin: 0; outline: none; width: 100%; }
-
-.msm-datepicker table .btn-sm, .msm-datepicker table .btn-group-sm > .btn { box-shadow: none; font-size: 15px; }
-
-.msm-datepicker table .btn-sm:hover, .msm-datepicker table .btn-group-sm > .btn:hover { box-shadow: none; }
-
-.msm-datepicker table .caret { margin-left: .4em; }
-
-.msm-datepicker table th button { width: 100%; }
-
-.msm-datepicker table button { background-color: transparent; border-color: transparent; color: #333; display: block; padding: 8px; box-shadow: none; }
-
-.msm-datepicker table button i { font-weight: 600; padding: 0; }
-
-.msm-datepicker table button:active, .msm-datepicker table button:focus, .msm-datepicker table button:active:focus, .msm-datepicker table button:hover, .msm-datepicker table button:active:hover, .msm-datepicker table button.btn-default[disabled]:hover, .msm-datepicker table button.btn-default[disabled]:focus { background-color: transparent; border-color: transparent; box-shadow: none; color: inherit; outline: none; }
-
-.msm-datepicker table button.current { background-color: #F3F3F3; }
-
-.msm-datepicker table button.current:hover, .msm-datepicker table button.current:focus { background-color: #F3F3F3; border-color: transparent; outline: none; }
-
-.msm-datepicker table button.current * { color: #333; }
-
-.msm-datepicker table button.active { background-color: #317DC1; border-color: transparent; box-shadow: none; }
-
-.msm-datepicker table button.active:hover, .msm-datepicker table button.active:focus { background-color: #317DC1; border-color: transparent; outline: none; }
-
-.msm-datepicker table button.active * { color: #fff; }
-
-@media screen and (min-width: 768px) { .msm-datepicker { margin-top: 1px; border-radius: 5px; border: 1px solid rgba(0, 0, 0, 0.15); bottom: inherit !important; left: inherit !important; position: absolute; right: inherit !important; top: inherit !important; }
-  .msm-datepicker table { width: auto; }
-  .msm-datepicker table button { padding: 6px 10px; } }
-
 .datetime-picker-dropdown { box-shadow: none; margin: 0; padding: 8px; z-index: 1050; }
-
-.datetime-picker-dropdown .uib-increment .glyphicon-chevron-up:before { content: "\25B2"; }
-
-.datetime-picker-dropdown .uib-decrement .glyphicon-chevron-down:before { content: "\25BC"; }
-
-.datetime-picker-dropdown .uib-time input { margin-left: 10px; width: 55px !important; }
 
 .datetime-picker-dropdown table { margin: 0; outline: none; width: 100%; }
 
-.datetime-picker-dropdown table .btn-sm, .datetime-picker-dropdown table .btn-group-sm > .btn { box-shadow: none; font-size: 16px; }
+.datetime-picker-dropdown table .btn-sm, .datetime-picker-dropdown table .btn-group-sm > .btn { box-shadow: none; font-size: 14px; }
 
 .datetime-picker-dropdown table .btn-sm:hover, .datetime-picker-dropdown table .btn-group-sm > .btn:hover { box-shadow: none; }
 
-.datetime-picker-dropdown table .caret { margin-left: .4em; }
+.datetime-picker-dropdown table .caret { margin-left: .4em; margin-top: -.1em; }
 
 .datetime-picker-dropdown table th button { width: 100%; }
 
-.datetime-picker-dropdown table a:active, .datetime-picker-dropdown table a:focus, .datetime-picker-dropdown table a:active:focus, .datetime-picker-dropdown table a:hover, .datetime-picker-dropdown table a:active:hover, .datetime-picker-dropdown table a.btn-default[disabled]:hover, .datetime-picker-dropdown table a.btn-default[disabled]:focus { outline: none; }
-
-.datetime-picker-dropdown table button { background-color: transparent; border-color: transparent; color: #333; display: block; padding: 10px; box-shadow: none; }
+.datetime-picker-dropdown table button { background-color: transparent; border-color: transparent; box-shadow: none; color: #333; display: block; padding: 6px 8px; }
 
 .datetime-picker-dropdown table button i { font-weight: 600; padding: 0; }
 
@@ -3456,6 +3414,10 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 .datetime-picker-dropdown table button.active:hover, .datetime-picker-dropdown table button.active:focus { background-color: #317DC1; border-color: transparent; outline: none; }
 
 .datetime-picker-dropdown table button.active * { color: #fff; }
+
+.datetime-picker-dropdown .uib-timepicker .btn { color: #333; font-size: 18px; line-height: 18px; outline: none; padding: 6px 12px; }
+
+.datetime-picker-dropdown .uib-timepicker input { margin-left: 8px; width: 55px; }
 
 .msm-mobile-menu-item { align-items: center; background-color: #FDFDFD; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); color: #333; display: flex; height: 48px; margin: 0 0 12px 0; }
 
@@ -4148,7 +4110,7 @@ small, .small { font-size: 86.66667%; }
 
 .form-group .radio label { padding-left: 30px; }
 
-.form-group .radio label input[type="radio"] { margin-left: -30px; }
+.form-group .radio label input[type="radio"] { margin-left: -24px; }
 
 select.form-control { text-indent: 8px; }
 

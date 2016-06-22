@@ -1,14 +1,7 @@
-.msm-datepicker {
-  border-radius: 0;
-  border: 0;
-  bottom: 0 !important;
+.datetime-picker-dropdown {
   box-shadow: none;
-  left: 0 !important;
   margin: 0;
   padding: 8px;
-  position: fixed;
-  right: 0 !important;
-  top: 0 !important;
   z-index: 1050;
 
   table {
@@ -18,7 +11,7 @@
 
     .btn-sm {
       box-shadow: none;
-      font-size: 15px;
+      font-size: 14px;
 
       &:hover {
         box-shadow: none;
@@ -27,6 +20,7 @@
 
     .caret {
       margin-left: .4em;
+      margin-top: -.1em;
     }
 
     th button {
@@ -36,10 +30,10 @@
     button {
       background-color: transparent;
       border-color: transparent;
+      box-shadow: none;
       color: $msm-black;
       display: block;
-      padding: 8px;
-      box-shadow: none;
+      padding: 6px 8px;
 
       i {
         font-weight: 600;
@@ -92,25 +86,19 @@
       }
     }
   }
-}
 
-@media screen and (min-width: $screen-sm-min) {
-  .msm-datepicker {
-    margin-top: 1px;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    bottom: inherit !important;
-    left: inherit !important;
-    position: absolute;
-    right: inherit !important;
-    top: inherit !important;
+  .uib-timepicker {
+    .btn {
+      color: $msm-black;
+      font-size: 18px;
+      line-height: 18px;
+      outline: none;
+      padding: 6px 12px;
+    }
 
-    table {
-      width: auto;
-
-      button {
-        padding: 6px 10px;
-      }
+    input {
+      margin-left: 8px;
+      width: 55px;
     }
   }
 }
