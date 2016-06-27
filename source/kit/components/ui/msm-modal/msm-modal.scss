@@ -99,9 +99,9 @@ body > .ui-select-bootstrap.open {
 
   .modal-header {
     padding: 7px 16px;
-    background-color: $msm-blue;
+    background-color: $msm-modal-header-bg;
     border: 0;
-    color: $msm-white;
+    color: $msm-modal-header-text;
     min-height: 46px;
 
     h3 {
