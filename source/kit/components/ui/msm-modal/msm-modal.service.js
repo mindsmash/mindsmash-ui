@@ -111,7 +111,7 @@
             translationContext: options.translationContext || {},
             buttons: [angular.extend({
               icon: 'check-circle',
-              title: 'Ok',
+              title: 'OK',
               style: 'btn-primary',
               onClick: onClick
             }, options.close)]
@@ -175,12 +175,12 @@
             translationContext: options.translationContext || {},
             buttons: [angular.extend({
               icon: 'check-circle',
-              title: 'Ok',
+              title: 'OK',
               style: 'btn-primary',
               onClick: onClick
             }, options.close), angular.extend({
               icon: 'close-circle',
-              title: 'Cancel',
+              title: 'CANCEL',
               style: 'btn-default',
               onClick: onDismiss
             }, options.dismiss)]
@@ -260,13 +260,13 @@
             translationContext: options.translationContext || {},
             buttons: [angular.extend({
               icon: 'check-circle',
-              title: 'Select',
+              title: 'SELECT',
               style: 'btn-primary',
               onClick: select,
               hideMobile: true
             }, options.close), angular.extend({
               icon: 'close-circle',
-              title: 'Cancel',
+              title: 'CANCEL',
               style: 'btn-default',
               onClick: onDismiss
             }, options.dismiss)]
