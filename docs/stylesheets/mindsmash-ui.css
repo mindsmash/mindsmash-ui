@@ -4114,6 +4114,8 @@ small, .small { font-size: 86.66667%; }
 
 select.form-control { text-indent: 8px; }
 
+.msm-inplace-edit { width: 100%; background: transparent; border: 0; outline: 0; padding: 0; padding-right: 5px; border-bottom: 1px dashed #DADADA; }
+
 .table > thead > tr > th { color: #AAA; border-width: 1px; font-weight: normal; letter-spacing: .025em; text-transform: uppercase; }
 
 .nav > li > a { color: #666; transition: background-color linear 0.1s; }

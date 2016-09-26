@@ -258,6 +258,7 @@
   </div>
   <div class="panel-body">
     <div ng-controller="ClickToEditController as cte">
+      <input class="msm-inplace-edit" placeholder="Insert Text"/>
       <div msm-click-to-edit="cte.model.text1" on-change="cte.changed(value)"
            placeholder="Text 1 placeholder"></div>
       <div msm-click-to-edit="cte.model.text2" on-change="cte.changed(value)"
