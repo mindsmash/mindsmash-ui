@@ -1,3 +1,5 @@
+angular.module('msm.components.util', []);
+
 angular.module('msm.components.ui', [
   'ui.router',
   'pascalprecht.translate',
@@ -7,8 +9,6 @@ angular.module('msm.components.ui', [
   'ngSanitize',
   'ui.bootstrap.datetimepicker'
 ]);
-
-angular.module('msm.components.util', []);
 
 angular.module('msm.components.ui')
 
@@ -59,6 +59,83 @@ angular.module('msm.components.ui')
   saveAs: false,
   readAs: false
 });
+angular.module('msm.components.util')
+.directive('scrollLink', ScrollLink);
+
+/**
+ * @ngdoc directive
+ * @name components.util:ScrollLink
+ * @scope
+ * @restrict 'E'
+ *
+ * @description
+ *    Directive that renders a link to jump to via #hash in url.
+ */
+function ScrollLink() {
+  return {
+    template: '<a href="#{{ name }}" id="{{ name }}" class="scroll-link"></a>',
+    scope      : {
+      name: '@'
+    }
+  };
+}
+
+;
+
+(function () {
+  'use strict';
+
+  angular
+      .module('msm.components.util')
+      .factory('msmUtil', Util);
+
+  function Util() {
+    return {
+      /**
+       * @ngdoc method
+       * @name msm.components.util.Util#hash
+       * @methodOf msm.components.util.Util
+       *
+       * @description
+       *     A simple string hashing function using the {@link http://www.cse.yorku.ca/~oz/hash.html djb2}.
+       * @param {string} str
+       *     The input string.
+       * @returns {number}
+       *     The absolute numeric hash of the input string.
+       */
+      hash: function (str) {
+        if(!str) {
+          return -1;
+        }
+
+        var h = 5381;
+        for (var i = 0; i < str.length; i++) {
+          h = ((h << 5) + h) + str.charCodeAt(i);
+        }
+        return Math.abs(h);
+      },
+
+      /**
+       * @ngdoc method
+       * @name msm.components.util.Util#uuid
+       * @methodOf msm.components.util.Util
+       *
+       * @description
+       *     Generates a new UUID.
+       * @returns {string}
+       *     A UUID string, e.g. *4f87322d-f337-996f-8a9b-1ad08b82853c*.
+       */
+      uuid: function () {
+        function s4() {
+          return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+        }
+
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+      }
+    };
+  }
+})();
+
 (function() {
   'use strict';
 
@@ -344,6 +421,49 @@ angular.module('msm.components.ui')
 (function () {
   'use strict';
 
+  /**
+   * @ngdoc directive
+   * @name components.ui.msmFormSubmit
+   * @scope
+   * @restrict 'A'
+   *
+   * @description Directive for setting a 'loading' true/false flag on a form controller. You need to make sure that
+   * your submit function returns a promise for this to work. Use this as a replacement for angular's 'ngSubmit' directive.
+   *
+   * @example <form msm-form-submit="submitMyFormMethod">...</form>
+   */
+  angular
+      .module('msm.components.ui')
+      .directive('msmFormSubmit', MsmFormSubmit);
+
+  function MsmFormSubmit() {
+    return {
+      restrict: 'A',
+      require: '^form',
+      transclude: true,
+      template: '<fieldset ng-disabled="_form.loading"><ng-transclude></ng-transclude></fieldset>',
+      scope: {
+        msmFormSubmit: '&'
+      },
+      link: function (scope, element, attrs, formCtrl) {
+        scope._form = formCtrl;
+        element.on('submit', function () {
+          var submitPromise = scope.msmFormSubmit();
+          if (submitPromise && angular.isFunction(submitPromise.finally)) {
+            formCtrl.loading = true;
+            submitPromise.finally(function () {
+              formCtrl.loading = false;
+            });
+          }
+        });
+      }
+    };
+  }
+})();
+
+(function () {
+  'use strict';
+
   angular.module('msm.components.ui')
       .directive('msmDelayForm', MsmDelayForm);
 
@@ -383,49 +503,6 @@ angular.module('msm.components.ui')
         });
       }
     }
-  }
-})();
-
-(function () {
-  'use strict';
-
-  /**
-   * @ngdoc directive
-   * @name components.ui.msmFormSubmit
-   * @scope
-   * @restrict 'A'
-   *
-   * @description Directive for setting a 'loading' true/false flag on a form controller. You need to make sure that
-   * your submit function returns a promise for this to work. Use this as a replacement for angular's 'ngSubmit' directive.
-   *
-   * @example <form msm-form-submit="submitMyFormMethod">...</form>
-   */
-  angular
-      .module('msm.components.ui')
-      .directive('msmFormSubmit', MsmFormSubmit);
-
-  function MsmFormSubmit() {
-    return {
-      restrict: 'A',
-      require: '^form',
-      transclude: true,
-      template: '<fieldset ng-disabled="_form.loading"><ng-transclude></ng-transclude></fieldset>',
-      scope: {
-        msmFormSubmit: '&'
-      },
-      link: function (scope, element, attrs, formCtrl) {
-        scope._form = formCtrl;
-        element.on('submit', function () {
-          var submitPromise = scope.msmFormSubmit();
-          if (submitPromise && angular.isFunction(submitPromise.finally)) {
-            formCtrl.loading = true;
-            submitPromise.finally(function () {
-              formCtrl.loading = false;
-            });
-          }
-        });
-      }
-    };
   }
 })();
 
@@ -1073,7 +1150,7 @@ $templateCache.put("components/ui/msm-datepicker/msm-datepicker-day.html","<tabl
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-month.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n  <tr>\n    <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left uib-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n    <th><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm uib-title\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\"><strong>{{title}}</strong><span class=\"caret\"></span></button></th>\n    <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right uib-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n  </tr>\n  </thead>\n  <tbody>\n  <tr class=\"uib-months\" ng-repeat=\"row in rows track by $index\">\n    <td ng-repeat=\"dt in row\" class=\"uib-month text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\" ng-class=\"::dt.customClass\">\n      <button type=\"button\" class=\"btn btn-default\" uib-is-class=\"\'btn-info\' for selectedDt, \'active\' for activeDt on dt\" ng-click=\"select(dt.date)\" ng-disabled=\"::dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n    </td>\n  </tr>\n  </tbody>\n</table>");
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-popup.html","<ul class=\"dropdown-menu msm-datepicker\" ng-if=\"isOpen\" style=\"display: block\" ng-style=\"{top: position.top+\'px\', left: position.left+\'px\'}\" ng-keydown=\"keydown($event)\" ng-click=\"$event.stopPropagation()\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <li ng-transclude></li>\n  <li ng-if=\"showButtonBar\" style=\"padding:10px 9px 2px\">\n    <span class=\"btn-group pull-left\">\n      <button type=\"button\" class=\"btn btn-sm btn-info\" ng-click=\"select(\'today\')\" ng-disabled=\"isDisabled(\'today\')\">{{ getText(\'current\') }}</button>\n      <button type=\"button\" class=\"btn btn-sm btn-danger\" ng-click=\"select(null)\">{{ getText(\'clear\') }}</button>\n    </span>\n    <button type=\"button\" class=\"btn btn-sm btn-success pull-right\" ng-click=\"close()\">{{ getText(\'close\') }}</button>\n  </li>\n</ul>\n");
 $templateCache.put("components/ui/msm-datepicker/msm-datepicker-year.html","<table role=\"grid\" aria-labelledby=\"{{::uniqueId}}-title\" aria-activedescendant=\"{{activeDateId}}\">\n  <!-- Copied and edited from angular-ui/bootstrap/template/datepicker/ -->\n  <thead>\n  <tr>\n    <th><button type=\"button\" class=\"btn btn-default btn-sm pull-left uib-left\" ng-click=\"move(-1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-left\"></i></button></th>\n    <th colspan=\"{{::columns - 2}}\"><button id=\"{{::uniqueId}}-title\" role=\"heading\" aria-live=\"assertive\" aria-atomic=\"true\" type=\"button\" class=\"btn btn-default btn-sm uib-title\" ng-click=\"toggleMode()\" ng-disabled=\"datepickerMode === maxMode\" tabindex=\"-1\"><strong>{{title}}</strong></button></th>\n    <th><button type=\"button\" class=\"btn btn-default btn-sm pull-right uib-right\" ng-click=\"move(1)\" tabindex=\"-1\"><i class=\"zmdi zmdi-chevron-right\"></i></button></th>\n  </tr>\n  </thead>\n  <tbody>\n  <tr class=\"uib-years\" ng-repeat=\"row in rows track by $index\">\n    <td ng-repeat=\"dt in row\" class=\"uib-year text-center\" role=\"gridcell\" id=\"{{::dt.uid}}\" ng-class=\"::dt.customClass\">\n      <button type=\"button\" class=\"btn btn-default\" uib-is-class=\"\'btn-info\' for selectedDt, \'active\' for activeDt on dt\" ng-click=\"select(dt.date)\" ng-disabled=\"::dt.disabled\" tabindex=\"-1\"><span ng-class=\"::{\'text-info\': dt.current}\">{{::dt.label}}</span></button>\n    </td>\n  </tr>\n  </tbody>\n</table>");
-$templateCache.put("components/ui/msm-form-submit-button/msm-form-submit-button.html","<button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"formCtrl.loading || formCtrl.$invalid\">\n  <span ng-hide=\"formCtrl.loading\"><i class=\"zmdi {{:: icon || \'zmdi-check\' }}\"></i> {{::label | translate}}</span>\n  <span ng-show=\"formCtrl.loading\"><i class=\"zmdi zmdi-spinner zmdi-hc-spin\"></i> {{::\'LOADING\' | translate}}</span>\n</button>");
+$templateCache.put("components/ui/msm-form-submit-button/msm-form-submit-button.html","<button type=\"submit\" class=\"btn btn-primary\" ng-disabled=\"formCtrl.loading || formCtrl.$invalid\">\n  <i class=\"zmdi zmdi-hc-fw {{ formCtrl.loading ? \'zmdi-hc-spin zmdi-spinner\' : (icon || \'zmdi-check\') }}\"></i>&nbsp;{{::label | translate}}\n</button>");
 $templateCache.put("components/ui/msm-mobile-menu-item/msm-mobile-menu-item.html","<div class=\"msm-mobile-menu-item\" ng-click=\"open()\">\n  <i class=\"left-icon\" ng-class=\"icon\"></i>\n	<div class=\"menu-label\">{{:: labelText | translate }}</div>\n	<div class=\"preview-value\">{{ previewValue }}</div>\n	<i class=\"zmdi zmdi-chevron-right\"></i>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal-select.html","<div class=\"modal-content-wrapper\">\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\">{{:: vm.title | translate:vm.translationContext }}</h3>\n    <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n  </div>\n  <div class=\"modal-body modal-mobile-show\"\n       msm-infinite-scroll=\"vm.addPage()\"\n       msm-infinite-scroll-threshold=\"50\"\n       msm-infinite-scroll-no-initial-load=\"true\">\n    <ul class=\"modal-mobile-options\">\n      <li ng-repeat=\"option in vm.options.values\" class=\"modal-mobile-option\" ng-click=\"vm.select(option)\">\n        <i class=\"zmdi zmdi-check-circle item-selected\" ng-if=\"::vm.options.selected === option\"></i>\n        <i class=\"zmdi zmdi-circle-o item-not-selected\" ng-if=\"::vm.options.selected !== option\"></i>\n        {{ ::option }}\n      </li>\n    </ul>\n    <div class=\"text-center m-m\" data-ng-show=\"vm.loading\">\n      <msm-spinner></msm-spinner>\n    </div>\n  </div>\n  <div class=\"modal-body modal-mobile-hide\">\n    <form class=\"form-horizontal mt-xxs mb-xs\">\n          <ui-select id=\"selectItems\" ng-model=\"vm.options.selected\" append-to-body=\"true\">\n            <ui-select-match placeholder=\"{{ vm.text | translate:vm.translationContext }}\" allow-clear=\"false\" class=\"ui-select-match\">\n              {{ vm.options.selected }}\n            </ui-select-match>\n            <ui-select-choices repeat=\"option in ::vm.options.values | filter: $select.search\" class=\"ui-select-choices\"\n                               msm-infinite-scroll=\"vm.addPage()\"\n                               msm-infinite-scroll-threshold=\"50\"\n                               msm-infinite-scroll-no-initial-load=\"true\">\n              <div ng-bind-html=\"::option | highlight: $select.search\"></div>\n            </ui-select-choices>\n          </ui-select>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n            ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n            ng-click=\"button.onClick()\">\n      <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}</button>\n  </div>\n</div>\n");
 $templateCache.put("components/ui/msm-modal/msm-modal.html","<div class=\"modal-content-wrapper\">\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\">{{ vm.title | translate:vm.translationContext }}</h3>\n    <span class=\"modal-close\" ng-click=\"vm.onDismiss ? vm.onDismiss() : $dismiss(\'cancel\')\"><i class=\"zmdi zmdi-close img-close\"></i></span>\n  </div>\n  <div class=\"modal-body\">\n    <span>{{ vm.text | translate:vm.translationContext }}</span>\n  </div>\n  <div class=\"modal-footer\">\n    <button ng-repeat=\"button in vm.buttons\" class=\"btn {{ button.style }}\"\n            ng-class=\"{ \'btn-zmdi\': !button.title, \'modal-mobile-hide\': button.hideMobile }\"\n            ng-click=\"button.onClick()\">\n      <i ng-if=\"button.icon\" class=\"zmdi zmdi-hc-fw zmdi-{{ button.icon }}\"></i>{{ button.title | translate:vm.translationContext }}\n    </button>\n  </div>\n</div>");
@@ -1368,80 +1445,3 @@ $templateCache.put("components/ui/ui-select/select-factory-model.multiple.html",
     });
 
 })();
-
-(function () {
-  'use strict';
-
-  angular
-      .module('msm.components.util')
-      .factory('msmUtil', Util);
-
-  function Util() {
-    return {
-      /**
-       * @ngdoc method
-       * @name msm.components.util.Util#hash
-       * @methodOf msm.components.util.Util
-       *
-       * @description
-       *     A simple string hashing function using the {@link http://www.cse.yorku.ca/~oz/hash.html djb2}.
-       * @param {string} str
-       *     The input string.
-       * @returns {number}
-       *     The absolute numeric hash of the input string.
-       */
-      hash: function (str) {
-        if(!str) {
-          return -1;
-        }
-
-        var h = 5381;
-        for (var i = 0; i < str.length; i++) {
-          h = ((h << 5) + h) + str.charCodeAt(i);
-        }
-        return Math.abs(h);
-      },
-
-      /**
-       * @ngdoc method
-       * @name msm.components.util.Util#uuid
-       * @methodOf msm.components.util.Util
-       *
-       * @description
-       *     Generates a new UUID.
-       * @returns {string}
-       *     A UUID string, e.g. *4f87322d-f337-996f-8a9b-1ad08b82853c*.
-       */
-      uuid: function () {
-        function s4() {
-          return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-        }
-
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-      }
-    };
-  }
-})();
-
-angular.module('msm.components.util')
-.directive('scrollLink', ScrollLink);
-
-/**
- * @ngdoc directive
- * @name components.util:ScrollLink
- * @scope
- * @restrict 'E'
- *
- * @description
- *    Directive that renders a link to jump to via #hash in url.
- */
-function ScrollLink() {
-  return {
-    template: '<a href="#{{ name }}" id="{{ name }}" class="scroll-link"></a>',
-    scope      : {
-      name: '@'
-    }
-  };
-}
-
-;
