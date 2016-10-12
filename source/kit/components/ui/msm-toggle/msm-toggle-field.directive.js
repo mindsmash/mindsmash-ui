@@ -10,10 +10,17 @@
       require: '^^msmToggleForm',
       link: function(scope, elem, attrs) {
         elem.addClass('msm-toggle-show');
-        var data = attrs.msmToggleField || attrs.ngModel;
-        var body = $sanitize(scope.$eval(data));
-        var html = $compile('<div class="form-control-static msm-toggle-hide">' + body + '</div>')(scope);
-        elem.after(html);
+        var content = $compile('<div class="form-control-static msm-toggle-hide"></div>')(scope);
+        elem.after(content);
+        scope.$on('msmToggleForm:isEditable', function(event, isEditable) {
+          if (!isEditable) {
+            if (attrs.msmToggleField) {
+              content.html($sanitize(scope.$eval(attrs.msmToggleField)));
+            } else {
+              content.text(scope.$eval(attrs.ngModel));
+            }
+          }
+        });
       }
     }
   }

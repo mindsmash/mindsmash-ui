@@ -11,6 +11,7 @@
       controller: angular.noop,
       link: function (scope, elem, attrs) {
         scope.$watch(attrs.msmToggleForm, function(isEditable) {
+          scope.$broadcast('msmToggleForm:isEditable', isEditable);
           if (isEditable) {
             elem.addClass('msm-toggle-active');
             elem.removeClass('msm-toggle-inactive');
