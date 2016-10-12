@@ -36,14 +36,14 @@
           link: function(scope, elem, attrs, ctrl) {
             var isLast = false;
             var isLoading = false;
-            var pageSize = config.pageSize || 100;
+            var pageSize = config.pageSize || 100;
             var pageable = { page: 0, size: pageSize };
 
-            scope.sublines = config.sublines || [];
+            scope.sublines = config.sublines || [];
             scope.isString = angular.isString;
             scope.transform = config.transform || angular.identity;
             scope.emptyText = config.emptyText;
-            scope.mobile = config.mobile || false;
+            scope.mobile = config.mobile || false;
             scope.mobileIcon = config.mobileIcon;
             scope.mobileAddText = config.mobileAddText;
             scope.options = [];

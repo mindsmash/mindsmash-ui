@@ -4,7 +4,7 @@
     <ui-select-match class="ui-select-match" placeholder="{{:: placeholder | translate }}" allow-clear="{{ !isRequired }}">
       <span>{{:: $item.displayName }}</span>
     </ui-select-match>
-    <ui-select-choices class="ui-select-choices" repeat="transform(option) as option in options | filter:{} track by option.id" refresh="refresh($select.search, true)" refresh-delay="250"
+    <ui-select-choices class="ui-select-choices" repeat="transform(option) as option in options | filter:{} track by option.id" refresh="refresh($select.search, true)" refresh-delay="250"
                        msm-infinite-scroll="refresh($select.search, false)" msm-infinite-scroll-threshold="50" msm-infinite-scroll-no-initial-load="true">
       <span ng-bind-html="::option.displayName | highlight: $select.search"></span>
       <small class="text-muted" ng-repeat="subline in ::sublines">{{:: isString(subline) ? option[subline] : subline(option) }}</small>
@@ -22,7 +22,7 @@
       <a href ng-click="addItem()" class="btn btn-block btn-default"><i class="zmdi zmdi-plus" ng-class="{
         'zmdi-plus': !modalLoading,
         'zmdi-spinner zmdi-hc-spin': modalLoading
-      }"></i> {{::mobileAddText | translate}}</a>
+      }"></i> {{::mobileAddText | translate}}</a>
     </li>
   </ul>
 </div>

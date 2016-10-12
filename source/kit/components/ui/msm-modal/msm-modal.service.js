@@ -108,7 +108,7 @@
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
-            translationContext: options.translationContext || {},
+            translationContext: options.translationContext || {},
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'OK',
@@ -172,7 +172,7 @@
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
-            translationContext: options.translationContext || {},
+            translationContext: options.translationContext || {},
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'OK',
@@ -257,7 +257,7 @@
           var vm = angular.extend(this, {
             title: options.title || '',
             text: options.text || '',
-            translationContext: options.translationContext || {},
+            translationContext: options.translationContext || {},
             buttons: [angular.extend({
               icon: 'check-circle',
               title: 'SELECT',
