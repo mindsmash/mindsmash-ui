@@ -75,7 +75,7 @@
                 // workaround for https://github.com/angular-ui/ui-select/issues/404
                 function findModelValueById(id) {
                   return _.find(scope.data.ngModel, function (value) {
-                    return value.id === id;
+                    return value && value.id === id;
                   });
                 }
                 for (var i = 0; i < response.length; i++) {

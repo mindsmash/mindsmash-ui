@@ -44029,7 +44029,7 @@ return 'pascalprecht.translate';
 /**
  * angular-ui-notification - Angular.js service providing simple notifications using Bootstrap 3 styles with css transitions for animating
  * @author Alex_Crack
- * @version v0.3.5
+ * @version v0.3.6
  * @link https://github.com/alexcrack/angular-ui-notification
  * @license MIT
  */
@@ -44050,7 +44050,8 @@ angular.module('ui-notification').provider('Notification', function() {
         onClose: undefined,
         closeOnClick: true,
         maxCount: 0, // 0 - Infinite
-        container: 'body'
+        container: 'body',
+        priority: 10
     };
 
     this.setOptions = function(options) {
@@ -44087,6 +44088,7 @@ angular.module('ui-notification').provider('Notification', function() {
             args.onClose = args.onClose ? args.onClose : options.onClose;
             args.closeOnClick = (args.closeOnClick !== null && args.closeOnClick !== undefined) ? args.closeOnClick : options.closeOnClick;
             args.container = args.container ? args.container : options.container;
+            args.priority = args.priority ? args.priority : options.priority;
             
             var template=$templateCache.get(args.template);
 
@@ -44096,7 +44098,9 @@ angular.module('ui-notification').provider('Notification', function() {
                 // load it via $http only if it isn't default template and template isn't exist in template cache
                 // cache:true means cache it for later access.
                 $http.get(args.template,{cache: true})
-                  .then(processNotificationTemplate)
+                  .then(function(response){
+                    processNotificationTemplate(response.data);
+                  })
                   .catch(function(data){
                     throw new Error('Template ('+args.template+') could not be loaded. ' + data);
                   });                
@@ -44112,12 +44116,27 @@ angular.module('ui-notification').provider('Notification', function() {
                 scope.delay = args.delay;
                 scope.onClose = args.onClose;
 
+                var priorityCompareTop = function(a, b) {
+                    return a._priority - b._priority;
+                };
+
+                var priorityCompareBtm = function(a, b) {
+                    return b._priority - a._priority;
+                };
+
                 var reposite = function() {
                     var j = 0;
                     var k = 0;
                     var lastTop = startTop;
                     var lastRight = startRight;
                     var lastPosition = [];
+
+                    if( args.positionY === 'top' ) {
+                        messageElements.sort( priorityCompareTop );
+                    } else if( args.positionY === 'bottom' ) {
+                        messageElements.sort( priorityCompareBtm );
+                    }
+
                     for(var i = messageElements.length - 1; i >= 0; i --) {
                         var element  = messageElements[i];
                         if (args.replaceMessage && i < messageElements.length - 1) {
@@ -44157,6 +44176,7 @@ angular.module('ui-notification').provider('Notification', function() {
                 var templateElement = $compile(template)(scope);
                 templateElement._positionY = args.positionY;
                 templateElement._positionX = args.positionX;
+                templateElement._priority = args.priority;
                 templateElement.addClass(args.type);
 
                 var closeEvent = function(e) {
