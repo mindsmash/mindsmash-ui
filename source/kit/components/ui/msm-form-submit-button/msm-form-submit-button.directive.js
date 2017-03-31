@@ -11,7 +11,7 @@
    * @description Directive for a form submit button. When used in combination with the msmFormSubmit directive,
    * the button will automatically toggle a loading state when the form is submitted and when processing is done.
    *
-   * @example <msm-form-submit-button label="LABEL" form-ctrl="formControllerName"></msm-form-submit-button>
+   * @example <msm-form-submit-button label="LABEL" hide-icon-on-mobile="true" form-ctrl="formControllerName"></msm-form-submit-button>
    */
   angular
       .module('msm.components.ui')
@@ -25,7 +25,8 @@
       scope: {
         formCtrl: '=',
         icon: '@',
-        label: '@'
+        label: '@',
+        hideIconOnMobile: '<?'
       }
     };
   }
