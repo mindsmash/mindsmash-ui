@@ -26,7 +26,7 @@
         formCtrl: '=',
         icon: '@',
         label: '@',
-		hideIconOnMobile: '<?'
+        hideIconOnMobile: '<?'
       }
     };
   }
